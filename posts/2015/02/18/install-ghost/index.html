@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Ghostを入れる &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-02-18 04:00:00 &#43;0000 UTC">February 18, 2015</time>
+</div>
+		<h1 class="post-title">Ghostを入れる</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p>blogをGhostにしたので、インストール手順を簡単に紹介します。</p>
+
+<!-- more -->
+
+<h2 id="node-jsのインストール">Node.jsのインストール</h2>
+
+<h3 id="nvmのインストール">NVMのインストール</h3>
+
+<p>例によって環境を汚したくないためと、apt-getでインストールするとnodejsというコマンドになりnpm等のコマンドがそのままだと動かなくなるため、NVMを先に入れます。</p>
+
+<p><a href="http://qiita.com/tamurashingo@github/items/6348863668e1e3fd70c9">http://qiita.com/tamurashingo@github/items/6348863668e1e3fd70c9</a></p>
+
+<p>この記事にあるように入れます。</p>
+
+<h3 id="node-js-のインストール">Node.js のインストール</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">nvm install <span class="m">0</span>.10
+nvm <span class="nb">alias</span> default <span class="m">0</span>.10</code></pre></div>
+<h2 id="ghost-のインストール">Ghost のインストール</h2>
+
+<p><a href="http://docs.ghost.org/ja/installation/linux/">http://docs.ghost.org/ja/installation/linux/</a></p>
+
+<p>ここにあるように入れます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget https://ghost.org/zip/ghost-0.5.8.zip
+mkdir ghost-0.5.8 <span class="o">&amp;&amp;</span> <span class="nb">cd</span> !$
+unzip ../ghost-0.5.8.zip
+
+npm install --production</code></pre></div>
+<p>リモートサーバでやっているのでまずはここまで。</p>
+
+<h2 id="ghost-の設定">Ghost の設定</h2>
+
+<h3 id="アクセス元のサーバ">アクセス元のサーバ</h3>
+
+<p>立上げ時は 127.0.0.1 からしか受け付けないようになっているので、すべてのアドレス(0.0.0.0)から受け付けるように変更します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi config.js</code></pre></div>
+<p>server というところがそうです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js">        <span class="nx">server</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+            <span class="nx">port</span><span class="o">:</span> <span class="s1">&#39;2368&#39;</span>
+        <span class="p">},</span>
+</code></pre></div>
+<h3 id="メールサーバ">メールサーバ</h3>
+
+<p>当初は必要なかったのですが、ブログを書いてくれる人を招待する際にメールが必要なので、Mailgunを使うことにしました。</p>
+
+<p><a href="http://docs.ghost.org/ja/mail/#mailgunを使う場合-">http://docs.ghost.org/ja/mail/#mailgunを使う場合-</a></p>
+
+<p>ここにあるとおりにMailgunに登録して、ユーザ名とパスワードを発行してもらいます。非常にお手軽です。</p>
+
+<h2 id="管理者アカウントの作成">管理者アカウントの作成</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">npm start</code></pre></div>
+<p>でサーバを立上げ、ブラウザでアクセスし、管理者アカウントを作成します。 本番用では</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nv">NODE_ENV</span><span class="o">=</span>production forever start index.js</code></pre></div>
+<p>と<code>forever</code>でデーモン化させました。</p>
+
+<h2 id="はてなブックマークのボタンをつける">はてなブックマークのボタンをつける</h2>
+
+<p>CasperというテーマにはTwitter、Facebook、Google+へシェアするボタンが用意されています。
+ここにはてなブックマークのボタンをつけました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi content/themes/casper/post.hbs</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://b.hatena.ne.jp/entry/{{url absolute=&#34;</span><span class="na">true</span><span class="err">&#34;}}&#34;</span>
+   <span class="na">class</span><span class="o">=</span><span class="s">&#34;hatena-bookmark-button&#34;</span>
+   <span class="na">data-hatena-bookmark-title</span><span class="o">=</span><span class="s">&#34;{{encode title}}&#34;</span>
+   <span class="na">data-hatena-bookmark-layout</span><span class="o">=</span><span class="s">&#34;standard-balloon&#34;</span>
+   <span class="na">data-hatena-bookmark-lang</span><span class="o">=</span><span class="s">&#34;ja&#34;</span>
+   <span class="na">title</span><span class="o">=</span><span class="s">&#34;このエントリーをはてなブックマークに追加&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://b.st-hatena.com/images/entry-button/button-only@2x.png&#34;</span>
+       <span class="na">alt</span><span class="o">=</span><span class="s">&#34;このエントリーをはてなブックマークに追加&#34;</span>
+       <span class="na">width</span><span class="o">=</span><span class="s">&#34;20&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;20&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;border: none;&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://b.st-hatena.com/js/bookmark_button.js&#34;</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="na">async</span><span class="o">=</span><span class="s">&#34;async&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<h2 id="google-analytics-をつける">Google Analytics をつける</h2>
+
+<p>アクセス解析するために Google Analytics をつけます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi content/themes/casper/default.hbs</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- Google Analytics --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">s</span><span class="p">,</span><span class="nx">o</span><span class="p">,</span><span class="nx">g</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">m</span><span class="p">){</span><span class="nx">i</span><span class="p">[</span><span class="s1">&#39;GoogleAnalyticsObject&#39;</span><span class="p">]</span><span class="o">=</span><span class="nx">r</span><span class="p">;</span><span class="nx">i</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span><span class="o">=</span><span class="nx">i</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span><span class="o">||</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="p">(</span><span class="nx">i</span><span class="p">[</span><span class="nx">r</span><span class="p">].</span><span class="nx">q</span><span class="o">=</span><span class="nx">i</span><span class="p">[</span><span class="nx">r</span><span class="p">].</span><span class="nx">q</span><span class="o">||</span><span class="p">[]).</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)},</span><span class="nx">i</span><span class="p">[</span><span class="nx">r</span><span class="p">].</span><span class="nx">l</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="k">new</span> <span class="nb">Date</span><span class="p">();</span><span class="nx">a</span><span class="o">=</span><span class="nx">s</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">o</span><span class="p">),</span>
+  <span class="nx">m</span><span class="o">=</span><span class="nx">s</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">o</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span><span class="nx">a</span><span class="p">.</span><span class="kr">async</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="nx">a</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">g</span><span class="p">;</span><span class="nx">m</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">m</span><span class="p">)</span>
+  <span class="p">})(</span><span class="nb">window</span><span class="p">,</span><span class="nb">document</span><span class="p">,</span><span class="s1">&#39;script&#39;</span><span class="p">,</span><span class="s1">&#39;//www.google-analytics.com/analytics.js&#39;</span><span class="p">,</span><span class="s1">&#39;ga&#39;</span><span class="p">);</span>
+
+  <span class="nx">ga</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="s1">&#39;XXXXXXXXXX&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">);</span>
+  <span class="nx">ga</span><span class="p">(</span><span class="s1">&#39;send&#39;</span><span class="p">,</span> <span class="s1">&#39;pageview&#39;</span><span class="p">);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- End Google Analytics --&gt;</span></code></pre></div>
+<h2 id="ネットワーク設定">ネットワーク設定</h2>
+
+<p>ApacheのReverseProxyを使って2368から80への転送を行います。</p>
+
+<pre><code>sudo a2enmod proxy
+sudo a2enmod proxy_http
+ProxyRequests Off
+ProxyPass / http://127.0.0.1:2368/
+ProxyPassReverse / http://127.0.0.1:2368/
+ProxyPreserveHost On
+&lt;Proxy *&gt;
+    AllowOverride all
+    Order deny,allow
+    allow from 127.0.0.1
+&lt;/Proxy&gt;
+</code></pre>
+
+<p>あと先ほどすべてのアクセス元からリクエストを受け付けるようにしていたものを、<code>127.0.0.1</code>からしか受け付けないように、Ghostの設定を変更します（戻します）。</p>
+
+<p>iptablesで2368へのアクセスを拒否。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo iptables -A INPUT -p tcp -s <span class="m">127</span>.0.0.1 --dport <span class="m">2368</span> -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport <span class="m">2368</span> -j DROP</code></pre></div>
+<p>設定が完了したらApacheを再起動します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">sudo service apache2 restart</code></pre></div>
+<p>これで普通に <a href="http://157.7.203.87/">http://157.7.203.87/</a> にアクセスすると見れるようになりました。ポート2368にアクセスしても表示されません。</p>
+
+<p>※今はアクセスしても表示されません</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/02/14/octopress-to-ghost/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/02/21/septeni-scala-1/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.45699 &#43;0900 JST m=&#43;0.543319972">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

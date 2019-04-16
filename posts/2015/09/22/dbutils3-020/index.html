@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				DBUtils3 version 0.2.0 &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-09-22 12:00:26 &#43;0000 UTC">September 22, 2015</time>
+</div>
+		<h1 class="post-title">DBUtils3 version 0.2.0</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+DBUtils3のバージョンアップを行いました。</p>
+
+<p><a href="https://github.com/tamurashingo/dbutils3">DBUtils3</a></p>
+
+<p>今回は</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>  
+  <span class="o">*</span>
+<span class="k">from</span>  
+  <span class="n">t_tbl</span>
+<span class="k">where</span>  
+  <span class="n">id</span> <span class="o">=</span> <span class="p">:</span><span class="n">id</span></code></pre></div>
+<p>のようにSQLを定義して</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="o">();</span>  
+<span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">123</span><span class="o">);</span>  
+<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">executeQueryWithParam</span><span class="o">(</span><span class="n">ResultBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span>  </code></pre></div>
+<p>のように名前付きパラメータで値を指定できるようにしました。</p>
+
+<!-- more -->
+
+<h2 id="きっかけ">きっかけ</h2>
+
+<ul>
+<li>マスタテーブルが5種類ある</li>
+<li>それぞれに有効期限がある</li>
+<li>そのマスタと結合させて情報を抜く</li>
+</ul>
+
+<p>というSQLを何個も書いていました。こんな感じのSQLになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>  
+  <span class="p">....</span>
+<span class="k">from</span>  
+  <span class="n">t_xxxx</span> <span class="n">trn</span>
+  <span class="n">m_aaaa</span> <span class="n">m1</span><span class="p">,</span>
+  <span class="n">m_bbbb</span> <span class="n">m2</span><span class="p">,</span>
+  <span class="n">m_cccc</span> <span class="n">m3</span><span class="p">,</span>
+  <span class="n">m_dddd</span> <span class="n">m4</span>
+<span class="k">where</span>  
+  <span class="p">...</span>
+<span class="k">and</span>  
+  <span class="n">m1</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m1</span><span class="p">.</span><span class="n">end_ymd</span>
+<span class="k">and</span>  
+  <span class="n">m2</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m2</span><span class="p">.</span><span class="n">end_ymd</span>
+<span class="k">and</span>  
+  <span class="n">m3</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m3</span><span class="p">.</span><span class="n">end_ymd</span>
+<span class="k">and</span>  
+  <span class="n">m4</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m4</span><span class="p">.</span><span class="n">end_ymd</span></code></pre></div>
+<p>DBUtilsでSQLを発行するとこういうコードになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">conn</span><span class="o">.</span><span class="na">prepare</span><span class="o">(</span><span class="n">selectSQL</span><span class="o">);</span>  
+<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">ResultBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>  
+    <span class="o">...,</span>
+    <span class="o">...,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">);</span></code></pre></div>
+<p>どの<code>?</code>に対するパラメータなのか分かりにくくなります。</p>
+
+<h2 id="実装方法">実装方法</h2>
+
+<p><a href="http://jdbi.org/">JDBI</a>の実装を参考にして、<a href="http://www.antlr.org/">ANTLR</a>を使って字句解析をしています。
+ANTLRのサンプルとしてMySQLのクエリパーサがあったのですが、今回の内容はそこまで複雑ではありません。
+また、SQLとしておかしい構文であってもそれはデータベースがおかしいクエリと判断すれば良いため、このツールでは字句解析のみを行っています。</p>
+
+<h3 id="字句解析">字句解析</h3>
+
+<p>字句解析の一部はこんな感じです。</p>
+
+<p><code>:a</code>や<code>:a0</code>などを見つけたら<code>NAMED_PARAM</code>として呼び出し元に返します。
+<code>:0</code>や<code>:0a</code>は<code>COLON</code>,<code>NUMBER</code>,<code>ALPHA</code>として返されます。</p>
+
+<pre><code>ALPHA  
+    : 'a'..'z'
+    | 'A'..'Z'
+    | '_'
+    ;
+NUMBER  
+    : '0'..'9'
+    ;
+COLON  
+    : ':'    
+    ;
+
+NAMED_PARAM  
+    : COLON ALPHA (ALPHA | NUMBER)*
+    ;
+</code></pre>
+
+<p>呼び出し元は<code>NAMED_PARAM</code>が返されたら<code>?</code>を詰め込む、それ以外が返ってきたら解析された字句をそのまま詰め込む、とすればパラメータを置換して<code>prepare</code>にそのまま渡せる文字列ができあがります。</p>
+
+<h3 id="sqlの解析">SQLの解析</h3>
+
+<p>ANTLRで作ったLexerでSQLの字句解析を行います。</p>
+
+<ul>
+<li>NAMED_PARAMの場合
+
+<ul>
+<li>名前付きパラメータから名前を取得して、リストに詰め込む
+-組み立て中のSQLは?を入れる</li>
+</ul></li>
+<li>NAMED_PARAM以外の場合
+
+<ul>
+<li>組み立て中のSQLに返ってきた字句をそのまま入れる</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 何番目の?がなんというパラメータだったかを保持するリスト
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keyNames</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">analyzeSQL</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="c1">// ANTLRで生成したLexer
+</span><span class="c1"></span>    <span class="n">SQLLexer</span> <span class="n">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLLexer</span><span class="o">(</span><span class="k">new</span> <span class="n">ANTLRInputStream</span><span class="o">(</span><span class="n">sql</span><span class="o">));</span>
+    <span class="c1">// SQLを生成する
+</span><span class="c1"></span>    <span class="n">StrinbBuilder</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+    <span class="n">keyNames</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+
+
+    <span class="n">Token</span> <span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">!=</span> <span class="n">SQLLexer</span><span class="o">.</span><span class="na">EOF</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getType</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="n">SQLLexer</span><span class="o">.</span><span class="na">NAMED_PARAM</span><span class="o">:</span>
+            <span class="c1">// 先頭のコロンを除去
+</span><span class="c1"></span>            <span class="n">keyNames</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
+            <span class="c1">// 名前付きパラメータを?に置換
+</span><span class="c1"></span>            <span class="n">buf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;?&#34;</span><span class="o">);</span>
+            <span class="k">break</span><span class="o">;</span><span class="nl">
+</span><span class="nl">
+</span><span class="nl">        default:</span>
+            <span class="c1">// そのまま詰め込む
+</span><span class="c1"></span>            <span class="n">buf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+<p>このメソッドに名前付きパラメータで記述したSQLを渡すと、通常の<code>prepare</code>に渡す形式のSQLに変換します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>  
+  <span class="o">*</span>
+<span class="k">from</span>  
+  <span class="n">t_tbl</span>
+<span class="k">where</span>  
+  <span class="n">id</span> <span class="o">=</span> <span class="p">:</span><span class="n">id</span></code></pre></div>
+<p>これが</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>  
+  <span class="o">*</span>
+<span class="k">from</span>  
+  <span class="n">t_tbl</span>
+<span class="k">where</span>  
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span></code></pre></div>
+<p>こうなって、</p>
+
+<pre><code>keyNames:[&quot;id&quot;]  
+</code></pre>
+
+<p>こうなります。</p>
+
+<h3 id="sqlの実行">SQLの実行</h3>
+
+<p><code>Map</code>みたいなクラスを作ってそこにキーと値をセットします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Param</span> <span class="o">{</span>  
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">param</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Param</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Param</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p><code>put</code>で<code>Param</code>を返しているのはこんなことをやりたいためです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">123</span><span class="o">).</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="s">&#34;tamura&#34;</span><span class="o">);</span>  </code></pre></div>
+<p>このクラスで名前とそのパラメータをセットします。
+<code>executeQuery</code>等に渡すため、このパラメータを<code>Object[]</code>に変換する必要があります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Object</span><span class="o">[]</span> <span class="nf">createParams</span><span class="o">(</span><span class="n">Param</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">keyNames</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">key:</span> <span class="n">keyNames</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">p</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">param</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">Object</span><span class="o">[])</span><span class="n">p</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{});</span>
+<span class="o">}</span></code></pre></div>
+<p>最後に、今までの<code>executeQuery</code>に横流しします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">executeQueryWithParam</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">cls</span><span class="o">,</span> <span class="n">Params</span> <span class="n">params</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>  
+    <span class="n">Object</span><span class="o">[]</span> <span class="n">p</span> <span class="o">=</span> <span class="n">createParams</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">executeQuery</span><span class="o">(</span><span class="n">cls</span><span class="o">,</span> <span class="n">p</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.github.tamurashingo.dbutil3<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>dbutil3<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
+<p>で使うことができます。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/09/20/android-game-cocos2dx/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/10/25/isucon5/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.438272 &#43;0900 JST m=&#43;0.524602530">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

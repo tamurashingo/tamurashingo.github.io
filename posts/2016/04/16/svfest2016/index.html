@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				サバフェス!2016 IoTハッカソンに参加してきました &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-04-16 01:00:05 &#43;0000 UTC">April 16, 2016</time>
+</div>
+		<h1 class="post-title">サバフェス!2016 IoTハッカソンに参加してきました</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p>IDCフロンティアさん主催のサバフェス2016に参加してきました。
+今年は「健康をテーマにしたハッカソン」、IoTを駆使してエンジニアの生活を向上させようという目的でした。参加賞として各種デバイス（ラズパイ2とか）がいただけるので参加してきました。</p>
+
+<!-- more -->
+
+<p>チーム名
+- ILT</p>
+
+<p>メンバ
+- tamura
+- kamitani
+- nakashima</p>
+
+<p>総括
+- 1週間あっても最終日にやっつけになってしまうので、計画を立ててやろう！
+  - 前日の夜というかほぼほぼ当日から開始って計画性なさすぎ
+- ぶっ飛んだアイデアの方が作ってて楽しそう！
+  - 今回は時間無いに完成しそうなもの、というのから入ってしまった
+- 発表のときはタイマーとかを使って自分の持ち時間が分かるようにするとよい！
+  - 前に発表している組が強制終了させられていたので、あわててタイマーを探しました</p>
+
+<h2 id="ログ">ログ</h2>
+
+<h3 id="2016-03-17-木">2016/03/17(木)</h3>
+
+<h4 id="説明会-idcフロンティア">説明会@IDCフロンティア</h4>
+
+<p>新宿三丁目で降りて歩くと、意外とすぐに着きました。
+<strong>kamitani</strong>は仕事の関係で遅れて21:00くらいに参加、<strong>nakashima</strong>は所用があるということで20:30に帰宅、と最初から足並みがそろっていません。
+不安です。</p>
+
+<p>いただいたデバイスたち
+- tamura
+  - ラズパイ2
+  - 加速度センサ
+- kamitani
+  - ESP8266
+  - 温湿度センサ
+- nakashima
+  - ラズパイ2</p>
+
+<h3 id="2016-03-18-金">2016/03/18(金)</h3>
+
+<h4 id="初心者向けハンズオン-idcフロンティア">初心者向けハンズオン@IDCフロンティア</h4>
+
+<p><strong>kamitani</strong>が参加したようです。</p>
+
+<h3 id="2016-03-19-土">2016/03/19(土)</h3>
+
+<p><strong>tamura</strong>
+秋葉へ必要な部品等を買出しに行きました。
+ESP-WROOM-02が売っていたので、今回はESPで行くか！と思い購入してきました。</p>
+
+<h3 id="2016-03-20-日">2016/03/20(日)</h3>
+
+<p><strong>tamura</strong>
+ラズパイ2のインストール。あっけなく完了です。</p>
+
+<h3 id="2016-03-21-月-22-00">2016/03/21(月) 22:00</h3>
+
+<p><strong>tamura</strong>
+シリアルケーブルがないので、PCとESPをつなぐことはあきらめ、ラズパイとESPをつなぐことにしました。
+ラズパイからminicomというターミナルソフトで接続を確認するも、確認できず。
+接続方法が悪いのかssh経由だから接続できないのか切り分けできず。</p>
+
+<h3 id="2016-03-22-火-04-00">2016/03/22(火) 04:00</h3>
+
+<p>sshでXを飛ばしてcutecomというターミナルソフトを使うと、あっさり反応しました。
+回路は変えていません。
+minicomがダメだった模様。
+朝チュンです。眠い。</p>
+
+<h3 id="2016-03-22-火-2016-03-25-金">2016/03/22(火) ～ 2016/03/25(金)</h3>
+
+<p>ESP-WROOM-02がボタン電池で動くか調べていたのですが、どうやら難しいようです。
+加速度センサがあるので仕事中の姿勢をチェックできないかと思ったのですが、デバイスが小型化してもバッテリーが大きかったらIoTの意味があまりないな～と。
+「今後の課題としてバッテリーの小型化」という方向性でお茶を濁そうと思いました。</p>
+
+<h3 id="2016-03-25-金-22-00">2016/03/25(金) 22:00</h3>
+
+<p>やっと3人で何を作るのか認識あわせを行いました。
+みんな作業場が別々で毎日遅くまで仕事しているので、結局前日スタートに。</p>
+
+<p><strong>アプリ名</strong>
+- 加速度センサで日中どれくらい動いたかを教えてくれるやつ（仮）</p>
+
+<p><strong>全体の構成</strong>
+- ESP8266
+  - 加速度センサを使ってどれくらい動いたかを把握する
+  - それを１分ごとにサーバに送信する
+- サーバ
+  - 1分ごとの動きをデータに溜め込む
+  - 業務終了時間になったら動きの集計を行う
+  - 結果をMyThingsを使って通知する</p>
+
+<h3 id="2016-03-26-土-01-00">2016/03/26(土) 01:00</h3>
+
+<p><strong>tamura</strong>
+Azureサーバのセットアップが完了。
+IDCFのサーバは勘違いしてメモリが小さいモードで作ってしまったので、サーブレットが動かせるか不安だったのでAzureでJavaを動かすようにしました。
+なんか無駄に複雑な構成に。。。</p>
+
+<p><strong>nakashima</strong>
+PCの環境整備を始めました・・・・。
+彼はJavaでサーブレットを書いてもらい、ESPからのデータを受け取ってDBにガシガシ入れ込むのを作ってもらいます。</p>
+
+<p><strong>kamitani</strong>
+<strong>nakashima</strong>
+仕様の調整を行ってます。
+サーブレット：<strong>nakashima</strong>
+集計バッチ：<strong>kamitani</strong>
+の方針です。</p>
+
+<h3 id="2016-03-26-土-02-00">2016/03/26(土) 02:00</h3>
+
+<p><strong>kamitani</strong>
+DBスキーマが完成しました。やったね。</p>
+
+<p><strong>nakashima</strong>
+32iu
+(イミフ)</p>
+
+<h3 id="2016-03-26-土-02-45">2016/03/26(土) 02:45</h3>
+
+<p><strong>tamura</strong>
+ESP8266(ESP-WROOM-02)への書き込みに失敗しまくりだったので、ESP8266をあきらめて、ラズパイでいくことにしました。この時間から辛いです。</p>
+
+<h3 id="2016-03-26-土-03-00">2016/03/26(土) 03:00</h3>
+
+<p><strong>tamura</strong>
+ラズパイと加速度センサの接続が確認できました（べんり！）
+ラスパイを持って振ると、加速度センサの値が変わっていることが確認できます。</p>
+
+<h3 id="2016-03-26-土-04-00">2016/03/26(土) 04:00</h3>
+
+<p><strong>kamitani</strong>
+集計バッチが8割ほど完成しました。
+あとは健康かどうかの閾値をどうするか、くらいです。</p>
+
+<h3 id="2016-03-26-土-05-00">2016/03/26(土) 05:00</h3>
+
+<p><strong>tamura</strong>
+加速度センサから出てきた生の値を使うと値が小さすぎていい感じにならないので、いい感じに変換させました。これで担当分はほぼ完了です。
+お祝いにカップラーメンを食いました。</p>
+
+<h3 id="2016-03-26-土-06-00">2016/03/26(土) 06:00</h3>
+
+<p><strong>tamura</strong>
+就寝</p>
+
+<p><strong>nakashima</strong>
+起床ｗｗｗｗｗ
+君寝てたのかいｗｗｗｗ
+2時過ぎの「32iu」で気絶していたそうです。</p>
+
+<h3 id="2016-03-26-土-09-00">2016/03/26(土) 09:00</h3>
+
+<p><strong>tamura</strong>
+<strong>nakashima</strong>
+WebサーバのI/Fを決定させました。
+もうラズパイ側することないぞ。</p>
+
+<h3 id="2016-03-26-土-09-30">2016/03/26(土) 09:30</h3>
+
+<p><strong>kamitani</strong>
+気絶</p>
+
+<figure>
+    <img src="kizetsu.png"/> 
+</figure>
+
+
+<h3 id="2016-03-26-土-12-45">2016/03/26(土) 12:45</h3>
+
+<p><strong>tamura</strong>
+<strong>kamitani</strong>
+<strong>nakashima</strong>
+ﾛｯﾎﾟﾝｷﾞ(Yahoo)に集まる
+このときに３人が初めて集合しました。</p>
+
+<h3 id="2016-03-26-土-13-00">2016/03/26(土) 13:00</h3>
+
+<p>会場イン</p>
+
+<h3 id="2016-03-26-土-14-00">2016/03/26(土) 14:00</h3>
+
+<p><strong>tamura</strong>
+myThingsの設定中</p>
+
+<h3 id="2016-03-26-土-14-30">2016/03/26(土) 14:30</h3>
+
+<p><strong>nakashima</strong>
+Webサーバ完成！
+ギリだな</p>
+
+<p>すでに手動でデータを突っ込んでmyThingsからメールが来ることを確認済みなので、これでアプリはＯＫ！</p>
+
+<h3 id="2016-03-26-土-15-00">2016/03/26(土) 15:00</h3>
+
+<p><strong>tamura</strong>
+スライド作成</p>
+
+<h3 id="2016-03-26-土-15-30">2016/03/26(土) 15:30</h3>
+
+<p><strong>tamura</strong>
+<strong>kamitani</strong>
+<strong>nakashima</strong>
+スライドに絵を張りまくり</p>
+
+<h3 id="2016-03-26-土-16-00">2016/03/26(土) 16:00</h3>
+
+<p>終了！</p>
+
+<h3 id="2016-03-26-土-16-10">2016/03/26(土) 16:10</h3>
+
+<p>発表！</p>
+
+<h3 id="2016-03-26-土-16-13">2016/03/26(土) 16:13</h3>
+
+<p>発表終了！
+お疲れっした！</p>
+
+<p>発表スライドです</p>
+
+<iframe src="https://docs.google.com/presentation/d/1qTwizWBy4SKUXu3LoqlWia4L4jsJty5-4sCuvVi1LiI/embed?start=false&amp;loop=false&amp;delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/10/25/isucon5/" class="left arrow">&#8592;</a>
+		<a href="/posts/2016/07/18/self-ca/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.436345 &#43;0900 JST m=&#43;0.522675224">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

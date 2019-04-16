@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tomcat on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/tomcat/</link>
+    <description>Recent content in Tomcat on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Fri, 22 Jul 2016 21:22:16 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/tomcat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CentOS7にGitBucket2.4を入れる</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</link>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</guid>
+      <description>tamuraです。 仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れて</description>
+    </item>
+    
+  </channel>
+</rss>

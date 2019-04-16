@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Cocos2d-x v3.8でAndroid用ゲームを作ってみる &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-09-20 02:08:20 &#43;0000 UTC">September 20, 2015</time>
+</div>
+		<h1 class="post-title">Cocos2d-x v3.8でAndroid用ゲームを作ってみる</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
+いくつかはまったポイントがありました。</p>
+
+<p>(今回作ったやつは以前にiアプリ版やJavaScript版として作ったものなので、自分的にHelloWorldプロジェクトです)</p>
+
+<!-- more -->
+
+<h2 id="appdelegate-cpp">AppDelegate.cpp</h2>
+
+<p>初期設定等を行っているやつです。 今回は単純に拡大してほしかったので、簡単な設定になっています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">bool</span> <span class="n">AppDelegate</span><span class="o">::</span><span class="n">applicationDidFinishLaunching</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="c1">// 初期化
+</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">director</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">glview</span> <span class="o">=</span> <span class="n">director</span><span class="o">-&gt;</span><span class="n">getOpenGLView</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">glview</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">glview</span> <span class="o">=</span> <span class="n">GLViewImpl</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&#34;PostKun&#34;</span><span class="p">);</span>
+        <span class="n">director</span><span class="o">-&gt;</span><span class="n">setOpenGLView</span><span class="p">(</span><span class="n">glview</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// デモ画面用に20FPSにしているけど、実際のゲームでは10FPSで動いています
+</span><span class="c1"></span>    <span class="n">director</span><span class="o">-&gt;</span><span class="n">setAnimationInterval</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">20</span><span class="p">);</span>
+
+    <span class="c1">// 画面サイズは 120 x 160
+</span><span class="c1"></span>    <span class="c1">// 良い感じに拡大してもらいます
+</span><span class="c1"></span>    <span class="n">glview</span><span class="o">-&gt;</span><span class="n">setDesignResolutionSize</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="n">ResolutionPolicy</span><span class="o">::</span><span class="n">SHOW_ALL</span><span class="p">);</span>
+    <span class="n">Size</span> <span class="n">frameSize</span> <span class="o">=</span> <span class="n">glview</span><span class="o">-&gt;</span><span class="n">getFrameSize</span><span class="p">();</span>
+
+    <span class="n">register_all_packages</span><span class="p">();</span>
+
+    <span class="c1">// デモ表示
+</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">scene</span> <span class="o">=</span> <span class="n">DemoScene</span><span class="o">::</span><span class="n">createScene</span><span class="p">();</span>
+    <span class="n">director</span><span class="o">-&gt;</span><span class="n">runWithScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="タイトル-デモンストレーション">タイトル(デモンストレーション)</h2>
+
+<p>画面はエミュレータで動かしたやつです。 実際のゲームの倍のスピードでなわとびをし続けます。</p>
+
+<p>{% asset_img postkun_demo.png デモ画面 %}</p>
+
+<h3 id="タップが有効にならない">タップが有効にならない</h3>
+
+<p>終了ボタンを押したら終了、それ以外を押したらゲームスタートとしています。 イベントリスナーで画面タッチを得ていますが、このやり方がわからなくてはまりました。</p>
+
+<p>当初はタップが終わったら(クリックで言うとボタンがリリースされたら)押されたと判断しようと思い、こんな感じで書いていました。 当然ながら動きません。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">exitLabel</span> <span class="o">=</span> <span class="n">Label</span><span class="o">::</span><span class="n">createWithTTF</span><span class="p">(</span><span class="s">&#34;exit&#34;</span><span class="p">,</span> <span class="s">&#34;fonts/arial.ttf&#34;</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>  
+<span class="p">...</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">exitLabel</span><span class="p">);</span>
+
+<span class="k">auto</span> <span class="n">exitListener</span> <span class="o">=</span> <span class="n">EventListenerTouchOneByOne</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>  
+<span class="n">exitListener</span><span class="o">-&gt;</span><span class="n">onTouchEnded</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Touch</span><span class="o">*</span> <span class="n">touch</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">getEventDispatcher</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">exitListener</span><span class="p">,</span> <span class="n">exitLabel</span><span class="p">);</span>  
+</code></pre></div>
+<p><code>onTouchBegan</code>で<code>true</code>が返っていないと<code>onTouchEnded</code>が反応しないっぽいということに気付き、修正しました。</p>
+
+<p>で、今見たらちゃんと書いてました
+<a href="http://www.cocos2d-x.org/reference/native-cpp/V3.8/df/de4/classcocos2d_1_1_layer.html#adc596c208246932a23848702cfda7502">http://www.cocos2d-x.org/reference/native-cpp/V3.8/df/de4/classcocos2d_1_1_layer.html#adc596c208246932a23848702cfda7502</a></p>
+
+<p>あと、関数の中でちゃんと<code>Label</code>が押されたのかどうかを判定する必要があります。 この判定をしないとどこをタップしても<code>Label</code>が押されたと判定されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">exitListener</span><span class="o">-&gt;</span><span class="n">onTouchBegan</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Touch</span><span class="o">*</span> <span class="n">touch</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">auto</span> <span class="n">target</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">getCurrentTarget</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">targetBox</span> <span class="o">=</span> <span class="n">target</span><span class="o">-&gt;</span><span class="n">getBoundingBBox</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">touchPoint</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">touch</span><span class="o">-&gt;</span><span class="n">getLocation</span><span class="p">().</span><span class="n">x</span><span class="p">,</span> <span class="n">touch</span><span class="o">-&gt;</span><span class="n">getLocation</span><span class="p">().</span><span class="n">y</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">targetBox</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">touchPoint</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// 押された
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>ここらへんはなんとなくマクロで定型化できそうです。</p>
+
+<h3 id="v-sync割り込み">V-Sync割り込み</h3>
+
+<p><code>scheduleUpdate()</code>を呼び出せば、指定したフレームレートで<code>void update(float f)</code>が呼び出されます。 このゲームではアニメーションが7コマあるので、カウンタ変数を使ってそこら辺を制御しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">DemoScene</span><span class="o">::</span><span class="n">update</span><span class="p">(</span><span class="kt">float</span> <span class="n">delta</span><span class="p">)</span>  
+<span class="p">{</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">postkun</span><span class="o">-&gt;</span><span class="n">jump</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">characterLayer</span><span class="o">-&gt;</span><span class="n">enterFrame</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="キャラクターと線を描く">キャラクターと線を描く</h2>
+
+<p>このゲームはポストととび縄があり、とび縄は伝統的に直線で表現していました。 今回もそのやり方を踏襲します。</p>
+
+<h3 id="レイヤーを用意する">レイヤーを用意する</h3>
+
+<p>デモ画面とプレイ画面でほぼ同じ動きをするため、共通化させるためにレイヤーを一つ用意しました。 そのレイヤーに</p>
+
+<ul>
+<li>前面のとび縄</li>
+<li>キャラクター</li>
+<li>背面のとび縄</li>
+</ul>
+
+<p>となるように各オブジェクトを配置しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">bool</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">init</span><span class="p">()</span>  
+<span class="p">{</span>
+    <span class="n">backLayer</span> <span class="o">=</span> <span class="n">DrawNode</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">frontLayer</span> <span class="o">=</span> <span class="n">DrawNode</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&#34;post.png&#34;</span><span class="p">);</span>
+    <span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">));</span>
+
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">backLayer</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">frontLayer</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="描画">描画</h3>
+
+<p><code>count</code>の値に応じてとび縄を前面に描くか背面に描くのかを判断しています。 描画する数が少ないので<code>RenderTexture</code>とか使わなくても大丈夫です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">enterFrame</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">)</span>  
+<span class="p">{</span>
+    <span class="n">backLayer</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+    <span class="n">frontLayer</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">draw</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">backLayer</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">draw</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">frontLayer</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">postkun</span><span class="o">-&gt;</span><span class="n">enterFrame</span><span class="p">();</span>
+    <span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPositionX</span><span class="p">(</span><span class="n">postkun</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPositionY</span><span class="p">(</span><span class="n">postkun</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="static-const-な配列の初期化">static const な配列の初期化</h3>
+
+<p>あとはとび縄の描画です。 とび縄の各頂点は事前に分かっているので構造体を定義して、その配列を持つようにしています。 なにげに <code>static const</code> な配列を初期化する書き方にはまりました。書き慣れたJavaと違います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// とび縄の頂点の数とその位置
+</span><span class="c1"></span><span class="k">struct</span> <span class="n">NAWAPOS</span>  
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">CharLayer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">Layer</span>  
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>  
+    <span class="p">....</span>
+<span class="k">private</span><span class="o">:</span>  
+    <span class="k">const</span> <span class="k">static</span> <span class="k">struct</span> <span class="n">NAWAPOS</span> <span class="n">nawapos</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">const</span> <span class="k">struct</span> <span class="n">NAWAPOS</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">nawapos</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="c1">// 0
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="mi">7</span><span class="p">,</span>
+        <span class="p">{</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span>  <span class="mi">4</span><span class="p">},</span>
+        <span class="p">{</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">46</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">....</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>描画するときは<code>count</code>に応じてループをまわして線を描くだけです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">,</span> <span class="n">DrawNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span>  
+<span class="p">{</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">NAWAPOS</span> <span class="o">*</span><span class="n">pos</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">CharLayer</span><span class="o">::</span><span class="n">nawapos</span><span class="p">[</span><span class="n">count</span><span class="p">];</span>
+    <span class="n">Vec2</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_X</span> <span class="o">+</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_Y</span> <span class="o">-</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">ix</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">ix</span> <span class="o">&lt;</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">ix</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Vec2</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_X</span> <span class="o">+</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">],</span> <span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_Y</span> <span class="o">-</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">[</span><span class="n">ix</span><span class="p">]);</span>
+        <span class="n">node</span><span class="o">-&gt;</span><span class="n">drawSegment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="カウントダウン">カウントダウン</h2>
+
+<p>一応タイミングゲームなので、カウントダウンをやっておいたほうが親切です。 ここではワンショットのタイマーを使ってカウントダウンしています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyThree</span><span class="p">),</span> <span class="mf">0.8f</span><span class="p">);</span>  
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyTwo</span><span class="p">),</span>   <span class="mf">1.6f</span><span class="p">);</span>  
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyOne</span><span class="p">),</span>   <span class="mf">2.4f</span><span class="p">);</span>  
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyStart</span><span class="p">),</span> <span class="mf">3.2f</span><span class="p">);</span>  
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">start</span><span class="p">),</span>      <span class="mf">4.0f</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyThree</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span> <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;3...&#34;</span><span class="p">);</span> <span class="p">}</span>  
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyTwo</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span>   <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;2...&#34;</span><span class="p">);</span> <span class="p">}</span>  
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyOne</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span>   <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;1...&#34;</span><span class="p">);</span> <span class="p">}</span>  
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyStart</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span> <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;start!&#34;</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">start</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span>  
+<span class="p">{</span>
+    <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;score:0&#34;</span><span class="p">);</span>
+    <span class="n">jumped</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleUpdate</span><span class="p">();</span>
+    <span class="n">listener</span><span class="o">-&gt;</span><span class="n">setEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="スコア表示">スコア表示</h2>
+
+<p><code>Label</code>でやっています。<code>int</code>から<code>string</code>への変換は<code>StringUtils::format</code>で行っています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">str</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&#34;score:%d&#34;</span><span class="p">,</span> <span class="n">score</span><span class="p">);</span>  
+<span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>  
+</code></pre></div>
+<h2 id="ゲームオーバー">ゲームオーバー</h2>
+
+<p>うまく飛べないと転びます。約1秒後にもう一度やるかどうか聞かれます。 <code>update</code>にあまりいろいろ詰め込みたくなかったので別<code>Scene</code>にしています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// 転んでいる絵
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&#34;post.png&#34;</span><span class="p">);</span>  
+<span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">PostKunConstants</span><span class="o">::</span><span class="n">CENTER_X</span><span class="p">,</span> <span class="n">PostKunConstants</span><span class="o">::</span><span class="n">CENTER_Y</span><span class="p">);</span>  
+<span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setRotation</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">);</span>  
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">sprite</span><span class="p">);</span>
+
+<span class="c1">// リプレイを問う
+</span><span class="c1"></span><span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">GameOverScene</span><span class="o">::</span><span class="n">doQuit</span><span class="p">),</span> <span class="mf">1.5f</span><span class="p">);</span>  
+</code></pre></div>
+<h2 id="感想">感想</h2>
+
+<p>以前に<a href="http://enchantjs.com/ja/">enchant.js</a>を使ってブラウザで遊べるバージョンを作ったのですが、そのときのよりもiアプリ版に近い動きになりました。</p>
+
+<p><a href="https://github.com/tamurashingo/postkun_android">https://github.com/tamurashingo/postkun_android</a></p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/09/13/android-cocos2dx/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/09/22/dbutils3-020/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.437592 &#43;0900 JST m=&#43;0.523922471">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

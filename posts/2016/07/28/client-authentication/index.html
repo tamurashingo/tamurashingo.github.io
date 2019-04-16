@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				クライアント認証を行う &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-07-28 06:30:43 &#43;0000 UTC">July 28, 2016</time>
+</div>
+		<h1 class="post-title">クライアント認証を行う</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p>前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
+今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
+最終的にはブラウザに組み込んで使います。
+署名までの手順はサーバ証明書の場合とほぼ同じです。</p>
+
+<!-- more -->
+
+<h2 id="クライアント用のopensslの設定">クライアント用のOpenSSLの設定</h2>
+
+<p>既存の設定ファイルを元に、クライアント向けの設定ファイルを作ります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># cp -p /etc/pki/tls/openssl.cnf /etc/pki/tls/openssl-client.cnf</span>
+<span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># vi /etc/pki/tls/openssl-client.cnf</span></code></pre></div>
+<p>165行目から始まる <code>[ usr_cert ]</code> セクションの中の180行目付近</p>
+
+<pre><code># For an object signing certificate this would be used.
+# nsCertType = objsign
+
+# For normal client use this is typical
+# nsCertType = client, email
+
+# and for everything including object signing:
+# nsCertType = client, email, objsign
+</code></pre>
+
+<p>ここの一番したの行のコメントをはずします。</p>
+
+<pre><code># and for everything including object signing:
+nsCertType = client, email, objsign
+</code></pre>
+
+<h2 id="秘密鍵の作成">秘密鍵の作成</h2>
+
+<p>クライアントの秘密鍵を作ります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># mkdir /etc/pki/client</span>
+<span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># cd /etc/pki/client</span>
+<span class="o">[</span>root@il-sus-web-www2 client<span class="o">]</span><span class="c1"># openssl genrsa -out tamurashingo.key -aes256 2048</span>
+Generating RSA private key, <span class="m">2048</span> bit long modulus
+.......+++
+............................................+++
+e is <span class="m">65537</span> <span class="o">(</span>0x10001<span class="o">)</span>
+Enter pass phrase <span class="k">for</span> tamurashingo.key:
+Verifying - Enter pass phrase <span class="k">for</span> tamurashingo.key:</code></pre></div>
+<h2 id="クライアント用証明書作成用リクエストファイルの作成">クライアント用証明書作成用リクエストファイルの作成</h2>
+
+<p>サーバのときと同じようにCSRファイルを作成します。
+オプションに <code>-config /etc/pki/tls/openssl-client.cnf</code> をつけてCSRファイルを作成します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 client<span class="o">]</span><span class="c1"># openssl req -new -key tamurashingo.key -out tamurashingo.csr -config /etc/pki/tls/openssl-client.cnf</span>
+Enter pass phrase <span class="k">for</span> tamurashingo.key:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter <span class="s1">&#39;.&#39;</span>, the field will be left blank.
+-----
+Country Name <span class="o">(</span><span class="m">2</span> letter code<span class="o">)</span> <span class="o">[</span>XX<span class="o">]</span>:JP
+State or Province Name <span class="o">(</span>full name<span class="o">)</span> <span class="o">[]</span>:Tokyo
+Locality Name <span class="o">(</span>eg, city<span class="o">)</span> <span class="o">[</span>Default City<span class="o">]</span>:Shinjuku
+Organization Name <span class="o">(</span>eg, company<span class="o">)</span> <span class="o">[</span>Default Company Ltd<span class="o">]</span>:il-sus-web
+Organizational Unit Name <span class="o">(</span>eg, section<span class="o">)</span> <span class="o">[]</span>:
+Common Name <span class="o">(</span>eg, your name or your server<span class="s1">&#39;s hostname) []:tamurashingo # ここで個人を判別します
+</span><span class="s1">Email Address []:xxxxxxxxxxx
+</span><span class="s1">
+</span><span class="s1">Please enter the following &#39;</span>extra<span class="err">&#39;</span> attributes
+to be sent with your certificate request
+A challenge password <span class="o">[]</span>:
+An optional company name <span class="o">[]</span>:</code></pre></div>
+<h2 id="ca-オレオレ認証局-による署名">CA(オレオレ認証局)による署名</h2>
+
+<p>オレオレ認証局で署名を行います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 client<span class="o">]</span><span class="c1"># openssl ca -in tamurashingo.csr -keyfile /etc/pki/CA/private/cakey.pem -cert /etc/pki/CA/cacert.pem -out tamurashingo.crt -config /etc/pki/tls/openssl-client.cnf</span>
+Using configuration from /etc/pki/tls/openssl-client.cnf
+Enter pass phrase <span class="k">for</span> /etc/pki/CA/private/cakey.pem:
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: <span class="m">15711698583568785535</span> <span class="o">(</span>0xda0b2a9e1ba0207f<span class="o">)</span>
+        Validity
+            Not Before: Jul <span class="m">27</span> <span class="m">06</span>:10:35 <span class="m">2016</span> GMT
+            Not After : Jul <span class="m">27</span> <span class="m">06</span>:10:35 <span class="m">2017</span> GMT
+        Subject:
+            <span class="nv">countryName</span>               <span class="o">=</span> JP
+            <span class="nv">stateOrProvinceName</span>       <span class="o">=</span> Tokyo
+            <span class="nv">organizationName</span>          <span class="o">=</span> il-sus-web
+            <span class="nv">commonName</span>                <span class="o">=</span> tamurashingo
+            <span class="nv">emailAddress</span>              <span class="o">=</span> xxxxxxxxxxxxxxxxxxxxxxxxx
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Cert Type: 
+                SSL Client, S/MIME, Object Signing
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                A7:42:B0:CF:3D:1A:4C:D3:BF:39:48:8A:AE:F5:4B:2C:97:2B:20:62
+            X509v3 Authority Key Identifier: 
+                keyid:65:2D:A0:29:6D:29:7B:B7:FD:F7:25:D7:87:78:3F:F9:26:CE:5E:16
+
+Certificate is to be certified <span class="k">until</span> Jul <span class="m">27</span> <span class="m">06</span>:10:35 <span class="m">2017</span> GMT <span class="o">(</span><span class="m">365</span> days<span class="o">)</span>
+Sign the certificate? <span class="o">[</span>y/n<span class="o">]</span>:y
+
+
+<span class="m">1</span> out of <span class="m">1</span> certificate requests certified, commit? <span class="o">[</span>y/n<span class="o">]</span>y
+Write out database with <span class="m">1</span> new entries
+Data Base Updated</code></pre></div>
+<p>署名できました。</p>
+
+<h2 id="個人情報交換ファイル-pkcs12-の作成">個人情報交換ファイル(PKCS12)の作成</h2>
+
+<p>署名されたCRTファイルと秘密鍵をPKCS#12フォーマットに変換します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 client<span class="o">]</span><span class="c1"># openssl pkcs12 -export -in tamurashingo.crt -inkey tamurashingo.key -certfile /etc/pki/CA/cacert.pem  -out tamurashingo.p12 -name &#34;www2.il-sus-web.net&#34;</span>
+Enter pass phrase <span class="k">for</span> tamurashingo.key:<span class="o">(</span>秘密鍵のパスワード<span class="o">)</span>
+Enter Export Password:<span class="o">(</span>tamurashingo.p12にかけるパスワード<span class="o">)</span>
+Verifying - Enter Export Password:<span class="o">(</span>確認のためもう一回<span class="o">)</span></code></pre></div>
+<p>これでできました。</p>
+
+<h2 id="ブラウザへのインポート">ブラウザへのインポート</h2>
+
+<p>作成したp12ファイルを何らかの方法でローカル環境に持ってきてブラウザに証明書を入れ込みます。
+セキュリティ → 証明書の管理
+などからできると思います。</p>
+
+<h2 id="apacheへの組み込み">Apacheへの組み込み</h2>
+
+<p>クライアント証明書を持つ人だけがアクセスできるページを作ってみます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 client<span class="o">]</span><span class="c1"># vi /etc/httpd/conf.d/ssl.conf</span></code></pre></div>
+<p>前回追加したあたりに以下の内容を追加します。</p>
+
+<pre><code>&lt;Location /test/&gt;
+  SSLVerifyClient require
+  SSLVerifyDepth 10
+  Satisfy Any
+  Allow from All
+  SSLRequire \
+   ( \
+       %{SSL_CLIENT_S_DN_CN} eq &quot;tamurashingo&quot; \
+    )
+&lt;/Location&gt;
+</code></pre>
+
+<p><code>commonName</code>が<code>tamurashingo</code>の場合に <code>/test/</code> にアクセスできるようにしています。
+実際にブラウザからつないでみます。
+Firefoxの場合、以下のようなダイアログが出るので証明書を選択してアクセスします。</p>
+
+<figure>
+    <img src="clientauth.png"/> 
+</figure>
+
+
+<p>証明書を入れていないブラウザからは、<code>ERR_SSL_PROTOCOL_ERROR</code>でアクセスができません。</p>
+
+<h2 id="ユーザの追加-削除">ユーザの追加/削除</h2>
+
+<p>Apacheの設定ファイルに<code>commonName</code>を追加、または削除を行います。</p>
+
+<pre><code>&lt;Location /test/&gt;
+  SSLVerifyClient require
+  SSLVerifyDepth 10
+  Satisfy Any
+  Allow from All
+  SSLRequire \
+   ( \
+       %{SSL_CLIENT_S_DN_CN} eq &quot;tamurashingo&quot; \
+    or %{SSL_CLIENT_S_DN_CN} qe &quot;yamadataro&quot; \
+   )
+&lt;/Location&gt;
+</code></pre>
+
+<h2 id="うまくいかない場合">うまくいかない場合</h2>
+
+<p>ログレベルを詳細に出力するモードに変更し、ログを参照します。</p>
+
+<h3 id="ログレベルの変更">ログレベルの変更</h3>
+
+<p>通常は<code>warn</code>になっているので、<code>debug</code>にします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># vi /etc/httpd/conf.d/ssl.conf</span></code></pre></div>
+<p>66行目付近のログレベルを変更します。</p>
+
+<pre><code># Use separate log files for the SSL virtual host; note that LogLevel
+# is not inherited from httpd.conf.
+ErrorLog logs/ssl_error_log
+TransferLog logs/ssl_access_log
+#LogLevel warn
+LogLevel debug
+</code></pre>
+
+<p>再起動します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># service httpd restart</span></code></pre></div>
+<h3 id="ログの確認">ログの確認</h3>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># tail -f /var/</span></code></pre></div>
+<p>ログを確認して原因を突き止めます。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2016/07/27/server-certificate/" class="left arrow">&#8592;</a>
+		<a href="/posts/2016/07/31/java-beans/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.433963 &#43;0900 JST m=&#43;0.520293408">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

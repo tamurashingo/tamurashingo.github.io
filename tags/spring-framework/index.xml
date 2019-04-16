@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring Framework on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/spring-framework/</link>
+    <description>Recent content in Spring Framework on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 26 Feb 2015 20:56:06 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/spring-framework/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart4</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</link>
+      <pubDate>Thu, 26 Feb 2015 20:56:06 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</guid>
+      <description>tamuraです。 今回はDI(Dependency Injection)を使っていきます。 目標 サービスを定義する サービスの実装を作る part3</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart3</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</link>
+      <pubDate>Wed, 25 Feb 2015 20:21:29 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</guid>
+      <description>tamuraです。 今回はTomcatにデプロイします。 目標 warファイルを作成する Tomcatにデプロイする デプロイ後にアクセスしてpart</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart2</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</link>
+      <pubDate>Tue, 24 Feb 2015 22:40:18 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</guid>
+      <description>tamuraです。 今回はちょっとアプリっぽい動きのものを作ります。 目標 formに入力した値を表示する Handling Form Submission ここの内容をやっていきます。 前回に</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart1</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</link>
+      <pubDate>Tue, 24 Feb 2015 01:08:33 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</guid>
+      <description>tamuraです。 Spring Frameworkを使ったことがありませんが、始め方について簡単にまとめてみました。 使用するバージョンは4系です。 目標 ブ</description>
+    </item>
+    
+  </channel>
+</rss>

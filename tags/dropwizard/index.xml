@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dropwizard on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/dropwizard/</link>
+    <description>Recent content in Dropwizard on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 03 Aug 2016 22:06:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/dropwizard/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dropwizardでデータベースpart4</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</link>
+      <pubDate>Wed, 03 Aug 2016 22:06:15 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</guid>
+      <description>tamuraです。 今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。 Dropwizardを使ってみ</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart3</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</link>
+      <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースの更新を行っていきます。 DAOの修正 DAOにUPDATEメソッドを追加します。 package com.github.tamurashingo.dropwizard.helloworld.dao;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart2</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</link>
+      <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースを参照していきます。 pom.xml 以下の記述をpom.xmlに追加します。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.dropwizard&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dropwizard-jdbi&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${dropwizard.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.tamurashingo.dbutil3&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dbutil3&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart1</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</link>
+      <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースを使ってみます。 Migration Migrationという仕組みを使ってデータベースを準備していき</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardを使ってみる</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</link>
+      <pubDate>Wed, 10 Jun 2015 06:48:19 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</guid>
+      <description>tamuraです。 JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。 Drop</description>
+    </item>
+    
+  </channel>
+</rss>

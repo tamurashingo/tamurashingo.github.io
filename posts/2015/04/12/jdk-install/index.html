@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				WindowsでのJavaの開発環境を作る(JDKインストール編) &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-04-12 16:27:44 &#43;0000 UTC">April 12, 2015</time>
+</div>
+		<h1 class="post-title">WindowsでのJavaの開発環境を作る(JDKインストール編)</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+Spring Frameworkの記事を書いていたのですが、「それ以前の部分もあるといいなー」という感想を頂いたので、開発環境を作るところから書いてみたいと思います。</p>
+
+<!-- more -->
+
+<h2 id="ソフトウェア構成">ソフトウェア構成</h2>
+
+<ul>
+<li>JDK8
+
+<ul>
+<li>コンパイラ</li>
+<li>デバッガ</li>
+<li>実行環境</li>
+</ul></li>
+<li>Maven
+
+<ul>
+<li>ビルドツール</li>
+</ul></li>
+<li>Eclipse
+
+<ul>
+<li>統合開発環境</li>
+</ul></li>
+</ul>
+
+<p>統合開発環境にEclipseを使いますが、一応IntelliJとNetBeansのインストール方法も紹介したいと思います。</p>
+
+<h2 id="ディレクトリ構成">ディレクトリ構成</h2>
+
+<p>Program Filesのようにスペースを含むディレクトリにインストールするとあとあと面倒なので、適当なディレクトリを掘ります。</p>
+
+<pre><code>C:\
+ |
+ +--devtool
+    |
+    +--jdk1.8.0_40
+    +--jre1.8.0_40
+</code></pre>
+
+<h2 id="jdk8のインストール">JDK8のインストール</h2>
+
+<h3 id="ダウンロード">ダウンロード</h3>
+
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a> へ行き、JDKのDownloadボタンを押します。</p>
+
+<p>{% asset_img img_01.png JDK Download %}</p>
+
+<p>Java SE Development Kit 8u40のダウンロード画面になるので、Accept License Agreementを選択してからWindows x64を選択します。</p>
+
+<p>{% asset_img img_02.png JDK Download %}</p>
+
+<h3 id="インストール">インストール</h3>
+
+<h4 id="jdk">JDK</h4>
+
+<p>ダウンロードした<code>jdk-8u40-windows-x64.exe</code>を実行します。 インストールするオプション機能の画面になったらインストール先を変更します。</p>
+
+<p>{% asset_img img_03.png ディレクトリの変更 %}</p>
+
+<p>こんな感じです。</p>
+
+<p>{% asset_img img_04.png ディレクトリ変更後 %}</p>
+
+<h4 id="jre">JRE</h4>
+
+<p>JDKのインストール中に公開JREのインストールが始まります。
+公開JREのインストール先を指定するようにダイアログが表示されるので、同じように指定していきます。 このJREはブラウザのプラグイン等で使用します。</p>
+
+<p>{% asset_img img_05.png ディレクトリの変更 %}</p>
+
+<p>新しく<code>jre1.8.0_40</code>というディレクトリを作成し、そこにインストールするように指定します。</p>
+
+<p>{% asset_img img_06.png ディレクトリの作成 %}</p>
+
+<p>{% asset_img img_07.png ディレクトリ変更後 %}</p>
+
+<p>この画面が出たらインストール完了です。</p>
+
+<p>{% asset_img img_08.png インストール完了 %}</p>
+
+<h3 id="javaの設定">Javaの設定</h3>
+
+<p>以下のように環境変数を設定します。</p>
+
+<p>|環境変数名|値|
+|&mdash;&mdash;&ndash;|&ndash;|
+|JAVA_HOME|C:\devtool\jdk1.8.0_40|
+|JRE_HOME|C:\devtool\jre1.8.0_40|
+|PATH|%JAVA_HOME%\bin (PATHの最後に追加)|</p>
+
+<h4 id="設定画面まで">設定画面まで</h4>
+
+<p>Windows8.1の場合、左下のウィンドウズボタンを右クリックしてシステムを選択します。</p>
+
+<p>{% asset_img img_09.png システム %}</p>
+
+<p>システム画面が出たら左側のシステムの詳細設定を押します。</p>
+
+<p>{% asset_img img_10.png 詳細設定 %}</p>
+
+<p>※コントロールパネルからシステムを選択しても行けます。</p>
+
+<p>システムのプロパティ画面が出ます。</p>
+
+<p>{% asset_img img_11.png システムのプロパティ %}</p>
+
+<h4 id="環境変数の設定">環境変数の設定</h4>
+
+<p>システムのプロパティ画面から環境変数ボタンを押し、環境変数設定画面を出します。</p>
+
+<p>{% asset_img img_12.png 環境変数設定画面 %}</p>
+
+<p>ここではシステム環境変数に追加していきます。
+下の段の新規を押して新しいシステム変数を追加します。</p>
+
+<p>{% asset_img img_13.png システム変数の追加 %}</p>
+
+<p><code>PATH</code>はすでに設定されている値があるので、末尾に追加します。 各パスは;（セミコロン）で区切られているので、 <code>;%JAVA_HOME%\bin</code> とセミコロンから追加します。</p>
+
+<p>{% asset_img img_14.png PATHの追加 %}</p>
+
+<h4 id="環境変数の確認">環境変数の確認</h4>
+
+<p>コマンドプロンプトを開き、<code>java -version</code>とおもむろに打ちます。反応があれば大丈夫です。</p>
+
+<p>{% asset_img img_15.png java -version %}</p>
+
+<p>反応がない場合は以下の項目を確認してください。</p>
+
+<ul>
+<li>インストール先のディレクトリ名が誤っていないか</li>
+<li>インストール先にJAVA.EXEがあるか</li>
+<li>JAVA_HOMEが誤っていないか</li>
+<li>PATHに追加した値が誤っていないか</li>
+</ul>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/03/25/lisp-meetup-26/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/04/14/maven-install/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.442623 &#43;0900 JST m=&#43;0.528953343">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

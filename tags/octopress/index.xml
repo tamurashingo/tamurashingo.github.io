@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Octopress on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/octopress/</link>
+    <description>Recent content in Octopress on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sat, 14 Feb 2015 12:51:33 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/octopress/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OctopressからGhostへ移行</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</link>
+      <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</guid>
+      <description>tamuraです。 blogシステムをOctopressからGhostに移行しました。 Octopress 手元ですべてのHTMLを生成するのでGithubとかで</description>
+    </item>
+    
+    <item>
+      <title>init - Octopress</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/13/octopress/</link>
+      <pubDate>Fri, 13 Feb 2015 18:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/13/octopress/</guid>
+      <description>curl -sSL https://get.rvm.io | bash -s stable 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境変数を読み込み source ~/.rvm/scripts/rvm Rubyのインストー</description>
+    </item>
+    
+  </channel>
+</rss>

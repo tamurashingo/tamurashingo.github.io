@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/web/</link>
+    <description>Recent content in Web on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 19 Sep 2016 01:00:20 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ISUCON6に参加して今年も惨敗した件</title>
+      <link>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</link>
+      <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</guid>
+      <description>tamuraです。 今年もISUCONに参加しました。 今回は新メンバーakimotoを加えての参戦です。 前回記事: ISUCON5に参加して惨敗</description>
+    </item>
+    
+    <item>
+      <title>クライアント認証を行う</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</link>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</guid>
+      <description>tamuraです。 前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。 今回は、クライアントの証明書を作り、オレ</description>
+    </item>
+    
+    <item>
+      <title>サーバ証明書(オレオレ証明書)を作る</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</link>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</guid>
+      <description>tamuraです。 前回、OpenSSLでオレオレ認証局を作りました。 今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名して</description>
+    </item>
+    
+    <item>
+      <title>CentOS7にGitBucket2.4を入れる</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</link>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</guid>
+      <description>tamuraです。 仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れて</description>
+    </item>
+    
+    <item>
+      <title>オレオレ認証局を作る</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</link>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</guid>
+      <description>tamuraです。 SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。 サーバ作成 サーバはazureで作りました</description>
+    </item>
+    
+    <item>
+      <title>ISUCON5に参加して惨敗した件</title>
+      <link>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</link>
+      <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</guid>
+      <description>ISUCON5に参加しました。 SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Cocos2d-xでAndroidの開発環境を作る &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-09-13 20:12:10 &#43;0000 UTC">September 13, 2015</time>
+</div>
+		<h1 class="post-title">Cocos2d-xでAndroidの開発環境を作る</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+Cocos2d-x v3.8 の環境を作ってみました。
+3.7からはAndroidStudioにも一応は対応しています。
+が、まだ完全対応ではないのでEclipseか使い慣れたエディタでやるのが良さそうです。</p>
+
+<p>Linux(Ubuntu 14.04LTS)でやっています。</p>
+
+<p>ダウンロードが多いのでかなり時間がかかります。。。</p>
+
+<!-- more -->
+
+<h2 id="事前準備">事前準備</h2>
+
+<p>以下の環境が必要です。</p>
+
+<ul>
+<li>JDK 1.7以上</li>
+<li>Apache Ant
+
+<ul>
+<li>以下の環境変数を設定しておきます
+
+<ul>
+<li>ANT_HOME</li>
+<li>ANT_ROOT(${ANT_HOME}/bin)</li>
+</ul></li>
+</ul></li>
+<li>Python 2.7(2系)</li>
+</ul>
+
+<h2 id="通常のandroid開発環境の構築">通常のAndroid開発環境の構築</h2>
+
+<p>Android SDKとAndroid NDKを落として展開します。
+あとは<code>cocos</code>がうまくやってくれるので、パスの設定や環境変数の設定等は不要です。</p>
+
+<h3 id="sdk">SDK</h3>
+
+<p><a href="https://developer.android.com/sdk/index.html">https://developer.android.com/sdk/index.html</a>
+Other Download Options
+SDK Tools Only
+からSDKをダウンロードして展開します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz
+tar xvzf android-sdk_r24.3.4-linux.tgz</code></pre></div>
+<p>Android SDK Managerを起動してなんか必要そうなものを色々と落としてきます。</p>
+
+<pre><code>android-sdk-linux/tools/android
+</code></pre>
+
+<p><br /></p>
+
+<p>{% asset_img sdkmanager.png Android SDK Manager %}</p>
+
+<h3 id="ndk">NDK</h3>
+
+<p><a href="https://developer.android.com/ndk/downloads/index.html">https://developer.android.com/ndk/downloads/index.html</a>
+からNDKをダウンロードして展開します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+chmod a+x android-ndk-r10e-linux-x86_64.bin
+./android-ndk-r10e-linux-x86_64.bin</code></pre></div>
+<h2 id="cocos2d-xの構築">Cocos2d-xの構築</h2>
+
+<p><a href="http://www.cocos2d-x.org/download/version">http://www.cocos2d-x.org/download/version</a>
+ここから落として展開します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> cocos2d-x-3.8
+./setup.py</code></pre></div>
+<p>ANDROID-SDKとかANDROID-NDKを展開したパスを入力したらセットアップは完了です。
+これは <code>~/.bashrc</code> に環境変数を追記するだけなので、間違ったらその部分を消してもう一度やり直せば大丈夫です。</p>
+
+<h2 id="hello-world">hello world</h2>
+
+<p>helloworldとかいう名前だと既存とかぶる可能性があるため、<code>HL</code>というプロジェクトでやっていきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cocos new -l cpp HL
+<span class="nb">cd</span> HL
+ls
+
+CMakeLists.txt
+Classes
+Resources
+cocos2d
+proj.android
+proj.android-studio
+proj.ios_mac
+proj.linux
+proj.win10
+proj.win32
+proj.win8.1-universal</code></pre></div>
+<p><code>proj.android</code>をeclipseで開けば今までどおりeclipseで開発ができます。
+<code>proj.android-studio</code>をAndroidStudioで開けば一応はAndroidStudioで開くことができます。</p>
+
+<p>とりあえず<code>proj.android</code>下で作業をしていきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> proj.android
+cocos compile -p android</code></pre></div>
+<p>最初はC++でコンパイルが走ります。超重いです。
+最後にantでビルドプロセスが走り、<code>bin/</code>下にAndroid用パッケージが生成されます。
+これを実機に転送すれば動きます。</p>
+
+<h2 id="エミュレータ">エミュレータ</h2>
+
+<p>Genymotionというエミュレータがあります。
+AndroidSDK付属のエミュレータだと遅いため、このエミュレータを使うのが良いようです。</p>
+
+<p><a href="https://www.genymotion.com/">https://www.genymotion.com/</a></p>
+
+<p>ダウンロードや実行にはアカウントが必要になりますが、個人使用であれば無料で使うことができます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chmod a+x genymotion-2.5.2_x64.bin
+./genymotion-2.5.2_x64.bin</code></pre></div>
+<p>GenymotionはVirtualBoxを使うため、入っていない場合はVirtualBoxを入れておきます。</p>
+
+<h3 id="設定">設定</h3>
+
+<p>adb接続のために<code>Android SDK tools</code>のパスを設定します。</p>
+
+<p><code>Use custom Android SDK tools</code>を選択して、ディレクトリを指定します。
+これで<code>cocos</code>からコンパイル済みのパッケージを転送したり、ログを参照したりすることができます。</p>
+
+<p>{% asset_img genymotion-setting-adb.png Genymotionの設定 %}</p>
+
+<h3 id="ビルド">ビルド</h3>
+
+<p>Genymotionはx86なので、x86用にコンパイルする必要があります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi jni/Application.mk</code></pre></div>
+<p>以下の設定を追加します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">APP_CPPFLAGS :<span class="o">=</span> -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION<span class="o">=</span><span class="m">1</span> -std<span class="o">=</span>c++11 -fsigned-char -U__SSE__
+APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
+<p>コンパイル用のフラグに<code>-U__SSE__</code>を、<code>APP_ABI</code>に<code>armeabi</code>と<code>x86</code>を指定します。
+特にGenymotionで動かす際は<code>-U__SSE__</code>を付けないと意味不明な落ち方をします。</p>
+
+<p>{% asset_img unfortunately.png 意味不明な落ち方 %}</p>
+
+<p>この設定を追加するとすべてを再ビルドするのでかなりお待ちください。
+その間にGenymotionでAndroidでも起動しておきましょう。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cocos run -p android</code></pre></div>
+<p>うまく行くとHello Worldを見ることができます。</p>
+
+<p>{% asset_img android-emulator.png Hello World %}</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/08/26/golang-mysql/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/09/20/android-game-cocos2dx/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.437479 &#43;0900 JST m=&#43;0.523809157">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

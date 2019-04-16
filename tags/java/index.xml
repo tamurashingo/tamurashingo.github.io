@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/java/</link>
+    <description>Recent content in Java on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 03 Aug 2016 22:06:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dropwizardでデータベースpart4</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</link>
+      <pubDate>Wed, 03 Aug 2016 22:06:15 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</guid>
+      <description>tamuraです。 今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。 Dropwizardを使ってみ</description>
+    </item>
+    
+    <item>
+      <title>JavaBeansの役立つ使い方</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</link>
+      <pubDate>Tue, 02 Aug 2016 00:12:21 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</guid>
+      <description>tamuraです。 前回の続きです。 JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。 XMLの読み込み JSONの読み込み</description>
+    </item>
+    
+    <item>
+      <title>JavaBeansとは</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</link>
+      <pubDate>Sun, 31 Jul 2016 16:16:27 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</guid>
+      <description>tamuraです。 JavaBeansが出てきた当初はGUI用だったようです。 GUIアプリを作ろうとしてJFrameを継承したクラスを作ると「</description>
+    </item>
+    
+    <item>
+      <title>ISUCON5に参加して惨敗した件</title>
+      <link>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</link>
+      <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</guid>
+      <description>ISUCON5に参加しました。 SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので</description>
+    </item>
+    
+    <item>
+      <title>DBUtils3 version 0.2.0</title>
+      <link>https://tamurashingo.github.io/posts/2015/09/22/dbutils3-020/</link>
+      <pubDate>Tue, 22 Sep 2015 12:00:26 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/09/22/dbutils3-020/</guid>
+      <description>tamuraです。 DBUtils3のバージョンアップを行いました。 DBUtils3 今回は select * from t_tbl where id = :id のようにSQLを定義して Param param = new Param(); param.put(&amp;#34;id&amp;#34;, 123); List&amp;lt;ResultBean&amp;gt; result = conn.executeQueryWithParam(ResultBean.class, param); の</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart3</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</link>
+      <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースの更新を行っていきます。 DAOの修正 DAOにUPDATEメソッドを追加します。 package com.github.tamurashingo.dropwizard.helloworld.dao;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart2</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</link>
+      <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースを参照していきます。 pom.xml 以下の記述をpom.xmlに追加します。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.dropwizard&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dropwizard-jdbi&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${dropwizard.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.tamurashingo.dbutil3&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dbutil3&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart1</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</link>
+      <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースを使ってみます。 Migration Migrationという仕組みを使ってデータベースを準備していき</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardを使ってみる</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</link>
+      <pubDate>Wed, 10 Jun 2015 06:48:19 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</guid>
+      <description>tamuraです。 JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。 Drop</description>
+    </item>
+    
+    <item>
+      <title>DBUtils3の紹介</title>
+      <link>https://tamurashingo.github.io/posts/2015/05/26/dbutils3/</link>
+      <pubDate>Tue, 26 May 2015 06:43:47 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/05/26/dbutils3/</guid>
+      <description>tamuraです。 Javaでデータベースを使う場合、以下の２パターンが考えられます。 ORMを使ってアクセスする SELECT等のクエリを直接投</description>
+    </item>
+    
+    <item>
+      <title>WindowsでのJavaの開発環境を作る(Mavenインストール編)</title>
+      <link>https://tamurashingo.github.io/posts/2015/04/14/maven-install/</link>
+      <pubDate>Tue, 14 Apr 2015 04:37:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/04/14/maven-install/</guid>
+      <description>tamuraです。 今回はMavenのインストールをやります。 ディレクトリ構成 C:\ | +--devtool | +--apache-maven-3.3.1 +--jdk1.8.0_40 +--jre1.8.0_40 Mavenのダウンロード ダウンロード https://maven.apache.org/ の左側メニュ</description>
+    </item>
+    
+    <item>
+      <title>WindowsでのJavaの開発環境を作る(JDKインストール編)</title>
+      <link>https://tamurashingo.github.io/posts/2015/04/12/jdk-install/</link>
+      <pubDate>Sun, 12 Apr 2015 16:27:44 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/04/12/jdk-install/</guid>
+      <description>tamuraです。 Spring Frameworkの記事を書いていたのですが、「それ以前の部分もあるといいなー」という感想を頂いたので、開発環境を作ると</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart4</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</link>
+      <pubDate>Thu, 26 Feb 2015 20:56:06 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</guid>
+      <description>tamuraです。 今回はDI(Dependency Injection)を使っていきます。 目標 サービスを定義する サービスの実装を作る part3</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart3</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</link>
+      <pubDate>Wed, 25 Feb 2015 20:21:29 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</guid>
+      <description>tamuraです。 今回はTomcatにデプロイします。 目標 warファイルを作成する Tomcatにデプロイする デプロイ後にアクセスしてpart</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart2</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</link>
+      <pubDate>Tue, 24 Feb 2015 22:40:18 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</guid>
+      <description>tamuraです。 今回はちょっとアプリっぽい動きのものを作ります。 目標 formに入力した値を表示する Handling Form Submission ここの内容をやっていきます。 前回に</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart1</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</link>
+      <pubDate>Tue, 24 Feb 2015 01:08:33 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</guid>
+      <description>tamuraです。 Spring Frameworkを使ったことがありませんが、始め方について簡単にまとめてみました。 使用するバージョンは4系です。 目標 ブ</description>
+    </item>
+    
+  </channel>
+</rss>

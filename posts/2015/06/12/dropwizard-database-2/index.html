@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Dropwizardでデータベースpart2 &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-06-12 06:51:00 &#43;0000 UTC">June 12, 2015</time>
+</div>
+		<h1 class="post-title">Dropwizardでデータベースpart2</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p>今回はDropwizardでデータベースを参照していきます。</p>
+
+<!-- more -->
+
+<h2 id="pom-xml">pom.xml</h2>
+
+<p>以下の記述をpom.xmlに追加します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>  
+  <span class="nt">&lt;groupId&gt;</span>io.dropwizard<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>dropwizard-jdbi<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${dropwizard.version}<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>  
+  <span class="nt">&lt;groupId&gt;</span>com.github.tamurashingo.dbutil3<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>dbutil3<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>  </code></pre></div>
+<h2 id="daoの作成">DAOの作成</h2>
+
+<p>まずはDAOのinterfaceを作成します。 <code>messageId</code>を渡すとそれに対応した<code>Saying</code>を返すDAOを定義します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.Saying</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">com.google.common.base.Optional</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MessageDAO</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="nf">getMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">messageId</span><span class="o">);</span>
+
+<span class="o">}</span></code></pre></div>
+<p>続いてMySQL用の実装を作成します。 具体的にSQLを書いていきます。</p>
+
+<pre><code>package com.github.tamurashingo.dropwizard.helloworld.dao.impl;
+
+import org.skife.jdbi.v2.sqlobject.Bind;  
+import org.skife.jdbi.v2.sqlobject.SqlQuery;  
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;  
+import org.skife.jdbi.v2.sqlobject.customizers.SingleValueResult;
+
+import com.github.tamurashingo.dropwizard.helloworld.Saying;  
+import com.github.tamurashingo.dropwizard.helloworld.dao.MessageDAO;  
+import com.github.tamurashingo.dropwizard.helloworld.dao.impl.mapper.SayingMapper;  
+import com.google.common.base.Optional;
+
+public interface MessageDAOMySQLImpl extends MessageDAO {
+
+    @Override
+    @SingleValueResult(Saying.class)
+    @SqlQuery(
+              &quot; select &quot;
+            + &quot;   message &quot;
+            + &quot; from &quot;
+            + &quot;   m_message &quot;
+            + &quot; where &quot;
+            + &quot;   id = :messageId &quot;
+    )
+    @Mapper(SayingMapper.class)
+    public Optional&lt;Saying&gt; getMessage(@Bind(&quot;messageId&quot;) String messageId);
+
+}
+</code></pre>
+
+<p>以下の3つのアノテーションでどのようなSQLが実行されてどのような結果を返すかを定義しています。</p>
+
+<ul>
+<li><code>@SingleValueResult</code></li>
+<li><code>@SqlQuery</code></li>
+<li><code>@Mapper</code></li>
+</ul>
+
+<p>余談ですが、リスト(<code>List&lt;Saying&gt;</code>)を返したい場合は、<code>@SingleValueResult</code>のアノテーションを外すだけで大丈夫です。</p>
+
+<p>続いて、SQLの結果をJavaBeanにするマッパーを定義します。 これは拙作の<code>DBUtils3</code>を(わざわざ)使います。</p>
+
+<p><code>Mapper</code>は毎回インスタンスが生成されるようなので、<code>BeanBuilder</code>は<code>static</code>で持つようにしています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao.impl.mapper</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.sql.ResultSet</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.StatementContext</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.tweak.ResultSetMapper</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dbutils3.BeanBuilder</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dbutils3.BeanBuilderException</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.Saying</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SayingMapper</span> <span class="kd">implements</span> <span class="n">ResultSetMapper</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">BeanBuilder</span> <span class="n">builder</span><span class="o">;</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BeanBuilder</span><span class="o">(</span><span class="n">Saying</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">map</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">ResultSet</span> <span class="n">r</span><span class="o">,</span> <span class="n">StatementContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Saying</span> <span class="n">saying</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">saying</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">catch</span> <span class="o">(</span><span class="n">BeanBuilderException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">SQLException</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span></code></pre></div>
+<h2 id="resource">Resource</h2>
+
+<p><code>Resource</code>でDAOを使うため、コンストラクタでDAOを受け取るように変更します。
+また、<code>messageId</code>が渡されなかったりデータベースに値がなかったときのために初期値を作っています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.ws.rs.GET</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">javax.ws.rs.Path</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">javax.ws.rs.Produces</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">javax.ws.rs.QueryParam</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">javax.ws.rs.core.MediaType</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao.MessageDAO</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">com.google.common.base.Optional</span><span class="o">;</span>
+
+<span class="nd">@Path</span><span class="o">(</span><span class="s">&#34;/hello-world&#34;</span><span class="o">)</span>
+<span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">MessageDAO</span> <span class="n">messageDAO</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Saying</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Saying</span><span class="o">(</span><span class="s">&#34;hello world&#34;</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="nf">HelloWorldResource</span><span class="o">(</span><span class="n">MessageDAO</span> <span class="n">messageDAO</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">messageDAO</span> <span class="o">=</span> <span class="n">messageDAO</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GET</span>
+    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">sayHello</span><span class="o">(</span><span class="nd">@QueryParam</span><span class="o">(</span><span class="s">&#34;messageid&#34;</span><span class="o">)</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">messageId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">messageId</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">messageDAO</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="n">messageId</span><span class="o">.</span><span class="na">get</span><span class="o">()).</span><span class="na">or</span><span class="o">(</span><span class="n">defaultValue</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">defaultValue</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p><code>Saying</code>も<code>BeanBuilder</code>を使うにあたり、</p>
+
+<ul>
+<li><code>@Column</code></li>
+<li><code>setter</code></li>
+</ul>
+
+<p>が必要なので変更します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonProperty</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dbutils3.Column</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Saying</span> <span class="o">{</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">greeting</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Saying</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">Saying</span><span class="o">(</span><span class="n">String</span> <span class="n">greeting</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">greeting</span> <span class="o">=</span> <span class="n">greeting</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@JsonProperty</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getGreeting</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">greeting</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setGreeting</span><span class="o">(</span><span class="n">String</span> <span class="n">greeting</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">greeting</span> <span class="o">=</span> <span class="n">greeting</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="application">Application</h2>
+
+<p>最後に<code>Application</code>を修正します。 DAOの生成などを追加しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.DBI</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao.MessageDAO</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao.impl.MessageDAOMySQLImpl</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">io.dropwizard.Application</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">io.dropwizard.db.DataSourceFactory</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">io.dropwizard.jdbi.DBIFactory</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">io.dropwizard.migrations.MigrationsBundle</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">io.dropwizard.setup.Bootstrap</span><span class="o">;</span>  
+<span class="kn">import</span> <span class="nn">io.dropwizard.setup.Environment</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldApplication</span> <span class="kd">extends</span> <span class="n">Application</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">...</span><span class="na">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="k">new</span> <span class="n">HelloWorldApplication</span><span class="o">().</span><span class="na">run</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="n">Bootstrap</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span> <span class="n">bootstrap</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">bootstrap</span><span class="o">.</span><span class="na">addBundle</span><span class="o">(</span><span class="k">new</span> <span class="n">MigrationsBundle</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="n">DataSourceFactory</span> <span class="nf">getDataSourceFactory</span><span class="o">(</span><span class="n">HelloWorldConfiguration</span> <span class="n">configuration</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getDataSourceFactory</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">HelloWorldConfiguration</span> <span class="n">configuration</span><span class="o">,</span> <span class="n">Environment</span> <span class="n">environment</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">DBIFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBIFactory</span><span class="o">();</span>
+        <span class="kd">final</span> <span class="n">DBI</span> <span class="n">jdbi</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">environment</span><span class="o">,</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getDataSourceFactory</span><span class="o">(),</span> <span class="s">&#34;helloworlddb&#34;</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">jdbi</span><span class="o">.</span><span class="na">onDemand</span><span class="o">(</span><span class="n">MessageDAOMySQLImpl</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+        <span class="n">environment</span><span class="o">.</span><span class="na">jersey</span><span class="o">().</span><span class="na">register</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloWorldResource</span><span class="o">(</span><span class="n">messageDAO</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="実行">実行</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ mvn clean package
+$ java -jar target/helloworld-0.0.1-SNAPSHOT.jar server hello-world.yml</code></pre></div>
+<p>でサーバが実行します。</p>
+
+<p><a href="http://localhost:8080/hello-world">http://localhost:8080/hello-world</a></p>
+
+<p>にアクセスすると初期値である</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span><span class="s2">&#34;greeting&#34;</span><span class="o">:</span><span class="s2">&#34;hello world&#34;</span><span class="p">}</span>
+</code></pre></div>
+<p>が表示されます。</p>
+
+<p><a href="http://localhost:8080/hello-world?messageid=00002">http://localhost:8080/hello-world?messageid=00002</a></p>
+
+<p>にアクセスするとデータベースに格納した値の</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span><span class="s2">&#34;greeting&#34;</span><span class="o">:</span><span class="s2">&#34;こんにちは&#34;</span><span class="p">}</span>
+</code></pre></div>
+<p>が表示されます。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/06/10/dropwizard-database-1/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/06/13/dropwizard-database-3/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.440355 &#43;0900 JST m=&#43;0.526685316">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

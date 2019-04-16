@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				“Septeni×Scala”勉強会 ♯1 行ってきました &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-02-21 05:29:00 &#43;0000 UTC">February 21, 2015</time>
+</div>
+		<h1 class="post-title">“Septeni×Scala”勉強会 ♯1 行ってきました</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+Scalaは２年位前にCourseraで勉強して以来です。</p>
+
+<p>資料はconnpassにアップされてありました。
+<a href="https://septeni-scala.connpass.com/event/11233/">“Septeni×Scala”勉強会 #1</a></p>
+
+<!-- more -->
+
+<h2 id="1-scala普及の例-オリジナル新作マンガの配信サービス-ganma-ガンマ-でのscala利用例-感想">1.Scala普及の例／オリジナル新作マンガの配信サービス「GANMA！（ガンマ！）」でのScala利用例・感想</h2>
+
+<p>by 杉谷保幸さん</p>
+
+<ul>
+<li>前職はドワンゴでPHPを使ってニコ生とかを開発</li>
+
+<li><p>その経験からPHPでちゃんとやり続けるのは難しい</p></li>
+
+<li><p>なぜScalaか？</p>
+
+<ul>
+<li>簡単だから</li>
+<li>継続可能だから</li>
+</ul></li>
+
+<li><p>意識さえ高ければどんな言語でも問題ない</p>
+
+<ul>
+<li>が、続けるのは難しい</li>
+<li>そのレベルの人に例えばPHPをやり続けてもらうことができるか？</li>
+</ul></li>
+
+<li><p>ちゃんとした実装を行い続けるためにScala</p>
+
+<ul>
+<li>Scalaなら楽にできる</li>
+</ul></li>
+
+<li><p>ちゃんとした人と出会うためにScala</p>
+
+<ul>
+<li>わざわざ（今現在）Scalaをやろうという人は意識高い系なはず</li>
+<li>素晴らしきハッカー(2004)</li>
+<li>Pythonのパラドックス(2004)</li>
+</ul></li>
+</ul>
+
+<p>「素晴らしきハッカー」より</p>
+
+<blockquote>
+<p>プロジェクトに使うインフラを決定するということは、 単なる技術的な決定ではない。それは社会的な決定でもあり、 両者のうちではむしろ後者のほうが重要かもしれない。 例えば、あなたの会社&gt;がソフトウェアを書こうとした時、 Javaを選ぶのが、分別ある態度に思えるかもしれない。 しかし、言語を選ぶというのは、同時にコミュニティを選んでいることにも なる。Javaのプロジェクトで働くた めに雇われるプログラマは、 Pythonを使うプロジェクトで雇えるプログラマほど 賢くはないだろう。 そして、雇えるハッカーの質は、たぶん言語の選択よりもずっと重要だ。 もっとも、正直に言えば、&gt;良いハッカーはJavaよりPythonを好むという事実が、 これらの言語の相対的な利点について何かを暗示していると思う。</p>
+</blockquote>
+
+<p>「Pythonのパラドックス」より</p>
+
+<blockquote>
+<p>私は、Javaプログラマが間抜けだと言いたかったわけじゃない。 Pythonプログラマが賢いと言いたかったんだ。新しい言語を学ぶには 相当の努力が必要だ。そして、Pythonを学ぼうという人は、それ で 就職できるという理由で学ぶわけじゃない。 プログラムが本当に大好きで、それまでに知った言語に満足できなかったから 学んだわけだろう。</p>
+
+<p>まさにこのことから、自分からPythonを学ぼうという人こそが、 会社が求めるべきプログラマということになる。</p>
+</blockquote>
+
+<ul>
+<li><p>普及のために</p>
+
+<ul>
+<li>自分で空気を動かす！</li>
+<li>成功するしかない！</li>
+</ul></li>
+
+<li><p>成功させるために</p>
+
+<ul>
+<li>テストを書く</li>
+<li>pull-requestでマージの際にレビューする</li>
+<li>Scrum</li>
+<li>3〜4人くらいのチームが良い</li>
+<li>DDD（ドメイン駆動設計）</li>
+<li>設計の難しさに立ち向かうための技術</li>
+</ul></li>
+
+<li><p>道具を揃えて頑張る!</p></li>
+</ul>
+
+<h2 id="2-scala関数プログラミング初級">2.Scala関数プログラミング初級</h2>
+
+<p>by 加藤潤一さん</p>
+
+<p>内容とはまったく関係ないのですが、無名関数やクロージャがあるんだなーと再確認しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">square</span> <span class="k">=</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">square</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="o">&lt;</span><span class="n">function1</span><span class="o">&gt;</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">square</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+<span class="n">res1</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="o">((</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="o">)(</span><span class="mi">3</span><span class="o">)</span>
+<span class="n">res2</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">9</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">def</span> <span class="n">counter</span><span class="o">()</span> <span class="k">=</span> <span class="o">{</span>
+     <span class="o">|</span>   <span class="k">var</span> <span class="n">x</span> <span class="k">=</span> <span class="mi">0</span>
+     <span class="o">|</span>   <span class="o">()</span> <span class="k">=&gt;</span> <span class="o">{</span>
+     <span class="o">|</span>     <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+     <span class="o">|</span>     <span class="n">x</span>
+     <span class="o">|</span>   <span class="o">}</span>
+     <span class="o">|</span> <span class="o">}</span>
+<span class="n">counter</span><span class="k">:</span> <span class="o">()()</span> <span class="o">=&gt;</span> <span class="nc">Int</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">c1</span> <span class="k">=</span> <span class="n">counter</span><span class="o">()</span>
+<span class="n">c1</span><span class="k">:</span> <span class="o">()</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="o">&lt;</span><span class="n">function0</span><span class="o">&gt;</span>
+<span class="n">ter</span>
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">c1</span><span class="o">()</span>
+<span class="n">res3</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">c1</span><span class="o">()</span>
+<span class="n">res4</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">c2</span> <span class="k">=</span> <span class="n">counter</span><span class="o">()</span>
+<span class="n">c2</span><span class="k">:</span> <span class="o">()</span> <span class="o">=&gt;</span> <span class="nc">Int</span> <span class="k">=</span> <span class="o">&lt;</span><span class="n">function0</span><span class="o">&gt;</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">c2</span><span class="o">()</span>
+<span class="n">res5</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">c2</span><span class="o">()</span>
+<span class="n">res6</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">2</span></code></pre></div>
+<p><code>unapply</code>はHaskellみたいな動きだなーと思いました。</p>
+
+<h2 id="3-新卒で初めて学ぶ言語がscalaで良かったこと-大変だったこと">3.新卒で初めて学ぶ言語がScalaで良かったこと／大変だったこと</h2>
+
+<p>by 寺坂郁也さん</p>
+
+<ul>
+<li>とりあえず始める
+
+<ul>
+<li>わからないことがわかってくる</li>
+<li>まわりに聞ける環境があったことが大きい</li>
+</ul></li>
+<li>型があると良い
+
+<ul>
+<li>中に何が入っているのかがわかる</li>
+<li>何が返ってくるのかがわかる</li>
+</ul></li>
+<li>初心者が学ぶ言語としてコストが高いわけではない
+
+<ul>
+<li>周囲の環境が大事</li>
+</ul></li>
+</ul>
+
+<h2 id="感想">感想</h2>
+
+<p>Scalaやってみようかな、という気になりました。
+以前CourseraでやったときはEmacsで書いていたんですが、それなりにIDEがあった方が書きやすそうと感じました。IDEはやっぱりIntelliJなんですかねー。次回もあるようなのでまた行ってみようと思いま した。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/02/18/install-ghost/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/02/21/ime-in-ghost/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.45587 &#43;0900 JST m=&#43;0.542200410">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

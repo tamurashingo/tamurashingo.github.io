@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/android/</link>
+    <description>Recent content in Android on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</link>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
+      <description>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、 HelloWorldプロジェクトを作るまでの記録です。</description>
+    </item>
+    
+    <item>
+      <title>Cocos2d-x v3.8でAndroid用ゲームを作ってみる</title>
+      <link>https://tamurashingo.github.io/posts/2015/09/20/android-game-cocos2dx/</link>
+      <pubDate>Sun, 20 Sep 2015 02:08:20 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/09/20/android-game-cocos2dx/</guid>
+      <description>tamuraです。 cocos2d-xで自分にとってHelloWorld的なゲームを作りました。 いくつかはまったポイントがありました。 (今回作</description>
+    </item>
+    
+    <item>
+      <title>Cocos2d-xでAndroidの開発環境を作る</title>
+      <link>https://tamurashingo.github.io/posts/2015/09/13/android-cocos2dx/</link>
+      <pubDate>Sun, 13 Sep 2015 20:12:10 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/09/13/android-cocos2dx/</guid>
+      <description>tamuraです。 Cocos2d-x v3.8 の環境を作ってみました。 3.7からはAndroidStudioにも一応は対応しています。 が、まだ完全対応ではないのでE</description>
+    </item>
+    
+  </channel>
+</rss>

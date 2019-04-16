@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				org-modeを使って勉強会でメモをとる &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-02-27 07:30:08 &#43;0000 UTC">February 27, 2015</time>
+</div>
+		<h1 class="post-title">org-modeを使って勉強会でメモをとる</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+Emacsのorg-modeで勉強会のメモをとっていますが、他の方はどういうメモをとっているのか気になるので自分のやり方を晒します。</p>
+
+<p>メモの他に<a href="https://tweetdeck.twitter.com/">TweetDeck</a>を別画面で立ち上げています。勉強会用のハッシュタグを検索して他の人がつぶやいたものも参考にしたりします。</p>
+
+<!-- more -->
+
+<h2 id="参加前">参加前</h2>
+
+<p>atndやconnpassなどのアジェンダから発表内容について事前にわかる部分を記入しておきます。</p>
+
+<p>例は2015/02/25に実施されたLisp Meetupです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-org-mode" data-lang="org-mode">* Lisp Meet Up presented by Shibuya.lisp #25
+
+** Woo: The way to the fastest web server in Common Lisp
+by 深町さん
+
+** Egisonについて
+by egiさん
+
+** packageの局所的なuseのためのユーティリティ
+by hyotang666さん
+
+** 8-bit PIC マイコン用ネイティブコンパイラの作成
+by Masayuki Takagiさん  </code></pre></div>
+<h2 id="当日">当日</h2>
+
+<p>何をメモするか？スライドはslideshareなどであとから共有されることが多いため、スライドの内容をそのまま書くのは無駄です。が、主な流れは書いておきます。私は他に以下のようなことをメモする ようにしています。</p>
+
+<ul>
+<li>知らない言葉
+
+<ul>
+<li>あとで調べるためにしらない言葉をメモっておきます</li>
+</ul></li>
+<li>疑問点
+
+<ul>
+<li>これも後で調べるための材料です</li>
+</ul></li>
+<li>心動かされたフレーズ
+
+<ul>
+<li>ワンフレーズでもあとから見るとその時の感動を思い出すので、感動したフレーズなどはメモっておきます</li>
+</ul></li>
+</ul>
+
+<h3 id="セッション中">セッション中</h3>
+
+<p>セッション中のメモで気をつけていることを書きます。</p>
+
+<ul>
+<li>開始時間、終了時間をメモ
+
+<ul>
+<li>どのくらいの内容がどのくらいの時間で終わるのか目安をつけるため</li>
+<li>開始はC-c C-x C-i</li>
+<li>終了はC-c C-x C-o</li>
+</ul></li>
+<li>コード用のバッファを用意
+
+<ul>
+<li>org-modeの中では自動インデントされないので念のためにあると便利</li>
+<li>縦分割(C-x 3)</li>
+</ul></li>
+<li>アスタリスクによる見出しはセッション中のメモでは行わない
+
+<ul>
+<li>とりあえず箇条書きでメモっていく</li>
+<li>メモ中は「これが見出しだ！」と思っていてもあとから見ると違うことが多い</li>
+<li>ならそういうのは終わってからゆっくりやったほうが良い</li>
+</ul></li>
+</ul>
+
+<h2 id="後日">後日</h2>
+
+<p>org-modeでメモした内容をMarkdownで書き下してブログ等にアップします。
+org-mode形式からMarkdown形式に変換もできるみたいなのですが、どうせブログ化する際にメモした情報そのままをアップするわけではないので、私は面倒ですが手で書き直しています。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/02/26/springframework-04/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/03/07/clack-meetup-1/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.446457 &#43;0900 JST m=&#43;0.532787441">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

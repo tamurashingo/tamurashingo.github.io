@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Spring Frameworkを使ってみるpart3 &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-02-25 20:21:29 &#43;0000 UTC">February 25, 2015</time>
+</div>
+		<h1 class="post-title">Spring Frameworkを使ってみるpart3</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+今回はTomcatにデプロイします。</p>
+
+<!-- more -->
+
+<h2 id="目標">目標</h2>
+
+<ul>
+<li>warファイルを作成する</li>
+<li>Tomcatにデプロイする
+
+<ul>
+<li>デプロイ後にアクセスしてpart2と同じ結果となること</li>
+</ul></li>
+</ul>
+
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#build-tool-plugins-maven-packaging">58.2 Packaging executable jar and war files</a> 一部ここの記述を参考にしています。</p>
+
+<h2 id="pom-xmlの変更">pom.xmlの変更</h2>
+
+<p>pom.xmlを変更します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span>
+         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>gs-serving-web-content<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.1.0<span class="nt">&lt;/version&gt;</span>
+
+  <span class="c">&lt;!-- これを追加 --&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>war<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.2.1.RELEASE<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-thymeleaf<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+
+    <span class="c">&lt;!-- ここから --&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="c">&lt;!-- ここまで追加 --&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+
+
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+
+      <span class="c">&lt;!-- ここから --&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.tomcat.maven<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>tomcat7-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;url&gt;</span>http://localhost:8080/manager/text<span class="nt">&lt;/url&gt;</span>
+          <span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+          <span class="nt">&lt;password&gt;</span>admin<span class="nt">&lt;/password&gt;</span>
+          <span class="nt">&lt;path&gt;</span>/gs<span class="nt">&lt;/path&gt;</span>
+          <span class="nt">&lt;update&gt;</span>true<span class="nt">&lt;/update&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+      <span class="c">&lt;!-- ここまで追加 --&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+
+  <span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>spring-milestone<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://repo.spring.io/libs-release<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+  <span class="nt">&lt;/repositories&gt;</span>
+
+  <span class="nt">&lt;pluginRepositories&gt;</span>
+    <span class="nt">&lt;pluginRepository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>spring-milestone<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://repo.spring.io/libs-release<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/pluginRepository&gt;</span>
+  <span class="nt">&lt;/pluginRepositories&gt;</span>
+<span class="nt">&lt;/project&gt;</span></code></pre></div>
+<p><code>tomcat7-maven-plugin</code>は<code>mvn</code>コマンドでデプロイをするために設定しています。
+URL、ユーザID、パスワードはそれぞれの環境用に変更してください。</p>
+
+<p>手動などでデプロイする場合はここの記述は不要です。</p>
+
+<h2 id="初期化クラスの追加">初期化クラスの追加</h2>
+
+<p><code>web.xml</code>のかわりに<code>Initializer</code>クラスを定義し、そこで<code>web.xml</code>と同等の定義をします。</p>
+
+<p>src/main/java/hello/Initializer.java</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">hello</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.builder.SpringApplicationBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.context.web.SpringBootServletInitializer</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Initializer</span> <span class="kd">extends</span> <span class="n">SpringBootServletInitializer</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="n">SpringApplicationBuilder</span> <span class="nf">configure</span><span class="o">(</span><span class="n">SpringApplicationBuilder</span> <span class="n">application</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">application</span><span class="o">.</span><span class="na">sources</span><span class="o">(</span><span class="n">AppConfig</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="設定クラスの追加">設定クラスの追加</h2>
+
+<p><code>applicationContext.xml</code>のかわりに<code>AppConfig</code>クラスを定義し、そこで<code>applicationContext.xml</code>と同等の設定を行います。 といってもpart2までは<code>applicationContext.xml</code>を使っていないので、今回は何も定義しません。</p>
+
+<p>src/main/java/hello/AppConfig.java</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">hello</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="nd">@ComponentScan</span>
+<span class="nd">@EnableAutoConfiguration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppConfig</span> <span class="o">{</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="ビルド-デプロイ">ビルド・デプロイ</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">mvn clean
+mvn package tomcat7:deploy</code></pre></div>
+<p>念のため前回までに生成されたバイナリを削除してからビルドします。 <code>tomcat7:deploy</code>で<code>pom.xml</code>で設定したTomcatに対してデプロイを行います。</p>
+
+<p>ここでは <code>/gs</code> というパスを追加しているため、 <a href="http://localhost:8080/gs/greeting">http://localhost:8080/gs/greeting</a> にアクセスします。 前回とまったく同じ画面が出てきます。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/02/24/springframework-02/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/02/25/bot-programming/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.454609 &#43;0900 JST m=&#43;0.540939039">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

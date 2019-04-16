@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visualstudiocode on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/visualstudiocode/</link>
+    <description>Recent content in Visualstudiocode on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sat, 23 Jul 2016 22:24:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/visualstudiocode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Markdownでブログを書く</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</link>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</guid>
+      <description>tamuraです。 以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。 livedoor blogなどのいわゆる一般向けのブロ</description>
+    </item>
+    
+  </channel>
+</rss>

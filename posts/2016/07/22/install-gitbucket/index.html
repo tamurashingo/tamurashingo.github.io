@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				CentOS7にGitBucket2.4を入れる &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-07-22 21:22:16 &#43;0000 UTC">July 22, 2016</time>
+</div>
+		<h1 class="post-title">CentOS7にGitBucket2.4を入れる</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p>仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れてみました。</p>
+
+<!-- more -->
+
+<h2 id="openjdkのインストール">OpenJDKのインストール</h2>
+
+<p>yumであっさり入れてしまいます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yum install java-1.8.0-openjdk</code></pre></div>
+<p>確認</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">java -version
+openjdk version <span class="s2">&#34;1.8.0_101&#34;</span>
+OpenJDK Runtime Environment <span class="o">(</span>build <span class="m">1</span>.8.0_101-b13<span class="o">)</span>
+OpenJDK <span class="m">64</span>-Bit Server VM <span class="o">(</span>build <span class="m">25</span>.101-b13, mixed mode<span class="o">)</span></code></pre></div>
+<h2 id="tomcatのインストール">Tomcatのインストール</h2>
+
+<p>Tomcatをダウンロードして展開します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> /usr/local/
+wget http://ftp.kddilabs.jp/infosystems/apache/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz
+tar xvzf apache-tomcat-8.5.4.tar.gz</code></pre></div>
+<p>所有ユーザをtomcatにしたいので、tomcatユーザを作成します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">useradd -s /sbin/nologin tomcat</code></pre></div>
+<p>所有者の変更を行います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chown -R tomcat:tomcat apache-tomcat-8.5.4</code></pre></div>
+<h2 id="tomcatの設定">Tomcatの設定</h2>
+
+<p>とくに何もしなくて大丈夫です。</p>
+
+<h2 id="tomcatの起動">Tomcatの起動</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">/usr/local/apache-tomcat-8.5.4/bin/startup.sh
+Using CATALINA_BASE:   /usr/local/apache-tomcat-8.5.4
+Using CATALINA_HOME:   /usr/local/apache-tomcat-8.5.4
+Using CATALINA_TMPDIR: /usr/local/apache-tomcat-8.5.4/temp
+Using JRE_HOME:        /
+Using CLASSPATH:       /usr/local/apache-tomcat-8.5.4/bin/bootstrap.jar:/usr/local/apache-tomcat-8.5.4/bin/tomcat-juli.jar
+Tomcat started.</code></pre></div>
+<p>起動したらcurlで確認します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">curl http://localhost:8080/</code></pre></div>
+<p>何かしらの反応があればOKです。</p>
+
+<h2 id="gitbucketのデプロイ">GitBucketのデプロイ</h2>
+
+<p><a href="https://github.com/gitbucket/gitbucket/releases">リリースページ</a>を見て、4.2.0を落としてきます。
+4.2.1はアップグレード用です。まっさらな状態から入れるのであれば、4.2.0です。
+(起動時にテーブルがない、とい例外が発生して落ちます)</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> /usr/local/apache-tomcat-8.5.4/webapps/
+wget https://github.com/gitbucket/gitbucket/releases/download/4.2/gitbucket.war</code></pre></div>
+<p>落とし終わるとTomcatが勝手にWARファイルを展開してくれます。
+ただし、所有者がrootになっているので、ここでも所有者を変更しておきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chown tomcat:tomcat gitbucket.war
+chown -R tomcat:tomcat gitbucket</code></pre></div>
+<h2 id="gitbucketへアクセス">GitBucketへアクセス</h2>
+
+<p><a href="http://localhost:8080/gitbucket">http://localhost:8080/gitbucket</a></p>
+
+<p>でGitBucketにアクセスできます。</p>
+
+<h2 id="apacheとの連携">Apacheとの連携</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi /etc/httpd/conf/httpd.conf</code></pre></div>
+<p>末尾に以下の行を追加します</p>
+
+<pre><code>ProxyPass /gitbucket ajp://localhost:8009/gitbucket
+ProxyPassReverse /gitbucket ajp://localhost:8009/gitbucket
+</code></pre>
+
+<p>これで、</p>
+
+<p><a href="http://localhost/gitbucket">http://localhost/gitbucket</a></p>
+
+<p>でGitBucketにアクセスできるようになります。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2016/07/18/self-ca/" class="left arrow">&#8592;</a>
+		<a href="/posts/2016/07/23/write-blog-with-markdown/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.435152 &#43;0900 JST m=&#43;0.521482589">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

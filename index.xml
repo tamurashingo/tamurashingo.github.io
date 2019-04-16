@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/</link>
+    <description>Recent content on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello Hugo World</title>
+      <link>https://tamurashingo.github.io/posts/2019/04/16/hello-hugo-world/</link>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2019/04/16/hello-hugo-world/</guid>
+      <description>Hugoで作り直す なんどめかの作り直し $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルで $ hugo new posts/2019/04/16/hello-hugo-world.md $ vi content/posts/2019/04/16/hello-hugo-world.mdpackage test; public class Test { public static void main(String...args) { System.out.println(&amp;#34;hello world&amp;#34;); System.exit(0); } }</description>
+    </item>
+    
+    <item>
+      <title>ISUCON6に参加して今年も惨敗した件</title>
+      <link>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</link>
+      <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</guid>
+      <description>tamuraです。 今年もISUCONに参加しました。 今回は新メンバーakimotoを加えての参戦です。 前回記事: ISUCON5に参加して惨敗</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</link>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
+      <description>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、 HelloWorldプロジェクトを作るまでの記録です。</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart4</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</link>
+      <pubDate>Wed, 03 Aug 2016 22:06:15 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</guid>
+      <description>tamuraです。 今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。 Dropwizardを使ってみ</description>
+    </item>
+    
+    <item>
+      <title>Markdownでブログを書いてシンタックスハイライトする</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</link>
+      <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</guid>
+      <description>tamuraです。 Markdownでブログを書く件の続きです。 前回はmarkedを使ってMarkdownをHTMLに変換しました。 今回はシン</description>
+    </item>
+    
+    <item>
+      <title>JavaBeansの役立つ使い方</title>
+      <link>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</link>
+      <pubDate>Tue, 02 Aug 2016 00:12:21 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</guid>
+      <description>tamuraです。 前回の続きです。 JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。 XMLの読み込み JSONの読み込み</description>
+    </item>
+    
+    <item>
+      <title>JavaBeansとは</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</link>
+      <pubDate>Sun, 31 Jul 2016 16:16:27 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</guid>
+      <description>tamuraです。 JavaBeansが出てきた当初はGUI用だったようです。 GUIアプリを作ろうとしてJFrameを継承したクラスを作ると「</description>
+    </item>
+    
+    <item>
+      <title>クライアント認証を行う</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</link>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</guid>
+      <description>tamuraです。 前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。 今回は、クライアントの証明書を作り、オレ</description>
+    </item>
+    
+    <item>
+      <title>サーバ証明書(オレオレ証明書)を作る</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</link>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</guid>
+      <description>tamuraです。 前回、OpenSSLでオレオレ認証局を作りました。 今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名して</description>
+    </item>
+    
+    <item>
+      <title>Markdownでブログを書く</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</link>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</guid>
+      <description>tamuraです。 以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。 livedoor blogなどのいわゆる一般向けのブロ</description>
+    </item>
+    
+    <item>
+      <title>CentOS7にGitBucket2.4を入れる</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</link>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</guid>
+      <description>tamuraです。 仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れて</description>
+    </item>
+    
+    <item>
+      <title>オレオレ認証局を作る</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</link>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</guid>
+      <description>tamuraです。 SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。 サーバ作成 サーバはazureで作りました</description>
+    </item>
+    
+    <item>
+      <title>サバフェス!2016 IoTハッカソンに参加してきました</title>
+      <link>https://tamurashingo.github.io/posts/2016/04/16/svfest2016/</link>
+      <pubDate>Sat, 16 Apr 2016 01:00:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/04/16/svfest2016/</guid>
+      <description>tamuraです。 IDCフロンティアさん主催のサバフェス2016に参加してきました。 今年は「健康をテーマにしたハッカソン」、IoTを駆使して</description>
+    </item>
+    
+    <item>
+      <title>ISUCON5に参加して惨敗した件</title>
+      <link>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</link>
+      <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</guid>
+      <description>ISUCON5に参加しました。 SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので</description>
+    </item>
+    
+    <item>
+      <title>DBUtils3 version 0.2.0</title>
+      <link>https://tamurashingo.github.io/posts/2015/09/22/dbutils3-020/</link>
+      <pubDate>Tue, 22 Sep 2015 12:00:26 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/09/22/dbutils3-020/</guid>
+      <description>tamuraです。 DBUtils3のバージョンアップを行いました。 DBUtils3 今回は select * from t_tbl where id = :id のようにSQLを定義して Param param = new Param(); param.put(&amp;#34;id&amp;#34;, 123); List&amp;lt;ResultBean&amp;gt; result = conn.executeQueryWithParam(ResultBean.class, param); の</description>
+    </item>
+    
+    <item>
+      <title>Cocos2d-x v3.8でAndroid用ゲームを作ってみる</title>
+      <link>https://tamurashingo.github.io/posts/2015/09/20/android-game-cocos2dx/</link>
+      <pubDate>Sun, 20 Sep 2015 02:08:20 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/09/20/android-game-cocos2dx/</guid>
+      <description>tamuraです。 cocos2d-xで自分にとってHelloWorld的なゲームを作りました。 いくつかはまったポイントがありました。 (今回作</description>
+    </item>
+    
+    <item>
+      <title>Cocos2d-xでAndroidの開発環境を作る</title>
+      <link>https://tamurashingo.github.io/posts/2015/09/13/android-cocos2dx/</link>
+      <pubDate>Sun, 13 Sep 2015 20:12:10 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/09/13/android-cocos2dx/</guid>
+      <description>tamuraです。 Cocos2d-x v3.8 の環境を作ってみました。 3.7からはAndroidStudioにも一応は対応しています。 が、まだ完全対応ではないのでE</description>
+    </item>
+    
+    <item>
+      <title>Go言語でMySQLに接続する</title>
+      <link>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</link>
+      <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</guid>
+      <description>tamuraです。 最近、Go言語を始めました。 MySQLにつなぐ コマンドラインアプリのように１回接続して何か操作して切断、というのであればな</description>
+    </item>
+    
+    <item>
+      <title>フロントエンドの開発に使うツール類</title>
+      <link>https://tamurashingo.github.io/posts/2015/07/15/frontend-tools/</link>
+      <pubDate>Wed, 15 Jul 2015 07:04:09 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/07/15/frontend-tools/</guid>
+      <description>tamuraです。 先日、社内勉強会で「なぜフロントエンドの開発にビルドが必要なのか?」という質問が出てうまく回答できなかったので、フロントエ</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart3</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</link>
+      <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースの更新を行っていきます。 DAOの修正 DAOにUPDATEメソッドを追加します。 package com.github.tamurashingo.dropwizard.helloworld.dao;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart2</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</link>
+      <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースを参照していきます。 pom.xml 以下の記述をpom.xmlに追加します。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.dropwizard&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dropwizard-jdbi&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${dropwizard.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.tamurashingo.dbutil3&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dbutil3&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart1</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</link>
+      <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</guid>
+      <description>tamuraです。 今回はDropwizardでデータベースを使ってみます。 Migration Migrationという仕組みを使ってデータベースを準備していき</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardを使ってみる</title>
+      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</link>
+      <pubDate>Wed, 10 Jun 2015 06:48:19 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</guid>
+      <description>tamuraです。 JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。 Drop</description>
+    </item>
+    
+    <item>
+      <title>DBUtils3の紹介</title>
+      <link>https://tamurashingo.github.io/posts/2015/05/26/dbutils3/</link>
+      <pubDate>Tue, 26 May 2015 06:43:47 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/05/26/dbutils3/</guid>
+      <description>tamuraです。 Javaでデータベースを使う場合、以下の２パターンが考えられます。 ORMを使ってアクセスする SELECT等のクエリを直接投</description>
+    </item>
+    
+    <item>
+      <title>WindowsでのJavaの開発環境を作る(Mavenインストール編)</title>
+      <link>https://tamurashingo.github.io/posts/2015/04/14/maven-install/</link>
+      <pubDate>Tue, 14 Apr 2015 04:37:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/04/14/maven-install/</guid>
+      <description>tamuraです。 今回はMavenのインストールをやります。 ディレクトリ構成 C:\ | +--devtool | +--apache-maven-3.3.1 +--jdk1.8.0_40 +--jre1.8.0_40 Mavenのダウンロード ダウンロード https://maven.apache.org/ の左側メニュ</description>
+    </item>
+    
+    <item>
+      <title>WindowsでのJavaの開発環境を作る(JDKインストール編)</title>
+      <link>https://tamurashingo.github.io/posts/2015/04/12/jdk-install/</link>
+      <pubDate>Sun, 12 Apr 2015 16:27:44 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/04/12/jdk-install/</guid>
+      <description>tamuraです。 Spring Frameworkの記事を書いていたのですが、「それ以前の部分もあるといいなー」という感想を頂いたので、開発環境を作ると</description>
+    </item>
+    
+    <item>
+      <title>Lisp Meet Up ♯26に行ってきました</title>
+      <link>https://tamurashingo.github.io/posts/2015/03/25/lisp-meetup-26/</link>
+      <pubDate>Wed, 25 Mar 2015 23:47:15 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/03/25/lisp-meetup-26/</guid>
+      <description>tamuraです。 Lisp Meet Up presented by Shibuya.lisp #26 に行ってきましたので、まとめたメモを公開いたします。 今回はClojureの回となっております。 Clojure</description>
+    </item>
+    
+    <item>
+      <title>base64エンコーダの改良</title>
+      <link>https://tamurashingo.github.io/posts/2015/03/07/improve-base64encoder/</link>
+      <pubDate>Sat, 07 Mar 2015 08:18:34 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/03/07/improve-base64encoder/</guid>
+      <description>tamuraです。 Lisp Meet Up presented by Shibuya.lisp #25 や Clack Meetup #1 に参加してみた結果、 自分でもできる範囲で改良してみようと思い立ちました。 とりあえず以前作ったBase</description>
+    </item>
+    
+    <item>
+      <title>Clack Meetup ♯1 に行ってきました</title>
+      <link>https://tamurashingo.github.io/posts/2015/03/07/clack-meetup-1/</link>
+      <pubDate>Sat, 07 Mar 2015 00:05:01 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/03/07/clack-meetup-1/</guid>
+      <description>tamuraです。 Clack Meetup #1に行ってきました。 CommonLispは趣味でたまに使います。Clackは以前会社のツールを作るときに使いました。</description>
+    </item>
+    
+    <item>
+      <title>org-modeを使って勉強会でメモをとる</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/27/memo-with-org-mode/</link>
+      <pubDate>Fri, 27 Feb 2015 07:30:08 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/27/memo-with-org-mode/</guid>
+      <description>tamuraです。 Emacsのorg-modeで勉強会のメモをとっていますが、他の方はどういうメモをとっているのか気になるので自分のやり方を</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart4</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</link>
+      <pubDate>Thu, 26 Feb 2015 20:56:06 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</guid>
+      <description>tamuraです。 今回はDI(Dependency Injection)を使っていきます。 目標 サービスを定義する サービスの実装を作る part3</description>
+    </item>
+    
+    <item>
+      <title>bot programming</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/25/bot-programming/</link>
+      <pubDate>Wed, 25 Feb 2015 23:58:53 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/25/bot-programming/</guid>
+      <description>tamuraです。ネタです。 発表者をランダムで指名するbot 社内勉強会のときに使えるかなーと思い、作ってみました。 対話型で発表者のリストに発</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart3</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</link>
+      <pubDate>Wed, 25 Feb 2015 20:21:29 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</guid>
+      <description>tamuraです。 今回はTomcatにデプロイします。 目標 warファイルを作成する Tomcatにデプロイする デプロイ後にアクセスしてpart</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart2</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</link>
+      <pubDate>Tue, 24 Feb 2015 22:40:18 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</guid>
+      <description>tamuraです。 今回はちょっとアプリっぽい動きのものを作ります。 目標 formに入力した値を表示する Handling Form Submission ここの内容をやっていきます。 前回に</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart1</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</link>
+      <pubDate>Tue, 24 Feb 2015 01:08:33 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</guid>
+      <description>tamuraです。 Spring Frameworkを使ったことがありませんが、始め方について簡単にまとめてみました。 使用するバージョンは4系です。 目標 ブ</description>
+    </item>
+    
+    <item>
+      <title>Ghostで少しだけ日本語を打ちやすくする</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/21/ime-in-ghost/</link>
+      <pubDate>Sat, 21 Feb 2015 12:32:52 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/21/ime-in-ghost/</guid>
+      <description>tamuraです。 ある問題をちょっとだけ解決したので載せます。 Ghostの問題点 現在、Ghostでブログをやっていますが、 http://devlog.forkwell.com/2014/09/01/setup-ghost-on-digitalocean/ にもあるように、</description>
+    </item>
+    
+    <item>
+      <title>“Septeni×Scala”勉強会 ♯1 行ってきました</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/21/septeni-scala-1/</link>
+      <pubDate>Sat, 21 Feb 2015 05:29:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/21/septeni-scala-1/</guid>
+      <description>tamuraです。 Scalaは２年位前にCourseraで勉強して以来です。 資料はconnpassにアップされてありました。 “Septeni</description>
+    </item>
+    
+    <item>
+      <title>Ghostを入れる</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/18/install-ghost/</link>
+      <pubDate>Wed, 18 Feb 2015 04:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/18/install-ghost/</guid>
+      <description>tamuraです。 blogをGhostにしたので、インストール手順を簡単に紹介します。 Node.jsのインストール NVMのインストール 例によ</description>
+    </item>
+    
+    <item>
+      <title>OctopressからGhostへ移行</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</link>
+      <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</guid>
+      <description>tamuraです。 blogシステムをOctopressからGhostに移行しました。 Octopress 手元ですべてのHTMLを生成するのでGithubとかで</description>
+    </item>
+    
+    <item>
+      <title>CommonLispでREPLを使った開発</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/13/repl-development/</link>
+      <pubDate>Fri, 13 Feb 2015 23:20:38 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/13/repl-development/</guid>
+      <description>tamuraです。 動機 REPLを使った開発がどれくらい効率が良いか実際にやってみました。 例としてbase64エンコーダを作っていきます。 ロジ</description>
+    </item>
+    
+    <item>
+      <title>init - Octopress</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/13/octopress/</link>
+      <pubDate>Fri, 13 Feb 2015 18:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/13/octopress/</guid>
+      <description>curl -sSL https://get.rvm.io | bash -s stable 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境変数を読み込み source ~/.rvm/scripts/rvm Rubyのインストー</description>
+    </item>
+    
+  </channel>
+</rss>

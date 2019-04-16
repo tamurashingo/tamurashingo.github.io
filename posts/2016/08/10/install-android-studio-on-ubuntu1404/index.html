@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Ubuntu14.04LTSにAndroidStudioをインストールする &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-08-10 00:04:05 &#43;0000 UTC">August 10, 2016</time>
+</div>
+		<h1 class="post-title">Ubuntu14.04LTSにAndroidStudioをインストールする</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
+HelloWorldプロジェクトを作るまでの記録です。</p>
+
+<!-- more -->
+
+<h2 id="1-ダウンロードとインストール">1. ダウンロードとインストール</h2>
+
+<p><a href="https://developer.android.com/studio/index.html">https://developer.android.com/studio/index.html</a></p>
+
+<p>へ行きます。</p>
+
+<p>DOWNLOAD ANDROID STUDIO 2.1
+をクリックします。</p>
+
+<figure>
+    <img src="01_download.png"
+         alt="download"/> 
+</figure>
+
+
+<p>I have read and agree with the above terms and conditions
+にチェックを入れるとリンクが活性化するので、
+すかさずアドレスをコピーして<code>wget</code>で取得します。</p>
+
+<figure>
+    <img src="02_download.png"
+         alt="download"/> 
+</figure>
+
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget https://dl.google.com/dl/android/studio/ide-zips/2.1.2.0/android-studio-ide-143.2915827-linux.zip</code></pre></div>
+<p>で、適当なディレクトリで展開</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">unzip ../tmp/android-studio-ide-143.2915827-linux.zip</code></pre></div>
+<p>android-studio
+というディレクトリができ、その中に展開されます。</p>
+
+<h2 id="2-セットアップ">2. セットアップ</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> android-studio/bin
+./studio.sh</code></pre></div>
+<p>以前の環境を引き継ぐか聞かれるので、どちらでもいいです。</p>
+
+<figure>
+    <img src="03_install.png"
+         alt="install"/> 
+</figure>
+
+
+<p>Welcome Android Studio</p>
+
+<p>ということでnext</p>
+
+<figure>
+    <img src="04_setup.png"
+         alt="setup"/> 
+</figure>
+
+
+<p>カスタムを選択するほどよく知っていないのでStandardを選択しました。</p>
+
+<p>そしてnext</p>
+
+<figure>
+    <img src="05_setup.png"
+         alt="setup"/> 
+</figure>
+
+
+<p>Verify中</p>
+
+<p>next押すしか無い</p>
+
+<figure>
+    <img src="06_setup.png"
+         alt="setup"/> 
+</figure>
+
+
+<p>エミュレータの設定です
+KVMがあるのでエミュレータが爆速になるよ！とのことですが、とりえあえずFinishを押します。</p>
+
+<figure>
+    <img src="07_setup.png"/> 
+</figure>
+
+
+<p>インストールが始まりました。</p>
+
+<figure>
+    <img src="08_setup_downloading.png"
+         alt="setup"/> 
+</figure>
+
+
+<p>しばらく待つと終わります。</p>
+
+<figure>
+    <img src="09_setup_download_complete.png"
+         alt="setup"/> 
+</figure>
+
+
+<h2 id="3-android-studioの起動">3. Android Studioの起動</h2>
+
+<h3 id="3-1-プロジェクト情報の設定">3.1. プロジェクト情報の設定</h3>
+
+<p>右上に邪魔なものが出ていますが気にせず、</p>
+
+<p>Start a new Android Studio project</p>
+
+<p>を選択します。</p>
+
+<figure>
+    <img src="10_androidstudio.png"
+         alt="android studio"/> 
+</figure>
+
+
+<p>プロジェクト情報を入れていきます。
+Company Domainですが、パッケージ名ではありませんので注意。
+パッケージ名に<code>com.github.tamurashingo</code>を使いたい場合は、<code>tamurashingo.github.com</code>を入れなくてはいけません。(下にパッケージ名が出てますね)</p>
+
+<figure>
+    <img src="11_project_setup.png"
+         alt="project setup"/> 
+</figure>
+
+
+<h3 id="3-2-ターゲットのandroidデバイスの設定">3.2. ターゲットのAndroidデバイスの設定</h3>
+
+<p>携帯電話・タブレットの他にいろいろあります。
+ここでは携帯電話・タブレットを選択します。</p>
+
+<p>Minimum SDKは使いたいAPIに応じて決定すればいいと思います。</p>
+
+<p>ここでは家にあるAndroidの一番バージョンが低いものに合わせてます。</p>
+
+<figure>
+    <img src="12_project_setup.png"
+         alt="project setup"/> 
+</figure>
+
+
+<h3 id="3-3-activityの設定">3.3. Activityの設定</h3>
+
+<p>Activityを自動生成して追加するかどうかです。
+今回はHelloWorldプロジェクトなので空のActivityを追加します。</p>
+
+<p>他にもいろいろなActivityがあるので、初めて作るときには画面構成など参考になります。</p>
+
+<figure>
+    <img src="13_project_setup.png"
+         alt="project setup"/> 
+</figure>
+
+
+<p>追加したActivityの情報を入れていきます。</p>
+
+<figure>
+    <img src="14_project_setup.png"
+         alt="project setup"/> 
+</figure>
+
+
+<p>すべて完了するとプロジェクトの生成が走ります。</p>
+
+<figure>
+    <img src="15_project_initializing.png"
+         alt="project initialize"/> 
+</figure>
+
+
+<h2 id="4-エミュレータ">4. エミュレータ</h2>
+
+<h3 id="4-1-avd-managerの起動">4.1. AVD Managerの起動</h3>
+
+<p>プロジェクトを開くとこんな感じの画面になります。</p>
+
+<figure>
+    <img src="16_project_source.png"
+         alt="project source"/> 
+</figure>
+
+
+<p>画面上のアイコンを押してAVD Manager(Android Virtual Device Manager)を起動します。</p>
+
+<figure>
+    <img src="17_avd_manager.png"
+         alt="avd manager"/> 
+</figure>
+
+
+<h3 id="4-2-virtual-deviceの作成">4.2. Virtual Deviceの作成</h3>
+
+<p>AVD Managerが起動するとこんな画面になります。
+Create Virtual Deviceを押して、デバイスを作っていきます。</p>
+
+<figure>
+    <img src="18_avd_manager.png"
+         alt="avd manager"/> 
+</figure>
+
+
+<h4 id="4-2-1-ハードウェアの選択">4.2.1. ハードウェアの選択</h4>
+
+<p>適当なハードウェアを選択します。
+PC上で動かすのでのサイズをモニタに合わせたほうがよいので、480x800のデバイスを選択しました。</p>
+
+<figure>
+    <img src="19_avd_manager_select_hardware.png"
+         alt="select hardware"/> 
+</figure>
+
+
+<h4 id="4-2-2-イメージの選択">4.2.2. イメージの選択</h4>
+
+<p>常用しているAndroidが5なのでLolipopを選択します(Downloadのリンクを押します)。
+ここではRecommendedタブから選びましたが、x86 Imagesなどを選択すると他にもいろいろなバージョンを選択することができます。</p>
+
+<figure>
+    <img src="20_avd_manager_select_image.png"
+         alt="select image"/> 
+</figure>
+
+
+<p>まずダウンロードが始まります。
+ライセンス条項をよく読んでAcceptを選択しましょう。</p>
+
+<figure>
+    <img src="21_avd_manager_download_image.png"
+         alt="download"/> 
+</figure>
+
+
+<p>ダウンロードが完了するとNextが押せるようになるので、Nextを押します。</p>
+
+<figure>
+    <img src="22_avd_manager_next.png"
+         alt="next"/> 
+</figure>
+
+
+<h5 id="4-2-3-各種設定">4.2.3. 各種設定</h5>
+
+<p>各種設定の確認を行います。
+AVD Nameは初期状態だと登録できないので、適当な名前にしておきます。</p>
+
+<figure>
+    <img src="23_avd_manager_name.png"
+         alt="AVD Name"/> 
+</figure>
+
+
+<p>保存中&hellip;</p>
+
+<figure>
+    <img src="24_avd_manager_saving.png"
+         alt="save"/> 
+</figure>
+
+
+<p>できました。</p>
+
+<figure>
+    <img src="25_avd_slect.png"
+         alt="select"/> 
+</figure>
+
+
+<h3 id="4-3-エミュレータの起動">4.3. エミュレータの起動</h3>
+
+<p>画面上部の緑の三角形を押すと、ビルドが走りエミュレータ上での実行となります。</p>
+
+<figure>
+    <img src="26_app_start.png"
+         alt="start"/> 
+</figure>
+
+
+<p>実行するデバイスを選択します。
+先ほど作ったエミュレータ上のデバイスを選択します。</p>
+
+<figure>
+    <img src="27_app_select_target.png"
+         alt="target"/> 
+</figure>
+
+
+<p>エミュレータ起動中です。</p>
+
+<figure>
+    <img src="28_app_starting.png"
+         alt="start"/> 
+</figure>
+
+
+<p>やりました！起動しました！</p>
+
+<figure>
+    <img src="29_app_started.png"
+         alt="started"/> 
+</figure>
+
+
+<p>ここでロックを外すとアプリが実行されます。</p>
+
+<figure>
+    <img src="30_app.png"
+         alt="application"/> 
+</figure>
+
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>画面の指示に従えばOK。
+非常に簡単でした。</p>
+
+<p>(キャプチャが大変でした&hellip;)</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2016/08/03/dropwizard-database-4/" class="left arrow">&#8592;</a>
+		<a href="/posts/2016/09/19/isucon6/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.426771 &#43;0900 JST m=&#43;0.513101342">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

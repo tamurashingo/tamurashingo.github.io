@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coffeeescript on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/coffeeescript/</link>
+    <description>Recent content in Coffeeescript on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 25 Feb 2015 23:58:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/coffeeescript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>bot programming</title>
+      <link>https://tamurashingo.github.io/posts/2015/02/25/bot-programming/</link>
+      <pubDate>Wed, 25 Feb 2015 23:58:53 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2015/02/25/bot-programming/</guid>
+      <description>tamuraです。ネタです。 発表者をランダムで指名するbot 社内勉強会のときに使えるかなーと思い、作ってみました。 対話型で発表者のリストに発</description>
+    </item>
+    
+  </channel>
+</rss>

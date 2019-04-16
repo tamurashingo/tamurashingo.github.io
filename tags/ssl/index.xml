@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ssl on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/ssl/</link>
+    <description>Recent content in Ssl on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 18 Jul 2016 00:59:47 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>オレオレ認証局を作る</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</link>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</guid>
+      <description>tamuraです。 SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。 サーバ作成 サーバはazureで作りました</description>
+    </item>
+    
+  </channel>
+</rss>

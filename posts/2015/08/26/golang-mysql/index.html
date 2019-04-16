@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Go言語でMySQLに接続する &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-08-26 05:30:30 &#43;0000 UTC">August 26, 2015</time>
+</div>
+		<h1 class="post-title">Go言語でMySQLに接続する</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+最近、Go言語を始めました。</p>
+
+<h2 id="mysqlにつなぐ">MySQLにつなぐ</h2>
+
+<p>コマンドラインアプリのように１回接続して何か操作して切断、というのであればなんら難しくありません。</p>
+
+<!-- more -->
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>  
+        <span class="s">&#34;database/sql&#34;</span>
+        <span class="s">&#34;fmt&#34;</span>
+
+        <span class="nx">_</span> <span class="s">&#34;github.com/go-sql-driver/mysql&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">selectSQL</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;select * from tbl&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">id</span> <span class="kt">string</span>
+                <span class="kd">var</span> <span class="nx">name</span> <span class="kt">string</span>
+                <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">id</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;id:%s\tname:%s\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+        <span class="nx">db</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">sql</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;mysql&#34;</span><span class="p">,</span> <span class="s">&#34;user:password@tcp(localhost:3306)/database&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+        <span class="nf">selectSQL</span><span class="p">(</span><span class="nx">db</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="コネクションプール">コネクションプール</h2>
+
+<p>Webアプリのような長時間動くアプリを作る場合は、コネクションプールを使用するのが一般的です。
+Go言語では自前でコネクションプールを持っていて、自動で勝手にうまくやってくれます。</p>
+
+<p>Javaなどをやっていると誤解しやすいのですが、 <code>sql.Open()</code> で返ってくるのはコネクションではありません。
+<code>db.Query</code>等を実行すると、キャッシュされているコネクションがあればそれを使い、コネクションがなければ新たにコネクションを作ってSQLを実行します。 そのため、<code>sql.Open()</code>で返ってきた値をどこからでも参照できるようにしておけば問題ありません。</p>
+
+<p>こんなデータベースパッケージを作りました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">db</span>
+
+<span class="kn">import</span> <span class="p">(</span>  
+        <span class="s">&#34;database/sql&#34;</span>
+
+        <span class="nx">_</span> <span class="s">&#34;github.com/go-sql-driver/mysql&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span>
+
+<span class="c1">// データベースに接続する
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">DbInit</span><span class="p">()</span> <span class="p">(</span><span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+        <span class="nx">db</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">sql</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;mysql&#34;</span><span class="p">,</span> <span class="s">&#34;user:password@tcp(localhost:3306)/database&#34;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nx">db</span><span class="p">,</span> <span class="nx">err</span>
+<span class="p">}</span>
+
+<span class="c1">// データベースから切断する
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">DbClose</span><span class="p">()</span> <span class="p">{</span>  
+        <span class="k">if</span> <span class="nx">db</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nx">db</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// データベースハンドラを取得する
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">DbConn</span><span class="p">()</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span> <span class="p">{</span>  
+        <span class="k">return</span> <span class="nx">db</span>
+<span class="p">}</span>
+<span class="nx">これをメインで呼び出します</span><span class="err">。</span>
+
+<span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>  
+        <span class="s">&#34;./db&#34;</span>
+        <span class="s">&#34;./web&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>  
+        <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">DbInit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">db</span><span class="p">.</span><span class="nf">DbClose</span><span class="p">()</span>
+
+        <span class="nx">web</span><span class="p">.</span><span class="nf">Run</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="nx">Webアプリではこんな感じで呼び出します</span><span class="err">。</span>
+
+<span class="kn">package</span> <span class="nx">web</span>
+
+<span class="kn">import</span> <span class="p">(</span>  
+        <span class="s">&#34;fmt&#34;</span>
+        <span class="s">&#34;log&#34;</span>
+        <span class="s">&#34;net/http&#34;</span>
+
+        <span class="s">&#34;github.com/gorilla/mux&#34;</span>
+
+        <span class="s">&#34;../db&#34;</span>
+<span class="p">)</span>
+
+
+<span class="kd">func</span> <span class="nf">Run</span><span class="p">()</span> <span class="p">{</span>  
+        <span class="nx">router</span> <span class="o">:=</span> <span class="nx">mux</span><span class="p">.</span><span class="nf">NewRouter</span><span class="p">().</span><span class="nf">StrictSlash</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="nx">router</span><span class="p">.</span>
+                <span class="nf">Methods</span><span class="p">(</span><span class="s">&#34;GET&#34;</span><span class="p">).</span>
+                <span class="nf">Path</span><span class="p">(</span><span class="s">&#34;/api/user&#34;</span><span class="p">).</span>
+                <span class="nf">Handler</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">HandlerFunc</span><span class="p">(</span><span class="nx">allUser</span><span class="p">))</span>
+
+        <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="nx">router</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">allUser</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">db</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">DbConn</span><span class="p">()</span>
+        <span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="s">&#34;select * from tbl&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">id</span> <span class="kt">string</span>
+                <span class="kd">var</span> <span class="nx">name</span> <span class="kt">string</span>
+                <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">id</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;id:%s\tname:%s\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="プリペアドステートメント">プリペアドステートメント</h2>
+
+<p>Java等と同様です。</p>
+
+<h3 id="参照系">参照系</h3>
+
+<p><code>db.Prepare</code>して、<code>stmt.Query()</code>します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">selectSQL</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">,</span> <span class="nx">id</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">stmt</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Prepare</span><span class="p">(</span><span class="s">&#34;select * from tbl where id = ?&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">stmt</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+        <span class="nx">rows</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">stmt</span><span class="p">.</span><span class="nf">Query</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Next</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">id</span> <span class="kt">string</span>
+                <span class="kd">var</span> <span class="nx">name</span> <span class="kt">string</span>
+                <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rows</span><span class="p">.</span><span class="nf">Scan</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">id</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                    <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;id:%s\tname:%s\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+        <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h3 id="更新系">更新系</h3>
+
+<p><code>db.Prepare</code>して、<code>stmt.Exec()</code>します。 <code>stmt.Exec()</code>の戻り値から<code>LastInsertId()</code>や<code>RowsAffected()</code>を取得することができます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">updateSQL</span><span class="p">(</span><span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span><span class="p">,</span> <span class="nx">id</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="nx">stmt</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">db</span><span class="p">.</span><span class="nf">Prepare</span><span class="p">(</span><span class="s">&#34;update tbl set name = ? where id = ?&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">defer</span> <span class="nx">stmt</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+
+        <span class="nx">result</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">stmt</span><span class="p">.</span><span class="nf">Exec</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">c</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">result</span><span class="p">.</span><span class="nf">RowsAffected</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%w行更新しました&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+
+<p>分からなかったらGo言語のソースを見る。
+Use the Source, Luke.</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/07/15/frontend-tools/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/09/13/android-cocos2dx/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.438852 &#43;0900 JST m=&#43;0.525182277">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

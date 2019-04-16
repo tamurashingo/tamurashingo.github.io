@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				base64エンコーダの改良 &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-03-07 08:18:34 &#43;0000 UTC">March 7, 2015</time>
+</div>
+		<h1 class="post-title">base64エンコーダの改良</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p><a href="https://atnd.org/events/62568/">Lisp Meet Up presented by Shibuya.lisp #25</a> や <a href="https://somewrite.connpass.com/event/11318/">Clack Meetup #1</a> に参加してみた結果、 自分でもできる範囲で改良してみようと思い立ちました。 とりあえず<a href="/2015-02-13/commonlisp-repl/">以前作ったBase64エンコード関数</a>を改良してみます。</p>
+
+<!-- more -->
+
+<p><strong>現在のアルゴリズム</strong></p>
+
+<ol>
+<li>1文字目を文字バッファへ格納する（ビット長8）</li>
+<li>文字バッファから6ビット取り出す（ビット長2）</li>
+<li>ビット長が6未満なので2文字目を文字バッファへ格納する（ビット長10）</li>
+<li>文字バッファから6ビット取り出す（ビット長4）</li>
+<li>ビット長が6未満なので3文字目を文字バッファへ格納する（ビット長12）</li>
+<li>&hellip;</li>
+</ol>
+
+<p><strong>改良の方針</strong></p>
+
+<ul>
+<li>3文字づつ取り出せばビット長を見る必要がなくなる</li>
+<li>3文字取り出せないときは特殊ルートに行けば良い
+
+<ul>
+<li>しかもその特殊ルートは最後の1回しか発生しない</li>
+</ul></li>
+<li>最初に文字列を数値のリストにしているが、arefで直接参照すればリストにする必要がない</li>
+</ul>
+
+<h2 id="目標">目標</h2>
+
+<ul>
+<li>より速く</li>
+<li>より少メモリで</li>
+</ul>
+
+<h2 id="処理対象の文字列の取得">処理対象の文字列の取得</h2>
+
+<h3 id="3文字">3文字</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">logior</span>
+    <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span></code></pre></div>
+<h3 id="2文字">2文字</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">logior</span>
+    <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span></code></pre></div>
+<h3 id="1文字">1文字</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span></code></pre></div>
+<h3 id="確認">確認</h3>
+
+<p>aは16進数で<code>#x61</code>なのでabcは<code>#x616263</code>となります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">CL-USER&gt;</span> <span class="c1">; 3文字</span>
+<span class="c1">; No value</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">logior</span>
+                          <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">16</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))</span> <span class="mi">8</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+                     <span class="s">&#34;abcd&#34;</span>
+                     <span class="mi">0</span><span class="p">)</span>
+            <span class="mh">#x616263</span><span class="p">)</span>
+
+<span class="no">T</span>
+<span class="nv">CL-USER&gt;</span> <span class="c1">; 2文字</span>
+<span class="c1">; No value</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">logior</span>
+                          <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">8</span><span class="p">)</span>
+                          <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+                     <span class="s">&#34;abcd&#34;</span>
+                     <span class="mi">0</span><span class="p">)</span>
+            <span class="mh">#x6162</span><span class="p">)</span>
+
+<span class="no">T</span>
+<span class="nv">CL-USER&gt;</span> <span class="c1">; 1文字</span>
+<span class="c1">; No value</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                     <span class="s">&#34;abcd&#34;</span>
+                     <span class="mi">0</span><span class="p">)</span>
+            <span class="mh">#x61</span><span class="p">)</span>
+
+<span class="nv">T</span></code></pre></div>
+<h2 id="ループ">ループ</h2>
+
+<p>3文字ずつ処理をするので、3で割り切れるところまで処理していきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+  <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="s">&#34;x&#34;</span><span class="p">))</span></code></pre></div>
+<p>こういう感じになっていれば大丈夫です。 REPLで確認していきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">len</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+                         <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="s">&#34;x&#34;</span><span class="p">)))</span>
+                  <span class="mi">3</span><span class="p">)</span>
+
+<span class="s">&#34;x&#34;</span>
+<span class="no">NIL</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">len</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+                         <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="s">&#34;x&#34;</span><span class="p">)))</span>
+                  <span class="mi">4</span><span class="p">)</span>
+
+<span class="s">&#34;x&#34;</span>
+<span class="no">NIL</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">len</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+                         <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="s">&#34;x&#34;</span><span class="p">)))</span>
+                  <span class="mi">5</span><span class="p">)</span>
+
+<span class="s">&#34;x&#34;</span>
+<span class="no">NIL</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">len</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+                         <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="s">&#34;x&#34;</span><span class="p">)))</span>
+                  <span class="mi">6</span><span class="p">)</span>
+
+<span class="s">&#34;x&#34;</span>
+<span class="s">&#34;x&#34;</span>
+<span class="no">NIL</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">len</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+                         <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="s">&#34;x&#34;</span><span class="p">)))</span>
+                  <span class="mi">7</span><span class="p">)</span>
+
+<span class="s">&#34;x&#34;</span>
+<span class="s">&#34;x&#34;</span>
+<span class="nv">NIL</span></code></pre></div>
+<h2 id="中締め-part1">中締め part1</h2>
+
+<p>ここまでの結果をまとめます。</p>
+
+<ul>
+<li>基本的に3文字ずつ処理する</li>
+<li>arefを使って文字を直接参照する</li>
+<li>3文字に満たない場合は特殊処理をする</li>
+</ul>
+
+<h3 id="コード">コード</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">len</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">str</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">flet</span> <span class="p">((</span><span class="nv">pick3</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">logior</span>
+              <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">16</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))</span> <span class="mi">8</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+           <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">logior</span>
+              <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">8</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+           <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))))</span>
+      <span class="c1">; 基本的に3文字処理</span>
+      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+           <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="p">(</span><span class="nv">pick3</span> <span class="nv">i</span><span class="p">))))))</span></code></pre></div>
+<h3 id="確認結果">確認結果</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">funcall</span> <span class="nf">#&#39;</span><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+                      <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">len</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">str</span><span class="p">)))</span>
+                        <span class="p">(</span><span class="nv">flet</span> <span class="p">((</span><span class="nv">pick3</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+                                 <span class="p">(</span><span class="nv">logior</span>
+                                  <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">16</span><span class="p">)</span>
+                                  <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))</span> <span class="mi">8</span><span class="p">)</span>
+                                  <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+                               <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+                                 <span class="p">(</span><span class="nv">logior</span>
+                                  <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">8</span><span class="p">)</span>
+                                  <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+                               <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+                                 <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))))</span>
+                                        <span class="c1">; 基本的に3文字処理</span>
+                          <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+                             <span class="nv">do</span> <span class="p">(</span><span class="nv">print</span> <span class="p">(</span><span class="nv">pick3</span> <span class="nv">i</span><span class="p">))))))</span>
+                  <span class="s">&#34;abcd&#34;</span><span class="p">)</span>
+
+
+<span class="mi">6382179</span>
+<span class="no">NIL</span>
+<span class="nv">CL-USER&gt;</span> <span class="mh">#x616263</span>
+<span class="nv">6382179</span></code></pre></div>
+<h2 id="エンコード">エンコード</h2>
+
+<h3 id="3文字-1">3文字</h3>
+
+<p>3文字(24bit)をエンコードすると6bitの値が4個生成されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">18</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">12</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span></code></pre></div>
+<p>これでOKです。ちょっとやってみます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">18</span><span class="p">)</span> <span class="mi">6382179</span><span class="p">)</span>
+<span class="mi">24</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">12</span><span class="p">)</span> <span class="mi">6382179</span><span class="p">)</span>
+<span class="mi">22</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">6382179</span><span class="p">)</span>
+<span class="mi">9</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">6382179</span><span class="p">)</span>
+<span class="nv">35</span></code></pre></div>
+<p>これを文字に変換するとこうなります。以前の記事と同じ結果になっています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="mi">24</span><span class="p">)</span>
+<span class="sc">#\Y</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="mi">22</span><span class="p">)</span>
+<span class="sc">#\W</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="mi">9</span><span class="p">)</span>
+<span class="sc">#\J</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="mi">35</span><span class="p">)</span>
+<span class="sc">#\j</span></code></pre></div>
+<h3 id="2文字-1">2文字</h3>
+
+<p>2文字(16bit)をエンコードすると6bitの値が3個生成されるようにします。
+具体的には2bit左にシフトして18bitにしてから計算を行います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nv">ash</span> <span class="nv">x</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">12</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span></code></pre></div>
+<h3 id="1文字-1">1文字</h3>
+
+<p>1文字(8bit)をエンコードすると6bitの値が2個生成されるようにします。
+具体的には4bit左にシフトして12bitにしてから計算を行います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nv">ash</span> <span class="nv">x</span> <span class="mi">4</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span></code></pre></div>
+<h3 id="変換">変換</h3>
+
+<p>数値を文字に変換します。ここは以前のものと変わりません。arefを使います。</p>
+
+<h2 id="中締め-part2">中締め part2</h2>
+
+<p>ここまでの結果をまとめます。</p>
+
+<ul>
+<li>基本的に3文字ずつ処理する</li>
+<li>arefを使って文字を直接参照する</li>
+<li>3文字の場合
+
+<ul>
+<li>6bitの値を4個生成する</li>
+</ul></li>
+<li>2文字の場合
+
+<ul>
+<li>6bitの値を3個生成する</li>
+</ul></li>
+<li>1文字の場合
+
+<ul>
+<li>6bitの値を2個生成する</li>
+</ul></li>
+<li>生成した値から変換後の文字を得る</li>
+</ul>
+
+<h3 id="コード-1">コード</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let*</span> <span class="p">((</span><span class="nv">len</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">str</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">rem</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">flet</span> <span class="p">((</span><span class="nv">pick3</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">logior</span>
+              <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">16</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))</span> <span class="mi">8</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+           <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">logior</span>
+              <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))</span> <span class="mi">8</span><span class="p">)</span>
+              <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+           <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+           <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="nv">x</span><span class="p">)))</span>
+      <span class="c1">; 基本的に3文字処理</span>
+      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="nv">rem</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+         <span class="nv">do</span>
+           <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">x</span> <span class="p">(</span><span class="nv">pick3</span> <span class="nv">i</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">18</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">12</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">x</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))</span>
+         <span class="nv">finally</span>
+           <span class="p">(</span><span class="nv">case</span> <span class="nv">rem</span>
+             <span class="p">(</span><span class="mi">2</span> <span class="p">(</span><span class="nv">let*</span> <span class="p">((</span><span class="nv">2ch</span> <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">i</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">ash</span> <span class="nv">2ch</span> <span class="mi">2</span><span class="p">)))</span>
+                  <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">12</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))</span>
+             <span class="p">(</span><span class="mi">1</span> <span class="p">(</span><span class="nv">let*</span> <span class="p">((</span><span class="nv">1ch</span> <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">i</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">x</span> <span class="p">(</span><span class="nv">ash</span> <span class="nv">1ch</span> <span class="mi">4</span><span class="p">)))</span>
+                  <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">x</span><span class="p">))))))))</span></code></pre></div>
+<h2 id="無駄を省く">無駄を省く</h2>
+
+<p><code>pick3</code>や<code>pick2</code>などで<code>logior</code>でくっつけているのに<code>ldb</code>で6bitずつに分割しています。 処理対象となる文字数が3パターンしかないため、<code>pick3</code>などで6bitずつにしてみます。</p>
+
+<h3 id="3文字-2">3文字</h3>
+
+<p>3文字の場合は6bitの値を4個生成したいので</p>
+
+<ol>
+<li>1文字目の6bit</li>
+<li>2文字目の2bit + 2文字目の4bit</li>
+<li>2文字目の4bit + 3文字目の2bit</li>
+<li>3文字目の6bit</li>
+</ol>
+
+<p>となります。 値の生成と同時に文字への変換も行ってしまいます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">))))</span>
+        <span class="p">(</span><span class="nv">3rd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                           <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+          <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+                           <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+          <span class="p">(</span><span class="nv">4th-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nv">format</span> <span class="no">T</span> <span class="s">&#34;~A~A~A~A&#34;</span> <span class="nv">1st-enc</span> <span class="nv">2nd-enc</span> <span class="nv">3rd-enc</span> <span class="nv">4th-enc</span><span class="p">))))</span></code></pre></div>
+<h3 id="2文字-2">2文字</h3>
+
+<p>2文字の場合は6bitの値を3個生成したいので</p>
+
+<ol>
+<li>1文字目の6bit</li>
+<li>1文字目の2bit + 2文字目の4bit</li>
+<li>2文字目の4bit + &lsquo;00&rsquo;</li>
+</ol>
+
+<p>となります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                           <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+          <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)))))</span>
+      <span class="p">(</span><span class="nv">format</span> <span class="no">T</span> <span class="s">&#34;~A~A~A&#34;</span> <span class="nv">1st-enc</span> <span class="nv">2nd-enc</span> <span class="nv">3rd-enc</span><span class="p">))))</span></code></pre></div>
+<h3 id="1文字-2">1文字</h3>
+
+<p>1文字の場合は6bitの値を2個生成したいので</p>
+
+<ol>
+<li>1文字目の6bit</li>
+<li>1文字目の2bit + &lsquo;0000&rsquo;</li>
+</ol>
+
+<p>となります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)))))</span>
+      <span class="p">(</span><span class="nv">format</span> <span class="no">T</span> <span class="s">&#34;~A~A&#34;</span> <span class="nv">1st-enc</span> <span class="nv">2nd-enc</span><span class="p">))))</span></code></pre></div>
+<h3 id="まとめる">まとめる</h3>
+
+<p>これらをまとめます。 先ほどより少し短くなります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let*</span> <span class="p">((</span><span class="nv">len</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">str</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">rem</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">labels</span> <span class="p">((</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="nv">x</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">pick3</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                   <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">))))</span>
+                   <span class="p">(</span><span class="nv">3rd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                                              <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+                     <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+                                              <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+                     <span class="p">(</span><span class="nv">4th-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+                 <span class="p">(</span><span class="nv">format</span> <span class="no">T</span> <span class="s">&#34;~A~A~A~A&#34;</span> <span class="nv">1st-enc</span> <span class="nv">2nd-enc</span> <span class="nv">3rd-enc</span> <span class="nv">4th-enc</span><span class="p">))))</span>
+           <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                   <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                                              <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+                     <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)))))</span>
+                 <span class="p">(</span><span class="nv">format</span> <span class="no">T</span> <span class="s">&#34;~A~A~A&#34;</span> <span class="nv">1st-enc</span> <span class="nv">2nd-enc</span> <span class="nv">3rd-enc</span><span class="p">))))</span>
+           <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))))</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)))))</span>
+                 <span class="p">(</span><span class="nv">format</span> <span class="no">T</span> <span class="s">&#34;~A~A&#34;</span> <span class="nv">1st-enc</span> <span class="nv">2nd-enc</span><span class="p">)))))</span>
+      <span class="c1">; 基本的に3文字処理</span>
+      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="nv">rem</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+         <span class="nv">do</span>
+           <span class="p">(</span><span class="nv">pick3</span> <span class="nv">i</span><span class="p">)</span>
+         <span class="nv">finally</span>
+           <span class="p">(</span><span class="nv">case</span> <span class="nv">rem</span>
+             <span class="p">(</span><span class="mi">2</span> <span class="p">(</span><span class="nv">pick2</span> <span class="nv">i</span><span class="p">))</span>
+             <span class="p">(</span><span class="mi">1</span> <span class="p">(</span><span class="nv">pick1</span> <span class="nv">i</span><span class="p">)))))))</span></code></pre></div>
+<h2 id="4文字区切り">4文字区切り</h2>
+
+<p>最後に4文字ごとに区切ってあまりを=で補います。 これは、結果を格納するバッファに=を初期値として与えてバッファを作成すれば良さそうです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let*</span> <span class="p">((</span><span class="nv">len</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">str</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">rem</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">buf</span> <span class="p">(</span><span class="nv">make-sequence</span> <span class="ss">&#39;string</span>
+                             <span class="p">(</span><span class="nv">*</span> <span class="p">(</span><span class="nv">ceiling</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                             <span class="ss">:initial-element</span> <span class="sc">#\\=</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">labels</span> <span class="p">((</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="nv">x</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">pick3</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">pos</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">))))</span>
+                     <span class="p">(</span><span class="nv">3rd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+                 <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+                       <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+                       <span class="p">(</span><span class="nv">4th-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="nv">pos</span><span class="p">)</span> <span class="nv">1st-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">2nd-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">3rd-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">3</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">4th-enc</span><span class="p">))))</span>
+             <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">pos</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+                 <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+                       <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)))))</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="nv">pos</span><span class="p">)</span> <span class="nv">1st-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">2nd-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">3rd-enc</span><span class="p">))))</span>
+             <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">pos</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))))</span>
+                 <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)))))</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="nv">pos</span><span class="p">)</span> <span class="nv">1st-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">2nd-enc</span><span class="p">)))))</span>
+      <span class="c1">; 基本的に3文字処理</span>
+      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="nv">rem</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+            <span class="nv">for</span> <span class="nv">pos</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">by</span> <span class="mi">4</span>
+         <span class="nv">do</span>
+           <span class="p">(</span><span class="nv">pick3</span> <span class="nv">i</span> <span class="nv">pos</span><span class="p">)</span>
+         <span class="nv">finally</span>
+           <span class="p">(</span><span class="nv">case</span> <span class="nv">rem</span>
+             <span class="p">(</span><span class="mi">2</span> <span class="p">(</span><span class="nv">pick2</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">4</span> <span class="nv">pos</span><span class="p">)))</span>
+             <span class="p">(</span><span class="mi">1</span> <span class="p">(</span><span class="nv">pick1</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">4</span> <span class="nv">pos</span><span class="p">)))))</span>
+      <span class="nv">buf</span><span class="p">)))</span></code></pre></div>
+<h2 id="関数化">関数化</h2>
+
+<p>関数化します。以前のものと比較したいので<code>base64-enc-kai</code>とでもしておきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">defun</span> <span class="nv">base64-enc-kai</span> <span class="p">(</span><span class="nv">str</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">let*</span> <span class="p">((</span><span class="nv">len</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">str</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">rem</span> <span class="p">(</span><span class="nv">mod</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">buf</span> <span class="p">(</span><span class="nv">make-sequence</span> <span class="ss">&#39;string</span>
+                             <span class="p">(</span><span class="nv">*</span> <span class="p">(</span><span class="nv">ceiling</span> <span class="nv">len</span> <span class="mi">3</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                             <span class="ss">:initial-element</span> <span class="sc">#\\=</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">labels</span> <span class="p">((</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+             <span class="p">(</span><span class="nv">aref</span> <span class="s">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-&#34;</span> <span class="nv">x</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">pick3</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">pos</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">))))</span>
+                     <span class="p">(</span><span class="nv">3rd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">x</span><span class="p">)))))</span>
+                 <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+                       <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">6</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+                       <span class="p">(</span><span class="nv">4th-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">3rd-ch</span><span class="p">))))</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="nv">pos</span><span class="p">)</span> <span class="nv">1st-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">2nd-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">3rd-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">3</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">4th-enc</span><span class="p">))))</span>
+             <span class="p">(</span><span class="nv">pick2</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">pos</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">)))</span>
+                     <span class="p">(</span><span class="nv">2nd-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">x</span><span class="p">)))))</span>
+                 <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span>
+                                                <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">4</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">))))</span>
+                       <span class="p">(</span><span class="nv">3rd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">2nd-ch</span><span class="p">)</span> <span class="mi">2</span><span class="p">)))))</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="nv">pos</span><span class="p">)</span> <span class="nv">1st-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">2nd-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">3rd-enc</span><span class="p">))))</span>
+             <span class="p">(</span><span class="nv">pick1</span> <span class="p">(</span><span class="nv">x</span> <span class="nv">pos</span><span class="p">)</span>
+               <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-ch</span> <span class="p">(</span><span class="nv">char-code</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">str</span> <span class="nv">x</span><span class="p">))))</span>
+                 <span class="p">(</span><span class="nv">let</span> <span class="p">((</span><span class="nv">1st-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)))</span>
+                       <span class="p">(</span><span class="nv">2nd-enc</span> <span class="p">(</span><span class="nv">to-enc</span> <span class="p">(</span><span class="nv">logior</span> <span class="p">(</span><span class="nv">ash</span> <span class="p">(</span><span class="nv">ldb</span> <span class="p">(</span><span class="nv">byte</span> <span class="mi">2</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">1st-ch</span><span class="p">)</span> <span class="mi">4</span><span class="p">)))))</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="nv">pos</span><span class="p">)</span> <span class="nv">1st-enc</span><span class="p">)</span>
+                   <span class="p">(</span><span class="nv">setf</span> <span class="p">(</span><span class="nv">aref</span> <span class="nv">buf</span> <span class="p">(</span><span class="nv">1+</span> <span class="nv">pos</span><span class="p">))</span> <span class="nv">2nd-enc</span><span class="p">)))))</span>
+      <span class="c1">; 基本的に3文字処理</span>
+      <span class="p">(</span><span class="nv">loop</span> <span class="nv">for</span> <span class="nv">i</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">to</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">len</span> <span class="nv">rem</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">by</span> <span class="mi">3</span>
+            <span class="nv">for</span> <span class="nv">pos</span> <span class="nv">from</span> <span class="mi">0</span> <span class="nv">by</span> <span class="mi">4</span>
+         <span class="nv">do</span>
+           <span class="p">(</span><span class="nv">pick3</span> <span class="nv">i</span> <span class="nv">pos</span><span class="p">)</span>
+         <span class="nv">finally</span>
+         <span class="nv">finally</span>
+           <span class="p">(</span><span class="nv">case</span> <span class="nv">rem</span>
+             <span class="p">(</span><span class="mi">2</span> <span class="p">(</span><span class="nv">pick2</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">4</span> <span class="nv">pos</span><span class="p">)))</span>
+             <span class="p">(</span><span class="mi">1</span> <span class="p">(</span><span class="nv">pick1</span> <span class="nv">i</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">4</span> <span class="nv">pos</span><span class="p">)))))</span>
+      <span class="nv">buf</span><span class="p">)))</span></code></pre></div>
+<h2 id="ベンチをとる">ベンチをとる</h2>
+
+<p>今回は高速化、少メモリ化が目的だったので、 <a href="http://blog.8arrow.org/entry/2014/10/23/063044">Cより高速なCommon Lispコードを書く</a> にあるようにベンチマークを取ってみます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">time</span>
+          <span class="p">(</span><span class="nv">loop</span> <span class="nv">repeat</span> <span class="mi">100000</span> <span class="nv">do</span>
+               <span class="p">(</span><span class="nv">base64-enc</span> <span class="s">&#34;abcdefgh&#34;</span><span class="p">)))</span>
+<span class="p">(</span><span class="nv">LOOP</span> <span class="nv">REPEAT</span> <span class="mi">100000</span> <span class="nv">DO</span> <span class="p">(</span><span class="nv">BASE64-ENC</span> <span class="s">&#34;abcdefgh&#34;</span><span class="p">))</span>
+<span class="nv">took</span> <span class="mi">998</span><span class="o">,</span><span class="mi">000</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.998000</span> <span class="nv">seconds</span><span class="p">)</span> <span class="nv">to</span> <span class="nv">run.</span>
+       <span class="mi">9</span><span class="o">,</span><span class="mi">000</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.009000</span> <span class="nv">seconds,</span> <span class="nv">0.90%</span><span class="p">)</span> <span class="nv">of</span> <span class="nv">which</span> <span class="nv">was</span> <span class="nv">spent</span> <span class="nv">in</span> <span class="nv">GC.</span>
+<span class="nv">During</span> <span class="nv">that</span> <span class="nv">period,</span> <span class="nv">and</span> <span class="nv">with</span> <span class="mi">8</span> <span class="nv">available</span> <span class="nv">CPU</span> <span class="nv">cores,</span>
+     <span class="mi">998</span><span class="o">,</span><span class="mi">407</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.998407</span> <span class="nv">seconds</span><span class="p">)</span> <span class="nv">were</span> <span class="nv">spent</span> <span class="nv">in</span> <span class="nv">user</span> <span class="nv">mode</span>
+           <span class="mi">0</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.000000</span> <span class="nv">seconds</span><span class="p">)</span> <span class="nv">were</span> <span class="nv">spent</span> <span class="nv">in</span> <span class="nv">system</span> <span class="nv">mode</span>
+ <span class="mi">88</span><span class="o">,</span><span class="mi">000</span><span class="o">,</span><span class="mi">064</span> <span class="nv">bytes</span> <span class="nv">of</span> <span class="nv">memory</span> <span class="nv">allocated.</span>
+<span class="no">NIL</span>
+<span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">time</span>
+          <span class="p">(</span><span class="nv">loop</span> <span class="nv">repeat</span> <span class="mi">100000</span> <span class="nv">do</span>
+               <span class="p">(</span><span class="nv">base64-enc-kai</span> <span class="s">&#34;abcdefgh&#34;</span><span class="p">)))</span>
+<span class="p">(</span><span class="nv">LOOP</span> <span class="nv">REPEAT</span> <span class="mi">100000</span> <span class="nv">DO</span> <span class="p">(</span><span class="nv">BASE64-ENC-KAI</span> <span class="s">&#34;abcdefgh&#34;</span><span class="p">))</span>
+<span class="nv">took</span> <span class="mi">131</span><span class="o">,</span><span class="mi">000</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.131000</span> <span class="nv">seconds</span><span class="p">)</span> <span class="nv">to</span> <span class="nv">run.</span>
+       <span class="mi">3</span><span class="o">,</span><span class="mi">000</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.003000</span> <span class="nv">seconds,</span> <span class="nv">2.29%</span><span class="p">)</span> <span class="nv">of</span> <span class="nv">which</span> <span class="nv">was</span> <span class="nv">spent</span> <span class="nv">in</span> <span class="nv">GC.</span>
+<span class="nv">During</span> <span class="nv">that</span> <span class="nv">period,</span> <span class="nv">and</span> <span class="nv">with</span> <span class="mi">8</span> <span class="nv">available</span> <span class="nv">CPU</span> <span class="nv">cores,</span>
+     <span class="mi">124</span><span class="o">,</span><span class="mi">801</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.124801</span> <span class="nv">seconds</span><span class="p">)</span> <span class="nv">were</span> <span class="nv">spent</span> <span class="nv">in</span> <span class="nv">user</span> <span class="nv">mode</span>
+           <span class="mi">0</span> <span class="nv">microseconds</span> <span class="p">(</span><span class="mf">0.000000</span> <span class="nv">seconds</span><span class="p">)</span> <span class="nv">were</span> <span class="nv">spent</span> <span class="nv">in</span> <span class="nv">system</span> <span class="nv">mode</span>
+ <span class="mi">6</span><span class="o">,</span><span class="mi">400</span><span class="o">,</span><span class="mi">064</span> <span class="nv">bytes</span> <span class="nv">of</span> <span class="nv">memory</span> <span class="nv">allocated.</span>
+<span class="nv">NIL</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>比較種類</th>
+<th>base64-enc</th>
+<th>base64-enc-kai</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>実行速度</td>
+<td>998 ms</td>
+<td>131 ms</td>
+</tr>
+
+<tr>
+<td>メモリ(合計)</td>
+<td>88 MB</td>
+<td>6.4 MB</td>
+</tr>
+
+<tr>
+<td>メモリ(1回分)</td>
+<td>994 byte</td>
+<td>128 byte</td>
+</tr>
+</tbody>
+</table>
+
+<p>実行速度は約7.6倍の高速化、メモリは約13.6%まで減らすことができました。</p>
+
+<h2 id="いいわけ">いいわけ</h2>
+
+<p>今回一関数に無理やり詰め込んでいますが、 <a href="https://www.quicklisp.org/beta/">Quicklisp</a>のbootstrapで使うことを想定しているため、 他のライブラリを使わず他の関数を書かないようにしてやっています。</p>
+
+<p>プルリクエストするには以前のもので行ったほうが見通しがよくて良さそうです。
+<a href="https://github.com/tamurashingo/quicklisp-bootstrap/tree/ProxyAuth">tamurashingo/quicklisp-bootstrap ProxyAuth対応中</a></p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/03/07/clack-meetup-1/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/03/25/lisp-meetup-26/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.446444 &#43;0900 JST m=&#43;0.532773935">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

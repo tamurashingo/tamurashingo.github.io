@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>リフレクション on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/</link>
+    <description>Recent content in リフレクション on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sun, 31 Jul 2016 16:16:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JavaBeansとは</title>
+      <link>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</link>
+      <pubDate>Sun, 31 Jul 2016 16:16:27 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</guid>
+      <description>tamuraです。 JavaBeansが出てきた当初はGUI用だったようです。 GUIアプリを作ろうとしてJFrameを継承したクラスを作ると「</description>
+    </item>
+    
+  </channel>
+</rss>

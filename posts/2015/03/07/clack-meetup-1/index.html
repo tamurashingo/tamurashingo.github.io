@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				Clack Meetup ♯1 に行ってきました &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2015-03-07 00:05:01 &#43;0000 UTC">March 7, 2015</time>
+</div>
+		<h1 class="post-title">Clack Meetup ♯1 に行ってきました</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+Clack Meetup #1に行ってきました。</p>
+
+<p>CommonLispは趣味でたまに使います。Clackは以前会社のツールを作るときに使いました。Caveman1がCavemanと名乗っていたころです。</p>
+
+<p>一部の資料はconnpassにアップされてあります。
+<a href="https://somewrite.connpass.com/event/11318/">Clack Meetup #1</a></p>
+
+<!-- more -->
+
+<h2 id="はじめに">はじめに</h2>
+
+<ul>
+<li>設備の説明</li>
+<li>全員で自己紹介</li>
+</ul>
+
+<p>自己紹介で出た「今現在やっている言語」等をちろっとまとめるとこんな感じでした。 Javaは私です。</p>
+
+<ul>
+<li>CommonLisp</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>Clojure</li>
+<li>PHP</li>
+<li>DB</li>
+<li>Java</li>
+</ul>
+
+<h2 id="1-clack-glue-for-web-apps">1. Clack: glue for web apps</h2>
+
+<p>by サムライト株式会社 深町英太郎さん</p>
+
+<h3 id="clackとは">Clackとは</h3>
+
+<ul>
+<li>web application environment</li>
+<li>webサーバを抽象化しよう</li>
+
+<li><p>web appをコンポーネント化しよう</p></li>
+
+<li><p>こんな感じで値を3つ返す式を渡せば動く</p></li>
+
+<li><p>serverは色々と選べる</p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-lisp" data-lang="lisp"><span class="p">(</span><span class="nv">clackup</span>
+  <span class="p">(</span><span class="nv">lambda</span> <span class="p">(</span><span class="nv">env</span><span class="p">)</span>
+    <span class="o">&#39;</span><span class="p">(</span><span class="mi">200</span>
+      <span class="p">(</span><span class="ss">:content-type</span> <span class="s">&#34;text/plain&#34;</span><span class="p">)</span>
+      <span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">)))</span>
+  <span class="ss">:server</span> <span class="ss">:hunchentoot</span><span class="p">)</span></code></pre></div>
+<ul>
+<li>アプリケーションとサーバをつなぐ</li>
+
+<li><p>Clackに載せることでどのサーバでも動かせるようになる</p>
+
+<ul>
+<li>(開発はHunchentoot、運用はnginxとか)</li>
+</ul></li>
+
+<li><p>Composability</p>
+
+<ul>
+<li>core applicationのまわりにいろいろMiddlewareを追加していける</li>
+<li>(JavaのWebアプリでいうところのfilterとかのイメージ)</li>
+</ul></li>
+</ul>
+
+<h3 id="commonlispのライブラリの歴史">CommonLispのライブラリの歴史</h3>
+
+<ul>
+<li>大きく４つの時代に分けて説明
+
+<ul>
+<li>Quicklisp以前はもはや石器時代</li>
+<li>Quicklispが出てきてマシになった</li>
+<li>最近ではデータベース接続もいろいろ出てきた</li>
+<li>現在</li>
+<li>ningle, caveman2</li>
+<li>cl-dbi, sxql, datafly, integral</li>
+<li>woo</li>
+<li>CIM/Roswell, qlot</li>
+</ul></li>
+</ul>
+
+<ol>
+<li>Practical Common Lisp in Web</li>
+</ol>
+
+<h2 id="by-サムライト株式会社-rudolph-millerさん">by サムライト株式会社 Rudolph Millerさん</h2>
+
+<ul>
+<li><p>CommonLisp</p>
+
+<ul>
+<li>あまりwebアプリで採用されていない。なぜか？</li>
+</ul></li>
+
+<li><p>言語を選ぶ際の基準って・・・</p>
+
+<ul>
+<li>言語自身の力</li>
+<li>CommonLispは
+
+<ul>
+<li>高度な抽象化が可能</li>
+<li>速度も問題なし</li>
+</ul></li>
+<li>開発環境</li>
+<li>CommonLispは
+
+<ul>
+<li>SLIMEあるよ！</li>
+</ul></li>
+<li>ライブラリ</li>
+<li>CommonLispは
+
+<ul>
+<li>ある？</li>
+<li>あまりないかも</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3 id="ライブラリがない中でサムライトではどうやって開発しているか">ライブラリがない中でサムライトではどうやって開発しているか？</h3>
+
+<ul>
+<li><p>実際に作ってみた</p>
+
+<ul>
+<li>twitterみたいなやつ</li>
+<li>フレームワーク
+
+<ul>
+<li>(CommonLisp)caveman2</li>
+<li>(Ruby)rails</li>
+</ul></li>
+</ul></li>
+
+<li><p>getting started</p>
+
+<ul>
+<li>rails</li>
+<li>caveman2</li>
+<li>どっちも同じくらい簡単に作成ができた</li>
+</ul></li>
+
+<li><p>model</p>
+
+<ul>
+<li>rails</li>
+<li>標準のやり方</li>
+<li>cl(integral)</li>
+<li>defclass で定義 (これはすごい)</li>
+</ul></li>
+
+<li><p>relationship</p>
+
+<ul>
+<li>rails</li>
+<li>belongsto, hasone, has_many</li>
+<li>cl(integral)</li>
+<li>リレーション定義なし</li>
+</ul></li>
+
+<li><p>rails と integral のベンチ比較</p>
+
+<ul>
+<li>integralがrailsの2倍速い (2倍しか速くない)</li>
+</ul></li>
+
+<li><p>controller</p>
+
+<ul>
+<li>rails</li>
+<li>標準のやり方</li>
+<li>caveman2</li>
+<li>アノテーションですっきり書ける</li>
+<li>functionとして定義されるのでテストしやすい！</li>
+</ul></li>
+
+<li><p>view(テンプレート)</p>
+
+<ul>
+<li>rails</li>
+<li>いっぱいある</li>
+<li>caveman2</li>
+<li>すくなくとも6個のライブラリがある (意外とある!)</li>
+</ul></li>
+
+<li><p>deploy</p>
+
+<ul>
+<li>rails</li>
+<li>普通に</li>
+<li>caveman2</li>
+<li>困る点
+
+<ul>
+<li>処理系がない</li>
+<li>実装バージョンが違う</li>
+<li>quicklispライブラリのバージョンが違う</li>
+</ul></li>
+<li>どうしているか？
+
+<ul>
+<li>roswell</li>
+<li>sbclのインストールが楽にできる</li>
+<li>スクリプト可能</li>
+<li>clackup &ndash;server woo app.lisp</li>
+<li>qlot</li>
+<li>ローカルでライブラリをもてる</li>
+</ul></li>
+</ul></li>
+
+<li><p>httpアクセスでベンチ</p>
+
+<ul>
+<li>railsの2倍の速さ</li>
+</ul></li>
+</ul>
+
+<h2 id="3-既存のテンプレートエンジンの問題点と再設計-あるいは-arrows-a-k-a-zenekindarl-について">3. 既存のテンプレートエンジンの問題点と再設計、あるいは Arrows (a.k.a Zenekindarl) について</h2>
+
+<p>by κeen (@blackenedgold) さん</p>
+
+<ul>
+<li><p>template engine</p>
+
+<ul>
+<li>引数を計算し</li>
+<li>テンプレートに引数を渡し</li>
+<li>レスポンスをレンダリングし</li>
+<li>レスポンスをサーバに返す</li>
+</ul></li>
+
+<li><p>レンダリングの問題点</p>
+
+<ul>
+<li>結合した文字列はその後使われることはない</li>
+<li>大きな文字列を作るとGCに負荷がかかる</li>
+</ul></li>
+
+<li><p>SBCLのGC</p>
+
+<ul>
+<li>世代別CopyGC</li>
+<li>alloc_spaceに入らない大きさの場合アロケーションが遅い</li>
+</ul></li>
+
+<li><p>以下のようなテンプレートの場合、 header が出る前までをいったんクライアントに返したら？</p>
+
+<ul>
+<li>クライアントのレンダリング完了までの時間を短縮できるのでは？</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+   ......
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>{{ header }}<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+  ...</code></pre></div>
+<ul>
+<li><p>Arrows</p>
+
+<ul>
+<li>現在開発中のテンプレートエンジン</li>
+<li>複数のテンプレートが選べる</li>
+<li>複数のバックエンドが選べる</li>
+</ul></li>
+
+<li><p>今後</p>
+
+<ul>
+<li>遅延評価</li>
+<li>並列化</li>
+<li>非同期</li>
+<li>HTMLの縮小</li>
+</ul></li>
+
+<li><p>まとめ</p>
+
+<ul>
+<li>既存のテンプレートエンジンは非効率</li>
+<li>新しいテンプレートエンジンを設計した</li>
+</ul></li>
+</ul>
+
+<h2 id="懇親会-lt">懇親会＋LT</h2>
+
+<p>別件(<a href="https://svfes.connpass.com/event/11571/">サバフェス</a>)があったので懇親会には参加せずに帰ってしまいました。</p>
+
+<h2 id="感想">感想</h2>
+
+<p>一言で言うと「CommonLispアツいなー」でした。CommonLispでWebをやる、というのを本気で変えようとしているのが伝わってきました。</p>
+
+<p>Quicklispはもうちょっと使いやすくなるといいなーと思います。JavaのMavenとかClojureのClojarsに慣れると、バージョン指定ができないQuicklispはちょっと不安になります。</p>
+
+<p>インターネット広告関連の仕事に関係している関係とかいろいろな関係で、この日おじゃましたサムライトは設立時から知っていたのですが、ちょっと前にCommonLispの仕事があると聞いて「なぜ？」と 思ったことがありました。今後も要チェックな会社です。</p>
+
+<p>まったくCommonLispと関係ないのですが、Railsをやったことがないので、Railsの手軽さにちょっと心惹かれました。</p>
+
+<p>私の会社にもSICPを読んだりSchemeを実装したりする人がいるので、そういう隠れLisperたちとなにかやっていきたいなーと思った次第です。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2015/02/27/memo-with-org-mode/" class="left arrow">&#8592;</a>
+		<a href="/posts/2015/03/07/improve-base64encoder/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.444612 &#43;0900 JST m=&#43;0.530941988">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

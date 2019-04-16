@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				JavaBeansとは &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-07-31 16:16:27 &#43;0000 UTC">July 31, 2016</time>
+</div>
+		<h1 class="post-title">JavaBeansとは</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。</p>
+
+<p>JavaBeansが出てきた当初はGUI用だったようです。</p>
+
+<p>GUIアプリを作ろうとして<code>JFrame</code>を継承したクラスを作ると「<code>serialVersionUID</code>がないよ！」という警告が出ますが、これはJavaBeans仕様で作られているからのようです。</p>
+
+<p>現在では、私の周辺ではValueObjectとして使うことが多いです。</p>
+
+<blockquote>
+<p><strong>JavaBeans</strong>
+Javaで作成された移植可能なプラットフォームに依存しないコンポーネント・モデルで、JavaBean仕様に従う。 再使用可能なコンポーネントを作成できる。
+<a href="http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709">http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709</a> より引用</p>
+
+<p>JavaBeans（ジャバ ビーンズ）とは、Javaで書かれた再利用可能なソフトウェアコンポーネントまたはその技術仕様のこと。1997年後半に登場。JDKのjava.beansパッケージと共にRAD環境の構築を支援するために作られた。現在ではjava.beansパッケージの技術を活用し、RAD環境の構築に限らずJSP等幅広い用途で利用されている。<a href="https://ja.wikipedia.org/wiki/JavaBeans">https://ja.wikipedia.org/wiki/JavaBeans</a> より引用</p>
+</blockquote>
+
+<!-- more -->
+
+<h2 id="javabeansのルール">JavaBeansのルール</h2>
+
+<h3 id="ルール1-引数を持たないpublicコンストラクタが必要">ルール1: 引数を持たないpublicコンストラクタが必要</h3>
+
+<p>コンストラクタはいくつ存在しても問題ないのですが、
+引数を持たないpublicコンストラクタが必要となります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JavaBeansSample</span> <span class="o">{</span>
+    <span class="c1">// このコンストラクタは必須
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">JavaBeansSample</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">initValue</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">JavaBeansSample</span><span class="o">(</span><span class="kt">int</span> <span class="n">initValue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">initValue</span> <span class="o">=</span> <span class="n">initValue</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">....</span></code></pre></div>
+<p>リフレクションを使ってインスタンス化してみます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Class</span><span class="o">&lt;</span><span class="n">TestBean</span><span class="o">&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">TestBean</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+<span class="n">TestBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="k">try</span> <span class="o">{</span>
+    <span class="n">bean</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">(</span><span class="n">ReflectiveOperationException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+<p>このインスタンス化の仕組みはライブラリやユーティリティを作るときなどに発揮します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsefulBeanBuilder</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">getBeanInstance</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">cls</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">T</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p>こんな感じで使います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">TestBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">UsefulBeanBuilder</span><span class="o">.</span><span class="na">getBeanInstance</span><span class="o">(</span><span class="n">TestBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre></div>
+<p>「え？<code>new</code>でよくない？」と思うのですが、
+ライブラリやユーティリティは呼び出し元のクラス名等が不明な場合があります。
+例えばDatabaseの戻り値(1レコード)をBeanに詰め込んで返すライブラリを作りたいときは、</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">executeQuery</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">,</span> <span class="n">Stirng</span><span class="o">[]</span> <span class="n">param</span><span class="o">);</span></code></pre></div>
+<p>のようなインタフェースが必要になるので、このような引数を持たないコンストラクタが有効になります。
+あと、この本によるとなるべく<code>new</code>はしないのが良いスタイル、ということです。
+インタフェースと実装は分離させておきましょう、ということでしょうか。</p>
+
+<p><div  class="amazon Default"><div  class="pictBox" align="left"><a  target="_blank" href="http://hb.afl.rakuten.co.jp/hgc/g00q0725.ukdxi24e.g00q0725.ukdxjbac/_RTldbg10000002?pc=http%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F3695643%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F11554552%2F"><img  class="pict" hspace="5" border="0" alt="Head　firstデザインパターン [ エリック・フリーマン ]" src="http://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8731/87311249.jpg?_ex=128x128"></a><br /><a  target="_blank" href="http://hb.afl.rakuten.co.jp/hgc/g00q0725.ukdxi24e.g00q0725.ukdxjbac/_RTldbg10000002?pc=http%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F3695643%2F&amp;m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F11554552%2F">Head　firstデザインパターン [ エリック・フリーマン ]</a></p>
+
+<h3 id="ルール2-アクセサメソッドに命名規約がある">ルール2: アクセサメソッドに命名規約がある</h3>
+
+<p>JavaBeansのプロパティにアクセスする方法が決まっています。</p>
+
+<h4 id="getter">getter</h4>
+
+<p>getterの場合、「<code>get○○</code>」またはBooleanの場合は「`is○○○」でも大丈夫です。</p>
+
+<h4 id="setter">setter</h4>
+
+<p>setterの場合、「<code>set○○</code>」となります。</p>
+
+<h4 id="getter-setterの生成">getter/setterの生成</h4>
+
+<p>IDEなら自動で生成してくれます。
+また、<code>lombok</code>を使うとアノテーションを付けるだけで<code>getter</code>と`setterを追加してくれますので、getter/setterを大量に書かなくてすみ、コードの見通しが良くなります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">lombok.Getter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Setter</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBean</span> <span class="o">{</span>
+
+    <span class="cm">/** getterのみ */</span>
+    <span class="nd">@Getter</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">data1</span><span class="o">;</span>
+    <span class="cm">/** setterのみ */</span>
+    <span class="nd">@Setter</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">data2</span><span class="o">;</span>
+    <span class="cm">/** getterとsetter */</span>
+    <span class="nd">@Getter</span>
+    <span class="nd">@Setter</span>
+    <span class="kd">private</span> <span class="n">Strign</span> <span class="n">data3</span><span class="o">;</span>
+
+    <span class="o">...</span>
+<span class="o">}</span></code></pre></div>
+<h4 id="getter-setterの取得方法">getter/setterの取得方法</h4>
+
+<p>インスタンス化の時のように、ユーティリティやライブラリなどで使う際に、
+クラス情報からgetter/setterを取得する方法があります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBean</span> <span class="o">{</span>
+
+    <span class="nd">@Getter</span>
+    <span class="nd">@Setter</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">data1</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="o">....</span>
+
+    <span class="n">TestBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestBean</span><span class="o">();</span>
+    <span class="n">PropertyDescriptor</span> <span class="n">pd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyDescriptor</span><span class="o">(</span><span class="s">&#34;data&#34;</span><span class="o">,</span> <span class="n">TestBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">Method</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="na">getWriteMethod</span><span class="o">();</span>
+    <span class="n">writer</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">bean</span><span class="o">,</span> <span class="s">&#34;Test&#34;</span><span class="o">);</span>
+
+    <span class="n">Method</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="na">getReadMethod</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">reader</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">bean</span><span class="o">);</span>
+
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">msg</span><span class="o">)</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">Test</span></code></pre></div>
+<h3 id="ルール3-シリアライズ可能である必要がある">ルール3: シリアライズ可能である必要がある</h3>
+
+<p>具体的には<code>java.io.Serializable</code>インタフェースを実装する必要があります。</p>
+
+<p><code>Serializable</code>を実装する場合は<code>serialVersionUID</code>というフィールドが必要になります。
+なくてもコンパイル時に自動生成されるそうです。IDEだと自動で計算して出してくれたりします。
+これはBeanの作りが変更(例えばプロパティが増減)した場合に、古いバージョンでシリアライズした値を新しいバージョンで誤ってデシリアライズしないようにするためのマーキングだそうです。
+自分でJavaBeansをシリアライズすることはないので、固定値の1を入れています。
+(アプリケーションサーバでクラスタを組んだ時などはセッション情報として勝手にシリアライズされることもありますが、長期間保持するためにシリアライズを使うことは、私はないです)</p>
+
+<p>また、シリアライズしたくないプロパティは<code>transient</code>が必要です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBean</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span> <span class="o">{</span>
+
+    <span class="cm">/** serialVersionUID */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * この値はシリアライズ対象
+</span><span class="cm">     */</span>
+    <span class="nd">@Getter</span>
+    <span class="nd">@Setter</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * この値はシリアライズ対象外。
+</span><span class="cm">     * (別のマシンに持って行っても使えない値のため)
+</span><span class="cm">     */</span>
+    <span class="nd">@Setter</span>
+    <span class="kd">private</span> <span class="kd">transient</span> <span class="n">File</span> <span class="n">file</span><span class="o">;</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="役に立つと思われる使い方">役に立つと思われる使い方</h2>
+
+<p>次回書きます。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2016/07/28/client-authentication/" class="left arrow">&#8592;</a>
+		<a href="/posts/2016/08/02/useful-java-beans/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.433896 &#43;0900 JST m=&#43;0.520226332">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>

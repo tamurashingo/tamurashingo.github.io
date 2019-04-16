@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				オレオレ認証局を作る &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-07-18 00:59:47 &#43;0000 UTC">July 18, 2016</time>
+</div>
+		<h1 class="post-title">オレオレ認証局を作る</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。</p>
+
+<!-- more -->
+
+<h2 id="サーバ作成">サーバ作成</h2>
+
+<p>サーバはazureで作りました。</p>
+
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>コア</th>
+<th>メモリ</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CentOS7</td>
+<td>1</td>
+<td>1.75GB</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># cat /etc/centos-release</span> 
+CentOS Linux release <span class="m">7</span>.0.1406 <span class="o">(</span>Core<span class="o">)</span> </code></pre></div>
+<p>こんな感じです。</p>
+
+<figure>
+    <img src="azure.png"/> 
+</figure>
+
+
+<p>で、DNSに追加します。</p>
+
+<figure>
+    <img src="dns.png"/> 
+</figure>
+
+
+<p>※お名前.comでドメインを設定しています。</p>
+
+<p>これで、www2.il-sus-web.netという名前でアクセスできます。</p>
+
+<h2 id="サーバ設定">サーバ設定</h2>
+
+<p>opensslを入れます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">yum -y install openssl</code></pre></div>
+<h2 id="認証局-ca-作成">認証局(CA)作成</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@il-sus-web-www2 ~<span class="o">]</span><span class="c1"># /etc/pki/tls/misc/CA -newca</span>
+CA certificate filename <span class="o">(</span>or enter to create<span class="o">)</span> <span class="o">(</span>ENTERのみ<span class="o">)</span>
+
+Making CA certificate …
+Generating a <span class="m">2048</span> bit RSA private key
+............+++
+...................................................+++
+writing new private key to ‘/etc/pki/CA/private/./cakey.pem’
+Enter PEM pass phrase: <span class="o">(</span>パスワード入力<span class="o">)</span>
+Verifying - Enter PEM pass phrase: <span class="o">(</span>もう一度パスワード入力<span class="o">)</span>
+—–
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter ‘.’, the field will be left blank.
+—–
+Country Name <span class="o">(</span><span class="m">2</span> letter code<span class="o">)</span> <span class="o">[</span>XX<span class="o">]</span>:JP
+State or Province Name <span class="o">(</span>full name<span class="o">)</span> <span class="o">[]</span>:Tokyo
+Locality Name <span class="o">(</span>eg, city<span class="o">)</span> <span class="o">[</span>Default City<span class="o">]</span>:Shinjuku
+Organization Name <span class="o">(</span>eg, company<span class="o">)</span> <span class="o">[</span>Default Company Ltd<span class="o">]</span>:il-sus-web
+Organizational Unit Name <span class="o">(</span>eg, section<span class="o">)</span> <span class="o">[]</span>: <span class="o">(</span>未入力<span class="o">)</span>
+Common Name <span class="o">(</span>eg, your name or your server’s hostname<span class="o">)</span> <span class="o">[]</span>:www2.il-sus-web.net
+Email Address <span class="o">[]</span>:xxxxxxxxxxxxx <span class="o">(</span>メールアドレス<span class="o">)</span>
+
+Please enter the following ‘extra’ attributes
+to be sent with your certificate request
+A challenge password <span class="o">[]</span>: <span class="o">(</span>未入力<span class="o">)</span>
+An optional company name <span class="o">[]</span>: <span class="o">(</span>未入力<span class="o">)</span>
+Using configuration from /etc/pki/tls/openssl.cnf
+Enter pass phrase <span class="k">for</span> /etc/pki/CA/private/./cakey.pem:
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: <span class="m">10428925084781548455</span> <span class="o">(</span>0x90bafc1c1b9093a7<span class="o">)</span>
+        Validity
+            Not Before: Jul <span class="m">17</span> <span class="m">15</span>:39:39 <span class="m">2016</span> GMT
+            Not After : Jul <span class="m">17</span> <span class="m">15</span>:39:39 <span class="m">2019</span> GMT
+        Subject:
+            <span class="nv">countryName</span>               <span class="o">=</span> JP
+            <span class="nv">stateOrProvinceName</span>       <span class="o">=</span> Tokyo
+            <span class="nv">organizationName</span>          <span class="o">=</span> il-sus-web
+            <span class="nv">commonName</span>                <span class="o">=</span> www2.il-sus-web.net
+            <span class="nv">emailAddress</span>              <span class="o">=</span> xxxxxxxxxx
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                5F:DC:28:12:D2:D6:3E:E6:6B:2A:4C:CE:78:EB:26:DF:A6:04:E4:83
+            X509v3 Authority Key Identifier: 
+                keyid:5F:DC:28:12:D2:D6:3E:E6:6B:2A:4C:CE:78:EB:26:DF:A6:04:E4:83
+
+            X509v3 Basic Constraints: 
+                CA:TRUE
+Certificate is to be certified <span class="k">until</span> Jul <span class="m">17</span> <span class="m">15</span>:39:39 <span class="m">2019</span> GMT <span class="o">(</span><span class="m">1095</span> days<span class="o">)</span>
+
+Write out database with <span class="m">1</span> new entries
+Data Base Updated</code></pre></div>
+<p>これで完了です。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2016/04/16/svfest2016/" class="left arrow">&#8592;</a>
+		<a href="/posts/2016/07/22/install-gitbucket/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 21:56:01.436123 &#43;0900 JST m=&#43;0.522453707">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
