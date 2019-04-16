@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>ISUCON反省会 nginx編</title>
+      <link>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</link>
+      <pubDate>Thu, 22 Sep 2016 16:42:24 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</guid>
+      <description>tamuraです。 ISUCON出ました! ブログ書きました! で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内</description>
+    </item>
+    
+    <item>
       <title>ISUCON6に参加して今年も惨敗した件</title>
       <link>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</link>
       <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>

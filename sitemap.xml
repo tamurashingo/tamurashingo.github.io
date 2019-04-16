@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</loc>
+    <lastmod>2016-09-22T16:42:24+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</loc>
     <lastmod>2016-09-19T01:00:20+00:00</lastmod>
   </url>
@@ -316,7 +321,7 @@
   
   <url>
     <loc>https://tamurashingo.github.io/tags/isucon/</loc>
-    <lastmod>2016-09-19T01:00:20+00:00</lastmod>
+    <lastmod>2016-09-22T16:42:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -371,6 +376,12 @@
   <url>
     <loc>https://tamurashingo.github.io/tags/mysql/</loc>
     <lastmod>2016-09-19T01:00:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/nginx/</loc>
+    <lastmod>2016-09-22T16:42:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -442,7 +453,7 @@
   
   <url>
     <loc>https://tamurashingo.github.io/tags/web/</loc>
-    <lastmod>2016-09-19T01:00:20+00:00</lastmod>
+    <lastmod>2016-09-22T16:42:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -496,7 +507,7 @@
   
   <url>
     <loc>https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0/</loc>
-    <lastmod>2016-09-19T01:00:20+00:00</lastmod>
+    <lastmod>2016-09-22T16:42:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   

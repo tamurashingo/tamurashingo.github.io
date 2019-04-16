@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>
+				ISUCON反省会 nginx編 &middot; Web技術と親しむ
+		</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">Web技術と親しむ</h2>
+				</a>
+				<ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/">Posts</a></li>
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2016-09-22 16:42:24 &#43;0000 UTC">September 22, 2016</time>
+</div>
+		<h1 class="post-title">ISUCON反省会 nginx編</h1>
+<div class="post-line"></div>
+
+		
+
+
+		
+
+<p>tamuraです。
+ISUCON出ました!
+ブログ書きました!</p>
+
+<p>で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内容をメモしました。</p>
+
+<ul>
+<li>ISUCON5に参加して惨敗した件</li>
+<li>ISUCON6に参加して今年も惨敗した件</li>
+</ul>
+
+<!-- more -->
+
+<h2 id="そもそもnginxとは">そもそもnginxとは</h2>
+
+<blockquote>
+<p>nginx（「エンジンエックス」と発音）は、フリーかつオープンソースなWebサーバである。処理性能・高い並行性・メモリ使用量の小ささに焦点を当てて開発されており、HTTP, HTTPS, SMTP, POP3, IMAPのリバースプロキシの機能や、ロードバランサ、HTTPキャッシュの機能も持つ。</p>
+
+<p>Apache HTTP Serverがリクエストの処理にデフォルトでスレッドやプロセス指向のアプローチを用いている一方で、nginxは非同期のイベント駆動アプローチを用いている。イベント駆動によるアプローチは、高負荷下において、より予測可能なパフォーマンスを提供すると考えられている。</p>
+</blockquote>
+
+<p>wikipediaより</p>
+
+<p>なるほど。知ってました。</p>
+
+<h2 id="ワーカープロセス">ワーカープロセス</h2>
+
+<p>イベント駆動なので、遅いクライアントがいるとそれをさばくのに時間がかかって余計遅くなります。
+CPU数と同じ値にワーカーを設定します。</p>
+
+<p><code>worker_cpu_affinity</code>は自動設定にします。</p>
+
+<pre><code>worker_processes 8;
+worker_cpu_affinity auto;
+</code></pre>
+
+<h2 id="ログフォーマット">ログフォーマット</h2>
+
+<p><code>$request_time</code>を追加して、他に余計なログを吐かないようにします。</p>
+
+<pre><code>log_format main '[$time_local] &quot;$request&quot;'
+                '$status $body_bytes_sent $request_time'
+
+access_log /var/log/nginx/access.log main
+</code></pre>
+
+<h2 id="gzip圧縮">gzip圧縮</h2>
+
+<p>静的コンテンツはgzip圧縮済みのものを配信するようにします。</p>
+
+<pre><code>location ~* \.(css|js|jpg|png)$ {
+  gzip_static always;
+}
+</code></pre>
+
+<h2 id="ブラウザのキャッシュ">ブラウザのキャッシュ</h2>
+
+<p>静的コンテンツはブラウザ側のキャッシュがあればそれを使うようにします。</p>
+
+<pre><code>location ~* \.(css|js|jpg|png)$ {
+  gzip_static always;
+  expires 30d;
+}
+</code></pre>
+
+<h2 id="memcached">memcached</h2>
+
+<p>コンテンツをmemcachedに乗せて、変更があった場合にアプリ側からmemcachedで書き込む、というやり方があります。
+アプリ側の変更を把握している必要があることと、アプリ側の言語からmemcachedに書き込める必要があります。</p>
+
+<pre><code>upstream back {
+  server 127.0.0.1:8080;
+}
+
+location \ {
+  # POSTはそのまま裏に
+  if ($request_method = POST) {
+    proxy_pass http://back;
+    break;
+  }
+
+  set $memcahced_key &quot;$uri&quot;
+  memcached_pass 127.0.0.1:11211;
+  default_type &quot;text/html; charset=utf-8&quot;;
+}
+</code></pre>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>他にもあったら(あるはず)追記していきます。</p>
+
+
+		
+	</div>
+
+	<div class="pagination">
+		<a href="/posts/2016/09/19/isucon6/" class="left arrow">&#8592;</a>
+		<a href="/posts/2019/04/16/hello-hugo-world/" class="right arrow">&#8594;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			<span>
+			&copy; <time datetime="2019-04-16 22:08:13.852066 &#43;0900 JST m=&#43;0.418758529">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
