@@ -3,25 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tamurashingo.github.io/categories/</loc>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://tamurashingo.github.io/post/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/</loc>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tamurashingo.github.io/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/</loc>
-    <lastmod>2018-04-09T02:01:00+00:00</lastmod>
+    <loc>https://tamurashingo.github.io/categories/blog/</loc>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/blog/</loc>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/hugo/</loc>
+    <lastmod>2019-04-16T19:06:42+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -33,12 +57,6 @@
   
   <url>
     <loc>https://tamurashingo.github.io/tags/common-lisp/</loc>
-    <lastmod>2018-04-09T02:01:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/</loc>
     <lastmod>2018-04-09T02:01:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -68,18 +86,6 @@
   <url>
     <loc>https://tamurashingo.github.io/tags/pullrequest/</loc>
     <lastmod>2018-01-04T23:15:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/categories/blog/</loc>
-    <lastmod>2017-12-14T18:33:56+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/blog/</loc>
-    <lastmod>2017-12-14T18:33:56+00:00</lastmod>
     <priority>0</priority>
   </url>
   

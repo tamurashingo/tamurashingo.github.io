@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>Hello Hugo World</title>
       <link>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</link>
-      <pubDate>Tue, 16 Apr 2019 19:06:42 +0900</pubDate>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0000</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</guid>
-      <description>Hugoで作り直す なんどめかの作り直し $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルで $ hugo new posts/2019/04/16/hello-hugo-world.md $ vi content/posts/2019/04/16/hello-hugo-world.mdpackage test; public class Test { public static void main(String...args) { System.out.println(&amp;#34;hello world&amp;#34;); System.exit(0); } }</description>
+      <description>Hugoで作り直す なんど目かの作り直しです。 なぜHugoにしたか？なんとなくです。 $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルでブログを作る</description>
     </item>
     
     <item>

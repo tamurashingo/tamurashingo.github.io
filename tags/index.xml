@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 09 Apr 2018 02:01:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>blog</title>
+      <link>https://tamurashingo.github.io/tags/blog/</link>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://tamurashingo.github.io/tags/hugo/</link>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Common Lisp</title>
@@ -35,15 +53,6 @@
       <pubDate>Thu, 04 Jan 2018 23:15:00 +0000</pubDate>
       
       <guid>https://tamurashingo.github.io/tags/pullrequest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>blog</title>
-      <link>https://tamurashingo.github.io/tags/blog/</link>
-      <pubDate>Thu, 14 Dec 2017 18:33:56 +0000</pubDate>
-      
-      <guid>https://tamurashingo.github.io/tags/blog/</guid>
       <description></description>
     </item>
     
