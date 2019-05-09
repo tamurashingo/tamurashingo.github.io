@@ -6,72 +6,128 @@
     <description>Recent content in Web on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 22 Sep 2016 16:42:24 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Oct 2016 22:30:34 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/web/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Firebaseはじめてみました</title>
+      <link>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</link>
+      <pubDate>Thu, 20 Oct 2016 22:30:34 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Googleスプレッドシートで忘年会の景品のリクエストを受け付けていたのですが、スマートフォンからだと入力がしにくいようで、なかなか集まりません。
+Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>ISUCON反省会 nginx編</title>
-      <link>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</link>
+      <link>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</link>
       <pubDate>Thu, 22 Sep 2016 16:42:24 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</guid>
-      <description>tamuraです。 ISUCON出ました! ブログ書きました! で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内</description>
+      <guid>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</guid>
+      <description>&lt;p&gt;tamuraです。
+ISUCON出ました!
+ブログ書きました!&lt;/p&gt;
+
+&lt;p&gt;で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内容をメモしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ISUCON5に参加して惨敗した件&lt;/li&gt;
+&lt;li&gt;ISUCON6に参加して今年も惨敗した件&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title>ISUCON6に参加して今年も惨敗した件</title>
-      <link>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</link>
+      <link>https://tamurashingo.github.io/post/2016/09/19/isucon6/</link>
       <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</guid>
-      <description>tamuraです。 今年もISUCONに参加しました。 今回は新メンバーakimotoを加えての参戦です。 前回記事: ISUCON5に参加して惨敗</description>
+      <guid>https://tamurashingo.github.io/post/2016/09/19/isucon6/</guid>
+      <description>&lt;style type=&#34;text/css&#34;&gt;
+pre { overflow-x: scroll; }
+&lt;/style&gt;
+
+&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。&lt;/p&gt;
+
+&lt;p&gt;前回記事: &lt;a href=&#34;https://tamurashingo.github.io/post/2015/10/25/isucon5/&#34;&gt;ISUCON5に参加して惨敗した件&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！&lt;/p&gt;
+
+&lt;p&gt;今回もslackのログを抜き出します。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>クライアント認証を行う</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
       <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</guid>
-      <description>tamuraです。 前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。 今回は、クライアントの証明書を作り、オレ</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
+今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
+最終的にはブラウザに組み込んで使います。
+署名までの手順はサーバ証明書の場合とほぼ同じです。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
       <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</guid>
-      <description>tamuraです。 前回、OpenSSLでオレオレ認証局を作りました。 今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名して</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、OpenSSLでオレオレ認証局を作りました。
+今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名してもらう一連の手順をやっていきます。&lt;/p&gt;
+
+&lt;p&gt;最終的にApacheに組み込みます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>CentOS7にGitBucket2.4を入れる</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</link>
       <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/22/install-gitbucket/</guid>
-      <description>tamuraです。 仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れて</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れてみました。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>オレオレ認証局を作る</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/18/self-ca/</link>
       <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/18/self-ca/</guid>
-      <description>tamuraです。 SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。 サーバ作成 サーバはazureで作りました</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/18/self-ca/</guid>
+      <description>&lt;p&gt;tamuraです。
+SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ISUCON5に参加して惨敗した件</title>
-      <link>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</link>
+      <link>https://tamurashingo.github.io/post/2015/10/25/isucon5/</link>
       <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</guid>
-      <description>ISUCON5に参加しました。 SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので</description>
+      <guid>https://tamurashingo.github.io/post/2015/10/25/isucon5/</guid>
+      <description>&lt;style type=&#34;text/css&#34;&gt;
+pre { overflow-x: scroll; }
+&lt;/style&gt;
+
+&lt;p&gt;ISUCON5に参加しました。
+SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。&lt;/p&gt;
+
+&lt;p&gt;結果は惨敗です。スコアは1000ちょっとくらいです。&lt;/p&gt;
+
+&lt;p&gt;memcachedとか使えるようにならないとだめだね、ということが確認できました。&lt;/p&gt;</description>
     </item>
     
   </channel>

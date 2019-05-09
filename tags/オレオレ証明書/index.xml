@@ -13,11 +13,16 @@
     
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
       <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</guid>
-      <description>tamuraです。 前回、OpenSSLでオレオレ認証局を作りました。 今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名して</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、OpenSSLでオレオレ認証局を作りました。
+今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名してもらう一連の手順をやっていきます。&lt;/p&gt;
+
+&lt;p&gt;最終的にApacheに組み込みます。&lt;/p&gt;</description>
     </item>
     
   </channel>

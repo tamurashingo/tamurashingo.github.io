@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CoffeeScript on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/coffeescript/</link>
+    <description>Recent content in CoffeeScript on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 25 Feb 2015 23:58:53 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/coffeescript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>bot programming</title>
+      <link>https://tamurashingo.github.io/post/2015/02/25/bot-programming/</link>
+      <pubDate>Wed, 25 Feb 2015 23:58:53 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/25/bot-programming/</guid>
+      <description>&lt;p&gt;tamuraです。ネタです。&lt;/p&gt;
+
+&lt;h2 id=&#34;発表者をランダムで指名するbot&#34;&gt;発表者をランダムで指名するbot&lt;/h2&gt;
+
+&lt;p&gt;社内勉強会のときに使えるかなーと思い、作ってみました。 対話型で発表者のリストに発表者を追加して行き、 発表する時間になったらそのリストからランダムで発表者を選ぶという簡単なbotです。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,2731 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <title>ISUCON6に参加して今年も惨敗した件 &middot; Web技術と親しむ</title>
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="tamura shingo">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2016/09/19/isucon6/"/>
+    <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
+    <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/monokai.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/fancybox/jquery.fancybox.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="ISUCON6に参加して今年も惨敗した件" />
+<meta property="og:description" content="
+
+tamuraです。
+
+今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。
+
+前回記事: ISUCON5に参加して惨敗した件
+
+参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！
+
+今回もslackのログを抜き出します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2016/09/19/isucon6/" />
+<meta property="article:published_time" content="2016-09-19T01:00:20&#43;00:00"/>
+<meta property="article:modified_time" content="2016-09-19T01:00:20&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="ISUCON6に参加して今年も惨敗した件">
+<meta itemprop="description" content="
+
+tamuraです。
+
+今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。
+
+前回記事: ISUCON5に参加して惨敗した件
+
+参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！
+
+今回もslackのログを抜き出します。">
+
+
+<meta itemprop="datePublished" content="2016-09-19T01:00:20&#43;00:00" />
+<meta itemprop="dateModified" content="2016-09-19T01:00:20&#43;00:00" />
+<meta itemprop="wordCount" content="11890">
+
+
+
+<meta itemprop="keywords" content="ISUCON,Web,チューニング,MySQL," />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ISUCON6に参加して今年も惨敗した件"/>
+<meta name="twitter:description" content="
+
+tamuraです。
+
+今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。
+
+前回記事: ISUCON5に参加して惨敗した件
+
+参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！
+
+今回もslackのログを抜き出します。"/>
+<meta name="twitter:site" content="@tamura_shingo"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://tamurashingo.github.io/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://tamurashingo.github.io/css/images/logo.png')"></i>
+          
+          <span class="site-title">Web技術と親しむ</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://tamurashingo.github.io/img/main/face.jpg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="検索">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://tamurashingo.github.io/img/main/face.jpg">
+      
+      <h2 id="name">tamura shingo</h2>
+      <h3 id="title">Java, JavaScript, Common Lisp...</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Saitama, Japan</span>
+      
+          <a id="follow" href="https://github.com/tamurashingo">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        57
+        <span>記事</span>
+      </div>
+      <div class="article-info-block">
+        
+          63
+        
+        <span>
+            タグ
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/tamurashingo" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/tamurashingo" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/tamura_shingo" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://tamurashingo.github.io/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/">
+    <h1 class="article-title" itemprop="name">
+        ISUCON6に参加して今年も惨敗した件
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-09-19 01:00:20 &#43;0000 UTC" itemprop="datePublished">2016-09-19</time>
+            &middot;
+            11890
+            文字
+            &middot;
+            24
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/mysql">MySQL</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <style type="text/css">
+pre { overflow-x: scroll; }
+</style>
+
+<p>tamuraです。</p>
+
+<p>今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。</p>
+
+<p>前回記事: <a href="/post/2015/10/25/isucon5/">ISUCON5に参加して惨敗した件</a></p>
+
+<p>参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！</p>
+
+<p>今回もslackのログを抜き出します。</p>
+
+<p>※ライブ感を出すために誤字脱字は極力修正していません</p>
+
+<h2 id="2016-08-27">2016/08/27</h2>
+
+<p>ISUCON参加します！</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [12:29]
+<a href="http://isucon.net/archives/48165644.html">http://isucon.net/archives/48165644.html</a>
+ ISUCON公式Blog
+ISUCON6 オンライン予選の参加登録を開始＆参加チームとメンバーリスト : ISUCON公式Blog
+追記 8/26 9:30 参加チームを追加追記8/18 10:15 学生枠の対象について追記追記 8/16 17:25 参考実装の追加を追記追記 8/16 14:00 本選出場チームの選出について追記追記 8/5 17:55 仕様OSについて追記--こんにちは、櫛井です。本日から参加登録を開始いたしました。 (6KB)
+
+
+今年もISUCON参戦します！
+
+ことしはあきもっちゃんも参戦です！
+
+どうやってslackにinviteするかわからないので、自分でやってもらいますｗｗ<hr>akimoto [12:30]
+joined #isucon by invitation from @tamura<hr>tamura [12:56]
+isuconタスク
+- ubuntu16.04TSが出たので、それがらみの何かがあるに違いない
+- とりあえずnginx知っておこう
+- MySQLの設定もできるようになっておこう
+ - create index
+ - slowlog
+ - キャッシュバッファ
+- memcached使えるようになる！
+- 今回はJavaはないみたいなので、どうしようｗｗｗ
+
+とりあえずwiki作っておきましたんで、前日までにできることはちょっとまとめたいと思います。
+
+あと場所どうしましょう・・・また漫画喫茶ですかね～ｗ
+</pre>
+
+<p>Javaないんかい・・・・。</p>
+
+<h2 id="2016-09-08">2016/09/08</h2>
+
+<p>使用言語を決めます。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [9:01]
+<a href="http://isucon.net/archives/48396740.html">http://isucon.net/archives/48396740.html</a>
+ ISUCON公式Blog
+ISUCON6 予選レギュレーション : ISUCON公式Blog
+参加者予選参加者(以下参加者)はチームで登録するものとし、チームは2名もしくは3名での登録とする。予選参加者は予選の第1日目、第2日目のいずれかのみに参加することができる。参加者は「一般枠」「学生枠」のいずれかに登録すること。学生枠: チームメンバー全員が学生・ 
+
+
+高速化対象のソフトウェアとして主催者から Perl, Ruby, Python, PHP, Node.js, Go, Scala によるWebアプリケーションが与えられる。 ただし各々の性能が一致することを主催者は保証しない。どれをベースに用いてもよいし、独自で実装したものを用いてもよい。
+
+PHPでいきますか。
+
+それともJavaで実装するか・・・・。PHPっすかね・・・・ｗｗ
+
+PHPわからんｗｗｗｗ<hr>akimoto [9:03]
+PHP わからないのになぜPHP でいくと言ったのか…(笑)<hr>tamura [9:05]
+Mr. @akimoto ががんばってくれるに違いないｗｗｗ<hr>tamura [9:16]
+@akimoto あきもっちゃんPHPわかるっしょ？<hr>akimoto [10:41]
+分かる分からないで言えば分かります(笑)
+</pre>
+
+<h2 id="2016-09-17">2016/09/17</h2>
+
+<p>場所を決めます。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:09]
+場所ですが新宿でいいすかｗ？
+店はたくさんあるのでいくつか3丁目付近でピックアップしてあいてるやつでいきますか！
+正直日曜日にどれくらい埋まっているかってのが、想像つかないすｗ
+<a href="http://moopa.jp/shops/mp_shinjukuhon/index.html">http://moopa.jp/shops/mp_shinjukuhon/index.html</a>
+<a href="http://manboo.co.jp/shop/shop2.php?act=0431">http://manboo.co.jp/shop/shop2.php?act=0431</a>
+ moopa.jp
+インターネットカフェ - Moopa! 新宿本店
+新宿駅のインターネットカフェ・ムーパは、マンガ、インターネットはもちろん、様々なコンテンツを凝縮。ダーツ、高性能PC、マッサージチェア、シャワー等に加え、フリードリンクでフードメニューも充実。オンラインゲーム稼働率No.1 
+  manboo.co.jp
+マンガ喫茶マンボー 店舗詳細
+ネットカフェ・マンガ喫茶マンボーのオフィシャルサイトです。関東、東海、関西地方の店舗情報など。マンガ喫茶マンボーは快適でゆったりくつろげる空間をご用意してお待ちしております。 <hr>tamura [15:16]
+マンボーはダメじゃないすかね～？ww<hr>yoshimura [15:16]
+マンボーやばいんすかｗ？
+ちょっとなかのレイアウトが不明なのがびみょっすねｗ<hr>tamura [15:25]
+あれは純粋なまんが喫茶だと思いますww<hr>yoshimura [15:28]
+なるりっすw 見ると一応PCとか書いてあったんであるのかと思いましたww
+漫画専門ぽいとこはとりあえず避けたがいいすねw<hr>tamura [16:09]
+Moopaでいきましょうか！
+トリプルシートがありますしｗ
+なくてもフラットで分かれてもいいしｗｗｗ
+
+are?
+
+あれ？
+
+トリプルシートのほうって禁煙じゃないｗｗｗ
+
+ぉぅふ<hr>yoshimura [18:02]
+おうふw
+
+禁煙キボンヌｗｗ　タバコの煙だと鼻水がとまらんくなるとです・・・ｗ
+
+まぁ大丈夫かｗｗ　一応マスクもっていきますｗｗ<hr>tamura [18:03]
+ww
+
+禁煙側に分かれて座りましょうｗｗ
+
+あ、Webカメラで遊びましょうｗｗｗ<hr>yoshimura [18:04]
+なるりｗ　あぁWebカメラのアプリつけとけばいいのか！
+
+アカウントなしでURLだけでいけるやつありましたよね！<hr>tamura [18:04]
+たしかWebサービスあったはず<hr>yoshimura [18:04]
+<a href="https://appear.in/">https://appear.in/<a>
+ appear.in
+appear.in
+Video conversations with up to 8 people for free - no login, no downloads. Create a video room. Share the link. Appear together. Try it now at <a href="https://appear.in">https://appear.in</a> (13KB)
+
+
+これでいけますわ！<hr>tamura [18:06]
+みんなＰＣにカメラついてますよね？ｗｗ
+</pre>
+
+<p>場所が決まりました。</p>
+
+<h2 id="2016-09-18">2016/09/18</h2>
+
+<h3 id="08-30">08:30</h3>
+
+<p>今回は時間どおりに開始できました。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [8:28]
+仮面ライダー見てたら遅れそうっす・・・ｗ
+
+今日が実質最終回なんでｗ<hr>akimoto [8:28]
+(笑)<hr>tamura [8:30]
+今から風呂なんで、もし私の身に何かあったら先に入っててくださいｗ<hr>yoshimura [8:58]
+仮面ライダーww<hr>tamura [8:58]
+九時半三丁目ですわ<hr>akimoto [9:09]
+9時30分お店くらいですかね、迷わなければ…<hr>yoshimura [9:23]
+ついた！
+<img src="tsuita.jpg" /><hr>yoshimura [9:23]
+A2からでれば1分で着きますw<hr>yoshimura [9:24]
+<hr>yoshimura [9:25]
+<img  src="matsuri.jpg" /><br />
+祭りぽいのやってるのか、片付けか？<hr>yoshimura [9:25]
+あつい<hr>tamura [9:26]
+池袋なう<hr>yoshimura [9:27]
+油断すると渋谷までいきそうになりますw<hr>tamura [9:27]
+ww<hr>akimoto [9:27]
+とりあえず着きました
+</pre>
+
+<h3 id="10-00-残り8時間">10:00 (残り8時間)</h3>
+
+<p>合流して朝飯等を買って入店です。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [10:00]
+はじまた！<hr>tamura [10:03]
+今デプロイ中です<hr>yoshimura [10:03]
+あざすぅ！とりあえずisusconログインまでいきやした！
+デプロイりょかいす！<hr>tamura [10:04]
+<img  src="setup.jpg"><br />
+準備完了！<hr>yoshimura [10:05]
+www 酒がいい感じw　バックには飯のメニューww<hr>tamura [10:05]
+やるきなす！ｗ<hr>akimoto [10:05]
+ｗｗｗ<hr>yoshimura [10:05]
+意外にここさむすw<hr>tamura [10:05]
+唐揚げ280円・・・・悩む・・・ｗ<hr>yoshimura [10:05]
+ww ビーフカレー100円　そっちのほうがやすいというw<hr>tamura [10:06]
+漫画喫茶でやるもんじゃないっすねｗｗｗ<hr>yoshimura [10:06]
+たしかにw<hr>akimoto [10:06]
+え、いまさらｗｗｗｗ
+</pre>
+
+<p>akimotoはまじめです。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [10:15]
+これノートPCで開くと画面うまるw<br />と思ってここのそなえつけのにきりかえようとしたらカメラなすw<hr>tamura [10:18]
+満喫のPCでappearを入れておいて
+手元のノートは普通に使えばOKすよｗｗ<hr>yoshimura [10:19]
+そうすねw　あれカメラいけましたw？<hr>tamura [10:19]
+たぶん、ゲストって出てるのが私が満喫のPCでログインしているやつですｗｗｗ<hr>yoshimura [10:22]
+なるりw
+<img src="blogpaint.jpg" /><br />
+</pre>
+
+<p>ハングアウトみたいに顔が見えるサービスを使うときはマルチモニタ必須ですね。</p>
+
+<h3 id="10-30-残り8時間30分">10:30 (残り8時間30分)</h3>
+
+<p>いちおうそれぞれの公開鍵はもらっていたんですが、
+設定が面倒になったので秘密鍵を共有することにしました。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [10:22]
+すみません。
+
+秘密鍵の修正をお願いします。
+<code>
+-----BEGIN RSA PRIVATE KEY-----
+... snip ...
+-----END RSA PRIVATE KEY-----
+</code>
+~/.ssh/id_rsa_isucon6
+
+の中身を上のやつと置き換えてください
+<code>
+Host isucon6
+ HostName xx.xx.xx.xx
+ User isucon
+ IdentityFile ~/.ssh/id_rsa_isucon6
+</code>
+て書くといけます<hr>tamura [10:23]
+@akimoto ちょっと行って説明します。<hr>tamura [10:27]
+あきもちゃんOK<hr>akimoto [10:42]
+ブラウザからIP入力するとログイン画面が出るって噂ですが、ログイン画面が出ないんですが・・・<hr>tamura [10:43]
+え？ｗ
+
+http://xx.xx.xx.xx/
+
+これでますよね？ｗ<hr>akimoto [10:45]
+あ、これでいいんすか<hr>tamura [10:53]
+とりあえず今なんのアプリで動いているのか調べますｗｗｗ<hr>akimoto [10:53]
+お願いします。
+</pre>
+
+<p>1名まだsshで入れない人が・・・・ｗ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [10:53]
+ssh でPermission denied (publickey).　がでるんで設定みなおいておきますw<hr>tamura [10:54]
+ww<hr>yoshimura [10:54]
+ちとここは酒飲みますわw
+
+まだ始まってないのに飲むというw<hr>akimoto [10:54]
+ヒドスｗ<hr>tamura [10:55]
+ゴールデン街で反省会っすねｗｗｗ
+</pre>
+
+<h3 id="11-00-残り7時間">11:00 (残り7時間)</h3>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [11:05]
+プシュ<hr>yoshimura [11:05]
+とりあえず飲みますw<hr>tamura [11:05]
+ﾌﾟｼｭwwww
+</pre>
+
+<p>とりあえずベンチを動かさないと始まらないので、
+アプリをPHPにして1回目のベンチを動かします。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [11:14]
+ベンチリクエストだして、msqlのキャッシュのせてからをおなしゃす<hr>yoshimura [11:14]
+なんかあれすは、sshのやつはmac固有の問題なかんじがw
+はい、たぶんもう少しでssh解決できそうな予感すw
+</pre>
+
+<p>君まだやってたのかｗｗｗ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [11:19]
+あ、今perlで動いてるんですね？<hr>tamura [11:19]
+まじで？ｗｗ<hr>tamura [11:20]
+あ、perlっっぽい<hr>tamura [11:20]
+ｗｗ<hr>tamura [11:20]
+phpにしておきますｗｗ<hr>akimoto [11:20]
+おねがいします！<hr>[11:23]
+PHPに切り替えたらとりあえずベンチマーク投げる感じですか？<hr>tamura [11:25]
+@akimoto とりえずベンチ投げちゃってください<hr>akimoto [11:26]
+なげました
+</pre>
+
+<p>そして100円カレーをいただきます。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [11:27]
+お、カレースカw<hr>tamura [11:31]
+あきもっちゃんのところに３つきますｗｗｗｗ<hr>akimoto [11:31]
+とりにきてくださいｗｗ<hr>yoshimura [11:31]
+ww<hr>tamura [11:31]
+ｗｗｗ<hr>akimoto [11:32] 
+うるさいｗｗｗｗ
+
+※店員さんがカレーを運んできたんですが、戸を開けるときにすごくうるさかったんですｗｗｗ<hr>
+tamura [11:42]
+カレー北ｗｗｗ<hr>akimoto [11:42]
+ごちになります！
+potatoどうしますかw<hr>tamura [11:43]
+www
+食ってくださいｗｗｗ<hr>tamura [11:43]
+あと2つぽポテト頼みましたｗｗｗ
+</pre>
+
+<p>Appear.inでお互いの顔を見えるようにしていたので、
+akimotoのところに3つカレーが届いたのが画面越しに見えたときは吹きましたｗｗｗ</p>
+
+<p>カレー100円は安いです</p>
+
+<figure>
+    <img src="curry.jpg"
+         alt="curry"/> 
+</figure>
+
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [11:42]
+いまperlなんで
+
+phpをゆうこうにします<hr>akimoto [11:42]
+おなしゃす<hr>tamura [11:53]
+<code>sudo su -</code>
+
+rootになれるんで
+
+なっちゃってください<hr>akimoto [11:55]
+なりました<hr>tamura [11:56]
+設定よろしくです<hr>akimoto [11:58]
+設定って？
+
+php?<hr>tamura [11:59]
+いい感じにｗｗｗ<hr>akimoto [11:59]
+適当すぎでしょｗｗｗｗ<hr>tamura [12:00]
+とりあえずphp動かしたすｗｗｗｗ
+</pre>
+
+<h3 id="12-00-残り6時間">12:00 (残り6時間)</h3>
+
+<p>ベンチ結果</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [12:01 PM]
+自チームの最新結果
+Status    PASS
+Score    1489
+Best    1546
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 11:36:24 +0900 JST
+</pre>
+
+<p>ここからスタートです。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [12:04]
+うひょｗ
+
+502badgatewayが出るようになってしまい申したw
+
+nginxの設定が必要なのか・・・nginx知らないですけどｗｗｗ
+
+え、phpってインストールしないといけないんですか？<hr>akimoto [12:15]
+ネットワークにつながらなくなったｗｗｗｗ<hr>akimoto [12:16]
+お、復活した？<hr>yoshimura [12:17]
+ときどききれます
+</pre>
+
+<p>akimoto落ち着けｗｗｗ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [12:21]
+slowlogを有効にして、いちどベンチを動かしましょうｗｗ<hr>akimoto [12:23]
+slowlogは@yoshimura担当？<hr>yoshimura [12:24]
+ちょっともうすこしたってもだめだったらakimoのとこでやりますw<hr>tamura [12:24]
+ww<hr>tamura [12:24]
+slowlogいけるしょｗ<hr>yoshimura [12:24]
+完全にはまってますw　sshでw<hr>tamura [12:25]
+wwww<hr>yoshimura [12:25]
+13時までがんばりますw
+</pre>
+
+<p>君まだsshやってたのかｗｗｗ
+そしてakimotoはISUCONの前提がわからずにあせってます。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [12:37]
+これapacheとかも入れないといけないんですか？<hr>akimoto [12:37]
+システムがよくわからんですｗ<hr>tamura [12:37]
+たぶんはいってますｗｗｗ<hr>akimoto [12:38]
+まじすか<hr>akimoo [12:39]
+apacheってhttpdとかでしたっけ？<hr>akimoto [12:39]
+<code>root@isucon6-qualifier:~# systemctl status httpd
+● httpd.service
+  Loaded: not-found (Reason: No such file or directory)
+  Active: inactive (dead)</code><hr>akimoto [12:40 PM]
+はいってねーよ的なこと言われてるようなよくわからないような<hr>tamura [12:40]
+nginx<hr>akimoto [12:41]
+nginxがあればいける？みたいな？
+</pre>
+
+<h3 id="13-00-残り5時間">13:00 (残り5時間)</h3>
+
+<p>ヒーローは遅れてやってくるけど彼はヒーローなのかどうなのか。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [13:01]
+やっとkita
+
+<a href="http://dev.classmethod.jp/smartphone/mac-ssh-hole/">http://dev.classmethod.jp/smartphone/mac-ssh-hole/</a>
+ Developers.IO | AWS/iOS技術者の必読メディア：クラスメソッド株式会社ブログ
+MacのSSH認証キーの落とし穴 | アドカレ2013 : SP #2 | Developers.IO
+さて、このアドペンとカレンダーに初めて参戦する大村です。初日から平井くんがガッツリアプリを作ってボリューミーになっていますが、今回は少しおとなしく、以前はまってしまったmacのSSHキーでの落とし穴の件でも話したいと思い […] <hr>yoshimura [13:02]
+要因は２つありましてw
+最初は /etc/ssh_config をみにいってましたw
+なのでそれをリネームして
+それでもPermission denied (publickey)<hr>yoshimura [13:02]
+<code>yukiyoshimura ~/.ssh $ sudo ssh-add ~/.ssh/id_rsa_isucon6
+Identity added: /Users/yukiyoshimura/.ssh/id_rsa_isucon6 (/Users/yukiyoshimura/.ssh/id_rsa_isucon6)
+yukiyoshimura ~/.ssh $ ssh isucon6
+Welcome to Ubuntu 16.04.1 LTS (GNU/Linux 4.4.0-36-generic x86_64)
+
+* Documentation:  https://help.ubuntu.com
+* Management:     https://landscape.canonical.com
+* Support:        https://ubuntu.com/advantage
+
+ Get cloud support with Ubuntu Advantage Cloud Guest:
+   http://www.ubuntu.com/business/services/cloud
+
+0 packages can be updated.
+0 updates are security updates.</code><hr>yoshimura [13:02]
+ここに追加してやといけたw<hr>tamura [13:03]
+まじすか<hr>yoshimura [13:03]
+これからがんばりますw
+</pre>
+
+<p>がんばれ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [13:03]
+mysqlってどこまで設定やってます？w
+
+クエリキャッシュ有効かどうかチェックして、　スロークエリログの設定をやろうかとおもうのですが、もうおわってますかね？<hr>tamura [13:04]
+なにもやってんすｗｗ<hr>yoshimura [13:04]
+おkすw　これから挽回しますw<hr>yoshimura [13:04]
+まずはDBの設定周りを調べていきますw
+</pre>
+
+<p>akimotoががんばります</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [13:14]
+phpに切り替わった！！！かも？
+
+とりあえず５０２にはならなくなりました。<hr>tamura [13:15]
+ktkr<hr>yoshimura [13:15]
+とりあえず現状のmy.cnf
+<code>isucon@isucon6-qualifier:/etc/mysql$ cat my.cnf
+[mysqld_safe]
+socket          = /var/run/mysqld/mysqld.sock
+nice            = 0
+
+[mysqld]
+user            = mysql
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+port            = 3306
+basedir         = /usr
+datadir         = /var/lib/mysql
+tmpdir          = /tmp
+lc-messages-dir = /usr/share/mysql
+skip-external-locking
+bind-address            = 127.0.0.1
+max_allowed_packet      = 16M
+log_error = /var/log/mysql/error.log</code><hr>yoshimura [13:16]
+ログ的な感じで残していきますw<hr>yoshimura [13:28]
+user/passはおなじかw
+ようやくログインすw
+</pre>
+
+<p>これから本領発揮です・・・か？
+だけどMySQLの再起動に手間取りますｗ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [13:39]
+<code>mysql&gt; show variables like 'query_cache%';
++------------------------------+---------+
+| Variable_name                | Value   |
++------------------------------+---------+
+| query_cache_limit            | 1048576 |
+| query_cache_min_res_unit     | 4096    |
+| query_cache_size             | 1048576 |
+| query_cache_type             | OFF     |
+| query_cache_wlock_invalidate | OFF     |
++------------------------------+---------+
+5 rows in set (0.93 sec)
+</code>
+クエリキャシュタイプが無効なので
+
+my.cnf にquery_cache_type=1　をたしてちと
+
+mysql再起動します<hr>yoshimura [13:40]
+あがったらいいますw
+</pre>
+
+<h3 id="14-00-残り4時間">14:00 (残り4時間)</h3>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [14:14]
+mysql死んだ？<hr>yoshimura [14:15]
+stop でエラーになってたんですが、落ちてからの〜
+
+起動しないすw　少々おまちを・・w
+
+なんか祭りw？　きこえないすかw？<hr>akimoto [14:15]
+さっき怒号が聞こえましたねw<hr>yoshimura [14:16]
+ww 　ほいさw
+<code>
+2016-09-18T05:16:24.728750Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2016-09-18T05:16:24.728793Z 0 [Note] Shutting down plugin 'MEMORY'
+2016-09-18T05:16:24.728811Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2016-09-18T05:16:24.728858Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2016-09-18T05:16:24.728895Z 0 [Note] Shutting down plugin 'MyISAM'
+2016-09-18T05:16:24.728929Z 0 [Note] Shutting down plugin 'CSV'
+2016-09-18T05:16:24.728955Z 0 [Note] Shutting down plugin 'sha256_password'
+2016-09-18T05:16:24.728978Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2016-09-18T05:16:24.729126Z 0 [Note] Shutting down plugin 'binlog'
+2016-09-18T05:16:24.729250Z 0 [Note] /usr/sbin/mysqld: Shutdown complete
+</code>
+このログが出続けるw　ちとトイレいって頭冷やしてきますw<hr>akimoto [14:16]
+ｗｗｗｗ<hr>akimoto [14:23]
+これなんかわかります？
+<code>
+2016-09-18T05:22:26.955199Z 0 [ERROR] unknown variable 'ly-messages-dir=/usr/sha
+re/mysql'</code><hr>akimoto [14:30]
+ly-messages-dir -&gt; lc-messages-dir
+
+では？？？<hr>yoshimura [14:32]
+なんでしょうw　このへんってまったく変えてないんすよねw
+なんかずっとshutdownプロセスが走っているような気がするんどすが、ちょっと確認中す
+
+ちょっとそれみてみますw
+
+きりわけとしてmy.cnfを最初に戻しますw
+
+戻しました
+
+それにしてもここゲキ寒くないすかw？？？？<hr>akimoto [14:36]
+戻したmy.confはlc-messages-dirになってるっぽいす<hr>yoshimura [14:37]
+おぉwww
+
+ほんとだw
+
+じゃあ編集時にかわってしまってたのかww<hr>yoshimura [14:38]
+<code>root@isucon6-qualifier:/home/isucon# /usr/sbin/mysqld stop</code><hr>yoshimura [14:39]
+とりあえずmysqlはいま動いているので動かかすならいますw<hr>yoshimura [14:40]
+とめられなかったのでw ベンチするのであればちょっとまっておきますw<hr>akimoto [14:40]
+ベンチしないので
+
+止めて大丈夫です<hr>yoshimura [14:41]
+<code>2016-09-18T05:39:31.268434Z 0 [Note] InnoDB: Check that you do not already have another mysqld process using the same InnoDB data or log files.
+2016-09-18T05:39:31.268450Z 0 [Note] InnoDB: Unable to open the first data file
+2016-09-18T05:39:31.268461Z 0 [ERROR] InnoDB: Operating system error number 11 in a file operation.
+2016-09-18T05:39:31.268468Z 0 [ERROR] InnoDB: Error number 11 means 'Resource temporarily unavailable'
+2016-09-18T05:39:31.268472Z 0 [Note] InnoDB: Some operating system error numbers are described at http://dev.mysql.com/doc/refman/5.7/en/operating-system-error-codes.html
+2016-09-18T05:39:31.268477Z 0 [ERROR] InnoDB: Cannot open datafile './ibdata1'
+2016-09-18T05:39:31.268483Z 0 [ERROR] InnoDB: Could not open or create the system tablespace. If you tried to add new data files to the system tablespace, and it failed here, you should now edit innodb_data_file_path in my.cnf back to what it was, and remove the new ibdata files InnoDB created in this failed attempt. InnoDB only wrote those files full of zeros, but did not yet use them in any way. But be careful: do not remove old data files which contain your precious data!
+2016-09-18T05:39:31.268487Z 0 [ERROR] InnoDB: Plugin initialization aborted with error Cannot open a file
+2016-09-18T05:39:31.869143Z 0 [ERROR] Plugin 'InnoDB' init function returned error.
+2016-09-18T05:39:31.869187Z 0 [ERROR] Plugin 'InnoDB' registration as a STORAGE ENGINE failed.
+2016-09-18T05:39:31.869197Z 0 [ERROR] Failed to initialize plugins.
+2016-09-18T05:39:31.869202Z 0 [ERROR] Aborting
+
+2016-09-18T05:39:31.869211Z 0 [Note] Binlog end
+2016-09-18T05:39:31.869284Z 0 [Note] Shutting down plugin 'MyISAM'
+2016-09-18T05:39:31.869300Z 0 [Note] Shutting down plugin 'CSV'
+2016-09-18T05:39:31.869518Z 0 [Note] /usr/sbin/mysqld: Shutdown complete</code><hr>akimoto [14:41]
+とめられなかったというのは・・・？<hr>yoshimura [14:41]
+りょうかいすw　じゃあとめにいきますw
+ちょっとこのエラーを調査してからすw<hr>akimoto [14:41]
+あれ、うまくいったのでは？<hr>yoshimura [14:43]
+普通に接続できるのでとまってなすなかんじすw<hr>akimoto [14:45]
+systemctl status mysql でみると少し前に再起動してそうでしたけど
+<code>
+isucon@isucon6-qualifier:/etc/mysql$ systemctl status mysql
+● mysql.service - MySQL Community Server
+  Loaded: loaded (/lib/systemd/system/mysql.service; enabled; vendor preset: en
+  Active: active (running) since Sun 2016-09-18 14:35:02 JST; 10min ago
+ Process: 19854 ExecStartPost=/usr/share/mysql/mysql-systemd-start post (code=e
+ Process: 19849 ExecStartPre=/usr/share/mysql/mysql-systemd-start pre (code=exi
+Main PID: 19853 (mysqld)
+   Tasks: 30
+  Memory: 191.8M
+     CPU: 1.301s
+  CGroup: /system.slice/mysql.service
+          mq19853 /usr/sbin/mysqld
+</code>
+あ、これは戻したとき？<hr>yoshimura [14:45]
+10分前かw
+
+たぶんそうすねw
+
+さっきstopで実行したのでw
+おそらくmy.cnfを戻したときかとw<hr>akimoto [14:48]
+今はどういう状況なんでしたっけw<hr>yoshimura [14:49]
+mysql を落とそうとしている状況ですw<hr>tamura [14:49]
+ww
+</pre>
+
+<p>tamuraはちょっと寝てたようでここで意識が戻りましたｗ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [14:49]
+あれ？落ちてないスカ？ｗｗ<hr>yoshimura [14:49]
+いまおちたかもですw<hr>akimoto [14:49]
+お
+
+おちてる
+
+時間かかるなｗｗ<hr>yoshimura [14:50]
+<code>root@isucon6-qualifier:/etc/mysql# ps -ef | grep mysql
+root     10421 10392  0 13:21 pts/4    00:00:00 tail -f /var/log/mysql/error.log
+mysql    19853     1  0 14:35 ?        00:00:01 /usr/sbin/mysqld
+root     20126  2360  0 14:46 pts/1    00:00:00 tail -f /var/log/mysql/error.log
+root     20128 10482  0 14:46 pts/5    00:00:00 grep --color=auto mysql
+root@isucon6-qualifier:/etc/mysql# kill 19853
+root@isucon6-qualifier:/etc/mysql# ps -ef | grep mysql
+root     10421 10392  0 13:21 pts/4    00:00:00 tail -f /var/log/mysql/error.log
+root     20146 10482  0 14:47 pts/5    00:00:00 grep --color=auto mysql
+</code>
+プロセスをkill したらいまになりました<hr>akimoto [14:50]
+うは<hr>yoshimura [14:51]
+そしてstart
+<code>
+/usr/sbin/mysqld start
+</code>
+したんどすが、どすが、<hr>akimoto [14:52]
+my.cnfなおしました？<hr>tamura [14:52]
+<code>service mysql restart</code>
+
+でokす<hr>akimoto [14:52]
+<code>systemctl restart mysql</code>でも<hr>yoshimura [14:53]
+my.cnfはとりあえず最初のままにして一度あげようとおもいあすw
+
+一度、ちゃんと動かせる手順を確立したいのでww<hr>akimoto [14:53]
+www<hr>yoshimura [14:53]
+service mysql restart<hr>akimoto [14:54]
+うごいてるみたいですね。<hr>yoshimura [14:54]
+おk
+
+ではこんどこそ少々おまちをw
+
+本来やりたかったクエリキャッシュやります<hr>yoshimura [14:57]
+ようやくktkr
+<code>mysql&gt; show variables like 'query_cache%';
++------------------------------+---------+
+| Variable_name                | Value   |
++------------------------------+---------+
+| query_cache_limit            | 1048576 |
+| query_cache_min_res_unit     | 4096    |
+| query_cache_size             | 1048576 |
+| query_cache_type             | ON      |
+| query_cache_wlock_invalidate | OFF     |
++------------------------------+---------+
+5 rows in set (0.01 sec)
+</code>
+これでベンチさせましょうw<hr>tamura [14:58]
+なんか寒いここ<hr>yoshimura [14:58]
+げきさむなんすよw<hr>akimoto [14:59]
+ベンチ行きますか！
+
+ちなみに今は↓
+
+自チームの最新結果
+Status    PASS
+Score    1520
+Best    1546
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 13:24:14 +0900 JST
+</pre>
+
+<p>やっと去年の状況に追いついた感じがｗｗｗ</p>
+
+<h3 id="15-00-残り3時間">15:00 (残り3時間)</h3>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:03]
+1回目
+自チームの最新結果
+Status    PASS
+Score    1430
+Best    1546
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 15:02:05 +0900 JST<hr>yoshimura [15:03]
+もう一度いきます。次はキャッシュが使用されるはず<hr>yoshimura [15:04]
+自チームの最新結果
+Status    PASS
+Score    678
+Best    1546
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 15:04:00 +0900 JST<hr>yoshimura [15:05]
+おうふw<hr>akimoto [15:05]
+ｗｗｗｗｗｗｗｗ
+</pre>
+
+<p>たぶんタイムアウトでスコアが下がったものと思われます。
+この時点までアプリ側をまだ見ていません。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:06]
+スロークエリのいまの設定
+<code>mysql&gt; show variables where variable_name like ('slow%') or variable_name in ('long_query_time','log_queries_not_using_indexes');
++-------------------------------+-------------------------------------------+
+| Variable_name                 | Value                                     |
++-------------------------------+-------------------------------------------+
+| log_queries_not_using_indexes | OFF                                       |
+| long_query_time               | 10.000000                                 |
+| slow_launch_time              | 2                                         |
+| slow_query_log                | OFF                                       |
+| slow_query_log_file           | /var/lib/mysql/isucon6-qualifier-slow.log |
++-------------------------------+-------------------------------------------+
+5 rows in set (0.00 sec)</code><hr>yoshimura [15:08]
+スロークエリをONにして、クエリ時間が１秒以上のやつを出力させてみます！
+mysql&gt; set global slow_query_log=1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql&gt; set global long_query_time = 1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; show variables where variable_name like ('slow%') or variable_name in ('long_query_time','log_queries_not_using_indexes');
++-------------------------------+-------------------------------------------+
+| Variable_name                 | Value                                     |
++-------------------------------+-------------------------------------------+
+| log_queries_not_using_indexes | OFF                                       |
+| long_query_time               | 10.000000                                 |
+| slow_launch_time              | 2                                         |
+| slow_query_log                | ON                                        |
+| slow_query_log_file           | /var/lib/mysql/isucon6-qualifier-slow.log |
++-------------------------------+-------------------------------------------+
+5 rows in set (0.00 sec)<hr>yoshimura [15:09]
+一度ベンチします<hr>yoshimura [15:12]
+自チームの最新結果
+Status    PASS
+Score    0
+Best    1546
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 15:11:08 +0900 JST<hr>yoshimura [15:12]
+おうふ<hr>tamura [15:12]
+www<hr>akimoto [15:13]
+どうしてこうなったｗｗｗ<hr>yoshimura [15:14]
+queryタイム１秒以上ってしたから負荷かかったのかなw？
+いちど１０秒でやりますw
+</pre>
+
+<p>アプリ側でせめてタイムアウトしないようにしておかないとスコアが伸びません。
+そして寒さとの戦い。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:14]
+さみー<hr>tamura [15:15]
+受付で毛布もらえますｗｗｗ<hr>yoshimura [15:15]
+まじすか！ちょっともらってきますw<hr>tamura [15:18]
+ww
+</pre>
+
+<p>スロークエリとの戦い。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:20]
+すろークエリの監視時間１０秒にしたらこれでした
+自チームの最新結果
+Status    PASS
+Score    798
+Best    1546
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 15:15:55 +0900 JST<hr>yoshimura [15:20]
+で、クエリログには当然なにもはかれてないww<hr>tamura [15:21]
+ぉぅふｗ
+
+2秒でokす<hr>akimoto [15:21]
+なぜ遅くなってしもうたんや<hr>tamura [15:22]
+えっさーえっさー<hr>yoshimura [15:26]
+Status    PASS
+Score    1055
+Best    1546
+Messages    
+starがついていません (GET /)
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 15:24:11 +0900 JST<hr>yoshimura [15:26]
+starがついていません (GET /) これなんすかねw
+
+いままでなかったとおもうとですが・・・w<hr>tamura [15:27]
+ww
+</pre>
+
+<p>そして意味不明なスコアが。
+たぶんリクエストがいい感じにきて、タイムアウトの回数が少なかった可能性があります。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:27]
+あれw？
+
+いま、たむさん何か変更してますw？<hr>yoshimura [15:27]
+自チームの最新結果
+Status    PASS
+Score    2386
+Best    2386
+Messages    
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 15:26:55 +0900 JST<hr>yoshimura [15:27]
+急にあがったw<hr>tamura [15:27]
+いやしてないすｗｗ<hr>akimoto [15:27]
+イミフ<hr>yoshimura [15:27]
+キャッシュがきいてきたんでしょうかw<hr>akimoto [15:28]
+わけわからないですねｗ<hr>tamura [15:30]
+ｗｗｗ
+</pre>
+
+<h3 id="16-00-残り2時間">16:00 (残り2時間)</h3>
+
+<p>寒さとの戦いは続きます。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:15]
+よしむらさん、頭に何乗っけているんですか？ｗｗｗ<hr>yoshimura [16:15]
+自分でみていまきづきましたw
+
+※毛布を屋根みたいにしてエアコンの風の直撃を避けていたようです<hr>tamura [16:16]
+おちゃ
+
+あったかいtea<hr>tamura [16:21]
+アイスクリーム持ってきました
+
+糞寒いのに<hr>yoshimura [16:22]
+ww
+
+さっきあったかいおちゃでしたやんW<hr>akimoto [16:22]
+あったかいteaは？ｗ<hr>tamura [16:22]
+coffee<hr>akimoto [16:22]
+ばっちりっすねｗｗｗ
+</pre>
+
+<p>SQLを中心に対策していきます。
+PHPよく知らないので。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:23]
+キャッシュどうすか？<hr>yoshimura [16:24]
+まだどす・・w　キャッシュをみるといいつつスローログをmitemasitaww<hr>tamura [16:24]
+あきもっちゃん、アプリ側のSQLで直せそうなところありますか？<hr>yoshimura [16:24]
+これほんとかな〜とおもってw １秒以上のクエリがないすw<hr>tamura [16:24]
+ぉぅふｗ
+
+さすがに1秒超えるのはないスカ<hr>yoshimura [16:25]
+ちょっぼ分析中なのですが、正しく分析できているかがあやしいのでもう一度ログとって再分析しますw<hr>akimoto [16:25]
+あーSQLあんまりみてなかったですね。ちょっちみてみます
+</pre>
+
+<p>寒さ＋トイレとの戦い。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:28]
+ちべたい
+
+寒いのと熱いのがくると口の中がカオス<hr>yoshimura [16:30]
+やっぱここだけ異様に寒いすよw<hr>tamura [16:30]
+受付は暑いんすｗｗ<hr>yoshimura [16:30]
+ww 温度さはげしいw<hr>tamura [16:30]
+あとトイレで水があふれてましたｗ<hr>yoshimura [16:30]
+あふれるってwやばくないすかw<hr>akimoto [16:31]
+びちゃびちゃでしたね<hr>tamura [16:31]
+節子〜
+
+http://stamp.bokete.jp/36583951.png
+<img  src="http://stamp.bokete.jp/36583951.png">
+</pre>
+
+<p>やっとSQLに入ります。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [16:33]
+<code>SELECT * FROM entry ORDER BY CHARACTER_LENGTH(keyword) DESC<hr>akimoto [16:34]
+SELECT name FROM user WHERE id = ?<hr>akimoto [16:34]
+DELETE FROM entry WHERE id &gt; 7101<hr>akimoto [16:34]
+'SELECT * FROM entry '.
+       'ORDER BY updated_at DESC '.
+       "LIMIT $PER_PAGE ".
+       "OFFSET $offset"<hr>akimoto [16:35]
+'INSERT INTO entry (author_id, keyword, description, created_at, updated_at)'
+       .' VALUES (?, ?, ?, NOW(), NOW())'
+       .' ON DUPLICATE KEY UPDATE'
+       .' author_id = ?, keyword = ?, description = ?, updated_at = NOW()'</code><hr>akimoto [16:36]
+なんとなく使っていそうなSQLを羅列してみましたが・・・
+
+よくわかんないっす<hr>yoshimura [16:37]
+<code>SELECT * FROM entry ORDER BY CHARACTER_LENGTH(keyword) DESC</code><hr>yoshimura [16:38]
+これとかって全項目使うんかね？もし使わなければカラム指定にするとよさそうだけど・・<hr>akimoto [16:41]
+つかうのはkeywordとdescriptionだけみたいっすね<hr>yoshimura [16:41]
+おぉw！ いいすね！<hr>tamura [16:41]
+なるり
+
+insert時に
+
+サイズをどっかにぶち込んでおけばいいんすよ
+
+で、それをindexにすればokす
+
+寒い・・・
+
+あきもっちゃん
+
+alterっすよ
+
+寒い<hr>akimoto [16:42]
+orderbyのやつですね<hr>yoshimura [16:43]
+<code>mysql&gt; show index from entry;
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| entry |          0 | PRIMARY  |            1 | id          | A         |        5163 |     NULL | NULL   |      | BTREE      |         |               |
+| entry |          0 | keyword  |            1 | keyword     | A         |        5163 |     NULL | NULL   | YES  | BTREE      |         |               |
++-------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0.00 sec)</code><hr>yoshimura [16:43]
+keywordカラムはindexあるるね
+</pre>
+
+<p>SQL単体ならいけるんですが、アプリと組み合わせるとちゃんとソースを読まないといけないのがちょっと面倒ですね・・・。</p>
+
+<h3 id="17-00-残り1時間">17:00 (残り1時間)</h3>
+
+<p>Javaならいけたんですよ。。。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:58]
+memcachedってどうやって使うんすかね？ｗｗｗ<hr>akimoto [16:59]
+e?<hr>akimoto [17:00]
+phpから？<hr>tamura [17:00]
+ww<hr>yoshimura [17:02]
+ww 前回もでてきたやつww<hr>tamura [17:03]
+傾向と対策はばっちりっす！<hr>tamura [17:03]
+Javaなら・・・ｗ
+</pre>
+
+<p>何回目かのベンチ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [17:14]
+自チームの最新結果
+Status    PASS
+Score    702
+Best    2386
+Messages    
+keyword: "東舞鶴公園野球場" に "東舞鶴公園野球場" へのリンクがありません (GET /keyword/東舞鶴公園野球場)
+starがついていません (GET /)
+リクエストがタイムアウトしました (POST /keyword)
+リクエストがタイムアウトしました (POST /login)
+リクエストがタイムアウトしました (POST /stars)
+Time    2016-09-18 17:12:29 +0900 JST
+</pre>
+
+<p>下がりまくりです。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [17:14]
+スコアが落ちたのはぼくのせいかもw
+
+キャッシュサイズ変更したんどすが<hr>yoshimura [17:15]
+<code>mysql&gt; SHOW GLOBAL VARIABLES like 'Q%';
+
++------------------------------+---------+
+| Variable_name                | Value   |
++------------------------------+---------+
+| query_alloc_block_size       | 8192    |
+| query_cache_limit            | 1048576 |
+| query_cache_min_res_unit     | 4096    |
+| query_cache_size             | 1048576 |
+| query_cache_type             | ON      |
+| query_cache_wlock_invalidate | OFF     |
+| query_prealloc_size          | 8192    |
++------------------------------+---------+</code>
+からの〜<hr>yoshimura [17:15]
+<code>mysql&gt; SHOW GLOBAL VARIABLES like 'Q%';
++------------------------------+------------+
+| Variable_name                | Value      |
++------------------------------+------------+
+| query_alloc_block_size       | 8192       |
+| query_cache_limit            | 1048576    |
+| query_cache_min_res_unit     | 4096       |
+| query_cache_size             | 3221225472 |</code><hr>yoshimura [17:15]
+1Mからの〜3G<hr>tamura [17:16]
+ｗ
+
+キャッシュでかｗｗ<hr>yoshimura [17:16]
+<code>root@isucon6-qualifier:/home/isucon# free -m
+             total        used        free      shared  buff/cache   available
+Mem:           6967        1448        4712          17         805        5218
+</code>
+avilable 5Gくらいあたのでww といってもこれアプリ動いてるときは、もっとリソース減ってるかw
+
+ちょっとここは、1Gくらいにしてみますw
+</pre>
+
+<p>あまりキャッシュを大きくするとこんどは探すのに手間がかかるというｗ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">akimoto [17:22]
+リンクがありませんはなんなんですかね<hr>yoshimura [17:22]
+keyword: "697年" に "7年" へのリンクがありません<hr>yoshimura [17:22]
+説明しよう<hr>yoshimura [17:23]
+誰かがタイムマシーンで697年にいこうとして失敗してます<hr>akimoto [17:23]
+ｗｗｗ<hr>tamura [17:28]
+w
+</pre>
+
+<p>酔いが回ってきています。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [17:31]
+キャシュ使用率 20%.....w
+<code>mysql&gt; SELECT 
+   -&gt;   (SELECT VARIABLE_VALUE 
+   -&gt;   FROM 
+   -&gt;      INFORMATION_SCHEMA.GLOBAL_STATUS 
+   -&gt; WHERE 
+   -&gt;   VARIABLE_NAME = 'QCACHE_HITS')/(SELECT SUM(VARIABLE_VALUE) 
+   -&gt; FROM 
+   -&gt;   INFORMATION_SCHEMA.GLOBAL_STATUS 
+   -&gt; WHERE 
+   -&gt;   VARIABLE_NAME IN ('QCACHE_HITS','QCACHE_INSERTS','QCACHE_NOT_CACHED'))*100 AS CACHE_HIT_RATE;
++-------------------+
+| CACHE_HIT_RATE    |
++-------------------+
+| 21.39289678135405 |
++-------------------+
+1 row in set, 2 warnings (0.01 sec)</code>
+</pre>
+
+<p>ここでやっとどんなWebアプリなのかソースとデータを見始めます（遅い）</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [17:43]
+<code>== 他の紀年法 ==
+* 干支 : 己丑
+* 日本
+** 持統天皇3年
+** 皇紀1349年
+* 中国
+** 唐 : 永昌元年、載初元年
+* 朝鮮 :
+* ベトナム :
+* 仏滅紀元 :
+* ユダヤ暦 :
+
+== できごと ==
+*1月26日（持統天皇3年1月1日） - 人民を大極殿に朝賀させる
+*3月9日（持統天皇3年2月13日） - 防人を任期制・交代制とする
+
+== 誕生 ==
+* 行会、奈良時代の僧 (+ 没年未詳)
+* 孟浩然、唐の詩人 (+ 740年)
+* 良弁、奈良時代の華厳宗の僧、東大寺の開山 (+ 774年)
+
+== 死去 ==
+*5月7日（持統天皇3年4月13日） - 草壁皇子、飛鳥時代の皇太子（* 662年）
+* 黒歯常之、百済、唐の将軍 (* 生年未詳)
+* 李元名、唐の皇族 (* 生年未詳)
+* 李慎、唐の皇族 (* 生年未詳)
+* 盧照鄰、唐の詩人 (* 637年?)
+* キャドワラ、七王国時代ウェセックスの王(659年-)
+
+*</code><hr>tamura [17:52]
+今更ながらｗｗｗ
+<code>
+public function htmlify($content) {
+       if (!isset($content)) {
+           return '';
+       }
+       $keywords = $this-&gt;dbh-&gt;select_all(
+           'SELECT id, author_id, keyword, description, created_at, updated_at FROM entry ORDER BY keyword_length DESC'
+       );
+       $kw2sha = [];
+
+       // NOTE: avoid pcre limitation "regular expression is too large at offset"
+       for ($i = 0; !empty($kwtmp = array_slice($keywords, 500 * $i, 500)); $i++) {
+           $re = implode('|', array_map(function ($keyword) { return quotemeta($keyword['keyword']); }, $kwtmp));
+           preg_replace_callback("/($re)/", function ($m) use (&amp;$kw2sha) {
+               $kw = $m[1];
+               return $kw2sha[$kw] = "isuda_" . sha1($kw);
+           }, $content);
+       }
+       $content = strtr($content, $kw2sha);
+       $content = html_escape($content);
+       foreach ($kw2sha as $kw =&gt; $hash) {
+           $url = '/keyword/' . rawurlencode($kw);
+           $link = sprintf('&lt;a href="%s"&gt;%s&lt;/a&gt;', $url, html_escape($kw));
+
+           $content = preg_replace("/{$hash}/", $link, $content);
+       }
+       return nl2br($content, true);
+   }
+</code>
+このメソッドをどうにかしたほうがよかったかもｗｗｗ<hr>akimoto [17:52]
+うっは
+</pre>
+
+<p>そして競技終了へ</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [17:57]
+そろそろ締めの言葉をｗｗｗ<hr>yoshimura [17:57]
+www<hr>yoshimura [17:57]
+http://serif.hatelabo.jp/images/cache/7f3d64697952de37aeb4867c90a7db1b62237a1c/cc84ea4e20b16820b1d57b228e681987be73f839.gif
+<img  src="akirame.jpg"><hr>akimoto [17:57]
+カレーうまかったです。
+
+（100円にしては）<hr>yoshimura [17:58]
+ちべたいポテト食べきれませんでした。
+</pre>
+
+<p>寒さとの戦いは競技が終わっても続きます。</p>
+
+<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [18:00]
+あ受付にレンジありますよ<hr>yoshimura [18:01]
+レンジw？
+
+あぁw　ポテトかw<hr>tamura [18:01]
+つめたいポテトｗｗｗ<hr>yoshimura [18:01]
+てかここw　寒すぎなんすよw<hr>yoshimura [18:01]
+気持ち頭がいたいすw<hr>yoshimura [18:01]
+むかしは、あたまがいたいというと、
+それをいうならあたまがわるいだろ！おまえは！w<hr>yoshimura [18:01]
+とつっこまれてましたw<hr>tamura [18:02]
+前回も寒くなかったですか？ｗ<hr>yoshimura [18:02]
+ay's qualifier has ended
+
+ベンチできなくなったw　そりゃそうかw<hr>tamura [18:03]
+a、
+
+いつの間にか競技終了ｗｗｗｗ<hr>akimoto [18:03]
+時間切れですね<hr>yoshimura [18:03]
+前回もでしたっけw　今日は風が直でくるんすよw
+
+たむさんの上にありますからwww<hr>akimoto [18:03]
+vip 対応ですね<hr>yoshimura [18:03]
+これがvip wwww
+
+100円多く払ってるのにw
+
+喜ぶのあけぼのだけだろw
+</pre>
+
+<h3 id="20-00-2時間後">20:00 (2時間後)</h3>
+
+<p>信州炉端 串の蔵 新宿三丁目店
+<a href="http://r.gnavi.co.jp/j63c32w70000/">http://r.gnavi.co.jp/j63c32w70000/</a></p>
+
+<p>で鍋をいただきました。</p>
+
+<p>寒さが回復しなかったので酒は飲めませんでした・・・・。</p>
+
+<p>反省会をしていると、嫁さんからLINEが</p>
+
+<figure>
+    <img src="comment.jpg"
+         alt="comment"/> 
+</figure>
+
+
+<p>今日は予選です・・・・。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<ul>
+<li>Appear.inで顔を映しながらやるのはお勧めです</li>
+<li>だけどホントは会議室などでやるのがいいんでしょうね</li>
+<li>寒さ対策はしていったほうがいいです</li>
+<li>Go言語がんばろう・・・・</li>
+<li>gitで管理しておけばdiffくらいはすぐ取れたな～</li>
+</ul>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/09/19/isucon6/" data-id="b0984c51f35da41c2d1009f4e0194411" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          前のページ
+      </strong>
+      <div class="article-nav-title">Ubuntu14.04LTSにAndroidStudioをインストールする</div>
+    </a>
+    
+
+    
+    <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          次のページ
+      </strong>
+      <div class="article-nav-title">ISUCON反省会 nginx編</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "spf13" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        最新記事
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="title">昔のRedditをSBCLで動かすまで</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-04-09 02:01:00 &#43;0000 UTC" itemprop="datePublished">2018-04-09</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ghost">
+                        Ghost
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="title">GhostでIMEの変換候補の位置を直す</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-04 23:15:00 &#43;0000 UTC" itemprop="datePublished">2018-01-04</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="title">hexo化してみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2017-12-14 18:33:56 &#43;0000 UTC" itemprop="datePublished">2017-12-14</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/typescript">
+                        TypeScript
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="title">Reactを簡単に始める(create-react-app)</a></p>
+                    <p class="item-date">
+                        <time datetime="2017-12-12 19:00:00 &#43;0000 UTC" itemprop="datePublished">2017-12-12</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/coffeescript">
+                    coffeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/commmon-lisp">
+                    commmon-lisp
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/java">
+                    java
+                </a>
+                <span class="category-list-count">18</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
+                    linux
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/web">
+                    web
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ajp">
+                    ajp
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/androidstudio">
+                    androidstudio
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/apache">
+                    apache
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">7</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ca">
+                    ca
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/clojure">
+                    clojure
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/coffeeescript">
+                    coffeeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/database">
+                    database
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dbutils3">
+                    dbutils3
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/firebase">
+                    firebase
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/gitbucket">
+                    gitbucket
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/golang">
+                    golang
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/google-code-prettify">
+                    google-code-prettify
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hexo">
+                    hexo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/iot">
+                    iot
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/java">
+                    java
+                </a>
+                <span class="category-list-count">21</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javabeans">
+                    javabeans
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javascript">
+                    javascript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/jsf">
+                    jsf
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/json">
+                    json
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/linux">
+                    linux
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/markdown">
+                    markdown
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/maven">
+                    maven
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/mysql">
+                    mysql
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/nginx">
+                    nginx
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/octopress">
+                    octopress
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/openssl">
+                    openssl
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/org-mode">
+                    org-mode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/programming">
+                    programming
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/pullrequest">
+                    pullrequest
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/reverse-proxy">
+                    reverse-proxy
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/sql">
+                    sql
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ssl">
+                    ssl
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/tomcat">
+                    tomcat
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ubuntu">
+                    ubuntu
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/visualstudiocode">
+                    visualstudiocode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/web">
+                    web
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/xml">
+                    xml
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    オレオレ証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">
+                    オレオレ認証局
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    クライアント証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">
+                    サバフェス
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
+                    シンタックスハイライト
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">
+                    チューニング
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89">
+                    フロントエンド
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">
+                    プログラミング
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">
+                    リフレクション
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B">
+                    日本語入力
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ajp" style="font-size: 12px;">ajp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ca" style="font-size: 12px;">ca</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/clojure" style="font-size: 12px;">clojure</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/cocos2d-x" style="font-size: 12px;">cocos2d-x</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/coffeeescript" style="font-size: 12px;">coffeeescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/common-lisp" style="font-size: 12px;">common-lisp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/database" style="font-size: 12px;">database</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dbutils3" style="font-size: 12px;">dbutils3</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dropwizard" style="font-size: 12px;">dropwizard</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/emacs" style="font-size: 12px;">emacs</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/gitbucket" style="font-size: 12px;">gitbucket</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/go" style="font-size: 12px;">go</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/golang" style="font-size: 12px;">golang</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/google-code-prettify" style="font-size: 12px;">google-code-prettify</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hexo" style="font-size: 12px;">hexo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/isucon" style="font-size: 12px;">isucon</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javabeans" style="font-size: 12px;">javabeans</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/jsf" style="font-size: 12px;">jsf</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/json" style="font-size: 12px;">json</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/linux" style="font-size: 12px;">linux</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/markdown" style="font-size: 12px;">markdown</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/maven" style="font-size: 12px;">maven</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/memcached" style="font-size: 12px;">memcached</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/octopress" style="font-size: 12px;">octopress</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/openssl" style="font-size: 12px;">openssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/org-mode" style="font-size: 12px;">org-mode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/programming" style="font-size: 12px;">programming</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/spring-framework" style="font-size: 12px;">spring-framework</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/sql" style="font-size: 12px;">sql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ssl" style="font-size: 12px;">ssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/tomcat" style="font-size: 12px;">tomcat</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/web" style="font-size: 12px;">web</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/xml" style="font-size: 12px;">xml</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">オレオレ証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80" style="font-size: 12px;">オレオレ認証局</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">クライアント証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9" style="font-size: 12px;">サバフェス</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88" style="font-size: 12px;">シンタックスハイライト</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0" style="font-size: 12px;">チューニング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3" style="font-size: 12px;">ハッカソン</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" style="font-size: 12px;">フロントエンド</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" style="font-size: 12px;">プログラミング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" style="font-size: 12px;">リフレクション</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A" style="font-size: 12px;">勉強会</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" style="font-size: 12px;">日本語入力</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://tamurashingo.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://tamurashingo.github.io/js/script.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

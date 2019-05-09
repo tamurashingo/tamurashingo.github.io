@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Markdown on Web技術と親しむ</title>
+    <title>markdown on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/markdown/</link>
-    <description>Recent content in Markdown on Web技術と親しむ</description>
+    <description>Recent content in markdown on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 02 Aug 2016 21:45:42 +0000</lastBuildDate>
@@ -13,20 +13,37 @@
     
     <item>
       <title>Markdownでブログを書いてシンタックスハイライトする</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</link>
+      <link>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</link>
       <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</guid>
-      <description>tamuraです。 Markdownでブログを書く件の続きです。 前回はmarkedを使ってMarkdownをHTMLに変換しました。 今回はシン</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Markdownでブログを書く件の続きです。
+前回はmarkedを使ってMarkdownをHTMLに変換しました。
+今回はシンタックスハイライトについてです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/google/code-prettify&#34;&gt;google-code-prettify&lt;/a&gt;(正式名称はJavascript code prettifierでしょうか？)を使います。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Markdownでブログを書く</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</link>
       <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</guid>
-      <description>tamuraです。 以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。 livedoor blogなどのいわゆる一般向けのブロ</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。
+livedoor blogなどのいわゆる一般向けのブログサービスはMarkdown形式でブログを書けないため、ここ数日いろいろと検討して、いい感じにブログが書けるようになりました。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Markdownでブログを書く (Visual Studio Codeがいいかも)&lt;/li&gt;
+&lt;li&gt;markedでHTMLに変換する&lt;/li&gt;
+&lt;li&gt;livedoor blogにHTMLタグ編集モードで書き込む&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでやっています。&lt;/p&gt;</description>
     </item>
     
   </channel>

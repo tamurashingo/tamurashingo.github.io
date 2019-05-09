@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/blog/</link>
+    <description>Recent content in blog on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 14 Dec 2017 18:33:56 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hexo化してみました</title>
+      <link>https://tamurashingo.github.io/post/2017/12/14/hexo/</link>
+      <pubDate>Thu, 14 Dec 2017 18:33:56 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/12/14/hexo/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;blogをhexoでやってみることにしました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdownでブログを書いてシンタックスハイライトする</title>
+      <link>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</link>
+      <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Markdownでブログを書く件の続きです。
+前回はmarkedを使ってMarkdownをHTMLに変換しました。
+今回はシンタックスハイライトについてです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/google/code-prettify&#34;&gt;google-code-prettify&lt;/a&gt;(正式名称はJavascript code prettifierでしょうか？)を使います。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdownでブログを書く</title>
+      <link>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</link>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。
+livedoor blogなどのいわゆる一般向けのブログサービスはMarkdown形式でブログを書けないため、ここ数日いろいろと検討して、いい感じにブログが書けるようになりました。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Markdownでブログを書く (Visual Studio Codeがいいかも)&lt;/li&gt;
+&lt;li&gt;markedでHTMLに変換する&lt;/li&gt;
+&lt;li&gt;livedoor blogにHTMLタグ編集モードで書き込む&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでやっています。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ghostを入れる</title>
+      <link>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</link>
+      <pubDate>Wed, 18 Feb 2015 04:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;blogをGhostにしたので、インストール手順を簡単に紹介します。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OctopressからGhostへ移行</title>
+      <link>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</link>
+      <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</guid>
+      <description>&lt;p&gt;tamuraです。
+blogシステムを&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt;から&lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;に移行しました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>init - Octopress</title>
+      <link>https://tamurashingo.github.io/post/2015/02/13/octopress/</link>
+      <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/13/octopress/</guid>
+      <description>curl -sSL https://get.rvm.io | bash -s stable &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境</description>
+    </item>
+    
+  </channel>
+</rss>

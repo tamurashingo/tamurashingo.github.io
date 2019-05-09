@@ -13,11 +13,12 @@
     
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</link>
+      <link>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</link>
       <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
-      <description>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、 HelloWorldプロジェクトを作るまでの記録です。</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
+      <description>&lt;p&gt;Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
+HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</description>
     </item>
     
   </channel>

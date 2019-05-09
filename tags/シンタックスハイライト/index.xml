@@ -13,11 +13,17 @@
     
     <item>
       <title>Markdownでブログを書いてシンタックスハイライトする</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</link>
+      <link>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</link>
       <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</guid>
-      <description>tamuraです。 Markdownでブログを書く件の続きです。 前回はmarkedを使ってMarkdownをHTMLに変換しました。 今回はシン</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Markdownでブログを書く件の続きです。
+前回はmarkedを使ってMarkdownをHTMLに変換しました。
+今回はシンタックスハイライトについてです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/google/code-prettify&#34;&gt;google-code-prettify&lt;/a&gt;(正式名称はJavascript code prettifierでしょうか？)を使います。&lt;/p&gt;</description>
     </item>
     
   </channel>

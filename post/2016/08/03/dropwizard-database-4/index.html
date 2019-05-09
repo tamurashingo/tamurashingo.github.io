@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <title>Dropwizardでデータベースpart4 &middot; Web技術と親しむ</title>
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="tamura shingo">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/"/>
+    <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
+    <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/monokai.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/fancybox/jquery.fancybox.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Dropwizardでデータベースpart4" />
+<meta property="og:description" content="tamuraです。
+
+今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。
+
+
+Dropwizardを使ってみる
+Dropwizardでデータベースpart1
+Dropwizardでデータベースpart2
+Dropwizardでデータベースpart3
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/" />
+<meta property="article:published_time" content="2016-08-03T22:06:15&#43;00:00"/>
+<meta property="article:modified_time" content="2016-08-03T22:06:15&#43;00:00"/>
+
+    
+    
+<meta itemprop="name" content="Dropwizardでデータベースpart4">
+<meta itemprop="description" content="tamuraです。
+
+今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。
+
+
+Dropwizardを使ってみる
+Dropwizardでデータベースpart1
+Dropwizardでデータベースpart2
+Dropwizardでデータベースpart3
+">
+
+
+<meta itemprop="datePublished" content="2016-08-03T22:06:15&#43;00:00" />
+<meta itemprop="dateModified" content="2016-08-03T22:06:15&#43;00:00" />
+<meta itemprop="wordCount" content="2351">
+
+
+
+<meta itemprop="keywords" content="Java,Dropwizard," />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dropwizardでデータベースpart4"/>
+<meta name="twitter:description" content="tamuraです。
+
+今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。
+
+
+Dropwizardを使ってみる
+Dropwizardでデータベースpart1
+Dropwizardでデータベースpart2
+Dropwizardでデータベースpart3
+"/>
+<meta name="twitter:site" content="@tamura_shingo"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://tamurashingo.github.io/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://tamurashingo.github.io/css/images/logo.png')"></i>
+          
+          <span class="site-title">Web技術と親しむ</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://tamurashingo.github.io/img/main/face.jpg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="検索">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://tamurashingo.github.io/img/main/face.jpg">
+      
+      <h2 id="name">tamura shingo</h2>
+      <h3 id="title">Java, JavaScript, Common Lisp...</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Saitama, Japan</span>
+      
+          <a id="follow" href="https://github.com/tamurashingo">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        57
+        <span>記事</span>
+      </div>
+      <div class="article-info-block">
+        
+          63
+        
+        <span>
+            タグ
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/tamurashingo" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/tamurashingo" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/tamura_shingo" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://tamurashingo.github.io/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
+    <h1 class="article-title" itemprop="name">
+        Dropwizardでデータベースpart4
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-03 22:06:15 &#43;0000 UTC" itemprop="datePublished">2016-08-03</time>
+            &middot;
+            2351
+            文字
+            &middot;
+            5
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>tamuraです。</p>
+
+<p>今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。</p>
+
+<ul>
+<li><a href="/post/2015/06/10/dropwizard/">Dropwizardを使ってみる</a></li>
+<li><a href="/post/2015/06/10/dropwizard-database-1/">Dropwizardでデータベースpart1</a></li>
+<li><a href="/post/2015/06/12/dropwizard-database-2/">Dropwizardでデータベースpart2</a></li>
+<li><a href="/post/2015/06/13/dropwizard-database-3/">Dropwizardでデータベースpart3</a></li>
+</ul>
+
+<h2 id="構成の変更">構成の変更</h2>
+
+<h3 id="abstractdaoの作成">AbstractDAOの作成</h3>
+
+<p>DAOの中で別のDAOを生成できるように、基底クラスを作ります。
+またトランザクション制御を行えるようにしてあります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.CreateSqlObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.mixins.Transactional</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractDAO</span> <span class="kd">implements</span> <span class="n">Transactional</span><span class="o">&lt;</span><span class="n">AbstractDAO</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@CreateSqlObject</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">MessageDAO</span> <span class="nf">createMessageDAO</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="messagedaoの変更">MessageDAOの変更</h3>
+
+<p>今まであった<code>MessageDAO</code>を<code>interface</code>から<code>abstract class</code>に変更します。
+あと、今まで実装(?)は<code>MessageDAOMySQLImpl</code>で行っていたのですが、ちょっとうまくできなかったのでこのクラスでSQLを実装しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.Bind</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.SqlQuery</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.SqlUpdate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.customizers.Mapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.customizers.SingleValueResult</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.Saying</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao.mapper.SayingMapper</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.common.base.Optional</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">MessageDAO</span> <span class="kd">extends</span> <span class="n">AbstractDAO</span> <span class="o">{</span>
+
+    <span class="nd">@SingleValueResult</span><span class="o">(</span><span class="n">Saying</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="nd">@SqlQuery</span><span class="o">(</span>
+              <span class="s">&#34; select &#34;</span>
+            <span class="o">+</span> <span class="s">&#34;   message &#34;</span>
+            <span class="o">+</span> <span class="s">&#34; from &#34;</span>
+            <span class="o">+</span> <span class="s">&#34;   m_message &#34;</span>
+            <span class="o">+</span> <span class="s">&#34; where &#34;</span>
+            <span class="o">+</span> <span class="s">&#34;   id = :messageId &#34;</span>
+    <span class="o">)</span>
+    <span class="nd">@Mapper</span><span class="o">(</span><span class="n">SayingMapper</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="nf">getMessage</span><span class="o">(</span><span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;messageId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">messageId</span><span class="o">);</span>
+
+    <span class="nd">@SqlUpdate</span><span class="o">(</span>
+              <span class="s">&#34; update &#34;</span>
+            <span class="o">+</span> <span class="s">&#34;   m_message &#34;</span>
+            <span class="o">+</span> <span class="s">&#34; set &#34;</span>
+            <span class="o">+</span> <span class="s">&#34;   message = :message &#34;</span>
+            <span class="o">+</span> <span class="s">&#34; where &#34;</span>
+            <span class="o">+</span> <span class="s">&#34;   id = :messageId &#34;</span>
+    <span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">updateMessage</span><span class="o">(</span><span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;messageId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">messageId</span><span class="o">,</span> <span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h3 id="helloworldresourceの変更">HelloWorldResourceの変更</h3>
+
+<p>まずはコンストラクタで<code>AbstractDAO</code>を受け取ります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Path</span><span class="o">(</span><span class="s">&#34;/hello-world&#34;</span><span class="o">)</span>
+<span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">AbstractDAO</span> <span class="n">dao</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Saying</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Saying</span><span class="o">(</span><span class="s">&#34;hello world&#34;</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="nf">HelloWorldResource</span><span class="o">(</span><span class="n">AbstractDAO</span> <span class="n">dao</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">dao</span> <span class="o">=</span> <span class="n">dao</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></div>
+<p>つぎに<code>sayHello</code>メソッドを変更します。
+今まで<code>MessageDAO</code>をそのまま使っていましたが、<code>AbstractDAO#createMessageDAO</code>で<code>MessageDAO</code>を生成するようにします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@GET</span>
+    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">sayHello</span><span class="o">(</span><span class="nd">@QueryParam</span><span class="o">(</span><span class="s">&#34;messageid&#34;</span><span class="o">)</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">messageId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">messageId</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">createMessageDAO</span><span class="o">();</span>
+            <span class="k">return</span> <span class="n">messageDAO</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="n">messageId</span><span class="o">.</span><span class="na">get</span><span class="o">()).</span><span class="na">or</span><span class="o">(</span><span class="n">defaultValue</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">defaultValue</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></div>
+<p><code>updateHello</code>も同じように変更します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@POST</span>
+    <span class="nd">@Consumes</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">updateHello</span><span class="o">(</span><span class="n">MultivaluedMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">formParams</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">formParams</span><span class="o">.</span><span class="na">getFirst</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">);</span>
+
+        <span class="n">dao</span><span class="o">.</span><span class="na">inTransaction</span><span class="o">(</span><span class="k">new</span> <span class="n">Transaction</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">,</span> <span class="n">AbstractDAO</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="n">Void</span> <span class="nf">inTransaction</span><span class="o">(</span><span class="n">AbstractDAO</span> <span class="n">transactional</span><span class="o">,</span> <span class="n">TransactionStatus</span> <span class="n">status</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+                <span class="n">transactional</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+                <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="o">.</span><span class="na">createMessageDAO</span><span class="o">();</span>
+                <span class="n">messageDAO</span><span class="o">.</span><span class="na">updateMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+                <span class="n">transactional</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="k">return</span> <span class="n">sayHello</span><span class="o">(</span><span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">));</span>
+    <span class="o">}</span></code></pre></div>
+<h3 id="helloworldapplicationの変更">HelloWorldApplicationの変更</h3>
+
+<p><code>HelloWorldResource</code>の呼び出し方を変更します。
+具体的には<code>AbstractDAO</code>を渡すように変更しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">HelloWorldConfiguration</span> <span class="n">configuration</span><span class="o">,</span> <span class="n">Environment</span> <span class="n">environment</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">DBIFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBIFactory</span><span class="o">();</span>
+        <span class="kd">final</span> <span class="n">DBI</span> <span class="n">jdbi</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">environment</span><span class="o">,</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getDataSourceFactory</span><span class="o">(),</span> <span class="s">&#34;helloworlddb&#34;</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="n">AbstractDAO</span> <span class="n">dao</span> <span class="o">=</span> <span class="n">jdbi</span><span class="o">.</span><span class="na">onDemand</span><span class="o">(</span><span class="n">AbstractDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+        <span class="n">environment</span><span class="o">.</span><span class="na">jersey</span><span class="o">().</span><span class="na">register</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloWorldResource</span><span class="o">(</span><span class="n">dao</span><span class="o">));</span>
+    <span class="o">}</span></code></pre></div>
+<p>これで実行すると、<a href="/post/2015/06/13/dropwizard-database-3/">前回</a>と同じ結果が得られます。</p>
+
+<h2 id="テーブルの追加">テーブルの追加</h2>
+
+<p>migrations.xmlを使ってテーブルを追加します。
+<code>M_MESSAGE</code>を更新した際にバックアップを格納するテーブルです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;databaseChangeLog</span>
+    <span class="na">xmlns=</span><span class="s">&#34;http://www.liquibase.org/xml/ns/dbchangelog&#34;</span>
+    <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd&#34;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;changeSet</span> <span class="na">id=</span><span class="s">&#34;1&#34;</span> <span class="na">author=</span><span class="s">&#34;tamura.shingo&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&#34;m_message&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;id&#34;</span> <span class="na">type=</span><span class="s">&#34;char(5)&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constraints</span> <span class="na">primaryKey=</span><span class="s">&#34;true&#34;</span> <span class="na">nullable=</span><span class="s">&#34;false&#34;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/column&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;message&#34;</span> <span class="na">type=</span><span class="s">&#34;varchar(255)&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/createTable&gt;</span>
+  <span class="nt">&lt;/changeSet&gt;</span>
+
+  <span class="nt">&lt;changeSet</span> <span class="na">id=</span><span class="s">&#34;2&#34;</span> <span class="na">author=</span><span class="s">&#34;tamura.shingo&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;insert</span> <span class="na">tableName=</span><span class="s">&#34;m_message&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;id&#34;</span> <span class="na">value=</span><span class="s">&#34;00001&#34;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;message&#34;</span> <span class="na">value=</span><span class="s">&#34;hello&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/insert&gt;</span>
+    <span class="nt">&lt;insert</span> <span class="na">tableName=</span><span class="s">&#34;m_message&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;id&#34;</span> <span class="na">value=</span><span class="s">&#34;00002&#34;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;message&#34;</span> <span class="na">value=</span><span class="s">&#34;こんにちは&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/insert&gt;</span>
+    <span class="nt">&lt;insert</span> <span class="na">tableName=</span><span class="s">&#34;m_message&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;id&#34;</span> <span class="na">value=</span><span class="s">&#34;00003&#34;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;message&#34;</span> <span class="na">value=</span><span class="s">&#34;bonjour&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/insert&gt;</span>
+  <span class="nt">&lt;/changeSet&gt;</span>
+
+  <span class="nt">&lt;changeSet</span> <span class="na">id=</span><span class="s">&#34;3&#34;</span> <span class="na">author=</span><span class="s">&#34;tamura.shingo&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&#34;h_message&#34;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;history_id&#34;</span> <span class="na">type=</span><span class="s">&#34;BIGINT&#34;</span> <span class="na">autoIncrement=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;constraints</span> <span class="na">primaryKey=</span><span class="s">&#34;true&#34;</span> <span class="na">nullable=</span><span class="s">&#34;false&#34;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;/column&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;id&#34;</span> <span class="na">type=</span><span class="s">&#34;char(5)&#34;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;message&#34;</span> <span class="na">type=</span><span class="s">&#34;varchar(255)&#34;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&#34;updateDate&#34;</span> <span class="na">type=</span><span class="s">&#34;datetime&#34;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/createTable&gt;</span>
+  <span class="nt">&lt;/changeSet&gt;</span>
+<span class="nt">&lt;/databaseChangeLog&gt;</span></code></pre></div>
+<p>これをマイグレーションします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ java -jar target/helloworld-0.0.1-SNAPSHOT.jar db migrate hello-world.yml
+INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">15</span>:16:17,876<span class="o">]</span> liquibase: Successfully acquired change log lock
+INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">15</span>:16:18,351<span class="o">]</span> liquibase: Reading from helloworld.DATABASECHANGELOG
+INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">15</span>:16:18,384<span class="o">]</span> liquibase: migrations.xml: <span class="m">3</span>::tamura.shingo: Table h_message created
+INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">15</span>:16:18,385<span class="o">]</span> liquibase: migrations.xml: <span class="m">3</span>::tamura.shingo: ChangeSet migrations.xml::3::tamura.shingo ran successfully in 9ms
+INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">15</span>:16:18,395<span class="o">]</span> liquibase: Successfully released change log lock</code></pre></div>
+<h2 id="daoの追加">DAOの追加</h2>
+
+<p>この<code>H_MESSAGE</code>を処理するDAOを作っていきます。
+こんな感じです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.Bind</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.SqlUpdate</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">HistoryDAO</span> <span class="kd">extends</span> <span class="n">AbstractDAO</span> <span class="o">{</span>
+
+    <span class="nd">@SqlUpdate</span><span class="o">(</span>
+            <span class="s">&#34; insert into &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   h_message &#34;</span>
+          <span class="o">+</span> <span class="s">&#34; ( &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   id, &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   message, &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   updateDate &#34;</span>
+          <span class="o">+</span> <span class="s">&#34; ) &#34;</span>
+          <span class="o">+</span> <span class="s">&#34; values ( &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   :messageId, &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   :message, &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;   now() &#34;</span>
+          <span class="o">+</span> <span class="s">&#34; ) &#34;</span>
+    <span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">backupMessage</span><span class="o">(</span><span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;messageId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">messageId</span><span class="o">,</span> <span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+
+<span class="o">}</span></code></pre></div>
+<p>また、<code>AbstractDAO</code>にこの<code>HistoryDAO</code>を生成する処理を追加しておきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.CreateSqlObject</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.mixins.Transactional</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractDAO</span> <span class="kd">implements</span> <span class="n">Transactional</span><span class="o">&lt;</span><span class="n">AbstractDAO</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@CreateSqlObject</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">MessageDAO</span> <span class="nf">createMessageDAO</span><span class="o">();</span>
+
+    <span class="nd">@CreateSqlObject</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">HistoryDAO</span> <span class="nf">createHistoryDAO</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="メインロジック">メインロジック</h2>
+
+<p>以下の要領で作っていきます。</p>
+
+<ul>
+<li><code>00001</code>の<code>message</code>を更新</li>
+<li><code>m_message</code>に既存の値があった場合は、<code>h_message</code>に入れる</li>
+<li><code>exception</code>という更新値がきた場合は例外を発生させる(rollbackの確認用)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@POST</span>
+    <span class="nd">@Consumes</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">updateHello</span><span class="o">(</span><span class="n">MultivaluedMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">formParams</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">formParams</span><span class="o">.</span><span class="na">getFirst</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">);</span>
+
+        <span class="n">dao</span><span class="o">.</span><span class="na">inTransaction</span><span class="o">(</span><span class="k">new</span> <span class="n">Transaction</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">,</span> <span class="n">AbstractDAO</span><span class="o">&gt;()</span> <span class="o">{</span>
+
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="n">Void</span> <span class="nf">inTransaction</span><span class="o">(</span><span class="n">AbstractDAO</span> <span class="n">transactional</span><span class="o">,</span> <span class="n">TransactionStatus</span> <span class="n">status</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+                <span class="n">transactional</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+                <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="o">.</span><span class="na">createMessageDAO</span><span class="o">();</span>
+                <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="n">oldMessage</span> <span class="o">=</span> <span class="n">messageDAO</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">oldMessage</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">Saying</span> <span class="n">oldMessageContent</span> <span class="o">=</span> <span class="n">oldMessage</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+                    <span class="n">HistoryDAO</span> <span class="n">historyDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="o">.</span><span class="na">createHistoryDAO</span><span class="o">();</span>
+                    <span class="n">historyDAO</span><span class="o">.</span><span class="na">backupMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">,</span> <span class="n">oldMessageContent</span><span class="o">.</span><span class="na">getGreeting</span><span class="o">());</span>
+                <span class="o">}</span>
+
+                <span class="n">messageDAO</span><span class="o">.</span><span class="na">updateMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="s">&#34;exception&#34;</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="o">(</span><span class="s">&#34;このタイミングで例外かよ。。。。&#34;</span><span class="o">);</span>
+                <span class="o">}</span>
+
+                <span class="n">transactional</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="k">return</span> <span class="n">sayHello</span><span class="o">(</span><span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">));</span>
+    <span class="o">}</span></code></pre></div>
+<p>これで完成です。</p>
+
+<h2 id="実行">実行</h2>
+
+<p>起動します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ java -jar target/helloworld-0.0.1-SNAPSHOT.jar server hello-world.yml
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:58,904<span class="o">]</span> org.eclipse.jetty.util.log: Logging initialized @798ms
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,032<span class="o">]</span> io.dropwizard.server.ServerFactory: Starting HelloWorldApplication
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,073<span class="o">]</span> org.eclipse.jetty.setuid.SetUIDListener: Opened application@ab7a938<span class="o">{</span>HTTP/1.1<span class="o">}{</span><span class="m">0</span>.0.0.0:8080<span class="o">}</span>
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,074<span class="o">]</span> org.eclipse.jetty.setuid.SetUIDListener: Opened admin@3faf2e7d<span class="o">{</span>HTTP/1.1<span class="o">}{</span><span class="m">0</span>.0.0.0:8081<span class="o">}</span>
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,076<span class="o">]</span> org.eclipse.jetty.server.Server: jetty-9.2.z-SNAPSHOT
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,674<span class="o">]</span> io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found <span class="k">for</span> the configured resources:
+
+    GET     /hello-world <span class="o">(</span>com.github.tamurashingo.dropwizard.helloworld.HelloWorldResource<span class="o">)</span>
+    POST    /hello-world <span class="o">(</span>com.github.tamurashingo.dropwizard.helloworld.HelloWorldResource<span class="o">)</span>
+
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,678<span class="o">]</span> org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@359b650b<span class="o">{</span>/,null,AVAILABLE<span class="o">}</span>
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,683<span class="o">]</span> io.dropwizard.setup.AdminEnvironment: <span class="nv">tasks</span> <span class="o">=</span>
+
+    POST    /tasks/log-level <span class="o">(</span>io.dropwizard.servlets.tasks.LogConfigurationTask<span class="o">)</span>
+    POST    /tasks/gc <span class="o">(</span>io.dropwizard.servlets.tasks.GarbageCollectionTask<span class="o">)</span>
+
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,687<span class="o">]</span> org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@46d9aec8<span class="o">{</span>/,null,AVAILABLE<span class="o">}</span>
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,739<span class="o">]</span> org.eclipse.jetty.server.ServerConnector: Started application@ab7a938<span class="o">{</span>HTTP/1.1<span class="o">}{</span><span class="m">0</span>.0.0.0:8080<span class="o">}</span>
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,752<span class="o">]</span> org.eclipse.jetty.server.ServerConnector: Started admin@3faf2e7d<span class="o">{</span>HTTP/1.1<span class="o">}{</span><span class="m">0</span>.0.0.0:8081<span class="o">}</span>
+INFO  <span class="o">[</span><span class="m">2016</span>-07-13 <span class="m">17</span>:48:59,752<span class="o">]</span> org.eclipse.jetty.server.Server: Started @1647ms</code></pre></div>
+<h3 id="更新">更新</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -d <span class="nv">message</span><span class="o">=</span>GoodAfternoon -i -L http://localhost:8080/hello-world
+HTTP/1.1 <span class="m">200</span> OK
+Date: Wed, <span class="m">13</span> Jul <span class="m">2016</span> <span class="m">17</span>:51:48 GMT
+Content-Type: application/json
+Content-Length: <span class="m">28</span>
+
+<span class="o">{</span><span class="s2">&#34;greeting&#34;</span>:<span class="s2">&#34;GoodAfternoon&#34;</span><span class="o">}</span></code></pre></div>
+<h4 id="ログ">ログ</h4>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">0:0:0:0:0:0:0:1 - - [13/7/2016:17:51:48 +0000] &#34;POST /hello-world HTTP/1.1&#34; 200 28 &#34;-&#34; &#34;curl/7.30.0&#34; 10</code></pre></div>
+<h4 id="mysql">MySQL</h4>
+<div class="highlight"><pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">m_message</span><span class="p">;</span>
+<span class="o">+-------+---------------+</span>
+<span class="o">|</span> <span class="n">id</span>    <span class="o">|</span> <span class="n">message</span>       <span class="o">|</span>
+<span class="o">+-------+---------------+</span>
+<span class="o">|</span> <span class="mi">00001</span> <span class="o">|</span> <span class="n">GoodAfternoon</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">00002</span> <span class="o">|</span> <span class="err">こんにちは</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">00003</span> <span class="o">|</span> <span class="n">bonjour</span>       <span class="o">|</span>
+<span class="o">+-------+---------------+</span>
+<span class="mi">3</span> <span class="n">rows</span> <span class="k">in</span> <span class="kt">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">h_message</span><span class="p">;</span>
+<span class="o">+------------+-------+---------+---------------------+</span>
+<span class="o">|</span> <span class="n">history_id</span> <span class="o">|</span> <span class="n">id</span>    <span class="o">|</span> <span class="n">message</span> <span class="o">|</span> <span class="n">updateDate</span>          <span class="o">|</span>
+<span class="o">+------------+-------+---------+---------------------+</span>
+<span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span> <span class="mi">00001</span> <span class="o">|</span> <span class="n">hello</span>   <span class="o">|</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">14</span> <span class="mi">02</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">48</span> <span class="o">|</span>
+<span class="o">+------------+-------+---------+---------------------+</span>
+<span class="mi">1</span> <span class="n">row</span> <span class="k">in</span> <span class="kt">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span></code></pre></div>
+<h3 id="例外発生">例外発生</h3>
+
+<p><code>exception</code>というキーワードを与えて、内部で例外を発生させてみます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -d <span class="nv">message</span><span class="o">=</span>exception -i -L http://localhost:8080/hello-world
+HTTP/1.1 <span class="m">500</span> Internal Server Error
+Date: Wed, <span class="m">13</span> Jul <span class="m">2016</span> <span class="m">17</span>:53:12 GMT
+Content-Type: application/json
+Content-Length: <span class="m">110</span>
+
+<span class="o">{</span><span class="s2">&#34;code&#34;</span>:500,<span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;There was an error processing your request. It has been logged (ID 1cf9824636cfbf6c).&#34;</span><span class="o">}</span></code></pre></div>
+<h4 id="ログ-1">ログ</h4>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">0:0:0:0:0:0:0:1 - - [13/7/2016:17:53:12 +0000] &#34;POST /hello-world HTTP/1.1&#34; 500 110 &#34;-&#34; &#34;curl/7.30.0&#34; 11
+ERROR [2016-07-13 17:53:12,657] io.dropwizard.jersey.errors.LoggingExceptionMapper: Error handling a request: 1cf9824636cfbf6c
+! java.lang.Exception: このタイミングで例外かよ。。。。
+! at com.github.tamurashingo.dropwizard.helloworld.HelloWorldResource$1.inTransaction(HelloWorldResource.java:66) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at com.github.tamurashingo.dropwizard.helloworld.HelloWorldResource$1.inTransaction(HelloWorldResource.java:50) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.skife.jdbi.v2.sqlobject.InTransactionHandler$1.inTransaction(InTransactionHandler.java:37) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.skife.jdbi.v2.tweak.transactions.LocalTransactionHandler.inTransaction(LocalTransactionHandler.java:184) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! ... 62 common frames omitted
+! Causing: org.skife.jdbi.v2.exceptions.TransactionFailedException: Transaction failed do to exception being thrown from within the callback. See cause for the original exception.
+! at org.skife.jdbi.v2.tweak.transactions.LocalTransactionHandler.inTransaction(LocalTransactionHandler.java:195) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.skife.jdbi.v2.BasicHandle.inTransaction(BasicHandle.java:327) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.skife.jdbi.v2.sqlobject.InTransactionHandler.invoke(InTransactionHandler.java:32) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.skife.jdbi.v2.sqlobject.SqlObject.invoke(SqlObject.java:175) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.skife.jdbi.v2.sqlobject.SqlObject$1.intercept(SqlObject.java:75) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at com.github.tamurashingo.dropwizard.helloworld.dao.AbstractDAO$$EnhancerByCGLIB$$631a84fe.inTransaction(&lt;generated&gt;) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at com.github.tamurashingo.dropwizard.helloworld.HelloWorldResource.updateHello(HelloWorldResource.java:50) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_31]
+! at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_31]
+! at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_31]
+! at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_31]
+! at org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory$1.invoke(ResourceMethodInvocationHandlerFactory.java:81) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:164) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:181) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$TypeOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:203) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:101) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:389) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:347) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:102) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.ServerRuntime$2.run(ServerRuntime.java:305) ~[helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:271) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.internal.Errors$1.call(Errors.java:267) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:315) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:297) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.internal.Errors.process(Errors.java:267) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:317) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:288) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:1110) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:401) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:386) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:335) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:222) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at io.dropwizard.jetty.NonblockingServletHolder.handle(NonblockingServletHolder.java:49) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1669) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlets.UserAgentFilter.doFilter(UserAgentFilter.java:83) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlets.GzipFilter.doFilter(GzipFilter.java:300) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at io.dropwizard.jetty.BiDiGzipFilter.doFilter(BiDiGzipFilter.java:134) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at io.dropwizard.servlets.ThreadNameFilter.doFilter(ThreadNameFilter.java:29) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.handle(AllowedMethodsFilter.java:44) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at io.dropwizard.jersey.filter.AllowedMethodsFilter.doFilter(AllowedMethodsFilter.java:39) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1652) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:585) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1127) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:515) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1061) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at com.codahale.metrics.jetty9.InstrumentedHandler.handle(InstrumentedHandler.java:240) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at io.dropwizard.jetty.RoutingHandler.handle(RoutingHandler.java:51) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.RequestLogHandler.handle(RequestLogHandler.java:95) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:159) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.Server.handle(Server.java:497) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:310) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:257) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:540) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555) [helloworld-0.0.1-SNAPSHOT.jar:na]
+! at java.lang.Thread.run(Thread.java:745) [na:1.8.0_31]</code></pre></div>
+<h4 id="mysql-1">MySQL</h4>
+
+<p>ちゃんとrollbackされていました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">m_message</span><span class="p">;</span>
+<span class="o">+-------+---------------+</span>
+<span class="o">|</span> <span class="n">id</span>    <span class="o">|</span> <span class="n">message</span>       <span class="o">|</span>
+<span class="o">+-------+---------------+</span>
+<span class="o">|</span> <span class="mi">00001</span> <span class="o">|</span> <span class="n">GoodAfternoon</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">00002</span> <span class="o">|</span> <span class="err">こんにちは</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="mi">00003</span> <span class="o">|</span> <span class="n">bonjour</span>       <span class="o">|</span>
+<span class="o">+-------+---------------+</span>
+<span class="mi">3</span> <span class="n">rows</span> <span class="k">in</span> <span class="kt">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">h_message</span><span class="p">;</span>
+<span class="o">+------------+-------+---------+---------------------+</span>
+<span class="o">|</span> <span class="n">history_id</span> <span class="o">|</span> <span class="n">id</span>    <span class="o">|</span> <span class="n">message</span> <span class="o">|</span> <span class="n">updateDate</span>          <span class="o">|</span>
+<span class="o">+------------+-------+---------+---------------------+</span>
+<span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span> <span class="mi">00001</span> <span class="o">|</span> <span class="n">hello</span>   <span class="o">|</span> <span class="mi">2016</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">14</span> <span class="mi">02</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">48</span> <span class="o">|</span>
+<span class="o">+------------+-------+---------+---------------------+</span>
+<span class="mi">1</span> <span class="n">row</span> <span class="k">in</span> <span class="kt">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+
+<p>以下の方法でDropwizard JDBIで複数のDAOを扱うことができました。</p>
+
+<ul>
+<li><code>AbstractDAO</code>で各DAOを生成するメソッドを宣言する</li>
+<li>各DAOは<code>AbstractDAO</code>を基底クラスにする</li>
+</ul>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/" data-id="78aad533aace3544c91e56c8d7526917" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          前のページ
+      </strong>
+      <div class="article-nav-title">Markdownでブログを書いてシンタックスハイライトする</div>
+    </a>
+    
+
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          次のページ
+      </strong>
+      <div class="article-nav-title">Ubuntu14.04LTSにAndroidStudioをインストールする</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "spf13" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        最新記事
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="title">昔のRedditをSBCLで動かすまで</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-04-09 02:01:00 &#43;0000 UTC" itemprop="datePublished">2018-04-09</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ghost">
+                        Ghost
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="title">GhostでIMEの変換候補の位置を直す</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-04 23:15:00 &#43;0000 UTC" itemprop="datePublished">2018-01-04</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="title">hexo化してみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2017-12-14 18:33:56 &#43;0000 UTC" itemprop="datePublished">2017-12-14</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/typescript">
+                        TypeScript
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="title">Reactを簡単に始める(create-react-app)</a></p>
+                    <p class="item-date">
+                        <time datetime="2017-12-12 19:00:00 &#43;0000 UTC" itemprop="datePublished">2017-12-12</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/coffeescript">
+                    coffeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/commmon-lisp">
+                    commmon-lisp
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/java">
+                    java
+                </a>
+                <span class="category-list-count">18</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
+                    linux
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/web">
+                    web
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ajp">
+                    ajp
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/androidstudio">
+                    androidstudio
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/apache">
+                    apache
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">7</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ca">
+                    ca
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/clojure">
+                    clojure
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/coffeeescript">
+                    coffeeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/database">
+                    database
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dbutils3">
+                    dbutils3
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/firebase">
+                    firebase
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/gitbucket">
+                    gitbucket
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/golang">
+                    golang
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/google-code-prettify">
+                    google-code-prettify
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hexo">
+                    hexo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/iot">
+                    iot
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/java">
+                    java
+                </a>
+                <span class="category-list-count">21</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javabeans">
+                    javabeans
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javascript">
+                    javascript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/jsf">
+                    jsf
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/json">
+                    json
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/linux">
+                    linux
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/markdown">
+                    markdown
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/maven">
+                    maven
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/mysql">
+                    mysql
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/nginx">
+                    nginx
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/octopress">
+                    octopress
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/openssl">
+                    openssl
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/org-mode">
+                    org-mode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/programming">
+                    programming
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/pullrequest">
+                    pullrequest
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/reverse-proxy">
+                    reverse-proxy
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/sql">
+                    sql
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ssl">
+                    ssl
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/tomcat">
+                    tomcat
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ubuntu">
+                    ubuntu
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/visualstudiocode">
+                    visualstudiocode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/web">
+                    web
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/xml">
+                    xml
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    オレオレ証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">
+                    オレオレ認証局
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    クライアント証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">
+                    サバフェス
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
+                    シンタックスハイライト
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">
+                    チューニング
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89">
+                    フロントエンド
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">
+                    プログラミング
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">
+                    リフレクション
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B">
+                    日本語入力
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ajp" style="font-size: 12px;">ajp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ca" style="font-size: 12px;">ca</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/clojure" style="font-size: 12px;">clojure</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/cocos2d-x" style="font-size: 12px;">cocos2d-x</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/coffeeescript" style="font-size: 12px;">coffeeescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/common-lisp" style="font-size: 12px;">common-lisp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/database" style="font-size: 12px;">database</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dbutils3" style="font-size: 12px;">dbutils3</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dropwizard" style="font-size: 12px;">dropwizard</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/emacs" style="font-size: 12px;">emacs</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/gitbucket" style="font-size: 12px;">gitbucket</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/go" style="font-size: 12px;">go</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/golang" style="font-size: 12px;">golang</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/google-code-prettify" style="font-size: 12px;">google-code-prettify</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hexo" style="font-size: 12px;">hexo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/isucon" style="font-size: 12px;">isucon</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javabeans" style="font-size: 12px;">javabeans</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/jsf" style="font-size: 12px;">jsf</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/json" style="font-size: 12px;">json</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/linux" style="font-size: 12px;">linux</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/markdown" style="font-size: 12px;">markdown</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/maven" style="font-size: 12px;">maven</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/memcached" style="font-size: 12px;">memcached</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/octopress" style="font-size: 12px;">octopress</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/openssl" style="font-size: 12px;">openssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/org-mode" style="font-size: 12px;">org-mode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/programming" style="font-size: 12px;">programming</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/spring-framework" style="font-size: 12px;">spring-framework</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/sql" style="font-size: 12px;">sql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ssl" style="font-size: 12px;">ssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/tomcat" style="font-size: 12px;">tomcat</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/web" style="font-size: 12px;">web</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/xml" style="font-size: 12px;">xml</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">オレオレ証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80" style="font-size: 12px;">オレオレ認証局</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">クライアント証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9" style="font-size: 12px;">サバフェス</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88" style="font-size: 12px;">シンタックスハイライト</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0" style="font-size: 12px;">チューニング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3" style="font-size: 12px;">ハッカソン</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" style="font-size: 12px;">フロントエンド</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" style="font-size: 12px;">プログラミング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" style="font-size: 12px;">リフレクション</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A" style="font-size: 12px;">勉強会</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" style="font-size: 12px;">日本語入力</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://tamurashingo.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://tamurashingo.github.io/js/script.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>memcached on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/memcached/</link>
+    <description>Recent content in memcached on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 02 Jan 2017 00:30:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/memcached/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>memcachedクライアントではまった件（後編）</title>
+      <link>https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/</link>
+      <pubDate>Mon, 02 Jan 2017 00:30:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;spymemcachedでバックアップサーバを使わない方法についてまとめました。&lt;/p&gt;
+
+&lt;h2 id=&#34;結論&#34;&gt;結論&lt;/h2&gt;
+
+&lt;p&gt;失敗時の動作を再接続しないに定義します。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;MemcachedClient&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;client&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;MemcachedClient&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DefaultConnectionFactory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nd&#34;&gt;@Override&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FailureMode&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getFailureMode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Failure&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Cancel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;AddrUtil&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getAddresses&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;host1,host2,host3&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;message&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;key&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>memcachedクライアントではまった件（前編）</title>
+      <link>https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/</link>
+      <pubDate>Wed, 07 Dec 2016 21:30:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/</guid>
+      <description>&lt;p&gt;tamuraです&lt;/p&gt;
+
+&lt;p&gt;memcachedでクラスタリングをしたところ、思わぬ事象にはまりました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;memcachedサーバが落ちてもクライアントはその次のサーバを使う&lt;/li&gt;
+&lt;li&gt;memcachedサーバが復活するともともとのサーバを使う&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;spymemcachedの検証を行っていてその事象が発生したので、「spymemcachedこのやろ～」と思い他の言語のmemcachedクライアントのソースを見てみると、他の言語のクライアントもそのような動きをしていました。&lt;/p&gt;
+
+&lt;p&gt;幸いにしてspymemcachedはこのバックアップサーバを使うという動きを止められます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>memcachedのインストール</title>
+      <link>https://tamurashingo.github.io/post/2016/11/24/install-memcached/</link>
+      <pubDate>Thu, 24 Nov 2016 23:30:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/11/24/install-memcached/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;ISUCONでの課題になっていたmemcachedについて始めました。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

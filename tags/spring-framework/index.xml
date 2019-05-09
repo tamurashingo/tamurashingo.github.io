@@ -6,45 +6,70 @@
     <description>Recent content in Spring Framework on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 26 Feb 2015 20:56:06 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Feb 2017 01:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/spring-framework/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ThymeleafでReverse Proxyを使った際にURLを書き換える</title>
+      <link>https://tamurashingo.github.io/post/2017/02/05/thymeleaf-with-reverseproxy/</link>
+      <pubDate>Sun, 05 Feb 2017 01:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/02/05/thymeleaf-with-reverseproxy/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;ローカルで開発しているときは問題なかったのに、 本番環境は reverse proxy を使っているので、 Thymeleafが生成するURLが違ってしまう場合がある、ということがあります。&lt;/p&gt;
+
+&lt;h2 id=&#34;例&#34;&gt;例&lt;/h2&gt;
+
+&lt;p&gt;/xxxx/app に来たアクセスを Tomcat の /app に横流しする&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-apacheconf&#34; data-lang=&#34;apacheconf&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;Location&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;/xxxx/app/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;ProxyPass&lt;/span&gt; ajp://localhost:8009/app/
+  &lt;span class=&#34;nb&#34;&gt;ProxyPassReverse&lt;/span&gt; ajp://localhost:8009/app/
+  &lt;span class=&#34;nb&#34;&gt;ProxyPassReverseCookiePath&lt;/span&gt; &lt;span class=&#34;sx&#34;&gt;/app/&lt;/span&gt; &lt;span class=&#34;sx&#34;&gt;/xxxx/app/&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/Location&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
       <title>Spring Frameworkを使ってみるpart4</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</link>
+      <link>https://tamurashingo.github.io/post/2015/02/26/springframework-04/</link>
       <pubDate>Thu, 26 Feb 2015 20:56:06 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/26/springframework-04/</guid>
-      <description>tamuraです。 今回はDI(Dependency Injection)を使っていきます。 目標 サービスを定義する サービスの実装を作る part3</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/26/springframework-04/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はDI(Dependency Injection)を使っていきます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Spring Frameworkを使ってみるpart3</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</link>
+      <link>https://tamurashingo.github.io/post/2015/02/25/springframework-03/</link>
       <pubDate>Wed, 25 Feb 2015 20:21:29 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/25/springframework-03/</guid>
-      <description>tamuraです。 今回はTomcatにデプロイします。 目標 warファイルを作成する Tomcatにデプロイする デプロイ後にアクセスしてpart</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/25/springframework-03/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はTomcatにデプロイします。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Spring Frameworkを使ってみるpart2</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</link>
+      <link>https://tamurashingo.github.io/post/2015/02/24/springframework-02/</link>
       <pubDate>Tue, 24 Feb 2015 22:40:18 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-02/</guid>
-      <description>tamuraです。 今回はちょっとアプリっぽい動きのものを作ります。 目標 formに入力した値を表示する Handling Form Submission ここの内容をやっていきます。 前回に</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/24/springframework-02/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はちょっとアプリっぽい動きのものを作ります。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Spring Frameworkを使ってみるpart1</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</link>
+      <link>https://tamurashingo.github.io/post/2015/02/24/springframework-01/</link>
       <pubDate>Tue, 24 Feb 2015 01:08:33 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/24/springframework-01/</guid>
-      <description>tamuraです。 Spring Frameworkを使ったことがありませんが、始め方について簡単にまとめてみました。 使用するバージョンは4系です。 目標 ブ</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/24/springframework-01/</guid>
+      <description>&lt;p&gt;tamuraです。
+Spring Frameworkを使ったことがありませんが、始め方について簡単にまとめてみました。
+使用するバージョンは4系です。&lt;/p&gt;</description>
     </item>
     
   </channel>

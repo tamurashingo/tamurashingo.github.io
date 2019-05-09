@@ -13,20 +13,21 @@
     
     <item>
       <title>OctopressからGhostへ移行</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</link>
+      <link>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</link>
       <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</guid>
-      <description>tamuraです。 blogシステムをOctopressからGhostに移行しました。 Octopress 手元ですべてのHTMLを生成するのでGithubとかで</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</guid>
+      <description>&lt;p&gt;tamuraです。
+blogシステムを&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt;から&lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;に移行しました。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>init - Octopress</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/13/octopress/</link>
-      <pubDate>Fri, 13 Feb 2015 18:00:00 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/02/13/octopress/</link>
+      <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/13/octopress/</guid>
-      <description>curl -sSL https://get.rvm.io | bash -s stable 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境変数を読み込み source ~/.rvm/scripts/rvm Rubyのインストー</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/13/octopress/</guid>
+      <description>curl -sSL https://get.rvm.io | bash -s stable &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境</description>
     </item>
     
   </channel>

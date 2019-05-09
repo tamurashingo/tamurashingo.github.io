@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/programming/</link>
+    <description>Recent content in Programming on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Sat, 21 Feb 2015 05:29:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>“Septeni×Scala”勉強会 ♯1 行ってきました</title>
+      <link>https://tamurashingo.github.io/post/2015/02/21/septeni-scala-1/</link>
+      <pubDate>Sat, 21 Feb 2015 05:29:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/21/septeni-scala-1/</guid>
+      <description>&lt;p&gt;tamuraです。
+Scalaは２年位前にCourseraで勉強して以来です。&lt;/p&gt;
+
+&lt;p&gt;資料はconnpassにアップされてありました。
+&lt;a href=&#34;https://septeni-scala.connpass.com/event/11233/&#34;&gt;“Septeni×Scala”勉強会 #1&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CommonLispでREPLを使った開発</title>
+      <link>https://tamurashingo.github.io/post/2015/02/13/repl-development/</link>
+      <pubDate>Fri, 13 Feb 2015 23:20:38 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/13/repl-development/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;h2 id=&#34;動機&#34;&gt;動機&lt;/h2&gt;
+
+&lt;p&gt;REPLを使った開発がどれくらい効率が良いか実際にやってみました。&lt;/p&gt;
+
+&lt;p&gt;例としてbase64エンコーダを作っていきます。 ロジックはウィキペディアに書いてあります。
+&lt;a href=&#34;http://ja.wikipedia.org/wiki/Base64&#34;&gt;http://ja.wikipedia.org/wiki/Base64&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

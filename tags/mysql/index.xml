@@ -1,41 +1,80 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mysql on Web技術と親しむ</title>
+    <title>MySQL on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/mysql/</link>
-    <description>Recent content in Mysql on Web技術と親しむ</description>
+    <description>Recent content in MySQL on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 19 Sep 2016 01:00:20 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Oct 2016 23:31:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ISUCON反省会 MySQL編</title>
+      <link>https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/</link>
+      <pubDate>Mon, 31 Oct 2016 23:31:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はMySQLの反省会です。
+MySQLはMySQLではなくてPerconaいれるといい感じになる場合もあります。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>ISUCON6に参加して今年も惨敗した件</title>
-      <link>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</link>
+      <link>https://tamurashingo.github.io/post/2016/09/19/isucon6/</link>
       <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</guid>
-      <description>tamuraです。 今年もISUCONに参加しました。 今回は新メンバーakimotoを加えての参戦です。 前回記事: ISUCON5に参加して惨敗</description>
+      <guid>https://tamurashingo.github.io/post/2016/09/19/isucon6/</guid>
+      <description>&lt;style type=&#34;text/css&#34;&gt;
+pre { overflow-x: scroll; }
+&lt;/style&gt;
+
+&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。&lt;/p&gt;
+
+&lt;p&gt;前回記事: &lt;a href=&#34;https://tamurashingo.github.io/post/2015/10/25/isucon5/&#34;&gt;ISUCON5に参加して惨敗した件&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！&lt;/p&gt;
+
+&lt;p&gt;今回もslackのログを抜き出します。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ISUCON5に参加して惨敗した件</title>
-      <link>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</link>
+      <link>https://tamurashingo.github.io/post/2015/10/25/isucon5/</link>
       <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/10/25/isucon5/</guid>
-      <description>ISUCON5に参加しました。 SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので</description>
+      <guid>https://tamurashingo.github.io/post/2015/10/25/isucon5/</guid>
+      <description>&lt;style type=&#34;text/css&#34;&gt;
+pre { overflow-x: scroll; }
+&lt;/style&gt;
+
+&lt;p&gt;ISUCON5に参加しました。
+SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。&lt;/p&gt;
+
+&lt;p&gt;結果は惨敗です。スコアは1000ちょっとくらいです。&lt;/p&gt;
+
+&lt;p&gt;memcachedとか使えるようにならないとだめだね、ということが確認できました。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Go言語でMySQLに接続する</title>
-      <link>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</link>
+      <link>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</link>
       <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</guid>
-      <description>tamuraです。 最近、Go言語を始めました。 MySQLにつなぐ コマンドラインアプリのように１回接続して何か操作して切断、というのであればな</description>
+      <guid>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</guid>
+      <description>&lt;p&gt;tamuraです。
+最近、Go言語を始めました。&lt;/p&gt;
+
+&lt;h2 id=&#34;mysqlにつなぐ&#34;&gt;MySQLにつなぐ&lt;/h2&gt;
+
+&lt;p&gt;コマンドラインアプリのように１回接続して何か操作して切断、というのであればなんら難しくありません。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clojure on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/clojure/</link>
+    <description>Recent content in Clojure on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 25 Mar 2015 23:47:15 +0000</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Lisp Meet Up #26に行ってきました</title>
+      <link>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</link>
+      <pubDate>Wed, 25 Mar 2015 23:47:15 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Lisp Meet Up presented by Shibuya.lisp #26 に行ってきましたので、まとめたメモを公開いたします。
+今回はClojureの回となっております。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

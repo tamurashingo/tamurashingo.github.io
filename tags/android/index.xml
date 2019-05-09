@@ -13,29 +13,41 @@
     
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</link>
+      <link>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</link>
       <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
-      <description>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、 HelloWorldプロジェクトを作るまでの記録です。</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
+      <description>&lt;p&gt;Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
+HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Cocos2d-x v3.8でAndroid用ゲームを作ってみる</title>
-      <link>https://tamurashingo.github.io/posts/2015/09/20/android-game-cocos2dx/</link>
+      <link>https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/</link>
       <pubDate>Sun, 20 Sep 2015 02:08:20 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/09/20/android-game-cocos2dx/</guid>
-      <description>tamuraです。 cocos2d-xで自分にとってHelloWorld的なゲームを作りました。 いくつかはまったポイントがありました。 (今回作</description>
+      <guid>https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/</guid>
+      <description>&lt;p&gt;tamuraです。
+cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
+いくつかはまったポイントがありました。&lt;/p&gt;
+
+&lt;p&gt;(今回作ったやつは以前にiアプリ版やJavaScript版として作ったものなので、自分的にHelloWorldプロジェクトです)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Cocos2d-xでAndroidの開発環境を作る</title>
-      <link>https://tamurashingo.github.io/posts/2015/09/13/android-cocos2dx/</link>
+      <link>https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/</link>
       <pubDate>Sun, 13 Sep 2015 20:12:10 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/09/13/android-cocos2dx/</guid>
-      <description>tamuraです。 Cocos2d-x v3.8 の環境を作ってみました。 3.7からはAndroidStudioにも一応は対応しています。 が、まだ完全対応ではないのでE</description>
+      <guid>https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/</guid>
+      <description>&lt;p&gt;tamuraです。
+Cocos2d-x v3.8 の環境を作ってみました。
+3.7からはAndroidStudioにも一応は対応しています。
+が、まだ完全対応ではないのでEclipseか使い慣れたエディタでやるのが良さそうです。&lt;/p&gt;
+
+&lt;p&gt;Linux(Ubuntu 14.04LTS)でやっています。&lt;/p&gt;
+
+&lt;p&gt;ダウンロードが多いのでかなり時間がかかります。。。&lt;/p&gt;</description>
     </item>
     
   </channel>

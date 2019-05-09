@@ -13,11 +13,16 @@
     
     <item>
       <title>Go言語でMySQLに接続する</title>
-      <link>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</link>
+      <link>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</link>
       <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</guid>
-      <description>tamuraです。 最近、Go言語を始めました。 MySQLにつなぐ コマンドラインアプリのように１回接続して何か操作して切断、というのであればな</description>
+      <guid>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</guid>
+      <description>&lt;p&gt;tamuraです。
+最近、Go言語を始めました。&lt;/p&gt;
+
+&lt;h2 id=&#34;mysqlにつなぐ&#34;&gt;MySQLにつなぐ&lt;/h2&gt;
+
+&lt;p&gt;コマンドラインアプリのように１回接続して何か操作して切断、というのであればなんら難しくありません。&lt;/p&gt;</description>
     </item>
     
   </channel>

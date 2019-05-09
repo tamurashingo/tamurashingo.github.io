@@ -13,11 +13,14 @@
     
     <item>
       <title>org-modeを使って勉強会でメモをとる</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/27/memo-with-org-mode/</link>
+      <link>https://tamurashingo.github.io/post/2015/02/27/memo-with-org-mode/</link>
       <pubDate>Fri, 27 Feb 2015 07:30:08 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/27/memo-with-org-mode/</guid>
-      <description>tamuraです。 Emacsのorg-modeで勉強会のメモをとっていますが、他の方はどういうメモをとっているのか気になるので自分のやり方を</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/27/memo-with-org-mode/</guid>
+      <description>&lt;p&gt;tamuraです。
+Emacsのorg-modeで勉強会のメモをとっていますが、他の方はどういうメモをとっているのか気になるので自分のやり方を晒します。&lt;/p&gt;
+
+&lt;p&gt;メモの他に&lt;a href=&#34;https://tweetdeck.twitter.com/&#34;&gt;TweetDeck&lt;/a&gt;を別画面で立ち上げています。勉強会用のハッシュタグを検索して他の人がつぶやいたものも参考にしたりします。&lt;/p&gt;</description>
     </item>
     
   </channel>

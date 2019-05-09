@@ -13,11 +13,12 @@
     
     <item>
       <title>WindowsでのJavaの開発環境を作る(Mavenインストール編)</title>
-      <link>https://tamurashingo.github.io/posts/2015/04/14/maven-install/</link>
+      <link>https://tamurashingo.github.io/post/2015/04/14/maven-install/</link>
       <pubDate>Tue, 14 Apr 2015 04:37:05 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/04/14/maven-install/</guid>
-      <description>tamuraです。 今回はMavenのインストールをやります。 ディレクトリ構成 C:\ | +--devtool | +--apache-maven-3.3.1 +--jdk1.8.0_40 +--jre1.8.0_40 Mavenのダウンロード ダウンロード https://maven.apache.org/ の左側メニュ</description>
+      <guid>https://tamurashingo.github.io/post/2015/04/14/maven-install/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はMavenのインストールをやります。&lt;/p&gt;</description>
     </item>
     
   </channel>

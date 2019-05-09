@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javabeans on Web技術と親しむ</title>
+    <title>JavaBeans on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/javabeans/</link>
-    <description>Recent content in Javabeans on Web技術と親しむ</description>
+    <description>Recent content in JavaBeans on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 02 Aug 2016 00:12:21 +0000</lastBuildDate>
@@ -13,20 +13,44 @@
     
     <item>
       <title>JavaBeansの役立つ使い方</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</link>
+      <link>https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/</link>
       <pubDate>Tue, 02 Aug 2016 00:12:21 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</guid>
-      <description>tamuraです。 前回の続きです。 JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。 XMLの読み込み JSONの読み込み</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回の続きです。&lt;/p&gt;
+
+&lt;p&gt;JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;XMLの読み込み&lt;/li&gt;
+&lt;li&gt;JSONの読み込み&lt;/li&gt;
+&lt;li&gt;JSONの書き出し&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title>JavaBeansとは</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</link>
+      <link>https://tamurashingo.github.io/post/2016/07/31/java-beans/</link>
       <pubDate>Sun, 31 Jul 2016 16:16:27 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/31/java-beans/</guid>
-      <description>tamuraです。 JavaBeansが出てきた当初はGUI用だったようです。 GUIアプリを作ろうとしてJFrameを継承したクラスを作ると「</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/31/java-beans/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;JavaBeansが出てきた当初はGUI用だったようです。&lt;/p&gt;
+
+&lt;p&gt;GUIアプリを作ろうとして&lt;code&gt;JFrame&lt;/code&gt;を継承したクラスを作ると「&lt;code&gt;serialVersionUID&lt;/code&gt;がないよ！」という警告が出ますが、これはJavaBeans仕様で作られているからのようです。&lt;/p&gt;
+
+&lt;p&gt;現在では、私の周辺ではValueObjectとして使うことが多いです。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;JavaBeans&lt;/strong&gt;
+Javaで作成された移植可能なプラットフォームに依存しないコンポーネント・モデルで、JavaBean仕様に従う。 再使用可能なコンポーネントを作成できる。
+&lt;a href=&#34;http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709&#34;&gt;http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709&lt;/a&gt; より引用&lt;/p&gt;
+
+&lt;p&gt;JavaBeans（ジャバ ビーンズ）とは、Javaで書かれた再利用可能なソフトウェアコンポーネントまたはその技術仕様のこと。1997年後半に登場。JDKのjava.beansパッケージと共にRAD環境の構築を支援するために作られた。現在ではjava.beansパッケージの技術を活用し、RAD環境の構築に限らずJSP等幅広い用途で利用されている。&lt;a href=&#34;https://ja.wikipedia.org/wiki/JavaBeans&#34;&gt;https://ja.wikipedia.org/wiki/JavaBeans&lt;/a&gt; より引用&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     
   </channel>

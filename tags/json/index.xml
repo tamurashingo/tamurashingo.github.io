@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Json on Web技術と親しむ</title>
+    <title>JSON on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/json/</link>
-    <description>Recent content in Json on Web技術と親しむ</description>
+    <description>Recent content in JSON on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 02 Aug 2016 00:12:21 +0000</lastBuildDate>
@@ -13,11 +13,21 @@
     
     <item>
       <title>JavaBeansの役立つ使い方</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</link>
+      <link>https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/</link>
       <pubDate>Tue, 02 Aug 2016 00:12:21 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/02/useful-java-beans/</guid>
-      <description>tamuraです。 前回の続きです。 JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。 XMLの読み込み JSONの読み込み</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回の続きです。&lt;/p&gt;
+
+&lt;p&gt;JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;XMLの読み込み&lt;/li&gt;
+&lt;li&gt;JSONの読み込み&lt;/li&gt;
+&lt;li&gt;JSONの書き出し&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

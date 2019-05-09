@@ -1,59 +1,105 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sql on Web技術と親しむ</title>
+    <title>SQL on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/sql/</link>
-    <description>Recent content in Sql on Web技術と親しむ</description>
+    <description>Recent content in SQL on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 22 Sep 2015 12:00:26 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Aug 2017 12:39:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Common Lisp用SQLライブラリ「cl-batis」を作りました</title>
+      <link>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</link>
+      <pubDate>Sun, 20 Aug 2017 12:39:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Common Lisp用のSQLライブラリを作りました。 業務用アプリなどSQLをガリガリ書く人におすすめです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/tamurashingo/cl-batis&#34;&gt;https://github.com/tamurashingo/cl-batis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>DBUtils3 version 0.2.0</title>
-      <link>https://tamurashingo.github.io/posts/2015/09/22/dbutils3-020/</link>
+      <link>https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/</link>
       <pubDate>Tue, 22 Sep 2015 12:00:26 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/09/22/dbutils3-020/</guid>
-      <description>tamuraです。 DBUtils3のバージョンアップを行いました。 DBUtils3 今回は select * from t_tbl where id = :id のようにSQLを定義して Param param = new Param(); param.put(&amp;#34;id&amp;#34;, 123); List&amp;lt;ResultBean&amp;gt; result = conn.executeQueryWithParam(ResultBean.class, param); の</description>
+      <guid>https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/</guid>
+      <description>&lt;p&gt;tamuraです。
+DBUtils3のバージョンアップを行いました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/tamurashingo/dbutils3&#34;&gt;DBUtils3&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;今回は&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;t_tbl&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;のようにSQLを定義して&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;n&#34;&gt;Param&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Param&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;put&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;123&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ResultBean&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;conn&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;executeQueryWithParam&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ResultBean&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;のように名前付きパラメータで値を指定できるようにしました。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardでデータベースpart3</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</link>
+      <link>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</link>
       <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</guid>
-      <description>tamuraです。 今回はDropwizardでデータベースの更新を行っていきます。 DAOの修正 DAOにUPDATEメソッドを追加します。 package com.github.tamurashingo.dropwizard.helloworld.dao;</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardでデータベースの更新を行っていきます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardでデータベースpart2</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</link>
+      <link>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</link>
       <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</guid>
-      <description>tamuraです。 今回はDropwizardでデータベースを参照していきます。 pom.xml 以下の記述をpom.xmlに追加します。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.dropwizard&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dropwizard-jdbi&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${dropwizard.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.tamurashingo.dbutil3&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dbutil3&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardでデータベースを参照していきます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardでデータベースpart1</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</link>
+      <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</link>
       <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</guid>
-      <description>tamuraです。 今回はDropwizardでデータベースを使ってみます。 Migration Migrationという仕組みを使ってデータベースを準備していき</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardでデータベースを使ってみます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>DBUtils3の紹介</title>
-      <link>https://tamurashingo.github.io/posts/2015/05/26/dbutils3/</link>
+      <link>https://tamurashingo.github.io/post/2015/05/26/dbutils3/</link>
       <pubDate>Tue, 26 May 2015 06:43:47 +0000</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/05/26/dbutils3/</guid>
-      <description>tamuraです。 Javaでデータベースを使う場合、以下の２パターンが考えられます。 ORMを使ってアクセスする SELECT等のクエリを直接投</description>
+      <guid>https://tamurashingo.github.io/post/2015/05/26/dbutils3/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Javaでデータベースを使う場合、以下の２パターンが考えられます。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ORMを使ってアクセスする&lt;/li&gt;
+&lt;li&gt;SELECT等のクエリを直接投げる&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;DBUtils3はクエリを直接投げる際に多少楽になるように作ったライブラリです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/tamurashingo/dbutils3/blob/master/README-ja.md&#34;&gt;https://github.com/tamurashingo/dbutils3/blob/master/README-ja.md&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

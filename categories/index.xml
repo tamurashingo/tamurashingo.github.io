@@ -6,9 +6,199 @@
     <description>Recent content in Categories on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
+    <lastBuildDate>Mon, 09 Apr 2018 02:01:00 +0000</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Common Lisp</title>
+      <link>https://tamurashingo.github.io/categories/common-lisp/</link>
+      <pubDate>Mon, 09 Apr 2018 02:01:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/common-lisp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ghost</title>
+      <link>https://tamurashingo.github.io/categories/ghost/</link>
+      <pubDate>Thu, 04 Jan 2018 23:15:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/ghost/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://tamurashingo.github.io/categories/blog/</link>
+      <pubDate>Thu, 14 Dec 2017 18:33:56 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>https://tamurashingo.github.io/categories/react/</link>
+      <pubDate>Tue, 12 Dec 2017 19:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TypeScript</title>
+      <link>https://tamurashingo.github.io/categories/typescript/</link>
+      <pubDate>Tue, 12 Dec 2017 19:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Commmon Lisp</title>
+      <link>https://tamurashingo.github.io/categories/commmon-lisp/</link>
+      <pubDate>Sun, 20 Aug 2017 12:39:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/commmon-lisp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://tamurashingo.github.io/categories/java/</link>
+      <pubDate>Sun, 05 Feb 2017 01:00:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>memcached</title>
+      <link>https://tamurashingo.github.io/categories/memcached/</link>
+      <pubDate>Mon, 02 Jan 2017 00:30:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/memcached/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dropwizard</title>
+      <link>https://tamurashingo.github.io/categories/dropwizard/</link>
+      <pubDate>Thu, 10 Nov 2016 22:00:03 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/dropwizard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISUCON</title>
+      <link>https://tamurashingo.github.io/categories/isucon/</link>
+      <pubDate>Mon, 31 Oct 2016 23:31:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/isucon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>https://tamurashingo.github.io/categories/web/</link>
+      <pubDate>Thu, 20 Oct 2016 22:30:34 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>https://tamurashingo.github.io/categories/android/</link>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://tamurashingo.github.io/categories/linux/</link>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ハッカソン</title>
+      <link>https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/</link>
+      <pubDate>Sat, 16 Apr 2016 01:00:05 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cocos2d-x</title>
+      <link>https://tamurashingo.github.io/categories/cocos2d-x/</link>
+      <pubDate>Sun, 20 Sep 2015 02:08:20 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/cocos2d-x/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://tamurashingo.github.io/categories/go/</link>
+      <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>勉強会</title>
+      <link>https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A/</link>
+      <pubDate>Wed, 25 Mar 2015 23:47:15 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emacs</title>
+      <link>https://tamurashingo.github.io/categories/emacs/</link>
+      <pubDate>Fri, 27 Feb 2015 07:30:08 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring Framework</title>
+      <link>https://tamurashingo.github.io/categories/spring-framework/</link>
+      <pubDate>Thu, 26 Feb 2015 20:56:06 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/spring-framework/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CoffeeScript</title>
+      <link>https://tamurashingo.github.io/categories/coffeescript/</link>
+      <pubDate>Wed, 25 Feb 2015 23:58:53 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/coffeescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scala</title>
+      <link>https://tamurashingo.github.io/categories/scala/</link>
+      <pubDate>Sat, 21 Feb 2015 05:29:00 +0000</pubDate>
+      
+      <guid>https://tamurashingo.github.io/categories/scala/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
