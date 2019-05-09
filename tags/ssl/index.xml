@@ -6,7 +6,7 @@
     <description>Recent content in SSL on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 18 Jul 2016 00:59:47 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Jul 2016 00:59:47 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>オレオレ認証局を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/18/self-ca/</link>
-      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/18/self-ca/</guid>
       <description>&lt;p&gt;tamuraです。

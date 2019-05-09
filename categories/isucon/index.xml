@@ -6,7 +6,7 @@
     <description>Recent content in ISUCON on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 31 Oct 2016 23:31:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Oct 2016 23:31:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/isucon/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>ISUCON反省会 MySQL編</title>
       <link>https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/</link>
-      <pubDate>Mon, 31 Oct 2016 23:31:00 +0000</pubDate>
+      <pubDate>Mon, 31 Oct 2016 23:31:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -26,7 +26,7 @@ MySQLはMySQLではなくてPerconaいれるといい感じになる場合もあ
     <item>
       <title>ISUCON反省会 nginx編</title>
       <link>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</link>
-      <pubDate>Thu, 22 Sep 2016 16:42:24 +0000</pubDate>
+      <pubDate>Thu, 22 Sep 2016 16:42:24 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -44,7 +44,7 @@ ISUCON出ました!
     <item>
       <title>ISUCON6に参加して今年も惨敗した件</title>
       <link>https://tamurashingo.github.io/post/2016/09/19/isucon6/</link>
-      <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 01:00:20 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/09/19/isucon6/</guid>
       <description>&lt;style type=&#34;text/css&#34;&gt;
@@ -66,7 +66,7 @@ pre { overflow-x: scroll; }
     <item>
       <title>ISUCON5に参加して惨敗した件</title>
       <link>https://tamurashingo.github.io/post/2015/10/25/isucon5/</link>
-      <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
+      <pubDate>Sun, 25 Oct 2015 22:40:23 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/10/25/isucon5/</guid>
       <description>&lt;style type=&#34;text/css&#34;&gt;

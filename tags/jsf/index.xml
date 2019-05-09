@@ -6,7 +6,7 @@
     <description>Recent content in JSF on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 15 Jan 2017 01:30:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 15 Jan 2017 01:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/jsf/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>JSFでReverse Proxyを使った際にURLを書き換える</title>
       <link>https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/</link>
-      <pubDate>Sun, 15 Jan 2017 01:30:00 +0000</pubDate>
+      <pubDate>Sun, 15 Jan 2017 01:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

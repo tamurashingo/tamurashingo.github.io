@@ -6,7 +6,7 @@
     <description>Recent content in memcached on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 02 Jan 2017 00:30:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Jan 2017 00:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/memcached/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>memcachedクライアントではまった件（後編）</title>
       <link>https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/</link>
-      <pubDate>Mon, 02 Jan 2017 00:30:00 +0000</pubDate>
+      <pubDate>Mon, 02 Jan 2017 00:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -37,7 +37,7 @@
     <item>
       <title>memcachedクライアントではまった件（前編）</title>
       <link>https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/</link>
-      <pubDate>Wed, 07 Dec 2016 21:30:00 +0000</pubDate>
+      <pubDate>Wed, 07 Dec 2016 21:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/</guid>
       <description>&lt;p&gt;tamuraです&lt;/p&gt;
@@ -57,7 +57,7 @@
     <item>
       <title>memcachedのインストール</title>
       <link>https://tamurashingo.github.io/post/2016/11/24/install-memcached/</link>
-      <pubDate>Thu, 24 Nov 2016 23:30:00 +0000</pubDate>
+      <pubDate>Thu, 24 Nov 2016 23:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/11/24/install-memcached/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

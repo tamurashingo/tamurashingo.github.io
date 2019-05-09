@@ -25,8 +25,8 @@
 ある問題をちょっとだけ解決したので載せます。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/" />
-<meta property="article:published_time" content="2015-02-21T12:32:52&#43;00:00"/>
-<meta property="article:modified_time" content="2015-02-21T12:32:52&#43;00:00"/>
+<meta property="article:published_time" content="2015-02-21T12:32:52&#43;09:00"/>
+<meta property="article:modified_time" content="2015-02-21T12:32:52&#43;09:00"/>
 
     
     
@@ -35,8 +35,8 @@
 ある問題をちょっとだけ解決したので載せます。">
 
 
-<meta itemprop="datePublished" content="2015-02-21T12:32:52&#43;00:00" />
-<meta itemprop="dateModified" content="2015-02-21T12:32:52&#43;00:00" />
+<meta itemprop="datePublished" content="2015-02-21T12:32:52&#43;09:00" />
+<meta itemprop="dateModified" content="2015-02-21T12:32:52&#43;09:00" />
 <meta itemprop="wordCount" content="1340">
 
 
@@ -268,7 +268,7 @@
         
         <div class="article-date">
             <i class="fa fa-calendar"></i>
-            <time datetime="2015-02-21 12:32:52 &#43;0000 UTC" itemprop="datePublished">2015-02-21</time>
+            <time datetime="2015-02-21 12:32:52 &#43;0900 JST" itemprop="datePublished">2015-02-21</time>
             &middot;
             1340
             文字
@@ -336,13 +336,13 @@
 <h3 id="ghostの再インストール">Ghostの再インストール</h3>
 
 <p>前回はビルド済みのzipファイルを落としてきましたが、GitHubからコードを落としてきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">git clone https://github.com/TryGhost/Ghost.git
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/TryGhost/Ghost.git
 <span class="nb">cd</span> Ghost
 npm install</code></pre></div>
 <h3 id="パッチの適用">パッチの適用</h3>
 
 <p>行数が少ないので手でコピペして対応しました。 まずはJS側。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi bower_components/codemirror/lib/codemirror.js</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vi bower_components/codemirror/lib/codemirror.js</code></pre></div>
 <p><code>function fastPoll(cm)</code>の中に書いていきます。</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">  <span class="kd">function</span> <span class="nx">fastPoll</span><span class="p">(</span><span class="nx">cm</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">missed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -419,7 +419,7 @@ npm install</code></pre></div>
 
 <p>続いてCSS側。 CSSはSassを修正します。
 適当なところに <code>.CodeMirror-composing</code> を入れておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi core/client/assets/sass/vendor/codemirror.scss</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">CodeMirror-composing</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vi core/client/assets/sass/vendor/codemirror.scss</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">CodeMirror-composing</span> <span class="p">{</span>
   <span class="k">border-bottom</span><span class="p">:</span> <span class="mi">3</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">black</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
 <h3 id="動作確認">動作確認</h3>
@@ -624,7 +624,7 @@ npm start</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
                     <p class="item-date">
-                        <time datetime="2019-04-16 19:06:42 &#43;0000 UTC" itemprop="datePublished">2019-04-16</time>
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
                     </p>
                 </div>
             </li>
@@ -650,7 +650,7 @@ npm start</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="title">昔のRedditをSBCLで動かすまで</a></p>
                     <p class="item-date">
-                        <time datetime="2018-04-09 02:01:00 &#43;0000 UTC" itemprop="datePublished">2018-04-09</time>
+                        <time datetime="2018-04-09 02:01:00 &#43;0900 JST" itemprop="datePublished">2018-04-09</time>
                     </p>
                 </div>
             </li>
@@ -676,7 +676,7 @@ npm start</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="title">GhostでIMEの変換候補の位置を直す</a></p>
                     <p class="item-date">
-                        <time datetime="2018-01-04 23:15:00 &#43;0000 UTC" itemprop="datePublished">2018-01-04</time>
+                        <time datetime="2018-01-04 23:15:00 &#43;0900 JST" itemprop="datePublished">2018-01-04</time>
                     </p>
                 </div>
             </li>
@@ -702,7 +702,7 @@ npm start</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="title">hexo化してみました</a></p>
                     <p class="item-date">
-                        <time datetime="2017-12-14 18:33:56 &#43;0000 UTC" itemprop="datePublished">2017-12-14</time>
+                        <time datetime="2017-12-14 18:33:56 &#43;0900 JST" itemprop="datePublished">2017-12-14</time>
                     </p>
                 </div>
             </li>
@@ -728,7 +728,7 @@ npm start</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="title">Reactを簡単に始める(create-react-app)</a></p>
                     <p class="item-date">
-                        <time datetime="2017-12-12 19:00:00 &#43;0000 UTC" itemprop="datePublished">2017-12-12</time>
+                        <time datetime="2017-12-12 19:00:00 &#43;0900 JST" itemprop="datePublished">2017-12-12</time>
                     </p>
                 </div>
             </li>

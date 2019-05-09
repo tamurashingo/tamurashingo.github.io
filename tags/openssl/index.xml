@@ -6,7 +6,7 @@
     <description>Recent content in OpenSSL on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 28 Jul 2016 06:30:43 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jul 2016 06:30:43 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>クライアント認証を行う</title>
       <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
-      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -28,7 +28,7 @@
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
-      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

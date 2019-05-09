@@ -6,7 +6,7 @@
     <description>Recent content in Dropwizard on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 10 Nov 2016 22:00:03 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Nov 2016 22:00:03 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/dropwizard/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>DropwizardでGoogle Guiceを使う</title>
       <link>https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/</link>
-      <pubDate>Thu, 10 Nov 2016 22:00:03 +0000</pubDate>
+      <pubDate>Thu, 10 Nov 2016 22:00:03 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/</guid>
       <description>&lt;p&gt;tamuraです&lt;/p&gt;
@@ -26,7 +26,7 @@ DIを使った理由としてはデータベースコネクションを引
     <item>
       <title>Dropwizardでデータベースpart4</title>
       <link>https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/</link>
-      <pubDate>Wed, 03 Aug 2016 22:06:15 +0000</pubDate>
+      <pubDate>Wed, 03 Aug 2016 22:06:15 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -44,7 +44,7 @@ DIを使った理由としてはデータベースコネクションを引
     <item>
       <title>Dropwizardでデータベースpart3</title>
       <link>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</link>
-      <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
+      <pubDate>Sat, 13 Jun 2015 08:28:19 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -55,7 +55,7 @@ DIを使った理由としてはデータベースコネクションを引
     <item>
       <title>Dropwizardでデータベースpart2</title>
       <link>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</link>
-      <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
+      <pubDate>Fri, 12 Jun 2015 06:51:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -66,7 +66,7 @@ DIを使った理由としてはデータベースコネクションを引
     <item>
       <title>Dropwizardでデータベースpart1</title>
       <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</link>
-      <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
+      <pubDate>Wed, 10 Jun 2015 20:54:50 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -77,7 +77,7 @@ DIを使った理由としてはデータベースコネクションを引
     <item>
       <title>Dropwizardを使ってみる</title>
       <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard/</link>
-      <pubDate>Wed, 10 Jun 2015 06:48:19 +0000</pubDate>
+      <pubDate>Wed, 10 Jun 2015 06:48:19 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

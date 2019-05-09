@@ -6,7 +6,7 @@
     <description>Recent content in Commmon Lisp on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 20 Aug 2017 12:39:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Aug 2017 12:39:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/commmon-lisp/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Common Lisp用SQLライブラリ「cl-batis」を作りました</title>
       <link>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</link>
-      <pubDate>Sun, 20 Aug 2017 12:39:00 +0000</pubDate>
+      <pubDate>Sun, 20 Aug 2017 12:39:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -27,7 +27,7 @@
     <item>
       <title>Common Lisp用コネクションプール「CL-DBI-Connection-Pool」を作りました</title>
       <link>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</link>
-      <pubDate>Mon, 24 Jul 2017 23:55:00 +0000</pubDate>
+      <pubDate>Mon, 24 Jul 2017 23:55:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

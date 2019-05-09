@@ -28,8 +28,8 @@
 まあ一言で言うと開発効率向上のためです。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2015/07/15/frontend-tools/" />
-<meta property="article:published_time" content="2015-07-15T07:04:09&#43;00:00"/>
-<meta property="article:modified_time" content="2015-07-15T07:04:09&#43;00:00"/>
+<meta property="article:published_time" content="2015-07-15T07:04:09&#43;09:00"/>
+<meta property="article:modified_time" content="2015-07-15T07:04:09&#43;09:00"/>
 
     
     
@@ -41,8 +41,8 @@
 まあ一言で言うと開発効率向上のためです。">
 
 
-<meta itemprop="datePublished" content="2015-07-15T07:04:09&#43;00:00" />
-<meta itemprop="dateModified" content="2015-07-15T07:04:09&#43;00:00" />
+<meta itemprop="datePublished" content="2015-07-15T07:04:09&#43;09:00" />
+<meta itemprop="dateModified" content="2015-07-15T07:04:09&#43;09:00" />
 <meta itemprop="wordCount" content="1505">
 
 
@@ -277,7 +277,7 @@
         
         <div class="article-date">
             <i class="fa fa-calendar"></i>
-            <time datetime="2015-07-15 07:04:09 &#43;0000 UTC" itemprop="datePublished">2015-07-15</time>
+            <time datetime="2015-07-15 07:04:09 &#43;0900 JST" itemprop="datePublished">2015-07-15</time>
             &middot;
             1505
             文字
@@ -330,14 +330,14 @@
 <h2 id="雛形作成">雛形作成</h2>
 
 <p>最近はフロントエンド側をAngularJSで作ることが多いのでYeomanを使って雛形を作っています。 その際に<code>generator-angular</code>でアプリケーションの雛形を作ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ mkdir sample
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir sample
 $ <span class="nb">cd</span> sample
 $ yo angular sample</code></pre></div>
 <h2 id="フロントエンド用のライブラリのダウンロード">フロントエンド用のライブラリのダウンロード</h2>
 
 <p>Bowerはフロントエンド用のパッケージマネージャです。
 例えば<code>lodash</code>というライブラリを使いたい場合、 以前の私であればサイトからリリースファイルをダウンロードしてローカルに配置してということをやっていましたが、 Bowerを使うと</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ bower install lodash --save</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ bower install lodash --save</code></pre></div>
 <p>だけで済みます。</p>
 
 <p>これで<code>bower_components</code>というディレクトリにダウンロードされるので、それを読み込むだけです。</p>
@@ -369,7 +369,7 @@ $ yo angular sample</code></pre></div>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>  
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>  </code></pre></div>
 <p>この状態で</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ grunt wiredep</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ grunt wiredep</code></pre></div>
 <p>と打つことで<code>index.html</code>にBowerでインストールしたライブラリが反映されます。</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>  
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>  
@@ -447,7 +447,7 @@ $ yo angular sample</code></pre></div>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>  
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>  </code></pre></div>
 <p>この状態で</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">$ grunt injector</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ grunt injector</code></pre></div>
 <p>と打つことで<code>index.html</code>に対して、追加したJS/CSSファイルが反映されます。</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>  
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>  
@@ -702,7 +702,7 @@ $ yo angular sample</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
                     <p class="item-date">
-                        <time datetime="2019-04-16 19:06:42 &#43;0000 UTC" itemprop="datePublished">2019-04-16</time>
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
                     </p>
                 </div>
             </li>
@@ -728,7 +728,7 @@ $ yo angular sample</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="title">昔のRedditをSBCLで動かすまで</a></p>
                     <p class="item-date">
-                        <time datetime="2018-04-09 02:01:00 &#43;0000 UTC" itemprop="datePublished">2018-04-09</time>
+                        <time datetime="2018-04-09 02:01:00 &#43;0900 JST" itemprop="datePublished">2018-04-09</time>
                     </p>
                 </div>
             </li>
@@ -754,7 +754,7 @@ $ yo angular sample</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="title">GhostでIMEの変換候補の位置を直す</a></p>
                     <p class="item-date">
-                        <time datetime="2018-01-04 23:15:00 &#43;0000 UTC" itemprop="datePublished">2018-01-04</time>
+                        <time datetime="2018-01-04 23:15:00 &#43;0900 JST" itemprop="datePublished">2018-01-04</time>
                     </p>
                 </div>
             </li>
@@ -780,7 +780,7 @@ $ yo angular sample</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="title">hexo化してみました</a></p>
                     <p class="item-date">
-                        <time datetime="2017-12-14 18:33:56 &#43;0000 UTC" itemprop="datePublished">2017-12-14</time>
+                        <time datetime="2017-12-14 18:33:56 &#43;0900 JST" itemprop="datePublished">2017-12-14</time>
                     </p>
                 </div>
             </li>
@@ -806,7 +806,7 @@ $ yo angular sample</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="title">Reactを簡単に始める(create-react-app)</a></p>
                     <p class="item-date">
-                        <time datetime="2017-12-12 19:00:00 &#43;0000 UTC" itemprop="datePublished">2017-12-12</time>
+                        <time datetime="2017-12-12 19:00:00 &#43;0900 JST" itemprop="datePublished">2017-12-12</time>
                     </p>
                 </div>
             </li>

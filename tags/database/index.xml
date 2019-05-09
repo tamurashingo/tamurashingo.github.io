@@ -6,7 +6,7 @@
     <description>Recent content in Database on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 24 Jul 2017 23:55:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jul 2017 23:55:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Common Lisp用コネクションプール「CL-DBI-Connection-Pool」を作りました</title>
       <link>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</link>
-      <pubDate>Mon, 24 Jul 2017 23:55:00 +0000</pubDate>
+      <pubDate>Mon, 24 Jul 2017 23:55:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

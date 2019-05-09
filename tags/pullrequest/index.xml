@@ -6,7 +6,7 @@
     <description>Recent content in PullRequest on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 04 Jan 2018 23:15:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jan 2018 23:15:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/pullrequest/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>GhostでIMEの変換候補の位置を直す</title>
       <link>https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/</link>
-      <pubDate>Thu, 04 Jan 2018 23:15:00 +0000</pubDate>
+      <pubDate>Thu, 04 Jan 2018 23:15:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

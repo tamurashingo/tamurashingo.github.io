@@ -6,7 +6,7 @@
     <description>Recent content in Web on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 20 Oct 2016 22:30:34 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Oct 2016 22:30:34 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/web/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Firebaseはじめてみました</title>
       <link>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</link>
-      <pubDate>Thu, 20 Oct 2016 22:30:34 +0000</pubDate>
+      <pubDate>Thu, 20 Oct 2016 22:30:34 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -26,7 +26,7 @@ Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみ�
     <item>
       <title>ISUCON反省会 nginx編</title>
       <link>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</link>
-      <pubDate>Thu, 22 Sep 2016 16:42:24 +0000</pubDate>
+      <pubDate>Thu, 22 Sep 2016 16:42:24 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -44,7 +44,7 @@ ISUCON出ました!
     <item>
       <title>ISUCON6に参加して今年も惨敗した件</title>
       <link>https://tamurashingo.github.io/post/2016/09/19/isucon6/</link>
-      <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 01:00:20 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/09/19/isucon6/</guid>
       <description>&lt;style type=&#34;text/css&#34;&gt;
@@ -66,7 +66,7 @@ pre { overflow-x: scroll; }
     <item>
       <title>クライアント認証を行う</title>
       <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
-      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -80,7 +80,7 @@ pre { overflow-x: scroll; }
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
-      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -94,7 +94,7 @@ pre { overflow-x: scroll; }
     <item>
       <title>CentOS7にGitBucket2.4を入れる</title>
       <link>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</link>
-      <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -105,7 +105,7 @@ pre { overflow-x: scroll; }
     <item>
       <title>オレオレ認証局を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/18/self-ca/</link>
-      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/18/self-ca/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -115,7 +115,7 @@ SSLとクライアント認証を使うシステムを作ってみたくなっ�
     <item>
       <title>ISUCON5に参加して惨敗した件</title>
       <link>https://tamurashingo.github.io/post/2015/10/25/isucon5/</link>
-      <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
+      <pubDate>Sun, 25 Oct 2015 22:40:23 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/10/25/isucon5/</guid>
       <description>&lt;style type=&#34;text/css&#34;&gt;

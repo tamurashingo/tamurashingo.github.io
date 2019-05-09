@@ -6,7 +6,7 @@
     <description>Recent content in Web on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 20 Oct 2016 22:30:34 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Oct 2016 22:30:34 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/web/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Firebaseはじめてみました</title>
       <link>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</link>
-      <pubDate>Thu, 20 Oct 2016 22:30:34 +0000</pubDate>
+      <pubDate>Thu, 20 Oct 2016 22:30:34 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -26,7 +26,7 @@ Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみ�
     <item>
       <title>クライアント認証を行う</title>
       <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
-      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -40,7 +40,7 @@ Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみ�
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
-      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -54,7 +54,7 @@ Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみ�
     <item>
       <title>オレオレ認証局を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/18/self-ca/</link>
-      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/18/self-ca/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -64,7 +64,7 @@ SSLとクライアント認証を使うシステムを作ってみたくなっ�
     <item>
       <title>フロントエンドの開発に使うツール類</title>
       <link>https://tamurashingo.github.io/post/2015/07/15/frontend-tools/</link>
-      <pubDate>Wed, 15 Jul 2015 07:04:09 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2015 07:04:09 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/07/15/frontend-tools/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

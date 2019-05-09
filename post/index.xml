@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Hello Hugo World</title>
       <link>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</link>
-      <pubDate>Tue, 16 Apr 2019 19:06:42 +0000</pubDate>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</guid>
       <description>Hugoで作り直す なんど目かの作り直しです。 なぜHugoにしたか？なんとなくです。 $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルでブログを作る</description>
@@ -23,7 +23,7 @@
     <item>
       <title>昔のRedditをSBCLで動かすまで</title>
       <link>https://tamurashingo.github.io/post/2018/04/09/old-reddit/</link>
-      <pubDate>Mon, 09 Apr 2018 02:01:00 +0000</pubDate>
+      <pubDate>Mon, 09 Apr 2018 02:01:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2018/04/09/old-reddit/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -34,7 +34,7 @@
     <item>
       <title>GhostでIMEの変換候補の位置を直す</title>
       <link>https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/</link>
-      <pubDate>Thu, 04 Jan 2018 23:15:00 +0000</pubDate>
+      <pubDate>Thu, 04 Jan 2018 23:15:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -48,7 +48,7 @@
     <item>
       <title>hexo化してみました</title>
       <link>https://tamurashingo.github.io/post/2017/12/14/hexo/</link>
-      <pubDate>Thu, 14 Dec 2017 18:33:56 +0000</pubDate>
+      <pubDate>Thu, 14 Dec 2017 18:33:56 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/12/14/hexo/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -59,7 +59,7 @@
     <item>
       <title>Reactを簡単に始める(create-react-app)</title>
       <link>https://tamurashingo.github.io/post/2017/12/12/create-react-app/</link>
-      <pubDate>Tue, 12 Dec 2017 19:00:00 +0000</pubDate>
+      <pubDate>Tue, 12 Dec 2017 19:00:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/12/12/create-react-app/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -70,7 +70,7 @@
     <item>
       <title>TypeScriptでReactを始める</title>
       <link>https://tamurashingo.github.io/post/2017/12/11/react-with-typescript/</link>
-      <pubDate>Mon, 11 Dec 2017 20:39:00 +0000</pubDate>
+      <pubDate>Mon, 11 Dec 2017 20:39:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/12/11/react-with-typescript/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -82,7 +82,7 @@
     <item>
       <title>Common Lisp用SQLライブラリ「cl-batis」を作りました</title>
       <link>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</link>
-      <pubDate>Sun, 20 Aug 2017 12:39:00 +0000</pubDate>
+      <pubDate>Sun, 20 Aug 2017 12:39:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -95,7 +95,7 @@
     <item>
       <title>Common Lisp用コネクションプール「CL-DBI-Connection-Pool」を作りました</title>
       <link>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</link>
-      <pubDate>Mon, 24 Jul 2017 23:55:00 +0000</pubDate>
+      <pubDate>Mon, 24 Jul 2017 23:55:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -133,7 +133,7 @@
     <item>
       <title>JSFでReverse Proxyを使った際にURLを書き換える</title>
       <link>https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/</link>
-      <pubDate>Sun, 15 Jan 2017 01:30:00 +0000</pubDate>
+      <pubDate>Sun, 15 Jan 2017 01:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -153,7 +153,7 @@
     <item>
       <title>memcachedクライアントではまった件（後編）</title>
       <link>https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/</link>
-      <pubDate>Mon, 02 Jan 2017 00:30:00 +0000</pubDate>
+      <pubDate>Mon, 02 Jan 2017 00:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -176,7 +176,7 @@
     <item>
       <title>memcachedクライアントではまった件（前編）</title>
       <link>https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/</link>
-      <pubDate>Wed, 07 Dec 2016 21:30:00 +0000</pubDate>
+      <pubDate>Wed, 07 Dec 2016 21:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/</guid>
       <description>&lt;p&gt;tamuraです&lt;/p&gt;
@@ -196,7 +196,7 @@
     <item>
       <title>memcachedのインストール</title>
       <link>https://tamurashingo.github.io/post/2016/11/24/install-memcached/</link>
-      <pubDate>Thu, 24 Nov 2016 23:30:00 +0000</pubDate>
+      <pubDate>Thu, 24 Nov 2016 23:30:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/11/24/install-memcached/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -207,7 +207,7 @@
     <item>
       <title>DropwizardでGoogle Guiceを使う</title>
       <link>https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/</link>
-      <pubDate>Thu, 10 Nov 2016 22:00:03 +0000</pubDate>
+      <pubDate>Thu, 10 Nov 2016 22:00:03 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/</guid>
       <description>&lt;p&gt;tamuraです&lt;/p&gt;
@@ -219,7 +219,7 @@ DIを使った理由としてはデータベースコネクションを引
     <item>
       <title>ISUCON反省会 MySQL編</title>
       <link>https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/</link>
-      <pubDate>Mon, 31 Oct 2016 23:31:00 +0000</pubDate>
+      <pubDate>Mon, 31 Oct 2016 23:31:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -231,7 +231,7 @@ MySQLはMySQLではなくてPerconaいれるといい感じになる場合もあ
     <item>
       <title>Firebaseはじめてみました</title>
       <link>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</link>
-      <pubDate>Thu, 20 Oct 2016 22:30:34 +0000</pubDate>
+      <pubDate>Thu, 20 Oct 2016 22:30:34 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -243,7 +243,7 @@ Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみ�
     <item>
       <title>ISUCON反省会 nginx編</title>
       <link>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</link>
-      <pubDate>Thu, 22 Sep 2016 16:42:24 +0000</pubDate>
+      <pubDate>Thu, 22 Sep 2016 16:42:24 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -261,7 +261,7 @@ ISUCON出ました!
     <item>
       <title>ISUCON6に参加して今年も惨敗した件</title>
       <link>https://tamurashingo.github.io/post/2016/09/19/isucon6/</link>
-      <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 01:00:20 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/09/19/isucon6/</guid>
       <description>&lt;style type=&#34;text/css&#34;&gt;
@@ -283,7 +283,7 @@ pre { overflow-x: scroll; }
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
       <link>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</link>
-      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
       <description>&lt;p&gt;Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
@@ -293,7 +293,7 @@ HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</descrip
     <item>
       <title>Dropwizardでデータベースpart4</title>
       <link>https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/</link>
-      <pubDate>Wed, 03 Aug 2016 22:06:15 +0000</pubDate>
+      <pubDate>Wed, 03 Aug 2016 22:06:15 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -311,7 +311,7 @@ HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</descrip
     <item>
       <title>Markdownでブログを書いてシンタックスハイライトする</title>
       <link>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</link>
-      <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
+      <pubDate>Tue, 02 Aug 2016 21:45:42 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -326,7 +326,7 @@ HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</descrip
     <item>
       <title>JavaBeansの役立つ使い方</title>
       <link>https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/</link>
-      <pubDate>Tue, 02 Aug 2016 00:12:21 +0000</pubDate>
+      <pubDate>Tue, 02 Aug 2016 00:12:21 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -345,7 +345,7 @@ HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</descrip
     <item>
       <title>JavaBeansとは</title>
       <link>https://tamurashingo.github.io/post/2016/07/31/java-beans/</link>
-      <pubDate>Sun, 31 Jul 2016 16:16:27 +0000</pubDate>
+      <pubDate>Sun, 31 Jul 2016 16:16:27 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/31/java-beans/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -368,7 +368,7 @@ Javaで作成された移植可能なプラットフォームに依存しない�
     <item>
       <title>クライアント認証を行う</title>
       <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
-      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -382,7 +382,7 @@ Javaで作成された移植可能なプラットフォームに依存しない�
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
-      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -396,7 +396,7 @@ Javaで作成された移植可能なプラットフォームに依存しない�
     <item>
       <title>Markdownでブログを書く</title>
       <link>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</link>
-      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -416,7 +416,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
     <item>
       <title>CentOS7にGitBucket2.4を入れる</title>
       <link>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</link>
-      <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -427,7 +427,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
     <item>
       <title>オレオレ認証局を作る</title>
       <link>https://tamurashingo.github.io/post/2016/07/18/self-ca/</link>
-      <pubDate>Mon, 18 Jul 2016 00:59:47 +0000</pubDate>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/18/self-ca/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -437,7 +437,7 @@ SSLとクライアント認証を使うシステムを作ってみたくなっ�
     <item>
       <title>サバフェス!2016 IoTハッカソンに参加してきました</title>
       <link>https://tamurashingo.github.io/post/2016/04/16/svfest2016/</link>
-      <pubDate>Sat, 16 Apr 2016 01:00:05 +0000</pubDate>
+      <pubDate>Sat, 16 Apr 2016 01:00:05 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/04/16/svfest2016/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -449,7 +449,7 @@ SSLとクライアント認証を使うシステムを作ってみたくなっ�
     <item>
       <title>ISUCON5に参加して惨敗した件</title>
       <link>https://tamurashingo.github.io/post/2015/10/25/isucon5/</link>
-      <pubDate>Sun, 25 Oct 2015 22:40:23 +0000</pubDate>
+      <pubDate>Sun, 25 Oct 2015 22:40:23 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/10/25/isucon5/</guid>
       <description>&lt;style type=&#34;text/css&#34;&gt;
@@ -467,7 +467,7 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
     <item>
       <title>DBUtils3 version 0.2.0</title>
       <link>https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/</link>
-      <pubDate>Tue, 22 Sep 2015 12:00:26 +0000</pubDate>
+      <pubDate>Tue, 22 Sep 2015 12:00:26 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -492,7 +492,7 @@ DBUtils3のバージョンアップを行いました。&lt;/p&gt;
     <item>
       <title>Cocos2d-x v3.8でAndroid用ゲームを作ってみる</title>
       <link>https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/</link>
-      <pubDate>Sun, 20 Sep 2015 02:08:20 +0000</pubDate>
+      <pubDate>Sun, 20 Sep 2015 02:08:20 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -505,7 +505,7 @@ cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
     <item>
       <title>Cocos2d-xでAndroidの開発環境を作る</title>
       <link>https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/</link>
-      <pubDate>Sun, 13 Sep 2015 20:12:10 +0000</pubDate>
+      <pubDate>Sun, 13 Sep 2015 20:12:10 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -521,7 +521,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
     <item>
       <title>Go言語でMySQLに接続する</title>
       <link>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</link>
-      <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
+      <pubDate>Wed, 26 Aug 2015 05:30:30 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -535,7 +535,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
     <item>
       <title>フロントエンドの開発に使うツール類</title>
       <link>https://tamurashingo.github.io/post/2015/07/15/frontend-tools/</link>
-      <pubDate>Wed, 15 Jul 2015 07:04:09 +0000</pubDate>
+      <pubDate>Wed, 15 Jul 2015 07:04:09 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/07/15/frontend-tools/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -548,7 +548,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
     <item>
       <title>Dropwizardでデータベースpart3</title>
       <link>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</link>
-      <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
+      <pubDate>Sat, 13 Jun 2015 08:28:19 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -559,7 +559,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
     <item>
       <title>Dropwizardでデータベースpart2</title>
       <link>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</link>
-      <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
+      <pubDate>Fri, 12 Jun 2015 06:51:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -570,7 +570,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
     <item>
       <title>Dropwizardでデータベースpart1</title>
       <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</link>
-      <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
+      <pubDate>Wed, 10 Jun 2015 20:54:50 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -581,7 +581,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
     <item>
       <title>Dropwizardを使ってみる</title>
       <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard/</link>
-      <pubDate>Wed, 10 Jun 2015 06:48:19 +0000</pubDate>
+      <pubDate>Wed, 10 Jun 2015 06:48:19 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -597,7 +597,7 @@ Dropwizardを使ってhelloworldをやって行きます。&lt;/p&gt;
     <item>
       <title>DBUtils3の紹介</title>
       <link>https://tamurashingo.github.io/post/2015/05/26/dbutils3/</link>
-      <pubDate>Tue, 26 May 2015 06:43:47 +0000</pubDate>
+      <pubDate>Tue, 26 May 2015 06:43:47 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/05/26/dbutils3/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -617,7 +617,7 @@ Dropwizardを使ってhelloworldをやって行きます。&lt;/p&gt;
     <item>
       <title>WindowsでのJavaの開発環境を作る(Mavenインストール編)</title>
       <link>https://tamurashingo.github.io/post/2015/04/14/maven-install/</link>
-      <pubDate>Tue, 14 Apr 2015 04:37:05 +0000</pubDate>
+      <pubDate>Tue, 14 Apr 2015 04:37:05 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/04/14/maven-install/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -627,7 +627,7 @@ Dropwizardを使ってhelloworldをやって行きます。&lt;/p&gt;
     <item>
       <title>WindowsでのJavaの開発環境を作る(JDKインストール編)</title>
       <link>https://tamurashingo.github.io/post/2015/04/12/jdk-install/</link>
-      <pubDate>Sun, 12 Apr 2015 16:27:44 +0000</pubDate>
+      <pubDate>Sun, 12 Apr 2015 16:27:44 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/04/12/jdk-install/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -637,7 +637,7 @@ Spring Frameworkの記事を書いていたのですが、「それ以前の部�
     <item>
       <title>Lisp Meet Up #26に行ってきました</title>
       <link>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</link>
-      <pubDate>Wed, 25 Mar 2015 23:47:15 +0000</pubDate>
+      <pubDate>Wed, 25 Mar 2015 23:47:15 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -649,7 +649,7 @@ Spring Frameworkの記事を書いていたのですが、「それ以前の部�
     <item>
       <title>base64エンコーダの改良</title>
       <link>https://tamurashingo.github.io/post/2015/03/07/improve-base64encoder/</link>
-      <pubDate>Sat, 07 Mar 2015 08:18:34 +0000</pubDate>
+      <pubDate>Sat, 07 Mar 2015 08:18:34 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/03/07/improve-base64encoder/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -660,7 +660,7 @@ Spring Frameworkの記事を書いていたのですが、「それ以前の部�
     <item>
       <title>Clack Meetup #1 に行ってきました</title>
       <link>https://tamurashingo.github.io/post/2015/03/07/clack-meetup-1/</link>
-      <pubDate>Sat, 07 Mar 2015 00:05:01 +0000</pubDate>
+      <pubDate>Sat, 07 Mar 2015 00:05:01 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/03/07/clack-meetup-1/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -675,7 +675,7 @@ Clack Meetup #1に行ってきました。&lt;/p&gt;
     <item>
       <title>org-modeを使って勉強会でメモをとる</title>
       <link>https://tamurashingo.github.io/post/2015/02/27/memo-with-org-mode/</link>
-      <pubDate>Fri, 27 Feb 2015 07:30:08 +0000</pubDate>
+      <pubDate>Fri, 27 Feb 2015 07:30:08 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/27/memo-with-org-mode/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -687,7 +687,7 @@ Emacsのorg-modeで勉強会のメモをとっていますが、他の方はど�
     <item>
       <title>Spring Frameworkを使ってみるpart4</title>
       <link>https://tamurashingo.github.io/post/2015/02/26/springframework-04/</link>
-      <pubDate>Thu, 26 Feb 2015 20:56:06 +0000</pubDate>
+      <pubDate>Thu, 26 Feb 2015 20:56:06 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/26/springframework-04/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -697,7 +697,7 @@ Emacsのorg-modeで勉強会のメモをとっていますが、他の方はど�
     <item>
       <title>bot programming</title>
       <link>https://tamurashingo.github.io/post/2015/02/25/bot-programming/</link>
-      <pubDate>Wed, 25 Feb 2015 23:58:53 +0000</pubDate>
+      <pubDate>Wed, 25 Feb 2015 23:58:53 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/25/bot-programming/</guid>
       <description>&lt;p&gt;tamuraです。ネタです。&lt;/p&gt;
@@ -710,7 +710,7 @@ Emacsのorg-modeで勉強会のメモをとっていますが、他の方はど�
     <item>
       <title>Spring Frameworkを使ってみるpart3</title>
       <link>https://tamurashingo.github.io/post/2015/02/25/springframework-03/</link>
-      <pubDate>Wed, 25 Feb 2015 20:21:29 +0000</pubDate>
+      <pubDate>Wed, 25 Feb 2015 20:21:29 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/25/springframework-03/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -720,7 +720,7 @@ Emacsのorg-modeで勉強会のメモをとっていますが、他の方はど�
     <item>
       <title>Spring Frameworkを使ってみるpart2</title>
       <link>https://tamurashingo.github.io/post/2015/02/24/springframework-02/</link>
-      <pubDate>Tue, 24 Feb 2015 22:40:18 +0000</pubDate>
+      <pubDate>Tue, 24 Feb 2015 22:40:18 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/24/springframework-02/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -730,7 +730,7 @@ Emacsのorg-modeで勉強会のメモをとっていますが、他の方はど�
     <item>
       <title>Spring Frameworkを使ってみるpart1</title>
       <link>https://tamurashingo.github.io/post/2015/02/24/springframework-01/</link>
-      <pubDate>Tue, 24 Feb 2015 01:08:33 +0000</pubDate>
+      <pubDate>Tue, 24 Feb 2015 01:08:33 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/24/springframework-01/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -741,7 +741,7 @@ Spring Frameworkを使ったことがありませんが、始め方について�
     <item>
       <title>Ghostで少しだけ日本語を打ちやすくする</title>
       <link>https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/</link>
-      <pubDate>Sat, 21 Feb 2015 12:32:52 +0000</pubDate>
+      <pubDate>Sat, 21 Feb 2015 12:32:52 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -751,7 +751,7 @@ Spring Frameworkを使ったことがありませんが、始め方について�
     <item>
       <title>“Septeni×Scala”勉強会 ♯1 行ってきました</title>
       <link>https://tamurashingo.github.io/post/2015/02/21/septeni-scala-1/</link>
-      <pubDate>Sat, 21 Feb 2015 05:29:00 +0000</pubDate>
+      <pubDate>Sat, 21 Feb 2015 05:29:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/21/septeni-scala-1/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -764,7 +764,7 @@ Scalaは２年位前にCourseraで勉強して以来です。&lt;/p&gt;
     <item>
       <title>Ghostを入れる</title>
       <link>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</link>
-      <pubDate>Wed, 18 Feb 2015 04:00:00 +0000</pubDate>
+      <pubDate>Wed, 18 Feb 2015 04:00:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -775,7 +775,7 @@ Scalaは２年位前にCourseraで勉強して以来です。&lt;/p&gt;
     <item>
       <title>OctopressからGhostへ移行</title>
       <link>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</link>
-      <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
+      <pubDate>Sat, 14 Feb 2015 12:51:33 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -785,7 +785,7 @@ blogシステムを&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a
     <item>
       <title>CommonLispでREPLを使った開発</title>
       <link>https://tamurashingo.github.io/post/2015/02/13/repl-development/</link>
-      <pubDate>Fri, 13 Feb 2015 23:20:38 +0000</pubDate>
+      <pubDate>Fri, 13 Feb 2015 23:20:38 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/13/repl-development/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -801,7 +801,7 @@ blogシステムを&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a
     <item>
       <title>init - Octopress</title>
       <link>https://tamurashingo.github.io/post/2015/02/13/octopress/</link>
-      <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 13 Feb 2015 18:00:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/13/octopress/</guid>
       <description>curl -sSL https://get.rvm.io | bash -s stable &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境</description>

@@ -31,8 +31,8 @@ Linux(Ubuntu 14.04LTS)でやっています。
 ダウンロードが多いのでかなり時間がかかります。。。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/" />
-<meta property="article:published_time" content="2015-09-13T20:12:10&#43;00:00"/>
-<meta property="article:modified_time" content="2015-09-13T20:12:10&#43;00:00"/>
+<meta property="article:published_time" content="2015-09-13T20:12:10&#43;09:00"/>
+<meta property="article:modified_time" content="2015-09-13T20:12:10&#43;09:00"/>
 
     
     
@@ -47,8 +47,8 @@ Linux(Ubuntu 14.04LTS)でやっています。
 ダウンロードが多いのでかなり時間がかかります。。。">
 
 
-<meta itemprop="datePublished" content="2015-09-13T20:12:10&#43;00:00" />
-<meta itemprop="dateModified" content="2015-09-13T20:12:10&#43;00:00" />
+<meta itemprop="datePublished" content="2015-09-13T20:12:10&#43;09:00" />
+<meta itemprop="dateModified" content="2015-09-13T20:12:10&#43;09:00" />
 <meta itemprop="wordCount" content="1356">
 
 
@@ -286,7 +286,7 @@ Linux(Ubuntu 14.04LTS)でやっています。
         
         <div class="article-date">
             <i class="fa fa-calendar"></i>
-            <time datetime="2015-09-13 20:12:10 &#43;0000 UTC" itemprop="datePublished">2015-09-13</time>
+            <time datetime="2015-09-13 20:12:10 &#43;0900 JST" itemprop="datePublished">2015-09-13</time>
             &middot;
             1356
             文字
@@ -373,7 +373,7 @@ Cocos2d-x v3.8 の環境を作ってみました。
 Other Download Options
 SDK Tools Only
 からSDKをダウンロードして展開します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz
 tar xvzf android-sdk_r24.3.4-linux.tgz</code></pre></div>
 <p>Android SDK Managerを起動してなんか必要そうなものを色々と落としてきます。</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">android-sdk-linux/tools/android</code></pre></div>
@@ -389,14 +389,14 @@ tar xvzf android-sdk_r24.3.4-linux.tgz</code></pre></div>
 
 <p><a href="https://developer.android.com/ndk/downloads/index.html">https://developer.android.com/ndk/downloads/index.html</a>
 からNDKをダウンロードして展開します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
 chmod a+x android-ndk-r10e-linux-x86_64.bin
 ./android-ndk-r10e-linux-x86_64.bin</code></pre></div>
 <h2 id="cocos2d-xの構築">Cocos2d-xの構築</h2>
 
 <p><a href="http://www.cocos2d-x.org/download/version">http://www.cocos2d-x.org/download/version</a>
 ここから落として展開します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> cocos2d-x-3.8
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> cocos2d-x-3.8
 ./setup.py</code></pre></div>
 <p>ANDROID-SDKとかANDROID-NDKを展開したパスを入力したらセットアップは完了です。
 これは <code>~/.bashrc</code> に環境変数を追記するだけなので、間違ったらその部分を消してもう一度やり直せば大丈夫です。</p>
@@ -404,7 +404,7 @@ chmod a+x android-ndk-r10e-linux-x86_64.bin
 <h2 id="hello-world">hello world</h2>
 
 <p>helloworldとかいう名前だと既存とかぶる可能性があるため、<code>HL</code>というプロジェクトでやっていきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cocos new -l cpp HL
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cocos new -l cpp HL
 <span class="nb">cd</span> HL
 ls
 
@@ -423,7 +423,7 @@ proj.win8.1-universal</code></pre></div>
 <code>proj.android-studio</code>をAndroidStudioで開けば一応はAndroidStudioで開くことができます。</p>
 
 <p>とりあえず<code>proj.android</code>下で作業をしていきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">cd</span> proj.android
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> proj.android
 cocos compile -p android</code></pre></div>
 <p>最初はC++でコンパイルが走ります。超重いです。
 最後にantでビルドプロセスが走り、<code>bin/</code>下にAndroid用パッケージが生成されます。
@@ -437,7 +437,7 @@ AndroidSDK付属のエミュレータだと遅いため、このエミュレー�
 <p><a href="https://www.genymotion.com/">https://www.genymotion.com/</a></p>
 
 <p>ダウンロードや実行にはアカウントが必要になりますが、個人使用であれば無料で使うことができます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">chmod a+x genymotion-2.5.2_x64.bin
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod a+x genymotion-2.5.2_x64.bin
 ./genymotion-2.5.2_x64.bin</code></pre></div>
 <p>GenymotionはVirtualBoxを使うため、入っていない場合はVirtualBoxを入れておきます。</p>
 
@@ -457,9 +457,9 @@ AndroidSDK付属のエミュレータだと遅いため、このエミュレー�
 <h3 id="ビルド">ビルド</h3>
 
 <p>Genymotionはx86なので、x86用にコンパイルする必要があります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">vi jni/Application.mk</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vi jni/Application.mk</code></pre></div>
 <p>以下の設定を追加します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">APP_CPPFLAGS :<span class="o">=</span> -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION<span class="o">=</span><span class="m">1</span> -std<span class="o">=</span>c++11 -fsigned-char -U__SSE__
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">APP_CPPFLAGS :<span class="o">=</span> -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION<span class="o">=</span><span class="m">1</span> -std<span class="o">=</span>c++11 -fsigned-char -U__SSE__
 APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
 <p>コンパイル用のフラグに<code>-U__SSE__</code>を、<code>APP_ABI</code>に<code>armeabi</code>と<code>x86</code>を指定します。
 特にGenymotionで動かす際は<code>-U__SSE__</code>を付けないと意味不明な落ち方をします。</p>
@@ -472,7 +472,7 @@ APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
 
 <p>この設定を追加するとすべてを再ビルドするのでかなりお待ちください。
 その間にGenymotionでAndroidでも起動しておきましょう。</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">cocos run -p android</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cocos run -p android</code></pre></div>
 <p>うまく行くとHello Worldを見ることができます。</p>
 
 <figure>
@@ -643,7 +643,7 @@ APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
                     <p class="item-date">
-                        <time datetime="2019-04-16 19:06:42 &#43;0000 UTC" itemprop="datePublished">2019-04-16</time>
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
                     </p>
                 </div>
             </li>
@@ -669,7 +669,7 @@ APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="title">昔のRedditをSBCLで動かすまで</a></p>
                     <p class="item-date">
-                        <time datetime="2018-04-09 02:01:00 &#43;0000 UTC" itemprop="datePublished">2018-04-09</time>
+                        <time datetime="2018-04-09 02:01:00 &#43;0900 JST" itemprop="datePublished">2018-04-09</time>
                     </p>
                 </div>
             </li>
@@ -695,7 +695,7 @@ APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="title">GhostでIMEの変換候補の位置を直す</a></p>
                     <p class="item-date">
-                        <time datetime="2018-01-04 23:15:00 &#43;0000 UTC" itemprop="datePublished">2018-01-04</time>
+                        <time datetime="2018-01-04 23:15:00 &#43;0900 JST" itemprop="datePublished">2018-01-04</time>
                     </p>
                 </div>
             </li>
@@ -721,7 +721,7 @@ APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="title">hexo化してみました</a></p>
                     <p class="item-date">
-                        <time datetime="2017-12-14 18:33:56 &#43;0000 UTC" itemprop="datePublished">2017-12-14</time>
+                        <time datetime="2017-12-14 18:33:56 &#43;0900 JST" itemprop="datePublished">2017-12-14</time>
                     </p>
                 </div>
             </li>
@@ -747,7 +747,7 @@ APP_ABI :<span class="o">=</span> armeabi x86</code></pre></div>
                     
                     <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="title">Reactを簡単に始める(create-react-app)</a></p>
                     <p class="item-date">
-                        <time datetime="2017-12-12 19:00:00 &#43;0000 UTC" itemprop="datePublished">2017-12-12</time>
+                        <time datetime="2017-12-12 19:00:00 &#43;0900 JST" itemprop="datePublished">2017-12-12</time>
                     </p>
                 </div>
             </li>

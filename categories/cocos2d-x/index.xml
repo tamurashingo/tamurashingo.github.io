@@ -6,7 +6,7 @@
     <description>Recent content in Cocos2d-x on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 20 Sep 2015 02:08:20 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 20 Sep 2015 02:08:20 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/cocos2d-x/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Cocos2d-x v3.8でAndroid用ゲームを作ってみる</title>
       <link>https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/</link>
-      <pubDate>Sun, 20 Sep 2015 02:08:20 +0000</pubDate>
+      <pubDate>Sun, 20 Sep 2015 02:08:20 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -27,7 +27,7 @@ cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
     <item>
       <title>Cocos2d-xでAndroidの開発環境を作る</title>
       <link>https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/</link>
-      <pubDate>Sun, 13 Sep 2015 20:12:10 +0000</pubDate>
+      <pubDate>Sun, 13 Sep 2015 20:12:10 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/</guid>
       <description>&lt;p&gt;tamuraです。

@@ -6,7 +6,7 @@
     <description>Recent content in Maven on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 14 Apr 2015 04:37:05 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2015 04:37:05 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/maven/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>WindowsでのJavaの開発環境を作る(Mavenインストール編)</title>
       <link>https://tamurashingo.github.io/post/2015/04/14/maven-install/</link>
-      <pubDate>Tue, 14 Apr 2015 04:37:05 +0000</pubDate>
+      <pubDate>Tue, 14 Apr 2015 04:37:05 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/04/14/maven-install/</guid>
       <description>&lt;p&gt;tamuraです。

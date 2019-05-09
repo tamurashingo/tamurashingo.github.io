@@ -6,7 +6,7 @@
     <description>Recent content in Linux on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
       <link>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</link>
-      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
       <description>&lt;p&gt;Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
@@ -24,7 +24,7 @@ HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</descrip
     <item>
       <title>CentOS7にGitBucket2.4を入れる</title>
       <link>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</link>
-      <pubDate>Fri, 22 Jul 2016 21:22:16 +0000</pubDate>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

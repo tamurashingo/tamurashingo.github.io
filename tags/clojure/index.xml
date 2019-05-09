@@ -6,7 +6,7 @@
     <description>Recent content in Clojure on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 25 Mar 2015 23:47:15 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2015 23:47:15 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/clojure/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Lisp Meet Up #26に行ってきました</title>
       <link>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</link>
-      <pubDate>Wed, 25 Mar 2015 23:47:15 +0000</pubDate>
+      <pubDate>Wed, 25 Mar 2015 23:47:15 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;

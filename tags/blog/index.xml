@@ -6,7 +6,7 @@
     <description>Recent content in blog on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Hello Hugo World</title>
       <link>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</link>
-      <pubDate>Tue, 16 Apr 2019 19:06:42 +0000</pubDate>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</guid>
       <description>Hugoで作り直す なんど目かの作り直しです。 なぜHugoにしたか？なんとなくです。 $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルでブログを作る</description>
@@ -23,7 +23,7 @@
     <item>
       <title>hexo化してみました</title>
       <link>https://tamurashingo.github.io/post/2017/12/14/hexo/</link>
-      <pubDate>Thu, 14 Dec 2017 18:33:56 +0000</pubDate>
+      <pubDate>Thu, 14 Dec 2017 18:33:56 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2017/12/14/hexo/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -34,7 +34,7 @@
     <item>
       <title>Markdownでブログを書いてシンタックスハイライトする</title>
       <link>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</link>
-      <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
+      <pubDate>Tue, 02 Aug 2016 21:45:42 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -49,7 +49,7 @@
     <item>
       <title>Markdownでブログを書く</title>
       <link>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</link>
-      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -69,7 +69,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
     <item>
       <title>Ghostで少しだけ日本語を打ちやすくする</title>
       <link>https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/</link>
-      <pubDate>Sat, 21 Feb 2015 12:32:52 +0000</pubDate>
+      <pubDate>Sat, 21 Feb 2015 12:32:52 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -79,7 +79,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
     <item>
       <title>Ghostを入れる</title>
       <link>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</link>
-      <pubDate>Wed, 18 Feb 2015 04:00:00 +0000</pubDate>
+      <pubDate>Wed, 18 Feb 2015 04:00:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
@@ -90,7 +90,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
     <item>
       <title>OctopressからGhostへ移行</title>
       <link>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</link>
-      <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
+      <pubDate>Sat, 14 Feb 2015 12:51:33 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</guid>
       <description>&lt;p&gt;tamuraです。
@@ -100,7 +100,7 @@ blogシステムを&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a
     <item>
       <title>init - Octopress</title>
       <link>https://tamurashingo.github.io/post/2015/02/13/octopress/</link>
-      <pubDate>Fri, 13 Feb 2015 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 13 Feb 2015 18:00:00 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/02/13/octopress/</guid>
       <description>curl -sSL https://get.rvm.io | bash -s stable &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境</description>

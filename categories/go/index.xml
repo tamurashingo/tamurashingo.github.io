@@ -6,7 +6,7 @@
     <description>Recent content in Go on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 26 Aug 2015 05:30:30 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2015 05:30:30 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Go言語でMySQLに接続する</title>
       <link>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</link>
-      <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
+      <pubDate>Wed, 26 Aug 2015 05:30:30 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</guid>
       <description>&lt;p&gt;tamuraです。
