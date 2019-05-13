@@ -6,54 +6,88 @@
     <description>Recent content in Dropwizard on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 03 Aug 2016 22:06:15 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Nov 2016 22:00:03 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/dropwizard/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Dropwizardでデータベースpart4</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</link>
-      <pubDate>Wed, 03 Aug 2016 22:06:15 +0000</pubDate>
+      <title>DropwizardでGoogle Guiceを使う</title>
+      <link>https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/</link>
+      <pubDate>Thu, 10 Nov 2016 22:00:03 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/03/dropwizard-database-4/</guid>
-      <description>tamuraです。 今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。 Dropwizardを使ってみ</description>
+      <guid>https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/</guid>
+      <description>&lt;p&gt;tamuraです&lt;/p&gt;
+
+&lt;p&gt;DropwizardでGoogle Guiceを使ってDependency Injection(DI)を行いました。
+DIを使った理由としてはデータベースコネクションを引き回したくなかったためです。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dropwizardでデータベースpart4</title>
+      <link>https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/</link>
+      <pubDate>Wed, 03 Aug 2016 22:06:15 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tamurashingo.github.io/post/2015/06/10/dropwizard/&#34;&gt;Dropwizardを使ってみる&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/&#34;&gt;Dropwizardでデータベースpart1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/&#34;&gt;Dropwizardでデータベースpart2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/&#34;&gt;Dropwizardでデータベースpart3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardでデータベースpart3</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</link>
-      <pubDate>Sat, 13 Jun 2015 08:28:19 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</link>
+      <pubDate>Sat, 13 Jun 2015 08:28:19 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/</guid>
-      <description>tamuraです。 今回はDropwizardでデータベースの更新を行っていきます。 DAOの修正 DAOにUPDATEメソッドを追加します。 package com.github.tamurashingo.dropwizard.helloworld.dao;</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/13/dropwizard-database-3/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardでデータベースの更新を行っていきます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardでデータベースpart2</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</link>
-      <pubDate>Fri, 12 Jun 2015 06:51:00 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</link>
+      <pubDate>Fri, 12 Jun 2015 06:51:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/</guid>
-      <description>tamuraです。 今回はDropwizardでデータベースを参照していきます。 pom.xml 以下の記述をpom.xmlに追加します。 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;io.dropwizard&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dropwizard-jdbi&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${dropwizard.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.tamurashingo.dbutil3&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;dbutil3&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.1.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/12/dropwizard-database-2/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardでデータベースを参照していきます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardでデータベースpart1</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</link>
-      <pubDate>Wed, 10 Jun 2015 20:54:50 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</link>
+      <pubDate>Wed, 10 Jun 2015 20:54:50 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/</guid>
-      <description>tamuraです。 今回はDropwizardでデータベースを使ってみます。 Migration Migrationという仕組みを使ってデータベースを準備していき</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;今回はDropwizardでデータベースを使ってみます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Dropwizardを使ってみる</title>
-      <link>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</link>
-      <pubDate>Wed, 10 Jun 2015 06:48:19 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/06/10/dropwizard/</link>
+      <pubDate>Wed, 10 Jun 2015 06:48:19 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/06/10/dropwizard/</guid>
-      <description>tamuraです。 JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。 Drop</description>
+      <guid>https://tamurashingo.github.io/post/2015/06/10/dropwizard/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。
+Dropwizardを使ってhelloworldをやって行きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.dropwizard.io/getting-started.html&#34;&gt;http://www.dropwizard.io/getting-started.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;この内容をほぼそのままやって行きます。&lt;/p&gt;</description>
     </item>
     
   </channel>

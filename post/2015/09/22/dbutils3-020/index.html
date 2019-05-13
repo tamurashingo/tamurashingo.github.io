@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <title>DBUtils3 version 0.2.0 &middot; Web技術と親しむ</title>
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="tamura shingo">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/"/>
+    <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
+    <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/monokai.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/fancybox/jquery.fancybox.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="DBUtils3 version 0.2.0" />
+<meta property="og:description" content="tamuraです。
+DBUtils3のバージョンアップを行いました。
+
+DBUtils3
+
+今回は
+select
+  *
+from
+  t_tbl
+where
+  id = :id
+のようにSQLを定義して
+Param param = new Param();
+param.put(&#34;id&#34;, 123);
+List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, param);
+のように名前付きパラメータで値を指定できるようにしました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/" />
+<meta property="article:published_time" content="2015-09-22T12:00:26&#43;09:00"/>
+<meta property="article:modified_time" content="2015-09-22T12:00:26&#43;09:00"/>
+
+    
+    
+<meta itemprop="name" content="DBUtils3 version 0.2.0">
+<meta itemprop="description" content="tamuraです。
+DBUtils3のバージョンアップを行いました。
+
+DBUtils3
+
+今回は
+select
+  *
+from
+  t_tbl
+where
+  id = :id
+のようにSQLを定義して
+Param param = new Param();
+param.put(&#34;id&#34;, 123);
+List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, param);
+のように名前付きパラメータで値を指定できるようにしました。">
+
+
+<meta itemprop="datePublished" content="2015-09-22T12:00:26&#43;09:00" />
+<meta itemprop="dateModified" content="2015-09-22T12:00:26&#43;09:00" />
+<meta itemprop="wordCount" content="1290">
+
+
+
+<meta itemprop="keywords" content="Java,DBUtils3,SQL," />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DBUtils3 version 0.2.0"/>
+<meta name="twitter:description" content="tamuraです。
+DBUtils3のバージョンアップを行いました。
+
+DBUtils3
+
+今回は
+select
+  *
+from
+  t_tbl
+where
+  id = :id
+のようにSQLを定義して
+Param param = new Param();
+param.put(&#34;id&#34;, 123);
+List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, param);
+のように名前付きパラメータで値を指定できるようにしました。"/>
+<meta name="twitter:site" content="@tamura_shingo"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://tamurashingo.github.io/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://tamurashingo.github.io/css/images/logo.png')"></i>
+          
+          <span class="site-title">Web技術と親しむ</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://tamurashingo.github.io/img/main/face.jpg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="検索">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://tamurashingo.github.io/img/main/face.jpg">
+      
+      <h2 id="name">tamura shingo</h2>
+      <h3 id="title">Java, JavaScript, Common Lisp...</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Saitama, Japan</span>
+      
+          <a id="follow" href="https://github.com/tamurashingo">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        61
+        <span>記事</span>
+      </div>
+      <div class="article-info-block">
+        
+          65
+        
+        <span>
+            タグ
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/tamurashingo" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/tamurashingo" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/tamura_shingo" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://tamurashingo.github.io/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/">
+    <h1 class="article-title" itemprop="name">
+        DBUtils3 version 0.2.0
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-09-22 12:00:26 &#43;0900 JST" itemprop="datePublished">2015-09-22</time>
+            &middot;
+            1290
+            文字
+            &middot;
+            3
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/dbutils3">DBUtils3</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/sql">SQL</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>tamuraです。
+DBUtils3のバージョンアップを行いました。</p>
+
+<p><a href="https://github.com/tamurashingo/dbutils3">DBUtils3</a></p>
+
+<p>今回は</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>
+  <span class="o">*</span>
+<span class="k">from</span>
+  <span class="n">t_tbl</span>
+<span class="k">where</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="p">:</span><span class="n">id</span></code></pre></div>
+<p>のようにSQLを定義して</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="o">();</span>
+<span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">123</span><span class="o">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">executeQueryWithParam</span><span class="o">(</span><span class="n">ResultBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span></code></pre></div>
+<p>のように名前付きパラメータで値を指定できるようにしました。</p>
+
+<h2 id="きっかけ">きっかけ</h2>
+
+<ul>
+<li>マスタテーブルが5種類ある</li>
+<li>それぞれに有効期限がある</li>
+<li>そのマスタと結合させて情報を抜く</li>
+</ul>
+
+<p>というSQLを何個も書いていました。こんな感じのSQLになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>
+  <span class="p">....</span>
+<span class="k">from</span>
+  <span class="n">t_xxxx</span> <span class="n">trn</span>
+  <span class="n">m_aaaa</span> <span class="n">m1</span><span class="p">,</span>
+  <span class="n">m_bbbb</span> <span class="n">m2</span><span class="p">,</span>
+  <span class="n">m_cccc</span> <span class="n">m3</span><span class="p">,</span>
+  <span class="n">m_dddd</span> <span class="n">m4</span>
+<span class="k">where</span>
+  <span class="p">...</span>
+<span class="k">and</span>
+  <span class="n">m1</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m1</span><span class="p">.</span><span class="n">end_ymd</span>
+<span class="k">and</span>
+  <span class="n">m2</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m2</span><span class="p">.</span><span class="n">end_ymd</span>
+<span class="k">and</span>
+  <span class="n">m3</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m3</span><span class="p">.</span><span class="n">end_ymd</span>
+<span class="k">and</span>
+  <span class="n">m4</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m4</span><span class="p">.</span><span class="n">end_ymd</span></code></pre></div>
+<p>DBUtilsでSQLを発行するとこういうコードになります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">conn</span><span class="o">.</span><span class="na">prepare</span><span class="o">(</span><span class="n">selectSQL</span><span class="o">);</span>  
+<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">ResultBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>  
+    <span class="o">...,</span>
+    <span class="o">...,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
+    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">);</span></code></pre></div>
+<p>どの<code>?</code>に対するパラメータなのか分かりにくくなります。</p>
+
+<h2 id="実装方法">実装方法</h2>
+
+<p><a href="http://jdbi.org/">JDBI</a>の実装を参考にして、<a href="http://www.antlr.org/">ANTLR</a>を使って字句解析をしています。
+ANTLRのサンプルとしてMySQLのクエリパーサがあったのですが、今回の内容はそこまで複雑ではありません。
+また、SQLとしておかしい構文であってもそれはデータベースがおかしいクエリと判断すれば良いため、このツールでは字句解析のみを行っています。</p>
+
+<h3 id="字句解析">字句解析</h3>
+
+<p>字句解析の一部はこんな感じです。</p>
+
+<p><code>:a</code>や<code>:a0</code>などを見つけたら<code>NAMED_PARAM</code>として呼び出し元に返します。
+<code>:0</code>や<code>:0a</code>は<code>COLON</code>,<code>NUMBER</code>,<code>ALPHA</code>として返されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bnf" data-lang="bnf">ALPHA
+    : &#39;a&#39;..&#39;z&#39;
+    | &#39;A&#39;..&#39;Z&#39;
+    | &#39;_&#39;
+    ;
+NUMBER
+    : &#39;0&#39;..&#39;9&#39;
+    ;
+COLON
+    : &#39;:&#39;    
+    ;
+
+NAMED_PARAM
+    : COLON ALPHA (ALPHA | NUMBER)*
+    ;</code></pre></div>
+<p>呼び出し元は<code>NAMED_PARAM</code>が返されたら<code>?</code>を詰め込む、それ以外が返ってきたら解析された字句をそのまま詰め込む、とすればパラメータを置換して<code>prepare</code>にそのまま渡せる文字列ができあがります。</p>
+
+<h3 id="sqlの解析">SQLの解析</h3>
+
+<p>ANTLRで作ったLexerでSQLの字句解析を行います。</p>
+
+<ul>
+<li>NAMED_PARAMの場合
+
+<ul>
+<li>名前付きパラメータから名前を取得して、リストに詰め込む
+-組み立て中のSQLは?を入れる</li>
+</ul></li>
+<li>NAMED_PARAM以外の場合
+
+<ul>
+<li>組み立て中のSQLに返ってきた字句をそのまま入れる</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 何番目の?がなんというパラメータだったかを保持するリスト
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keyNames</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="n">String</span> <span class="nf">analyzeSQL</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// ANTLRで生成したLexer
+</span><span class="c1"></span>    <span class="n">SQLLexer</span> <span class="n">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLLexer</span><span class="o">(</span><span class="k">new</span> <span class="n">ANTLRInputStream</span><span class="o">(</span><span class="n">sql</span><span class="o">));</span>
+    <span class="c1">// SQLを生成する
+</span><span class="c1"></span>    <span class="n">StrinbBuilder</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+    <span class="n">keyNames</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+
+
+    <span class="n">Token</span> <span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">!=</span> <span class="n">SQLLexer</span><span class="o">.</span><span class="na">EOF</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getType</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="n">SQLLexer</span><span class="o">.</span><span class="na">NAMED_PARAM</span><span class="o">:</span>
+            <span class="c1">// 先頭のコロンを除去
+</span><span class="c1"></span>            <span class="n">keyNames</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
+            <span class="c1">// 名前付きパラメータを?に置換
+</span><span class="c1"></span>            <span class="n">buf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;?&#34;</span><span class="o">);</span>
+            <span class="k">break</span><span class="o">;</span><span class="nl">
+</span><span class="nl">
+</span><span class="nl">        default:</span>
+            <span class="c1">// そのまま詰め込む
+</span><span class="c1"></span>            <span class="n">buf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span></code></pre></div>
+<p>このメソッドに名前付きパラメータで記述したSQLを渡すと、通常の <code>prepare</code> に渡す形式のSQLに変換します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>
+  <span class="o">*</span>
+<span class="k">from</span>
+  <span class="n">t_tbl</span>
+<span class="k">where</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="p">:</span><span class="n">id</span></code></pre></div>
+<p>これが</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>
+  <span class="o">*</span>
+<span class="k">from</span>
+  <span class="n">t_tbl</span>
+<span class="k">where</span>
+  <span class="n">id</span> <span class="o">=</span> <span class="o">?</span></code></pre></div>
+<p>こうなって、</p>
+
+<pre><code>keyNames:[&quot;id&quot;]
+</code></pre>
+
+<p>こうなります。</p>
+
+<h3 id="sqlの実行">SQLの実行</h3>
+
+<p><code>Map</code>みたいなクラスを作ってそこにキーと値をセットします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Param</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">param</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Param</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Param</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+<p><code>put</code>で<code>Param</code>を返しているのはこんなことをやりたいためです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">123</span><span class="o">).</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="s">&#34;tamura&#34;</span><span class="o">);</span></code></pre></div>
+<p>このクラスで名前とそのパラメータをセットします。
+<code>executeQuery</code>等に渡すため、このパラメータを<code>Object[]</code>に変換する必要があります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Object</span><span class="o">[]</span> <span class="nf">createParams</span><span class="o">(</span><span class="n">Param</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">keyNames</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">key:</span> <span class="n">keyNames</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">p</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">param</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">(</span><span class="n">Object</span><span class="o">[])</span><span class="n">p</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{});</span>
+<span class="o">}</span></code></pre></div>
+<p>最後に、今までの<code>executeQuery</code>に横流しします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">executeQueryWithParam</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">cls</span><span class="o">,</span> <span class="n">Params</span> <span class="n">params</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+    <span class="n">Object</span><span class="o">[]</span> <span class="n">p</span> <span class="o">=</span> <span class="n">createParams</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">executeQuery</span><span class="o">(</span><span class="n">cls</span><span class="o">,</span> <span class="n">p</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
+<h2 id="まとめ">まとめ</h2>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.github.tamurashingo.dbutil3<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>dbutil3<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
+<p>で使うことができます。</p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/" data-id="8c60280e83dd0b039f078fad2388e0c3" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          前のページ
+      </strong>
+      <div class="article-nav-title">Cocos2d-x v3.8でAndroid用ゲームを作ってみる</div>
+    </a>
+    
+
+    
+    <a href="https://tamurashingo.github.io/post/2015/10/25/isucon5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          次のページ
+      </strong>
+      <div class="article-nav-title">ISUCON5に参加して惨敗した件</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "webji-shu-toqin-shimu" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        最新記事
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="title">Hugoで最新のChromaを使う</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-05-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2019-05-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ruby">
+                        Ruby
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="title">Rubyを理解するためにSchemeを作ってみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-11-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2018-11-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="title">Common Lispで会計freeeのAPIを叩く</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-26 23:48:41 &#43;0900 JST" itemprop="datePublished">2018-09-26</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="title">Dexadorを認証プロキシに対応させました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-19 01:02:00 &#43;0900 JST" itemprop="datePublished">2018-09-19</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/coffeescript">
+                    coffeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">7</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/java">
+                    java
+                </a>
+                <span class="category-list-count">18</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
+                    linux
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/web">
+                    web
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ajp">
+                    ajp
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/androidstudio">
+                    androidstudio
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/apache">
+                    apache
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">9</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ca">
+                    ca
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/clojure">
+                    clojure
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/coffeeescript">
+                    coffeeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/database">
+                    database
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dbutils3">
+                    dbutils3
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/firebase">
+                    firebase
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/gitbucket">
+                    gitbucket
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
+                    go
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/golang">
+                    golang
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/google-code-prettify">
+                    google-code-prettify
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hexo">
+                    hexo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hugo">
+                    hugo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/iot">
+                    iot
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/java">
+                    java
+                </a>
+                <span class="category-list-count">21</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javabeans">
+                    javabeans
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javascript">
+                    javascript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/jsf">
+                    jsf
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/json">
+                    json
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/linux">
+                    linux
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/markdown">
+                    markdown
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/maven">
+                    maven
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/mysql">
+                    mysql
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/nginx">
+                    nginx
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/octopress">
+                    octopress
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/openssl">
+                    openssl
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/org-mode">
+                    org-mode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/programming">
+                    programming
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/pullrequest">
+                    pullrequest
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/reverse-proxy">
+                    reverse-proxy
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/sql">
+                    sql
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ssl">
+                    ssl
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/tomcat">
+                    tomcat
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ubuntu">
+                    ubuntu
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/visualstudiocode">
+                    visualstudiocode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/web">
+                    web
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/xml">
+                    xml
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    オレオレ証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">
+                    オレオレ認証局
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    クライアント証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">
+                    サバフェス
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
+                    シンタックスハイライト
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">
+                    チューニング
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89">
+                    フロントエンド
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">
+                    プログラミング
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">
+                    リフレクション
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B">
+                    日本語入力
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ajp" style="font-size: 12px;">ajp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ca" style="font-size: 12px;">ca</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/clojure" style="font-size: 12px;">clojure</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/cocos2d-x" style="font-size: 12px;">cocos2d-x</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/coffeeescript" style="font-size: 12px;">coffeeescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/common-lisp" style="font-size: 12px;">common-lisp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/database" style="font-size: 12px;">database</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dbutils3" style="font-size: 12px;">dbutils3</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dropwizard" style="font-size: 12px;">dropwizard</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/emacs" style="font-size: 12px;">emacs</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/gitbucket" style="font-size: 12px;">gitbucket</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/go" style="font-size: 12px;">go</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/golang" style="font-size: 12px;">golang</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/google-code-prettify" style="font-size: 12px;">google-code-prettify</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hexo" style="font-size: 12px;">hexo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/isucon" style="font-size: 12px;">isucon</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javabeans" style="font-size: 12px;">javabeans</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/jsf" style="font-size: 12px;">jsf</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/json" style="font-size: 12px;">json</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/linux" style="font-size: 12px;">linux</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/markdown" style="font-size: 12px;">markdown</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/maven" style="font-size: 12px;">maven</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/memcached" style="font-size: 12px;">memcached</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/octopress" style="font-size: 12px;">octopress</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/openssl" style="font-size: 12px;">openssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/org-mode" style="font-size: 12px;">org-mode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/programming" style="font-size: 12px;">programming</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/spring-framework" style="font-size: 12px;">spring-framework</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/sql" style="font-size: 12px;">sql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ssl" style="font-size: 12px;">ssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/tomcat" style="font-size: 12px;">tomcat</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/web" style="font-size: 12px;">web</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/xml" style="font-size: 12px;">xml</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">オレオレ証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80" style="font-size: 12px;">オレオレ認証局</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">クライアント証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9" style="font-size: 12px;">サバフェス</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88" style="font-size: 12px;">シンタックスハイライト</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0" style="font-size: 12px;">チューニング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3" style="font-size: 12px;">ハッカソン</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" style="font-size: 12px;">フロントエンド</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" style="font-size: 12px;">プログラミング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" style="font-size: 12px;">リフレクション</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A" style="font-size: 12px;">勉強会</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" style="font-size: 12px;">日本語入力</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-45175387-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="https://tamurashingo.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://tamurashingo.github.io/js/script.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

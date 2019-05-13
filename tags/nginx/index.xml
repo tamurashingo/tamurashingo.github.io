@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nginx on Web技術と親しむ</title>
+    <title>nginx on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/nginx/</link>
-    <description>Recent content in Nginx on Web技術と親しむ</description>
+    <description>Recent content in nginx on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 22 Sep 2016 16:42:24 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Sep 2016 16:42:24 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ISUCON反省会 nginx編</title>
-      <link>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</link>
-      <pubDate>Thu, 22 Sep 2016 16:42:24 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</link>
+      <pubDate>Thu, 22 Sep 2016 16:42:24 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/09/22/isucon6-nginx/</guid>
-      <description>tamuraです。 ISUCON出ました! ブログ書きました! で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内</description>
+      <guid>https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/</guid>
+      <description>&lt;p&gt;tamuraです。
+ISUCON出ました!
+ブログ書きました!&lt;/p&gt;
+
+&lt;p&gt;で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内容をメモしました。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ISUCON5に参加して惨敗した件&lt;/li&gt;
+&lt;li&gt;ISUCON6に参加して今年も惨敗した件&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

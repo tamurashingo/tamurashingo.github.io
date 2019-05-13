@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Visualstudiocode on Web技術と親しむ</title>
+    <title>VisualStudioCode on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/visualstudiocode/</link>
-    <description>Recent content in Visualstudiocode on Web技術と親しむ</description>
+    <description>Recent content in VisualStudioCode on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sat, 23 Jul 2016 22:24:30 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Jul 2016 22:24:30 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/visualstudiocode/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Markdownでブログを書く</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</link>
-      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</link>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</guid>
-      <description>tamuraです。 以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。 livedoor blogなどのいわゆる一般向けのブロ</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。
+livedoor blogなどのいわゆる一般向けのブログサービスはMarkdown形式でブログを書けないため、ここ数日いろいろと検討して、いい感じにブログが書けるようになりました。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Markdownでブログを書く (Visual Studio Codeがいいかも)&lt;/li&gt;
+&lt;li&gt;markedでHTMLに変換する&lt;/li&gt;
+&lt;li&gt;livedoor blogにHTMLタグ編集モードで書き込む&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでやっています。&lt;/p&gt;</description>
     </item>
     
   </channel>

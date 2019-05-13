@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PullRequest on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/pullrequest/</link>
+    <description>Recent content in PullRequest on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 04 Jan 2018 23:15:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/pullrequest/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GhostでIMEの変換候補の位置を直す</title>
+      <link>https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/</link>
+      <pubDate>Thu, 04 Jan 2018 23:15:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Ghostで日本語変換をすると変換候補の位置がおかしい場所になる、というバグがありました。
+正月休みで色々いじって直しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/TryGhost/Ghost-Admin/pull/940/files&#34;&gt;https://github.com/TryGhost/Ghost-Admin/pull/940/files&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

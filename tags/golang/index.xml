@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golang on Web技術と親しむ</title>
+    <title>golang on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/golang/</link>
-    <description>Recent content in Golang on Web技術と親しむ</description>
+    <description>Recent content in golang on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 26 Aug 2015 05:30:30 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2015 05:30:30 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go言語でMySQLに接続する</title>
-      <link>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</link>
-      <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</link>
+      <pubDate>Wed, 26 Aug 2015 05:30:30 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</guid>
-      <description>tamuraです。 最近、Go言語を始めました。 MySQLにつなぐ コマンドラインアプリのように１回接続して何か操作して切断、というのであればな</description>
+      <guid>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</guid>
+      <description>&lt;p&gt;tamuraです。
+最近、Go言語を始めました。&lt;/p&gt;
+
+&lt;h2 id=&#34;mysqlにつなぐ&#34;&gt;MySQLにつなぐ&lt;/h2&gt;
+
+&lt;p&gt;コマンドラインアプリのように１回接続して何か操作して切断、というのであればなんら難しくありません。&lt;/p&gt;</description>
     </item>
     
   </channel>

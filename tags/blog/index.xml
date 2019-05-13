@@ -1,59 +1,123 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on Web技術と親しむ</title>
+    <title>blog on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/blog/</link>
-    <description>Recent content in Blog on Web技術と親しむ</description>
+    <description>Recent content in blog on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 02 Aug 2016 21:45:42 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 May 2019 23:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Markdownでブログを書いてシンタックスハイライトする</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</link>
-      <pubDate>Tue, 02 Aug 2016 21:45:42 +0000</pubDate>
+      <title>Hugoで最新のChromaを使う</title>
+      <link>https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/</link>
+      <pubDate>Wed, 08 May 2019 23:30:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/02/markdown-syntaxhightlight/</guid>
-      <description>tamuraです。 Markdownでブログを書く件の続きです。 前回はmarkedを使ってMarkdownをHTMLに変換しました。 今回はシン</description>
+      <guid>https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Hugo単体でシンタックスハイライトをするためにChromaを使いました。
+Common Lispに完全に対応していなかったので&lt;a href=&#34;https://github.com/alecthomas/chroma/pull/252&#34;&gt;Pull Requestを出して&lt;/a&gt;取り込んでもらいました。&lt;/p&gt;
+
+&lt;p&gt;Hugoで最新のChromaを使ってシンタックスハイライトをした記録です。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello Hugo World</title>
+      <link>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</link>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</guid>
+      <description>Hugoで作り直す なんど目かの作り直しです。 なぜHugoにしたか？なんとなくです。 $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルでブログを作る</description>
+    </item>
+    
+    <item>
+      <title>hexo化してみました</title>
+      <link>https://tamurashingo.github.io/post/2017/12/14/hexo/</link>
+      <pubDate>Thu, 14 Dec 2017 18:33:56 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/12/14/hexo/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;blogをhexoでやってみることにしました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Markdownでブログを書いてシンタックスハイライトする</title>
+      <link>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</link>
+      <pubDate>Tue, 02 Aug 2016 21:45:42 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Markdownでブログを書く件の続きです。
+前回はmarkedを使ってMarkdownをHTMLに変換しました。
+今回はシンタックスハイライトについてです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/google/code-prettify&#34;&gt;google-code-prettify&lt;/a&gt;(正式名称はJavascript code prettifierでしょうか？)を使います。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Markdownでブログを書く</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</link>
-      <pubDate>Sat, 23 Jul 2016 22:24:30 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</link>
+      <pubDate>Sat, 23 Jul 2016 22:24:30 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/23/write-blog-with-markdown/</guid>
-      <description>tamuraです。 以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。 livedoor blogなどのいわゆる一般向けのブロ</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。
+livedoor blogなどのいわゆる一般向けのブログサービスはMarkdown形式でブログを書けないため、ここ数日いろいろと検討して、いい感じにブログが書けるようになりました。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Markdownでブログを書く (Visual Studio Codeがいいかも)&lt;/li&gt;
+&lt;li&gt;markedでHTMLに変換する&lt;/li&gt;
+&lt;li&gt;livedoor blogにHTMLタグ編集モードで書き込む&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;これでやっています。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ghostで少しだけ日本語を打ちやすくする</title>
+      <link>https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/</link>
+      <pubDate>Sat, 21 Feb 2015 12:32:52 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/21/ime-in-ghost/</guid>
+      <description>&lt;p&gt;tamuraです。
+ある問題をちょっとだけ解決したので載せます。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Ghostを入れる</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/18/install-ghost/</link>
-      <pubDate>Wed, 18 Feb 2015 04:00:00 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</link>
+      <pubDate>Wed, 18 Feb 2015 04:00:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/18/install-ghost/</guid>
-      <description>tamuraです。 blogをGhostにしたので、インストール手順を簡単に紹介します。 Node.jsのインストール NVMのインストール 例によ</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/18/install-ghost/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;blogをGhostにしたので、インストール手順を簡単に紹介します。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>OctopressからGhostへ移行</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</link>
-      <pubDate>Sat, 14 Feb 2015 12:51:33 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</link>
+      <pubDate>Sat, 14 Feb 2015 12:51:33 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/14/octopress-to-ghost/</guid>
-      <description>tamuraです。 blogシステムをOctopressからGhostに移行しました。 Octopress 手元ですべてのHTMLを生成するのでGithubとかで</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/</guid>
+      <description>&lt;p&gt;tamuraです。
+blogシステムを&lt;a href=&#34;http://octopress.org/&#34;&gt;Octopress&lt;/a&gt;から&lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt;に移行しました。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>init - Octopress</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/13/octopress/</link>
-      <pubDate>Fri, 13 Feb 2015 18:00:00 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/02/13/octopress/</link>
+      <pubDate>Fri, 13 Feb 2015 18:00:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/13/octopress/</guid>
-      <description>curl -sSL https://get.rvm.io | bash -s stable 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境変数を読み込み source ~/.rvm/scripts/rvm Rubyのインストー</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/13/octopress/</guid>
+      <description>curl -sSL https://get.rvm.io | bash -s stable &amp;lt;section id=&amp;#34;main&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1 id=&amp;#34;title&amp;#34;&amp;gt;{{ .Title }}&amp;lt;/h1&amp;gt; {{ range .Pages }} {{ .Render &amp;#34;summary&amp;#34;}} {{ end }} &amp;lt;/div&amp;gt; &amp;lt;/section&amp;gt; 途中で署名がどうとかいうエラーが出るので、もう一度実行。 curl -sSL https://rvm.io/mpapis.asc | gpg --import - curl -sSL https://get.rvm.io | bash -s stable 環境</description>
     </item>
     
   </channel>

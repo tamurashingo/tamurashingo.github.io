@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <title>Cocos2d-x v3.8でAndroid用ゲームを作ってみる &middot; Web技術と親しむ</title>
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="tamura shingo">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/"/>
+    <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
+    <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/monokai.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/fancybox/jquery.fancybox.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Cocos2d-x v3.8でAndroid用ゲームを作ってみる" />
+<meta property="og:description" content="tamuraです。
+cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
+いくつかはまったポイントがありました。
+
+(今回作ったやつは以前にiアプリ版やJavaScript版として作ったものなので、自分的にHelloWorldプロジェクトです)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/" />
+<meta property="article:published_time" content="2015-09-20T02:08:20&#43;09:00"/>
+<meta property="article:modified_time" content="2015-09-20T02:08:20&#43;09:00"/>
+
+    
+    
+<meta itemprop="name" content="Cocos2d-x v3.8でAndroid用ゲームを作ってみる">
+<meta itemprop="description" content="tamuraです。
+cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
+いくつかはまったポイントがありました。
+
+(今回作ったやつは以前にiアプリ版やJavaScript版として作ったものなので、自分的にHelloWorldプロジェクトです)">
+
+
+<meta itemprop="datePublished" content="2015-09-20T02:08:20&#43;09:00" />
+<meta itemprop="dateModified" content="2015-09-20T02:08:20&#43;09:00" />
+<meta itemprop="wordCount" content="1787">
+
+
+
+<meta itemprop="keywords" content="Android,Cocos2d-x," />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cocos2d-x v3.8でAndroid用ゲームを作ってみる"/>
+<meta name="twitter:description" content="tamuraです。
+cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
+いくつかはまったポイントがありました。
+
+(今回作ったやつは以前にiアプリ版やJavaScript版として作ったものなので、自分的にHelloWorldプロジェクトです)"/>
+<meta name="twitter:site" content="@tamura_shingo"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://tamurashingo.github.io/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://tamurashingo.github.io/css/images/logo.png')"></i>
+          
+          <span class="site-title">Web技術と親しむ</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://tamurashingo.github.io/img/main/face.jpg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="検索">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://tamurashingo.github.io/img/main/face.jpg">
+      
+      <h2 id="name">tamura shingo</h2>
+      <h3 id="title">Java, JavaScript, Common Lisp...</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Saitama, Japan</span>
+      
+          <a id="follow" href="https://github.com/tamurashingo">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        61
+        <span>記事</span>
+      </div>
+      <div class="article-info-block">
+        
+          65
+        
+        <span>
+            タグ
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/tamurashingo" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/tamurashingo" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/tamura_shingo" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://tamurashingo.github.io/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/">
+    <h1 class="article-title" itemprop="name">
+        Cocos2d-x v3.8でAndroid用ゲームを作ってみる
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2015-09-20 02:08:20 &#43;0900 JST" itemprop="datePublished">2015-09-20</time>
+            &middot;
+            1787
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">Android</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/cocos2d-x">Cocos2d-x</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/android">Android</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/cocos2d-x">Cocos2d-x</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>tamuraです。
+cocos2d-xで自分にとってHelloWorld的なゲームを作りました。
+いくつかはまったポイントがありました。</p>
+
+<p>(今回作ったやつは以前にiアプリ版やJavaScript版として作ったものなので、自分的にHelloWorldプロジェクトです)</p>
+
+<h2 id="appdelegate-cpp">AppDelegate.cpp</h2>
+
+<p>初期設定等を行っているやつです。 今回は単純に拡大してほしかったので、簡単な設定になっています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">bool</span> <span class="n">AppDelegate</span><span class="o">::</span><span class="n">applicationDidFinishLaunching</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 初期化
+</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">director</span> <span class="o">=</span> <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">glview</span> <span class="o">=</span> <span class="n">director</span><span class="o">-&gt;</span><span class="n">getOpenGLView</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">glview</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">glview</span> <span class="o">=</span> <span class="n">GLViewImpl</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&#34;PostKun&#34;</span><span class="p">);</span>
+        <span class="n">director</span><span class="o">-&gt;</span><span class="n">setOpenGLView</span><span class="p">(</span><span class="n">glview</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// デモ画面用に20FPSにしているけど、実際のゲームでは10FPSで動いています
+</span><span class="c1"></span>    <span class="n">director</span><span class="o">-&gt;</span><span class="n">setAnimationInterval</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">20</span><span class="p">);</span>
+
+    <span class="c1">// 画面サイズは 120 x 160
+</span><span class="c1"></span>    <span class="c1">// 良い感じに拡大してもらいます
+</span><span class="c1"></span>    <span class="n">glview</span><span class="o">-&gt;</span><span class="n">setDesignResolutionSize</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="n">ResolutionPolicy</span><span class="o">::</span><span class="n">SHOW_ALL</span><span class="p">);</span>
+    <span class="n">Size</span> <span class="n">frameSize</span> <span class="o">=</span> <span class="n">glview</span><span class="o">-&gt;</span><span class="n">getFrameSize</span><span class="p">();</span>
+
+    <span class="n">register_all_packages</span><span class="p">();</span>
+
+    <span class="c1">// デモ表示
+</span><span class="c1"></span>    <span class="k">auto</span> <span class="n">scene</span> <span class="o">=</span> <span class="n">DemoScene</span><span class="o">::</span><span class="n">createScene</span><span class="p">();</span>
+    <span class="n">director</span><span class="o">-&gt;</span><span class="n">runWithScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="タイトル-デモンストレーション">タイトル(デモンストレーション)</h2>
+
+<p>画面はエミュレータで動かしたやつです。 実際のゲームの倍のスピードでなわとびをし続けます。</p>
+
+<figure>
+    <img src="postkun_demo.png"
+         alt="デモ画面"/> 
+</figure>
+
+
+<h3 id="タップが有効にならない">タップが有効にならない</h3>
+
+<p>終了ボタンを押したら終了、それ以外を押したらゲームスタートとしています。 イベントリスナーで画面タッチを得ていますが、このやり方がわからなくてはまりました。</p>
+
+<p>当初はタップが終わったら(クリックで言うとボタンがリリースされたら)押されたと判断しようと思い、こんな感じで書いていました。 当然ながら動きません。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">exitLabel</span> <span class="o">=</span> <span class="n">Label</span><span class="o">::</span><span class="n">createWithTTF</span><span class="p">(</span><span class="s">&#34;exit&#34;</span><span class="p">,</span> <span class="s">&#34;fonts/arial.ttf&#34;</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">exitLabel</span><span class="p">);</span>
+
+<span class="k">auto</span> <span class="n">exitListener</span> <span class="o">=</span> <span class="n">EventListenerTouchOneByOne</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+<span class="n">exitListener</span><span class="o">-&gt;</span><span class="n">onTouchEnded</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Touch</span><span class="o">*</span> <span class="n">touch</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Director</span><span class="o">::</span><span class="n">getInstance</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">getEventDispatcher</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addEventListenerWithSceneGraphPriority</span><span class="p">(</span><span class="n">exitListener</span><span class="p">,</span> <span class="n">exitLabel</span><span class="p">);</span>
+</code></pre></div>
+<p><code>onTouchBegan</code>で<code>true</code>が返っていないと<code>onTouchEnded</code>が反応しないっぽいということに気付き、修正しました。</p>
+
+<p>で、今見たらちゃんと書いてました
+<a href="http://www.cocos2d-x.org/reference/native-cpp/V3.8/df/de4/classcocos2d_1_1_layer.html#adc596c208246932a23848702cfda7502">http://www.cocos2d-x.org/reference/native-cpp/V3.8/df/de4/classcocos2d_1_1_layer.html#adc596c208246932a23848702cfda7502</a></p>
+
+<p>あと、関数の中でちゃんと<code>Label</code>が押されたのかどうかを判定する必要があります。 この判定をしないとどこをタップしても<code>Label</code>が押されたと判定されます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">exitListener</span><span class="o">-&gt;</span><span class="n">onTouchBegan</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Touch</span><span class="o">*</span> <span class="n">touch</span><span class="p">,</span> <span class="n">Event</span><span class="o">*</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">target</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">getCurrentTarget</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">targetBox</span> <span class="o">=</span> <span class="n">target</span><span class="o">-&gt;</span><span class="n">getBoundingBBox</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">touchPoint</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">touch</span><span class="o">-&gt;</span><span class="n">getLocation</span><span class="p">().</span><span class="n">x</span><span class="p">,</span> <span class="n">touch</span><span class="o">-&gt;</span><span class="n">getLocation</span><span class="p">().</span><span class="n">y</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">targetBox</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">touchPoint</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// 押された
+</span><span class="c1"></span>        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>ここらへんはなんとなくマクロで定型化できそうです。</p>
+
+<h3 id="v-sync割り込み">V-Sync割り込み</h3>
+
+<p><code>scheduleUpdate()</code>を呼び出せば、指定したフレームレートで<code>void update(float f)</code>が呼び出されます。 このゲームではアニメーションが7コマあるので、カウンタ変数を使ってそこら辺を制御しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">DemoScene</span><span class="o">::</span><span class="n">update</span><span class="p">(</span><span class="kt">float</span> <span class="n">delta</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">counter</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">postkun</span><span class="o">-&gt;</span><span class="n">jump</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">characterLayer</span><span class="o">-&gt;</span><span class="n">enterFrame</span><span class="p">(</span><span class="n">counter</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="キャラクターと線を描く">キャラクターと線を描く</h2>
+
+<p>このゲームはポストととび縄があり、とび縄は伝統的に直線で表現していました。 今回もそのやり方を踏襲します。</p>
+
+<h3 id="レイヤーを用意する">レイヤーを用意する</h3>
+
+<p>デモ画面とプレイ画面でほぼ同じ動きをするため、共通化させるためにレイヤーを一つ用意しました。 そのレイヤーに</p>
+
+<ul>
+<li>前面のとび縄</li>
+<li>キャラクター</li>
+<li>背面のとび縄</li>
+</ul>
+
+<p>となるように各オブジェクトを配置しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">bool</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">init</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">backLayer</span> <span class="o">=</span> <span class="n">DrawNode</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">frontLayer</span> <span class="o">=</span> <span class="n">DrawNode</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&#34;post.png&#34;</span><span class="p">);</span>
+    <span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setAnchorPoint</span><span class="p">(</span><span class="n">Vec2</span><span class="p">(</span><span class="mf">0.5f</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">));</span>
+
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">backLayer</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">sprite</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">frontLayer</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">setVisible</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="描画">描画</h3>
+
+<p><code>count</code>の値に応じてとび縄を前面に描くか背面に描くのかを判断しています。 描画する数が少ないので<code>RenderTexture</code>とか使わなくても大丈夫です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">enterFrame</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">backLayer</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+    <span class="n">frontLayer</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">draw</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">backLayer</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">draw</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">frontLayer</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">postkun</span><span class="o">-&gt;</span><span class="n">enterFrame</span><span class="p">();</span>
+    <span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPositionX</span><span class="p">(</span><span class="n">postkun</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPositionY</span><span class="p">(</span><span class="n">postkun</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="static-const-な配列の初期化">static const な配列の初期化</h3>
+
+<p>あとはとび縄の描画です。 とび縄の各頂点は事前に分かっているので構造体を定義して、その配列を持つようにしています。 なにげに <code>static const</code> な配列を初期化する書き方にはまりました。書き慣れたJavaと違います。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// とび縄の頂点の数とその位置
+</span><span class="c1"></span><span class="k">struct</span> <span class="n">NAWAPOS</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">CharLayer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">Layer</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>  
+    <span class="p">....</span>
+<span class="k">private</span><span class="o">:</span>  
+    <span class="k">const</span> <span class="k">static</span> <span class="k">struct</span> <span class="n">NAWAPOS</span> <span class="n">nawapos</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">const</span> <span class="k">struct</span> <span class="n">NAWAPOS</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">nawapos</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// 0
+</span><span class="c1"></span>    <span class="p">{</span>
+        <span class="mi">7</span><span class="p">,</span>
+        <span class="p">{</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span>  <span class="mi">4</span><span class="p">},</span>
+        <span class="p">{</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">46</span><span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">....</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>描画するときは<code>count</code>に応じてループをまわして線を描くだけです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">CharLayer</span><span class="o">::</span><span class="n">draw</span><span class="p">(</span><span class="kt">int</span> <span class="n">count</span><span class="p">,</span> <span class="n">DrawNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="k">struct</span> <span class="n">NAWAPOS</span> <span class="o">*</span><span class="n">pos</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">CharLayer</span><span class="o">::</span><span class="n">nawapos</span><span class="p">[</span><span class="n">count</span><span class="p">];</span>
+    <span class="n">Vec2</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_X</span> <span class="o">+</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_Y</span> <span class="o">-</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">ix</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">ix</span> <span class="o">&lt;</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span> <span class="n">ix</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Vec2</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_X</span> <span class="o">+</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">[</span><span class="n">ix</span><span class="p">],</span> <span class="n">PostKunConstants</span><span class="o">::</span><span class="n">NAWA_CENTER_Y</span> <span class="o">-</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">[</span><span class="n">ix</span><span class="p">]);</span>
+        <span class="n">node</span><span class="o">-&gt;</span><span class="n">drawSegment</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="mf">0.5f</span><span class="p">,</span> <span class="n">Color4F</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="カウントダウン">カウントダウン</h2>
+
+<p>一応タイミングゲームなので、カウントダウンをやっておいたほうが親切です。 ここではワンショットのタイマーを使ってカウントダウンしています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyThree</span><span class="p">),</span> <span class="mf">0.8f</span><span class="p">);</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyTwo</span><span class="p">),</span>   <span class="mf">1.6f</span><span class="p">);</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyOne</span><span class="p">),</span>   <span class="mf">2.4f</span><span class="p">);</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">readyStart</span><span class="p">),</span> <span class="mf">3.2f</span><span class="p">);</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">PlayScene</span><span class="o">::</span><span class="n">start</span><span class="p">),</span>      <span class="mf">4.0f</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyThree</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span> <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;3...&#34;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyTwo</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span>   <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;2...&#34;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyOne</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span>   <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;1...&#34;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">readyStart</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span> <span class="p">{</span> <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;start!&#34;</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">PlayScene</span><span class="o">::</span><span class="n">start</span><span class="p">(</span><span class="kt">float</span> <span class="n">frame</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="s">&#34;score:0&#34;</span><span class="p">);</span>
+    <span class="n">jumped</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleUpdate</span><span class="p">();</span>
+    <span class="n">listener</span><span class="o">-&gt;</span><span class="n">setEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="スコア表示">スコア表示</h2>
+
+<p><code>Label</code>でやっています。<code>int</code>から<code>string</code>への変換は<code>StringUtils::format</code>で行っています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">auto</span> <span class="n">str</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&#34;score:%d&#34;</span><span class="p">,</span> <span class="n">score</span><span class="p">);</span>
+<span class="n">scoreLabel</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="ゲームオーバー">ゲームオーバー</h2>
+
+<p>うまく飛べないと転びます。約1秒後にもう一度やるかどうか聞かれます。 <code>update</code>にあまりいろいろ詰め込みたくなかったので別<code>Scene</code>にしています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">// 転んでいる絵
+</span><span class="c1"></span><span class="k">auto</span> <span class="n">sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="s">&#34;post.png&#34;</span><span class="p">);</span>
+<span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setPosition</span><span class="p">(</span><span class="n">PostKunConstants</span><span class="o">::</span><span class="n">CENTER_X</span><span class="p">,</span> <span class="n">PostKunConstants</span><span class="o">::</span><span class="n">CENTER_Y</span><span class="p">);</span>
+<span class="n">sprite</span><span class="o">-&gt;</span><span class="n">setRotation</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">);</span>
+<span class="k">this</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">sprite</span><span class="p">);</span>
+
+<span class="c1">// リプレイを問う
+</span><span class="c1"></span><span class="k">this</span><span class="o">-&gt;</span><span class="n">scheduleOnce</span><span class="p">(</span><span class="n">schedule_selector</span><span class="p">(</span><span class="n">GameOverScene</span><span class="o">::</span><span class="n">doQuit</span><span class="p">),</span> <span class="mf">1.5f</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="感想">感想</h2>
+
+<p>以前に<a href="http://enchantjs.com/ja/">enchant.js</a>を使ってブラウザで遊べるバージョンを作ったのですが、そのときのよりもiアプリ版に近い動きになりました。</p>
+
+<p><a href="https://github.com/tamurashingo/postkun_android">https://github.com/tamurashingo/postkun_android</a></p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/" data-id="0ec442a82d78249f72ecd54ac687a557" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2015/09/20/android-game-cocos2dx/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="https://tamurashingo.github.io/post/2015/09/13/android-cocos2dx/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          前のページ
+      </strong>
+      <div class="article-nav-title">Cocos2d-xでAndroidの開発環境を作る</div>
+    </a>
+    
+
+    
+    <a href="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          次のページ
+      </strong>
+      <div class="article-nav-title">DBUtils3 version 0.2.0</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "webji-shu-toqin-shimu" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        最新記事
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="title">Hugoで最新のChromaを使う</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-05-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2019-05-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ruby">
+                        Ruby
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="title">Rubyを理解するためにSchemeを作ってみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-11-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2018-11-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="title">Common Lispで会計freeeのAPIを叩く</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-26 23:48:41 &#43;0900 JST" itemprop="datePublished">2018-09-26</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="title">Dexadorを認証プロキシに対応させました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-19 01:02:00 &#43;0900 JST" itemprop="datePublished">2018-09-19</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/coffeescript">
+                    coffeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">7</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/java">
+                    java
+                </a>
+                <span class="category-list-count">18</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
+                    linux
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/web">
+                    web
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ajp">
+                    ajp
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/androidstudio">
+                    androidstudio
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/apache">
+                    apache
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">9</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ca">
+                    ca
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/clojure">
+                    clojure
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/coffeeescript">
+                    coffeeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/database">
+                    database
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dbutils3">
+                    dbutils3
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/firebase">
+                    firebase
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/gitbucket">
+                    gitbucket
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
+                    go
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/golang">
+                    golang
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/google-code-prettify">
+                    google-code-prettify
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hexo">
+                    hexo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hugo">
+                    hugo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/iot">
+                    iot
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/java">
+                    java
+                </a>
+                <span class="category-list-count">21</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javabeans">
+                    javabeans
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javascript">
+                    javascript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/jsf">
+                    jsf
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/json">
+                    json
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/linux">
+                    linux
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/markdown">
+                    markdown
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/maven">
+                    maven
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/mysql">
+                    mysql
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/nginx">
+                    nginx
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/octopress">
+                    octopress
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/openssl">
+                    openssl
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/org-mode">
+                    org-mode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/programming">
+                    programming
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/pullrequest">
+                    pullrequest
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/reverse-proxy">
+                    reverse-proxy
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/sql">
+                    sql
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ssl">
+                    ssl
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/tomcat">
+                    tomcat
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ubuntu">
+                    ubuntu
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/visualstudiocode">
+                    visualstudiocode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/web">
+                    web
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/xml">
+                    xml
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    オレオレ証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">
+                    オレオレ認証局
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    クライアント証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">
+                    サバフェス
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
+                    シンタックスハイライト
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">
+                    チューニング
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89">
+                    フロントエンド
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">
+                    プログラミング
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">
+                    リフレクション
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B">
+                    日本語入力
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ajp" style="font-size: 12px;">ajp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ca" style="font-size: 12px;">ca</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/clojure" style="font-size: 12px;">clojure</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/cocos2d-x" style="font-size: 12px;">cocos2d-x</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/coffeeescript" style="font-size: 12px;">coffeeescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/common-lisp" style="font-size: 12px;">common-lisp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/database" style="font-size: 12px;">database</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dbutils3" style="font-size: 12px;">dbutils3</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dropwizard" style="font-size: 12px;">dropwizard</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/emacs" style="font-size: 12px;">emacs</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/gitbucket" style="font-size: 12px;">gitbucket</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/go" style="font-size: 12px;">go</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/golang" style="font-size: 12px;">golang</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/google-code-prettify" style="font-size: 12px;">google-code-prettify</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hexo" style="font-size: 12px;">hexo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/isucon" style="font-size: 12px;">isucon</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javabeans" style="font-size: 12px;">javabeans</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/jsf" style="font-size: 12px;">jsf</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/json" style="font-size: 12px;">json</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/linux" style="font-size: 12px;">linux</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/markdown" style="font-size: 12px;">markdown</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/maven" style="font-size: 12px;">maven</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/memcached" style="font-size: 12px;">memcached</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/octopress" style="font-size: 12px;">octopress</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/openssl" style="font-size: 12px;">openssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/org-mode" style="font-size: 12px;">org-mode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/programming" style="font-size: 12px;">programming</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/spring-framework" style="font-size: 12px;">spring-framework</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/sql" style="font-size: 12px;">sql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ssl" style="font-size: 12px;">ssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/tomcat" style="font-size: 12px;">tomcat</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/web" style="font-size: 12px;">web</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/xml" style="font-size: 12px;">xml</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">オレオレ証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80" style="font-size: 12px;">オレオレ認証局</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">クライアント証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9" style="font-size: 12px;">サバフェス</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88" style="font-size: 12px;">シンタックスハイライト</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0" style="font-size: 12px;">チューニング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3" style="font-size: 12px;">ハッカソン</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" style="font-size: 12px;">フロントエンド</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" style="font-size: 12px;">プログラミング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" style="font-size: 12px;">リフレクション</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A" style="font-size: 12px;">勉強会</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" style="font-size: 12px;">日本語入力</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-45175387-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="https://tamurashingo.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://tamurashingo.github.io/js/script.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,3715 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+    <title>昔のRedditをSBCLで動かすまで &middot; Web技術と親しむ</title>
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="tamura shingo">
+    
+      <meta name="description" content="">
+    
+    
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2018/04/15/old-reddit/"/>
+    <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
+    <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/monokai.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/fancybox/jquery.fancybox.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="昔のRedditをSBCLで動かすまで" />
+<meta property="og:description" content="tamuraです。
+
+昔のRedditのコードが公開されていたのでSBCLでコンパイルして動かしてみました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2018/04/15/old-reddit/" />
+<meta property="article:published_time" content="2018-04-15T02:01:00&#43;09:00"/>
+<meta property="article:modified_time" content="2018-04-15T02:01:00&#43;09:00"/>
+
+    
+    
+<meta itemprop="name" content="昔のRedditをSBCLで動かすまで">
+<meta itemprop="description" content="tamuraです。
+
+昔のRedditのコードが公開されていたのでSBCLでコンパイルして動かしてみました。">
+
+
+<meta itemprop="datePublished" content="2018-04-15T02:01:00&#43;09:00" />
+<meta itemprop="dateModified" content="2018-04-15T02:01:00&#43;09:00" />
+<meta itemprop="wordCount" content="8081">
+
+
+
+<meta itemprop="keywords" content="Common Lisp," />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="昔のRedditをSBCLで動かすまで"/>
+<meta name="twitter:description" content="tamuraです。
+
+昔のRedditのコードが公開されていたのでSBCLでコンパイルして動かしてみました。"/>
+<meta name="twitter:site" content="@tamura_shingo"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://tamurashingo.github.io/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://tamurashingo.github.io/css/images/logo.png')"></i>
+          
+          <span class="site-title">Web技術と親しむ</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://tamurashingo.github.io/img/main/face.jpg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="検索">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://tamurashingo.github.io/img/main/face.jpg">
+      
+      <h2 id="name">tamura shingo</h2>
+      <h3 id="title">Java, JavaScript, Common Lisp...</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Saitama, Japan</span>
+      
+          <a id="follow" href="https://github.com/tamurashingo">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        61
+        <span>記事</span>
+      </div>
+      <div class="article-info-block">
+        
+          65
+        
+        <span>
+            タグ
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/tamurashingo" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/tamurashingo" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/tamura_shingo" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://tamurashingo.github.io/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2018/04/15/old-reddit/">
+    <h1 class="article-title" itemprop="name">
+        昔のRedditをSBCLで動かすまで
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-04-15 02:01:00 &#43;0900 JST" itemprop="datePublished">2018-04-15</time>
+            &middot;
+            8081
+            文字
+            &middot;
+            17
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">Common Lisp</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/common-lisp">Common Lisp</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>tamuraです。</p>
+
+<p>昔の<a href="https://github.com/reddit-archive/reddit1.0">Reddit</a>のコードが公開されていたのでSBCLでコンパイルして動かしてみました。</p>
+
+<h2 id="コンパイルを通すまで">コンパイルを通すまで</h2>
+
+<p>2018.04.02に補足したようです。</p>
+
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ちろっと修正してみたけどうまくコンパイルできませんでした。ちゃんと中身を見てみよう。<a href="https://t.co/hYeSI3QL9T">https://t.co/hYeSI3QL9T</a></p>&mdash; tamura shingo (@tamura_shingo) <a href="https://twitter.com/tamura_shingo/status/980782252673019904?ref_src=twsrc%5Etfw">2018年4月2日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>とりあえずコンパイルを通すことを目標にしました。</p>
+
+<h2 id="change-library-https-github-com-tamurashingo-reddit1-0-commit-ecbd59d879295b73745b41c3eaedf2e0bc5d6e34"><a href="https://github.com/tamurashingo/reddit1.0/commit/ecbd59d879295b73745b41c3eaedf2e0bc5d6e34">change library</a></h2>
+
+<p><code>tbnl</code>っていうライブラリがありませんでした。</p>
+
+<p><code>tbnl</code>をググると <a href="https://www.quicklisp.org/beta/UNOFFICIAL/docs/tbnl/doc/index.html">TBNL - A toolkit for dynamic Lisp websites</a> というページが見つかりました。
+たぶん<code>Hunchentoot</code>で行けるだろうと見込み、<code>hunchentoot</code>に変更しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 1 insertion(+), 1 deletion(-)
+reddit.asd | 2 +-
+
+modified   reddit.asd
+<span class="gu">@@ -8,7 +8,7 @@
+</span><span class="gu"></span> (in-package #:reddit-system)
+ 
+ (defsystem reddit
+<span class="gd">-    :depends-on (:tbnl
+</span><span class="gd"></span><span class="gi">+    :depends-on (:hunchentoot
+</span><span class="gi"></span>                  :cl-ppcre
+                  :trivial-http
+                  :cl-who
+</code></pre></div>
+<h2 id="fix-component-https-github-com-tamurashingo-reddit1-0-commit-300271f475e761e8e30ead0713f7ab3a04d85b4b"><a href="https://github.com/tamurashingo/reddit1.0/commit/300271f475e761e8e30ead0713f7ab3a04d85b4b">fix component</a></h2>
+
+<p><code>mail</code>が2回定義されているので片方を削除しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 1 insertion(+), 2 deletions(-)
+reddit.asd | 3 +--
+
+modified   reddit.asd
+<span class="gu">@@ -22,10 +22,9 @@
+</span><span class="gu"></span>                  (:file &#34;frame&#34; :depends-on (&#34;packages&#34; &#34;web&#34;))
+                  (:file &#34;autocompute&#34; :depends-on (&#34;packages&#34;))
+                  (:file &#34;user-info&#34; :depends-on (&#34;data&#34; &#34;packages&#34;))
+<span class="gd">-                 (:file &#34;web&#34; :depends-on (&#34;packages&#34; &#34;mail&#34; &#34;recommend&#34; &#34;data&#34; &#34;util&#34; &#34;mail&#34; &#34;rss&#34; &#34;memcached&#34; &#34;sites&#34; &#34;view-defs&#34; &#34;user-info&#34; &#34;cookiehash&#34;))
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;web&#34; :depends-on (&#34;packages&#34; &#34;recommend&#34; &#34;data&#34; &#34;util&#34; &#34;mail&#34; &#34;rss&#34; &#34;memcached&#34; &#34;sites&#34; &#34;view-defs&#34; &#34;user-info&#34; &#34;cookiehash&#34;))
+</span><span class="gi"></span>                  (:file &#34;data&#34; :depends-on (&#34;packages&#34; &#34;view-defs&#34; &#34;util&#34;))
+                  (:file &#34;view-defs&#34; :depends-on (&#34;packages&#34;))
+<span class="gd">-                 (:file &#34;mail&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd"></span>                  (:file &#34;util&#34; :depends-on (&#34;packages&#34;))
+                  (:file &#34;search&#34; :depends-on (&#34;packages&#34;))
+                  ;;(:file &#34;options&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+</code></pre></div>
+<h2 id="move-source-to-src-directory-https-github-com-tamurashingo-reddit1-0-commit-5f5817f7ada47b24be0b3bf99c0c4e2e45f5e797"><a href="https://github.com/tamurashingo/reddit1.0/commit/5f5817f7ada47b24be0b3bf99c0c4e2e45f5e797">move source to src directory</a></h2>
+
+<p><code>reddit.asd</code>とかと同じディレクトリにソースがどばーっとある状態だったので、
+最近のソースの構成(?)に変更しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">26 files changed, 12 insertions(+), 11 deletions(-)
+reddit.asd                               | 23 ++++++++++++-----------
+autocompute.lisp =&gt; src/autocompute.lisp |  0 
+classify.lisp =&gt; src/classify.lisp       |  0 
+conditions.lisp =&gt; src/conditions.lisp   |  0 
+cookiehash.lisp =&gt; src/cookiehash.lisp   |  0 
+crc.lisp =&gt; src/crc.lisp                 |  0 
+data.lisp =&gt; src/data.lisp               |  0 
+frame.lisp =&gt; src/frame.lisp             |  0 
+mail.lisp =&gt; src/mail.lisp               |  0 
+memcached.lisp =&gt; src/memcached.lisp     |  0 
+old.lisp =&gt; src/old.lisp                 |  0 
+options.lisp =&gt; src/options.lisp         |  0 
+packages.lisp =&gt; src/packages.lisp       |  0 
+recommend.lisp =&gt; src/recommend.lisp     |  0 
+rss.lisp =&gt; src/rss.lisp                 |  0 
+scraper.lisp =&gt; src/scraper.lisp         |  0 
+search.lisp =&gt; src/search.lisp           |  0 
+sites.lisp =&gt; src/sites.lisp             |  0 
+tok-file.lisp =&gt; src/tok-file.lisp       |  0 
+tokenizer.lisp =&gt; src/tokenizer.lisp     |  0 
+updatedata.lisp =&gt; src/updatedata.lisp   |  0 
+user-info.lisp =&gt; src/user-info.lisp     |  0 
+user-panel.lisp =&gt; src/user-panel.lisp   |  0 
+util.lisp =&gt; src/util.lisp               |  0 
+view-defs.lisp =&gt; src/view-defs.lisp     |  0 
+web.lisp =&gt; src/web.lisp                 |  0 
+
+modified   reddit.asd
+<span class="gu">@@ -8,15 +8,17 @@
+</span><span class="gu"></span> (in-package #:reddit-system)
+ 
+ (defsystem reddit
+<span class="gd">-    :depends-on (:hunchentoot
+</span><span class="gd">-                 :cl-ppcre
+</span><span class="gd">-                 :trivial-http
+</span><span class="gd">-                 :cl-who
+</span><span class="gd">-                 :clsql
+</span><span class="gd">-                 :clsql-postgresql
+</span><span class="gd">-                 :cl-smtp
+</span><span class="gd">-                 :ironclad)
+</span><span class="gd">-    :components ((:file &#34;packages&#34;)
+</span><span class="gd"></span><span class="gi">+  :depends-on (:hunchentoot
+</span><span class="gi">+               :cl-ppcre
+</span><span class="gi">+               :trivial-http
+</span><span class="gi">+               :cl-who
+</span><span class="gi">+               :clsql
+</span><span class="gi">+               :clsql-postgresql
+</span><span class="gi">+               :cl-smtp
+</span><span class="gi">+               :ironclad)
+</span><span class="gi">+  :components ((:module &#34;src&#34;
+</span><span class="gi">+                :components
+</span><span class="gi">+                ((:file &#34;packages&#34;)
+</span><span class="gi"></span>                  (:file &#34;cookiehash&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+                  (:file &#34;recommend&#34; :depends-on (&#34;packages&#34; &#34;user-info&#34;))
+                  (:file &#34;frame&#34; :depends-on (&#34;packages&#34; &#34;web&#34;))
+<span class="gu">@@ -33,5 +35,4 @@
+</span><span class="gu"></span>                  (:file &#34;rss&#34; :depends-on (&#34;memcached&#34; &#34;packages&#34; &#34;sites&#34;))
+                  (:file &#34;sites&#34; :depends-on (&#34;packages&#34; &#34;data&#34; &#34;util&#34; &#34;search&#34; &#34;autocompute&#34; &#34;user-info&#34;))
+                  (:file &#34;mail&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+<span class="gd">-                 (:file &#34;user-panel&#34; :depends-on (&#34;data&#34; &#34;packages&#34; &#34;web&#34; &#34;sites&#34;))))
+</span><span class="gd">-                 
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;user-panel&#34; :depends-on (&#34;data&#34; &#34;packages&#34; &#34;web&#34; &#34;sites&#34;))))))
+</span><span class="gi"></span>renamed    autocompute.lisp -&gt; src/autocompute.lisp
+renamed    classify.lisp -&gt; src/classify.lisp
+renamed    conditions.lisp -&gt; src/conditions.lisp
+renamed    cookiehash.lisp -&gt; src/cookiehash.lisp
+renamed    crc.lisp -&gt; src/crc.lisp
+renamed    data.lisp -&gt; src/data.lisp
+renamed    frame.lisp -&gt; src/frame.lisp
+renamed    mail.lisp -&gt; src/mail.lisp
+renamed    memcached.lisp -&gt; src/memcached.lisp
+renamed    old.lisp -&gt; src/old.lisp
+renamed    options.lisp -&gt; src/options.lisp
+renamed    packages.lisp -&gt; src/packages.lisp
+renamed    recommend.lisp -&gt; src/recommend.lisp
+renamed    rss.lisp -&gt; src/rss.lisp
+renamed    scraper.lisp -&gt; src/scraper.lisp
+renamed    search.lisp -&gt; src/search.lisp
+renamed    sites.lisp -&gt; src/sites.lisp
+renamed    tok-file.lisp -&gt; src/tok-file.lisp
+renamed    tokenizer.lisp -&gt; src/tokenizer.lisp
+renamed    updatedata.lisp -&gt; src/updatedata.lisp
+renamed    user-info.lisp -&gt; src/user-info.lisp
+renamed    user-panel.lisp -&gt; src/user-panel.lisp
+renamed    util.lisp -&gt; src/util.lisp
+renamed    view-defs.lisp -&gt; src/view-defs.lisp
+renamed    web.lisp -&gt; src/web.lisp
+</code></pre></div>
+<h2 id="パッケージ化">パッケージ化</h2>
+
+<p>Javaを長年やってきたので、こういう一つのパッケージ(namespace)にいろんな役割のコードがあるのは、
+コードを理解が進みません。
+ある程度のパッケージ化をしていきました。</p>
+
+<p>あと、<code>use</code>を多様するとどのパッケージのどの関数を使っているのか調べにくいので、
+なるべく <code>:import-from</code> で読み込むようにしました。</p>
+
+<h3 id="create-new-package-reddit-util-https-github-com-tamurashingo-reddit1-0-commit-b87a33e2078958a4ef7edfb4ffd79c096bd961fe"><a href="https://github.com/tamurashingo/reddit1.0/commit/b87a33e2078958a4ef7edfb4ffd79c096bd961fe">create new package :reddit.util</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 47 insertions(+), 1 deletion(-)
+src/util.lisp | 48 +++++++++++++++++++++++++++++++++++++++++++++++-
+
+modified   src/util.lisp
+<span class="gu">@@ -18,7 +18,53 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package #:reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage :reddit.util
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-ppcre
+</span><span class="gi">+                :create-scanner
+</span><span class="gi">+                :register-groups-bind
+</span><span class="gi">+                :scan
+</span><span class="gi">+                :split)
+</span><span class="gi">+  (:import-from :cl-who
+</span><span class="gi">+                :conc
+</span><span class="gi">+                :escape-string)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :decode-time)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :cookie-in
+</span><span class="gi">+                :log-message*
+</span><span class="gi">+                :set-cookie)
+</span><span class="gi">+  (:import-from :trivial-http
+</span><span class="gi">+                :http-get)
+</span><span class="gi">+  (:export :website-stream
+</span><span class="gi">+           :website-string
+</span><span class="gi">+           :website-title
+</span><span class="gi">+           :tl-domain
+</span><span class="gi">+           :replace-alist
+</span><span class="gi">+           :create-url
+</span><span class="gi">+           :days
+</span><span class="gi">+           :age-str
+</span><span class="gi">+           :sanitize
+</span><span class="gi">+           :add-rlist
+</span><span class="gi">+           :decode-user-url
+</span><span class="gi">+           :2weeks
+</span><span class="gi">+           :-2weeks
+</span><span class="gi">+           :good-nytimes-p
+</span><span class="gi">+           :nytimes-link-p
+</span><span class="gi">+           :nytimes-genlink-website
+</span><span class="gi">+           :good-nytimes
+</span><span class="gi">+           :nytimes-safe-url
+</span><span class="gi">+           :base-url
+</span><span class="gi">+           :add-http
+</span><span class="gi">+           :makestr
+</span><span class="gi">+           :key-str
+</span><span class="gi">+           :esc-quote
+</span><span class="gi">+           :shorten-str
+</span><span class="gi">+           :when-bind
+</span><span class="gi">+           :when-bind*))
+</span><span class="gi">+(in-package :reddit.util)
+</span><span class="gi">+
+</span><span class="gi"></span> 
+ (defparameter *title* (create-scanner &#34;(?s)(?i)&lt;title&gt;(.+?)&lt;/title&gt;&#34;))
+ (defparameter *toplevel* (create-scanner &#34;https?://(?:www.)?([^/]*)&#34;))
+</code></pre></div>
+<h3 id="create-new-package-reddit-view-defs-https-github-com-tamurashingo-reddit1-0-commit-674ebe88948ff6e58aea3b45eb347a420de1ee0b"><a href="https://github.com/tamurashingo/reddit1.0/commit/674ebe88948ff6e58aea3b45eb347a420de1ee0b">create new package :reddit.view-defs</a></h3>
+
+<p>RailsでいうところのMODELのようなものです。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 67 insertions(+), 1 deletion(-)
+src/view-defs.lisp | 68 +++++++++++++++++++++++++++++++++++++++++++++++++++++-
+
+modified   src/view-defs.lisp
+<span class="gu">@@ -18,7 +18,73 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage :reddit.view-defs
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :def-view-class
+</span><span class="gi">+                :get-time)
+</span><span class="gi">+  (:export :user
+</span><span class="gi">+           :user-id
+</span><span class="gi">+           :user-name
+</span><span class="gi">+           :user-email
+</span><span class="gi">+           :user-karma
+</span><span class="gi">+           :user-date
+</span><span class="gi">+           :user-ip
+</span><span class="gi">+           :article
+</span><span class="gi">+           :article-id
+</span><span class="gi">+           :article-url
+</span><span class="gi">+           :article-title
+</span><span class="gi">+           :article-date
+</span><span class="gi">+           :article-submitterid
+</span><span class="gi">+           :article-submitter
+</span><span class="gi">+           :article-pop
+</span><span class="gi">+           :article-with-sn
+</span><span class="gi">+           :article-sn
+</span><span class="gi">+           :wtf
+</span><span class="gi">+           :wtf-userid
+</span><span class="gi">+           :wtf-user
+</span><span class="gi">+           :wtf-articleid
+</span><span class="gi">+           :wtf-reason
+</span><span class="gi">+           :wtf-date
+</span><span class="gi">+           :click
+</span><span class="gi">+           :click-userid
+</span><span class="gi">+           :click-articleid
+</span><span class="gi">+           :click-date
+</span><span class="gi">+           :click-ip
+</span><span class="gi">+           :like
+</span><span class="gi">+           :like-userid
+</span><span class="gi">+           :like-articleid
+</span><span class="gi">+           :like-date
+</span><span class="gi">+           :like-like
+</span><span class="gi">+           :moduser
+</span><span class="gi">+           :moduser-userid
+</span><span class="gi">+           :moduser-articleid
+</span><span class="gi">+           :moduser-targetid
+</span><span class="gi">+           :moduser-date
+</span><span class="gi">+           :moduser-ip
+</span><span class="gi">+           :moduser-amount
+</span><span class="gi">+           :modarticle
+</span><span class="gi">+           :modarticle-userid
+</span><span class="gi">+           :modarticle-articleid
+</span><span class="gi">+           :modarticle-date
+</span><span class="gi">+           :modarticle-ip
+</span><span class="gi">+           :modarticle-amount
+</span><span class="gi">+           :neuter
+</span><span class="gi">+           :neuter-userid
+</span><span class="gi">+           :neuter-ip
+</span><span class="gi">+           :options
+</span><span class="gi">+           :options-userid
+</span><span class="gi">+           :options-nnumsittes
+</span><span class="gi">+           :options-promoted
+</span><span class="gi">+           :options-demoted
+</span><span class="gi">+           :options-visible
+</span><span class="gi">+           :options-frame
+</span><span class="gi">+           :alias
+</span><span class="gi">+           :alias-userid
+</span><span class="gi">+           :alias-name
+</span><span class="gi">+           :alias-val))
+</span><span class="gi">+(in-package :reddit.view-defs)
+</span><span class="gi"></span> 
+ ;;user
+ (def-view-class user ()
+</code></pre></div>
+<h3 id="create-new-package-reddit-data-https-github-com-tamurashingo-reddit1-0-commit-4cbac1550263f66d2c112ea0ca729c208a01e2a6"><a href="https://github.com/tamurashingo/reddit1.0/commit/4cbac1550263f66d2c112ea0ca729c208a01e2a6">create new package :reddit.data</a></h3>
+
+<p>データベースの処理全般を<code>reddit.data</code>にまとめました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">2 files changed, 55 insertions(+), 12 deletions(-)
+src/data.lisp  | 56 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+src/sites.lisp | 11 -----------
+
+modified   src/data.lisp
+<span class="gu">@@ -18,7 +18,49 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package #:reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage :reddit.data
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :*default-caching*
+</span><span class="gi">+                :connect
+</span><span class="gi">+                :delete-records
+</span><span class="gi">+                :delete-instance-records
+</span><span class="gi">+                :get-time
+</span><span class="gi">+                :insert-records
+</span><span class="gi">+                :locally-enable-sql-reader-syntax
+</span><span class="gi">+                :make-duration
+</span><span class="gi">+                :select
+</span><span class="gi">+                :sequence-next
+</span><span class="gi">+                :sql-expression
+</span><span class="gi">+                :time-
+</span><span class="gi">+                :time&lt;
+</span><span class="gi">+                :update-records
+</span><span class="gi">+                :update-records-from-instance)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :log-message*)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :alias-name
+</span><span class="gi">+                :alias-val
+</span><span class="gi">+                :article-id
+</span><span class="gi">+                :article-date
+</span><span class="gi">+                :article-submitterid
+</span><span class="gi">+                :like-date
+</span><span class="gi">+                :like-like
+</span><span class="gi">+                :modarticle-amount
+</span><span class="gi">+                :modarticle-date
+</span><span class="gi">+                :modarticle-ip
+</span><span class="gi">+                :moduser-amount
+</span><span class="gi">+                :moduser-date
+</span><span class="gi">+                :moduser-ip
+</span><span class="gi">+                :options-visible
+</span><span class="gi">+                :user-karma)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :add-http
+</span><span class="gi">+                :base-url
+</span><span class="gi">+                :when-bind))
+</span><span class="gi">+(in-package :reddit.data)
+</span><span class="gi">+
+</span><span class="gi"></span> 
+ (defparameter *max-emails* 100)
+ (defparameter *mod-window* (make-duration :day 2))
+<span class="gu">@@ -129,6 +171,18 @@
+</span><span class="gu"></span>       (integer (car (select &#39;article :where [= id-or-url [id]] :flatp t)))
+       (string (car (select &#39;article :where [= id-or-url [url]] :flatp t))))))
+ 
+<span class="gi">+;;similar urls
+</span><span class="gi">+(defun similar-urls (url)
+</span><span class="gi">+  (select [id] [url] :from [articles] :where [like [url] (format nil &#34;%~a%&#34; url)] ))
+</span><span class="gi">+
+</span><span class="gi">+(defun article-id-from-url (url)
+</span><span class="gi">+  (when (&gt; (length url) 0)
+</span><span class="gi">+    (let ((url (base-url url)))
+</span><span class="gi">+      (some #&#39;(lambda (site)
+</span><span class="gi">+                (when (string= (base-url (second site)) url)
+</span><span class="gi">+                  (first site)))
+</span><span class="gi">+            (similar-urls url)))))
+</span><span class="gi">+
+</span><span class="gi"></span> (defun insert-article (title url submitter ip &amp;optional fuser)
+   &#34;Insert an article into the datebase and give user credit for
+   it. If the artciles already exists, boost the orig submitter&#39;s
+modified   src/sites.lisp
+<span class="gu">@@ -122,17 +122,6 @@
+</span><span class="gu"></span>       (when newurl
+         (update-site-url articleid newurl)))))
+ 
+<span class="gd">-;;similar urls
+</span><span class="gd">-(defun similar-urls (url)
+</span><span class="gd">-  (select [id] [url] :from [articles] :where [like [url] (format nil &#34;%~a%&#34; url)] ))
+</span><span class="gd">-
+</span><span class="gd">-(defun article-id-from-url (url)
+</span><span class="gd">-  (when (&gt; (length url) 0)
+</span><span class="gd">-    (let ((url (base-url url)))
+</span><span class="gd">-      (some #&#39;(lambda (site)
+</span><span class="gd">-                (when (string= (base-url (second site)) url)
+</span><span class="gd">-                  (first site)))
+</span><span class="gd">-            (similar-urls url)))))
+</span><span class="gd"></span> 
+ ;;saved sites
+ (defun save-site (userid articleid)
+</code></pre></div>
+<h3 id="create-new-package-reddit-cookihash-https-github-com-tamurashingo-reddit1-0-commit-681a6b7015dad5b2d7924a276ee1d98388658df8"><a href="https://github.com/tamurashingo/reddit1.0/commit/681a6b7015dad5b2d7924a276ee1d98388658df8">create new package :reddit.cookihash</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 19 insertions(+), 1 deletion(-)
+src/cookiehash.lisp | 20 +++++++++++++++++++-
+
+modified   src/cookiehash.lisp
+<span class="gu">@@ -18,7 +18,25 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage :reddit.cookiehash
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :format-time
+</span><span class="gi">+                :get-time)
+</span><span class="gi">+  (:import-from :ironclad
+</span><span class="gi">+                :ascii-string-to-byte-array
+</span><span class="gi">+                :byte-array-to-hex-string
+</span><span class="gi">+                :digest-sequence)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :get-user
+</span><span class="gi">+                :user-pass)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :user-id)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :makestr
+</span><span class="gi">+                :when-bind*))
+</span><span class="gi">+(in-package :reddit.cookiehash)
+</span><span class="gi"></span> 
+ (defparameter *secret* &#34;blargo&#34;)
+ 
+</code></pre></div>
+<h3 id="create-new-package-reddit-user-info-https-github-com-tamurashingo-reddit1-0-commit-c8bd49b7db095b5fbbc243081202c94a31473a70"><a href="https://github.com/tamurashingo/reddit1.0/commit/c8bd49b7db095b5fbbc243081202c94a31473a70">create new package :reddit.user-info</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 13 insertions(+), 1 deletion(-)
+src/user-info.lisp | 14 +++++++++++++-
+
+modified   src/user-info.lisp
+<span class="gu">@@ -18,7 +18,19 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.user-info
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :select)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :log-message*)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :get-user
+</span><span class="gi">+                :get-user-options)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :when-bind))
+</span><span class="gi">+(in-package :reddit.user-info)
+</span><span class="gi"></span>  
+ (defmacro userinfo (info sym &amp;optional article)
+   (case sym
+</code></pre></div>
+<h3 id="create-new-package-reddit-recommend-https-github-com-tamurashingo-reddit1-0-commit-d30bb4a71e19ba5c75171aa198516990a17e7219"><a href="https://github.com/tamurashingo/reddit1.0/commit/d30bb4a71e19ba5c75171aa198516990a17e7219">create new package :reddit.recommend</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 11 insertions(+), 1 deletion(-)
+src/recommend.lisp | 12 +++++++++++-
+
+modified   src/recommend.lisp
+<span class="gu">@@ -18,7 +18,17 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.recommend
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-ppcre
+</span><span class="gi">+                :create-scanner
+</span><span class="gi">+                :scan-to-strings
+</span><span class="gi">+                :split)
+</span><span class="gi">+  (:import-from :reddit.user-info
+</span><span class="gi">+                :user-alias))
+</span><span class="gi">+(in-package :reddit.recommend)
+</span><span class="gi">+
+</span><span class="gi"></span> 
+ (defparameter *email-scanner* (create-scanner &#34;^\\w*[+-._\\w]*\\w@\\w[-._\\w]*\\w\\.\\w{2,3}$&#34;))
+ (defparameter *token-scanner* (create-scanner &#34;[,;\\s]+&#34;))
+</code></pre></div>
+<h3 id="create-new-package-reddit-autocompute-https-github-com-tamurashingo-reddit1-0-commit-fc3c5fd9011294d823bcc31fc3219552b3b49c81"><a href="https://github.com/tamurashingo/reddit1.0/commit/fc3c5fd9011294d823bcc31fc3219552b3b49c81">create new package :reddit.autocompute</a></h3>
+
+<p><code>(mp:process-name x)</code>のように<code>MP</code>パッケージを参照しています。
+メソッド名を見るとスレッドのようなので、Bordeaux Threadsを代わりに使うようにしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">2 files changed, 19 insertions(+), 15 deletions(-)
+reddit.asd           |  1 +
+src/autocompute.lisp | 33 ++++++++++++++++++---------------
+
+modified   reddit.asd
+<span class="gu">@@ -9,6 +9,7 @@
+</span><span class="gu"></span> 
+ (defsystem reddit
+   :depends-on (:hunchentoot
+<span class="gi">+               :bordeaux-threads
+</span><span class="gi"></span>                :cl-ppcre
+                :trivial-http
+                :cl-who
+modified   src/autocompute.lisp
+<span class="gu">@@ -18,15 +18,18 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.autocompute
+</span><span class="gi">+  (:use :cl))
+</span><span class="gi">+(in-package :reddit.autocompute)
+</span><span class="gi"></span> 
+ (defun get-processes (name)
+<span class="gd">-  (remove-if-not #&#39;(lambda (x) (string= name (mp:process-name x)))
+</span><span class="gd">-                 (mp:all-processes)))
+</span><span class="gd"></span><span class="gi">+  (remove-if-not #&#39;(lambda (x) (string= name (bt:thread-name x)))
+</span><span class="gi">+                 (bt:all-threads)))
+</span><span class="gi"></span> 
+ (defun destroy-processes (name)
+   (dolist (p (get-processes name))
+<span class="gd">-    (mp:destroy-process p)))
+</span><span class="gd"></span><span class="gi">+    (bt:destroy-thread p)))
+</span><span class="gi"></span> 
+ (defclass ac ()
+   ((name
+<span class="gu">@@ -47,23 +50,23 @@
+</span><span class="gu"></span>     :initform (error &#34;must specify a function&#34;)
+     :accessor ac-fn)
+    (lock
+<span class="gd">-    :initform (mp:make-lock)
+</span><span class="gd"></span><span class="gi">+    :initform (bt:make-lock)
+</span><span class="gi"></span>     :accessor ac-lock)))
+ 
+ (defmethod initialize-instance :after ((auto ac)  &amp;key)
+   (destroy-processes (ac-name auto))
+<span class="gd">-   (setf (slot-value auto &#39;process)
+</span><span class="gd">-         (mp:make-process
+</span><span class="gd">-          #&#39;(lambda ()
+</span><span class="gd">-              (loop
+</span><span class="gd">-                 (mp:with-lock-held ((ac-lock auto))
+</span><span class="gd">-                   (setf (slot-value auto &#39;val)
+</span><span class="gd">-                         (funcall (ac-fn auto))))
+</span><span class="gd">-                 (sleep (ac-period auto))))
+</span><span class="gd">-  :name (ac-name auto))))
+</span><span class="gd"></span><span class="gi">+  (setf (slot-value auto &#39;process)
+</span><span class="gi">+        (bt:make-thread
+</span><span class="gi">+         #&#39;(lambda ()
+</span><span class="gi">+             (loop
+</span><span class="gi">+                (bt:with-lock-held ((ac-lock auto))
+</span><span class="gi">+                  (setf (slot-value auto &#39;val)
+</span><span class="gi">+                        (funcall (ac-fn auto))))
+</span><span class="gi">+                (sleep (ac-period auto))))
+</span><span class="gi">+         :name (ac-name auto))))
+</span><span class="gi"></span> 
+ (defmethod ac-update ((auto ac))
+<span class="gd">-  (mp:with-lock-held ((ac-lock auto))
+</span><span class="gd"></span><span class="gi">+  (bt:with-lock-held ((ac-lock auto))
+</span><span class="gi"></span>     (setf (slot-value auto &#39;val)
+           (funcall (ac-fn auto)))))
+              
+</code></pre></div>
+<h3 id="create-new-package-reddit-search-https-github-com-tamurashingo-reddit1-0-commit-6d910be8c9acb85626713be64c7df499c9a0ceb8"><a href="https://github.com/tamurashingo/reddit1.0/commit/6d910be8c9acb85626713be64c7df499c9a0ceb8">create new package :reddit.search</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 10 insertions(+), 1 deletion(-)
+src/search.lisp | 11 ++++++++++-
+
+modified   src/search.lisp
+<span class="gu">@@ -18,7 +18,16 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.search
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-ppcre
+</span><span class="gi">+                :regex-replace-all)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :select
+</span><span class="gi">+                :sql
+</span><span class="gi">+                :sql-expression))
+</span><span class="gi">+(in-package :reddit.search)
+</span><span class="gi"></span> 
+ (defun search-char (c)
+   &#34;T if c is an a letter, number, or &#39;&#34;
+</code></pre></div>
+<h3 id="create-new-package-reddit-memcached-https-github-com-tamurashingo-reddit1-0-commit-5e60710716750d5ccf8e810a64e2439be5d98a6b"><a href="https://github.com/tamurashingo/reddit1.0/commit/5e60710716750d5ccf8e810a64e2439be5d98a6b">create new package :reddit.memcached</a></h3>
+
+<p>自前でmemcachedを操作する関数を作ったみたいなのですが、ライブラリを使うように変更しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">2 files changed, 21 insertions(+), 83 deletions(-)
+reddit.asd         |   3 +-
+src/memcached.lisp | 101 ++++++++++-------------------------------------------
+
+modified   reddit.asd
+<span class="gu">@@ -16,7 +16,8 @@
+</span><span class="gu"></span>                :clsql
+                :clsql-postgresql
+                :cl-smtp
+<span class="gd">-               :ironclad)
+</span><span class="gd"></span><span class="gi">+               :ironclad
+</span><span class="gi">+               :cl-memcached)
+</span><span class="gi"></span>   :components ((:module &#34;src&#34;
+                 :components
+                 ((:file &#34;packages&#34;)
+modified   src/memcached.lisp
+<span class="gu">@@ -18,7 +18,11 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.memcached
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:export :cached))
+</span><span class="gi">+(in-package :reddit.memcached)
+</span><span class="gi"></span> 
+ (defparameter *STORED* &#34;STORED&#34;)
+ (defparameter *NOTSTORED* &#34;NOT_STORED&#34;)
+<span class="gu">@@ -31,7 +35,6 @@
+</span><span class="gu"></span> (defparameter *SERVERERROR* &#34;SERVER_ERROR&#34;)
+ (defparameter *VALUE* &#34;VALUE&#34;)
+ 
+<span class="gd">-(defparameter *cache* (make-hash-table :test &#39;equal))
+</span><span class="gd"></span> 
+ (defmacro cached ((key &amp;optional (exp 0)) &amp;body body) 
+   (let ((k (gensym)))
+<span class="gu">@@ -41,89 +44,23 @@
+</span><span class="gu"></span>               (mc-set ,k val ,exp)
+               val)))))
+ 
+<span class="gd">-;;TODO more servers
+</span><span class="gd">-(defun get-stream ()
+</span><span class="gd">-  (ignore-errors
+</span><span class="gd">-    (sys:make-fd-stream (ext:connect-to-inet-socket &#34;127.0.0.1&#34; 11211)
+</span><span class="gd">-                        :input t :output t 
+</span><span class="gd">-                        :buffering :none
+</span><span class="gd">-                        :auto-close t)))
+</span><span class="gd"></span><span class="gi">+(defvar *memcached* (cl-memcached:make-memcache :ip &#34;127.0.0.1&#34; :port 11211 :name &#34;reddit memcached&#34;))
+</span><span class="gi"></span> 
+<span class="gd">-(defun mc-write-str (str stream)
+</span><span class="gd">-  (write-string str stream)
+</span><span class="gd">-  (write-char #\Return stream)
+</span><span class="gd">-  (write-char #\Newline stream))
+</span><span class="gd">-
+</span><span class="gd">-(defun mc-read-str (stream &amp;optional len)
+</span><span class="gd">-  ;(force-output stream)
+</span><span class="gd">-  (if len
+</span><span class="gd">-      ;;read len bytes in as few reads as possible
+</span><span class="gd">-      (let ((val (read stream)))
+</span><span class="gd">-        (read-char stream) (read-char stream)
+</span><span class="gd">-        val)
+</span><span class="gd">-      ;;everything else is read as one line
+</span><span class="gd">-      (let ((str (read-line stream)))
+</span><span class="gd">-        (subseq str 0 (1- (length str))))))
+</span><span class="gd">-  
+</span><span class="gd">-;;TODO locking!
+</span><span class="gd">-(defun mc-store (cmd key val &amp;optional (exp 0))
+</span><span class="gd">-  (with-open-stream (s (get-stream))
+</span><span class="gd">-    (when s
+</span><span class="gd">-      (let ((cmd-str (case cmd
+</span><span class="gd">-                   (:add &#34;add&#34;)
+</span><span class="gd">-                   (:replace &#34;replace&#34;)
+</span><span class="gd">-                   (t &#34;set&#34;)))
+</span><span class="gd">-          (val-str (with-output-to-string (s) (prin1 val s))))
+</span><span class="gd">-      (mc-write-str (format nil &#34;~a ~a ~a ~a ~a&#34; cmd-str key 0 exp (length val-str)) s)
+</span><span class="gd">-      (mc-write-str val-str s)
+</span><span class="gd">-      (let ((response (mc-read-str s)))
+</span><span class="gd">-        (cond
+</span><span class="gd">-          ((string= *STORED* response) :STORED)
+</span><span class="gd">-          ((string= *NOTSTORED* response) :NOTSTORED)
+</span><span class="gd">-          (t response)))))))
+</span><span class="gd"></span><span class="gi">+(defun mc-get (key)
+</span><span class="gi">+  (cl-memcached:mc-get-value key :memcache *memcached*))
+</span><span class="gi"></span> 
+ (defun mc-set (key val &amp;optional (exp 0))
+<span class="gd">-  (mc-store :set key val exp))
+</span><span class="gd">-
+</span><span class="gd">-(defun mc-add (key val &amp;optional (exp 0))
+</span><span class="gd">-  (mc-store :add key val exp))
+</span><span class="gd">-                
+</span><span class="gd">-(defun mc-replace (key val &amp;optional (exp 0))
+</span><span class="gd">-  (mc-store :replace key val exp))
+</span><span class="gd">-
+</span><span class="gd">-(defun parse-value (value-str)
+</span><span class="gd">-  (let* ((s1 (position #\space value-str :start 6))
+</span><span class="gd">-         (s2 (position #\space value-str :start (1+ s1)))
+</span><span class="gd">-         (key (subseq value-str 6 s1))
+</span><span class="gd">-         (flags (parse-integer (subseq value-str (1+ s1) s2)))
+</span><span class="gd">-         (len (parse-integer (subseq value-str (1+ s2)))))
+</span><span class="gd">-    (list key flags len)))
+</span><span class="gd">-
+</span><span class="gd">-(defun mc-read-val (stream)
+</span><span class="gd">-  (let ((response (mc-read-str stream)))
+</span><span class="gd">-        (when (string= response &#34;VALUE&#34; :end1 (min (length response) 5))
+</span><span class="gd">-          (destructuring-bind (key flags len) (parse-value response)
+</span><span class="gd">-            (values
+</span><span class="gd">-             (mc-read-str stream len)
+</span><span class="gd">-             key flags)))))
+</span><span class="gd"></span><span class="gi">+  (let* ((val-str (with-output-to-string (s) (prin1 val s)))
+</span><span class="gi">+         (response (cl-memcached:mc-set key val-str :memcache *memcached*)))
+</span><span class="gi">+    (cond ((string= *STORED* response) :STORED)
+</span><span class="gi">+          ((string= *NOTSTORED* response) :NOTSTORED)
+</span><span class="gi">+          (t response))))
+</span><span class="gi"></span> 
+<span class="gd">-(defun mc-get (key)
+</span><span class="gd">-  (with-open-stream (stream (get-stream))
+</span><span class="gd">-    (when stream
+</span><span class="gd">-      (mc-write-str (format nil &#34;get ~a&#34; key) stream)
+</span><span class="gd">-      (let ((val (mc-read-val stream)))
+</span><span class="gd">-        (when val
+</span><span class="gd">-          ;;read END
+</span><span class="gd">-          (mc-read-str stream)
+</span><span class="gd">-          val)))))
+</span><span class="gd"></span> 
+ (defun mc-delete (key &amp;optional (time 0))
+<span class="gd">-  (with-open-stream (stream (get-stream))
+</span><span class="gd">-    (when stream
+</span><span class="gd">-    (mc-write-str (format nil &#34;delete ~a ~a&#34; key time) stream)
+</span><span class="gd">-    (let ((response (mc-read-str stream)))
+</span><span class="gd">-      (cond
+</span><span class="gd">-        ((string= response *DELETED*) :DELETED)
+</span><span class="gd">-        ((string= response *NOTFOUND*) :NOTFOUND)
+</span><span class="gd">-        (t response))))))
+</span><span class="gd">-  
+</span><span class="gd"></span><span class="gi">+  (let ((response (cl-memcached:mc-del key :memcache *memcached*)))
+</span><span class="gi">+    (cond
+</span><span class="gi">+      ((string= response *DELETED*) :DELETED)
+</span><span class="gi">+      ((string= response *NOTFOUND*) :NOTFOUND)
+</span><span class="gi">+      (t response))))
+</span><span class="gi">+
+</span></code></pre></div>
+<h3 id="create-new-package-reddit-mail-https-github-com-tamurashingo-reddit1-0-commit-b8177d177adeb1ff312505140ca3a60294835361"><a href="https://github.com/tamurashingo/reddit1.0/commit/b8177d177adeb1ff312505140ca3a60294835361">create new package :reddit.mail</a></h3>
+
+<p>メール送信もスレッドを使うので修正しています。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">2 files changed, 21 insertions(+), 10 deletions(-)
+src/mail.lisp  | 25 +++++++++++++++++++++----
+src/sites.lisp |  6 ------
+
+modified   src/mail.lisp
+<span class="gu">@@ -18,7 +18,17 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.mail
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-smtp
+</span><span class="gi">+                :send-email)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :select)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :email-sent
+</span><span class="gi">+                :valid-email))
+</span><span class="gi">+(in-package :reddit.mail)
+</span><span class="gi"></span> 
+ (defparameter *mail-prog* &#34;/usr/bin/mail&#34;)
+ 
+<span class="gu">@@ -27,10 +37,10 @@
+</span><span class="gu"></span> (defparameter *mail-server* &#34;216.55.162.13&#34;)
+ 
+ (defun send-reddit-email (to from subject message)
+<span class="gd">-  (mp:make-process
+</span><span class="gd"></span><span class="gi">+  (bt:make-thread
+</span><span class="gi"></span>    #&#39;(lambda ()
+<span class="gd">-         (ignore-errors
+</span><span class="gd">-             (send-email *mail-server* from to subject message :username *user* :password *pass*)))))
+</span><span class="gd"></span><span class="gi">+       (ignore-errors
+</span><span class="gi">+         (send-email *mail-server* from to subject message :authentication &#39;(*user* *pass*))))))
+</span><span class="gi"></span> 
+ (defun info-email-body (user password)
+   (with-output-to-string (s)
+<span class="gu">@@ -54,6 +64,13 @@
+</span><span class="gu"></span>     (format s &#34;Check out http://reddit.com to see what&#39;s new online today!~%~%&#34;)
+     (format s &#34;If you have any questions regarding this email direct them to feedback@reddit.com&#34;)))
+ 
+<span class="gi">+(defun site-tl (articleid)
+</span><span class="gi">+  &#34;Returns the title and link for a particlular site.&#34;
+</span><span class="gi">+   (car (select [title] [url] :from [articles]
+</span><span class="gi">+          :where [= [id] articleid]
+</span><span class="gi">+          :flatp t
+</span><span class="gi">+          )))
+</span><span class="gi">+
+</span><span class="gi"></span> (defun send-recommendation (userid articleid ip addresses from personal)
+   (let* ((tl (site-tl articleid))
+          (title (first tl))
+modified   src/sites.lisp
+<span class="gu">@@ -83,12 +83,6 @@
+</span><span class="gu"></span>           :limit limit
+           :flatp t))
+ 
+<span class="gd">-(defun site-tl (articleid)
+</span><span class="gd">-  &#34;Returns the title and link for a particlular site.&#34;
+</span><span class="gd">-   (car (select [title] [url] :from [articles]
+</span><span class="gd">-          :where [= [id] articleid]
+</span><span class="gd">-          :flatp t
+</span><span class="gd">-          )))
+</span><span class="gd"></span>                
+ ;;close sites
+ (defun unclose-site-sql (userid articleid)
+</code></pre></div>
+<h3 id="create-new-package-reddit-sites-https-github-com-tamurashingo-reddit1-0-commit-4281884b956ffcfaaf2defc18180294ac36f28dc"><a href="https://github.com/tamurashingo/reddit1.0/commit/4281884b956ffcfaaf2defc18180294ac36f28dc">create new package :reddit.sites</a></h3>
+
+<p><code>with-database</code>は内部マクロに見えなくもないので、あえて<code>clsql:with-database</code>のようにしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">2 files changed, 36 insertions(+), 2 deletions(-)
+src/data.lisp  |  2 +-
+src/sites.lisp | 36 +++++++++++++++++++++++++++++++++++-
+
+modified   src/data.lisp
+<span class="gu">@@ -76,7 +76,7 @@
+</span><span class="gu"></span> (defparameter *conn-spec* `(,*database-server* ,*database-name* ,*database-user* ,*database-password*))
+ 
+ (defmacro with-web-db (&amp;body body)
+<span class="gd">-  `(with-database (*default-database* *conn-spec* :pool t :database-type *database-type*)
+</span><span class="gd"></span><span class="gi">+  `(clsql:with-database (clsql:*default-database* *conn-spec* :pool t :database-type *database-type*)
+</span><span class="gi"></span>      ,@body))
+ 
+ (connect *conn-spec* :database-type *database-type* :if-exists :old)
+modified   src/sites.lisp
+<span class="gu">@@ -18,7 +18,41 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package #:reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.sites
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :delete-records
+</span><span class="gi">+                :insert-records
+</span><span class="gi">+                :select
+</span><span class="gi">+                :sql-operation
+</span><span class="gi">+                :update-records)
+</span><span class="gi">+  (:import-from :reddit.autocompute
+</span><span class="gi">+                :ac
+</span><span class="gi">+                :ac-val
+</span><span class="gi">+                :destroy-processes)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :article-id-from-url
+</span><span class="gi">+                :get-article-sn
+</span><span class="gi">+                :with-web-db)
+</span><span class="gi">+  (:import-from :reddit.search
+</span><span class="gi">+                :search-sites)
+</span><span class="gi">+  (:import-from :reddit.user-info
+</span><span class="gi">+                :get-info
+</span><span class="gi">+                :user-closed
+</span><span class="gi">+                :user-liked
+</span><span class="gi">+                :user-options)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :add-http
+</span><span class="gi">+                :good-nytimes
+</span><span class="gi">+                :good-nytimes-p
+</span><span class="gi">+                :nytimes-link-p
+</span><span class="gi">+                :website-title)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :article-id
+</span><span class="gi">+                :article-title
+</span><span class="gi">+                :article-with-sn))
+</span><span class="gi">+(in-package :reddit.sites)
+</span><span class="gi"></span> 
+ (defparameter *min-front-page-pop* 2)
+ (defparameter *prob-threshold* .7)
+</code></pre></div>
+<h3 id="create-new-package-reddit-frame-https-github-com-tamurashingo-reddit1-0-commit-9e38beae19a9ed5e2b0da836aa95904d14b1166e"><a href="https://github.com/tamurashingo/reddit1.0/commit/9e38beae19a9ed5e2b0da836aa95904d14b1166e">create new package :reddit.frame</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">3 files changed, 57 insertions(+), 2 deletions(-)
+src/frame.lisp     | 32 +++++++++++++++++++++++++++++++-
+src/user-info.lisp | 17 +++++++++++++++++
+src/util.lisp      | 10 +++++++++-
+
+modified   src/frame.lisp
+<span class="gu">@@ -18,10 +18,40 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.frame
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-who
+</span><span class="gi">+                :conc
+</span><span class="gi">+                :esc
+</span><span class="gi">+                :htm
+</span><span class="gi">+                :str
+</span><span class="gi">+                :with-html-output-to-string)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :get-article)
+</span><span class="gi">+  (:import-from :reddit.user-info
+</span><span class="gi">+                :get-info
+</span><span class="gi">+                :user-liked
+</span><span class="gi">+                :userobj)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :logged-in-p
+</span><span class="gi">+                :makestr
+</span><span class="gi">+                :sanitize
+</span><span class="gi">+                :uid
+</span><span class="gi">+                :with-parameters)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :article-id
+</span><span class="gi">+                :article-title
+</span><span class="gi">+                :article-url
+</span><span class="gi">+                :user-karma
+</span><span class="gi">+                :user-name))
+</span><span class="gi">+(in-package :reddit.frame)
+</span><span class="gi"></span> 
+ (defparameter *frame-height* &#34;30px&#34;)
+ 
+<span class="gi">+(defmacro idstr (name)
+</span><span class="gi">+  `(format nil ,(conc name &#34;~a&#34;) id))
+</span><span class="gi">+
+</span><span class="gi"></span> (defun reddit-frame (article)
+   (with-html-output-to-string (*standard-output* nil :prologue &#34;&lt;!DOCTYPE HTML PUBLIC \&#34;-//W3C//DTD HTML 4.01 Frameset//EN\&#34; \&#34;http://www.w3.org/TR/html4/frameset.dtd\&#34;&gt;&#34; :indent t)
+     (:html
+modified   src/user-info.lisp
+<span class="gu">@@ -24,6 +24,8 @@
+</span><span class="gu"></span>   (:import-from :clsql
+                 :select)
+   (:import-from :hunchentoot
+<span class="gi">+                :*session*
+</span><span class="gi">+                :session-value
+</span><span class="gi"></span>                 :log-message*)
+   (:import-from :reddit.data
+                 :get-user
+<span class="gu">@@ -116,3 +118,18 @@
+</span><span class="gu"></span> 
+ (defun remove-info (id)
+   (remhash id *user-info*))
+<span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+(defun uid ()
+</span><span class="gi">+  (and (ignore-errors *session*)
+</span><span class="gi">+       (session-value :user-id)))
+</span><span class="gi">+
+</span><span class="gi">+(defun logged-in-p ()
+</span><span class="gi">+  (uid))
+</span><span class="gi">+
+</span><span class="gi">+(defun info ()
+</span><span class="gi">+  (get-info (uid)))
+</span><span class="gi">+
+</span><span class="gi">+(defun userobj ()
+</span><span class="gi">+  (when-bind (info (info))
+</span><span class="gi">+    (user-obj info)))
+</span><span class="gi"></span>modified   src/util.lisp
+<span class="gu">@@ -62,7 +62,8 @@
+</span><span class="gu"></span>            :esc-quote
+            :shorten-str
+            :when-bind
+<span class="gd">-           :when-bind*))
+</span><span class="gd"></span><span class="gi">+           :when-bind*
+</span><span class="gi">+           :with-parameters)
+</span><span class="gi"></span> (in-package :reddit.util)
+ 
+ 
+<span class="gu">@@ -247,3 +248,10 @@
+</span><span class="gu"></span>       `(let (,(car binds))
+          (if ,(caar binds)
+              (when-bind* ,(cdr binds) ,@body)))))
+<span class="gi">+
+</span><span class="gi">+;;TODO fix multiple eval of params
+</span><span class="gi">+(defmacro with-parameters (params &amp;body body)
+</span><span class="gi">+  `(let (,@(mapcar  (lambda (x) `(,(first x) (or (hunchentoot:post-parameter ,(second x))
+</span><span class="gi">+                                                 (hunchentoot:get-parameter ,(second x))))) params))
+</span><span class="gi">+     ,@body))
+</span><span class="gi">+
+</span></code></pre></div>
+<h3 id="create-new-package-reddit-web-https-github-com-tamurashingo-reddit1-0-commit-12c9ae0a5671ff4933c9993eabcd124960e58cea"><a href="https://github.com/tamurashingo/reddit1.0/commit/12c9ae0a5671ff4933c9993eabcd124960e58cea">create new package :reddit.web</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 150 insertions(+), 30 deletions(-)
+src/web.lisp | 180 +++++++++++++++++++++++++++++++++++++++++++++++++----------
+
+modified   src/web.lisp
+<span class="gu">@@ -18,7 +18,133 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package #:reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.web
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-who
+</span><span class="gi">+                :conc
+</span><span class="gi">+                :esc
+</span><span class="gi">+                :escape-string-minimal
+</span><span class="gi">+                :fmt
+</span><span class="gi">+                :htm
+</span><span class="gi">+                :str
+</span><span class="gi">+                :with-html-output
+</span><span class="gi">+                :with-html-output-to-string)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :update-instance-from-records
+</span><span class="gi">+                :update-records-from-instance)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :+HTTP-MOVED-PERMANENTLY+
+</span><span class="gi">+                :*dispatch-table*
+</span><span class="gi">+                :*reply*
+</span><span class="gi">+                :*session*
+</span><span class="gi">+                :cookie-in
+</span><span class="gi">+                :create-prefix-dispatcher
+</span><span class="gi">+                :create-regex-dispatcher
+</span><span class="gi">+                :create-static-file-dispatcher-and-handler
+</span><span class="gi">+                :get-parameter
+</span><span class="gi">+                :header-out
+</span><span class="gi">+                :log-message*
+</span><span class="gi">+                :post-parameter
+</span><span class="gi">+                :redirect
+</span><span class="gi">+                :return-code
+</span><span class="gi">+                :script-name*
+</span><span class="gi">+                :session-remote-addr
+</span><span class="gi">+                :session-value
+</span><span class="gi">+                :set-cookie
+</span><span class="gi">+                :start-session)
+</span><span class="gi">+  (:import-from :reddit.autocompute
+</span><span class="gi">+                :ac-update)
+</span><span class="gi">+  (:import-from :reddit.cookiehash
+</span><span class="gi">+                :cookie-str
+</span><span class="gi">+                :valid-cookie)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :add-user
+</span><span class="gi">+                :article-id-from-url
+</span><span class="gi">+                :change-password
+</span><span class="gi">+                :fake-user-p
+</span><span class="gi">+                :get-article
+</span><span class="gi">+                :get-article-sn
+</span><span class="gi">+                :insert-article
+</span><span class="gi">+                :like-and-mod
+</span><span class="gi">+                :login-from-email
+</span><span class="gi">+                :remove-alias
+</span><span class="gi">+                :remove-article
+</span><span class="gi">+                :set-alias
+</span><span class="gi">+                :top-submitters
+</span><span class="gi">+                :unlike-and-mod
+</span><span class="gi">+                :user-from-email
+</span><span class="gi">+                :valid-login-p
+</span><span class="gi">+                :valid-user-p
+</span><span class="gi">+                :view-link
+</span><span class="gi">+                :with-web-db)
+</span><span class="gi">+  (:import-from :reddit.frame
+</span><span class="gi">+                :reddit-frame)
+</span><span class="gi">+  (:import-from :reddit.mail
+</span><span class="gi">+                :send-login-info
+</span><span class="gi">+                :send-recommendation)
+</span><span class="gi">+  (:import-from :reddit.memcached
+</span><span class="gi">+                :cached)
+</span><span class="gi">+  (:import-from :reddit.recommend
+</span><span class="gi">+                :decode-aliases)
+</span><span class="gi">+  (:import-from :reddit.sites
+</span><span class="gi">+                :*cached-new*
+</span><span class="gi">+                :check-url
+</span><span class="gi">+                :close-site-sql
+</span><span class="gi">+                :get-articles
+</span><span class="gi">+                :get-search-sites
+</span><span class="gi">+                :get-sites-profile
+</span><span class="gi">+                :get-sites-user
+</span><span class="gi">+                :save-site
+</span><span class="gi">+                :unclose-site-sql
+</span><span class="gi">+                :unsave-site)
+</span><span class="gi">+  (:import-from :reddit.user-info
+</span><span class="gi">+                :get-info
+</span><span class="gi">+                :info
+</span><span class="gi">+                :logged-in-p
+</span><span class="gi">+                :remove-info
+</span><span class="gi">+                :user-alias
+</span><span class="gi">+                :user-clicked
+</span><span class="gi">+                :user-closed
+</span><span class="gi">+                :user-info-alias
+</span><span class="gi">+                :user-liked
+</span><span class="gi">+                :user-obj
+</span><span class="gi">+                :user-options
+</span><span class="gi">+                :user-saved
+</span><span class="gi">+                :userobj)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :2weeks
+</span><span class="gi">+                :age-str
+</span><span class="gi">+                :create-url
+</span><span class="gi">+                :esc-quote
+</span><span class="gi">+                :key-str
+</span><span class="gi">+                :makestr
+</span><span class="gi">+                :sanitize
+</span><span class="gi">+                :shorten-str
+</span><span class="gi">+                :tl-domain
+</span><span class="gi">+                :uid
+</span><span class="gi">+                :when-bind
+</span><span class="gi">+                :when-bind*
+</span><span class="gi">+                :with-parameters)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :article-id
+</span><span class="gi">+                :article-date
+</span><span class="gi">+                :article-pop
+</span><span class="gi">+                :article-sn
+</span><span class="gi">+                :article-submitterid
+</span><span class="gi">+                :article-title
+</span><span class="gi">+                :article-url
+</span><span class="gi">+                :options
+</span><span class="gi">+                :options-demoted
+</span><span class="gi">+                :options-frame
+</span><span class="gi">+                :options-numsites
+</span><span class="gi">+                :options-promoted
+</span><span class="gi">+                :options-userid
+</span><span class="gi">+                :options-visible
+</span><span class="gi">+                :user-emai
+</span><span class="gi">+                :user-karma
+</span><span class="gi">+                :user-name))
+</span><span class="gi">+(in-package :reddit.web)
+</span><span class="gi"></span> 
+ (defparameter *num-submitters* 8)
+ (defparameter *SESSION-MAX-TIME* 86400)
+<span class="gu">@@ -37,11 +163,6 @@
+</span><span class="gu"></span>   `(with-html-output-to-string (*standard-output* nil :prologue t :indent nil)
+      ,@body))
+ 
+<span class="gd">-;;TODO fix multiple eval of params
+</span><span class="gd">-(defmacro with-parameters (params &amp;body body)
+</span><span class="gd">-  `(let (,@(mapcar  (lambda (x) `(,(first x) (or (post-parameter ,(second x))
+</span><span class="gd">-                                                 (get-parameter ,(second x))))) params))
+</span><span class="gd">-     ,@body))
+</span><span class="gd"></span> 
+ (defparameter *callbacks* (make-hash-table :test &#39;equal))
+ 
+<span class="gu">@@ -112,25 +233,11 @@
+</span><span class="gu"></span>           (update-instance-from-records userobj)
+           (update-instance-from-records options)))))
+   
+<span class="gd">-(defun uid ()
+</span><span class="gd">-  (and (ignore-errors *session*)
+</span><span class="gd">-       (session-value :user-id)))
+</span><span class="gd">-
+</span><span class="gd">-(defun info ()
+</span><span class="gd">-  (get-info (uid)))
+</span><span class="gd">-
+</span><span class="gd">-(defun logged-in-p ()
+</span><span class="gd">-  (uid))
+</span><span class="gd">-
+</span><span class="gd"></span> (defun options ()
+   (or (when-bind (info (info))
+         (user-options info))
+       *default-options*))
+   
+<span class="gd">-(defun userobj ()
+</span><span class="gd">-  (when-bind (info (info))
+</span><span class="gd">-    (user-obj info)))
+</span><span class="gd">-
+</span><span class="gd"></span> (defmacro with-main ((&amp;key (menu &#34;empty&#34;) (right-panel) (rss-url)) &amp;body body)
+   `(with-html
+      (:html 
+<span class="gu">@@ -172,8 +279,6 @@
+</span><span class="gu"></span>                  (cached (,ck ,exp) (with-main (:menu ,menu :right-panel ,right-panel :rss-url ,rss-url) ,@body))
+                  (with-main (:menu ,menu :right-panel ,right-panel :rss-url ,rss-url) ,@body)))))))
+ 
+<span class="gd">-(defmacro idstr (name)
+</span><span class="gd">-  `(format nil ,(conc name &#34;~a&#34;) id))
+</span><span class="gd"></span> 
+ (defun redirect-url (url)
+   (setf (header-out &#34;Location&#34;)
+<span class="gu">@@ -286,7 +391,7 @@
+</span><span class="gu"></span> (defun options-panel ()
+   (let ((options (session-value :display-opts)))
+     (pbox &#34;display&#34;
+<span class="gd">-      (:form :method &#34;get&#34; :action (script-name) :class &#34;nomargin&#34;
+</span><span class="gd"></span><span class="gi">+      (:form :method &#34;get&#34; :action (script-name*) :class &#34;nomargin&#34;
+</span><span class="gi"></span>              (:input :type &#34;hidden&#34; :name &#34;action&#34; :value &#34;options&#34;)
+              (:table :style &#34;border-collapse: collapse: cell-padding-top: 3px;&#34; :width &#34;100%&#34;
+                      (when (logged-in-p)
+<span class="gu">@@ -400,6 +505,9 @@
+</span><span class="gu"></span>             (remhash name (user-info-alias info))
+             (remove-alias (uid) name))))))
+ 
+<span class="gi">+(defmacro idstr (name)
+</span><span class="gi">+  `(format nil ,(conc name &#34;~a&#34;) id))
+</span><span class="gi">+
+</span><span class="gi"></span> (defun site-link (id title url &amp;optional clicked)
+   (with-html-output (*standard-output*)
+     (:a :id (idstr &#34;title&#34;) :class (if clicked &#34;title click&#34; &#34;title norm&#34;)
+<span class="gu">@@ -491,7 +599,7 @@
+</span><span class="gu"></span>                                        (&#34;q&#34; . ,(get-parameter &#34;q&#34;)))
+                                      `((&#34;offset&#34; . ,nextoff)))))
+                      (htm
+<span class="gd">-                      (:tr (:td :colspan &#34;4&#34; (:a :href (create-url (script-name) params)
+</span><span class="gd"></span><span class="gi">+                      (:tr (:td :colspan &#34;4&#34; (:a :href (create-url (script-name*) params)
+</span><span class="gi"></span>                                                  &#34;View More&#34;))))))))
+         (htm (:span :class &#34;error&#34; &#34;There are no sites that match your request&#34;)))))
+ 
+<span class="gu">@@ -621,7 +729,7 @@
+</span><span class="gu"></span>         (htm
+          (:script :src &#34;/static/contacts.js&#34; :language &#34;javascript&#34; :type &#34;text/javascript&#34; &#34;&#34;)
+          (:form
+<span class="gd">-          :onsubmit &#34;return chksub()&#34; :action (script-name) :method &#34;post&#34; :class &#34;meat&#34;
+</span><span class="gd"></span><span class="gi">+          :onsubmit &#34;return chksub()&#34; :action (script-name*) :method &#34;post&#34; :class &#34;meat&#34;
+</span><span class="gi"></span>           (:input :type &#34;hidden&#34; :name &#34;action&#34; :value &#34;submit&#34;)
+           (:input :type &#34;hidden&#34; :name &#34;id&#34; :value id)
+           (let ((article (get-article-sn id)))
+<span class="gu">@@ -707,7 +815,7 @@
+</span><span class="gu"></span>   (load-link (lucky)))
+ 
+ (defun wrap-static-file (path)
+<span class="gd">-  (reddit-page (:cache-key (unless (logged-in-p) (key-str (script-name)))
+</span><span class="gd"></span><span class="gi">+  (reddit-page (:cache-key (unless (logged-in-p) (key-str (script-name*)))
+</span><span class="gi"></span>                            :exp 60
+                            :menu (top-menu (browse-menu))
+                            :right-panel (unless (logged-in-p) (login-panel))
+<span class="gu">@@ -718,8 +826,8 @@
+</span><span class="gu"></span>          (format t &#34;~a~%&#34; line)))))
+ 
+ (defun default-handler ()
+<span class="gd">-  (let ((path (and (&gt; (length (script-name)) 1)
+</span><span class="gd">-                   (conc &#34;/home/reddit/reddit/web/&#34; (subseq (script-name) 1)))))
+</span><span class="gd"></span><span class="gi">+  (let ((path (and (&gt; (length (script-name*)) 1)
+</span><span class="gi">+                   (conc &#34;/home/reddit/reddit/web/&#34; (subseq (script-name*) 1)))))
+</span><span class="gi"></span>     (if (and path (probe-file path))
+         (wrap-static-file path)
+         (page-default))))
+<span class="gu">@@ -741,6 +849,17 @@
+</span><span class="gu"></span>   (page-main page-pop :pop &#34;http://reddit.com/rss/pop&#34;)
+   (page-main page-new :new &#34;http://reddit.com/rss/new&#34;))
+ 
+<span class="gi">+(defun profile-site-table (profid display)
+</span><span class="gi">+  (with-parameters ((offset &#34;offset&#34;))
+</span><span class="gi">+    (setf offset (or (sanitize offset &#39;int) 0))
+</span><span class="gi">+    (multiple-value-bind (articles nextoff)
+</span><span class="gi">+        (get-sites-profile (uid) profid (options-numsites (options)) offset display)
+</span><span class="gi">+      (site-table articles (options-numsites (options)) offset
+</span><span class="gi">+                  nextoff (and (eql display :saved)
+</span><span class="gi">+                               (logged-in-p)
+</span><span class="gi">+                               (= (uid) profid))
+</span><span class="gi">+                  (eql display :hidden)))))
+</span><span class="gi">+
+</span><span class="gi"></span> (defun page-default ()
+   (page-front))
+ 
+<span class="gu">@@ -821,5 +940,6 @@
+</span><span class="gu"></span>                &#39;((&#34;/blog/.+&#34; default-handler)
+                  (&#34;/blog/?&#34; page-blog)
+                  (&#34;/help/.+&#34; default-handler)
+<span class="gd">-                 (&#34;/help/?&#34; page-help)))
+</span><span class="gd">-       (list #&#39;default-dispatcher)))
+</span><span class="gd"></span><span class="gi">+                 (&#34;/help/?&#34; page-help)))))
+</span><span class="gi">+
+</span><span class="gi">+
+</span></code></pre></div>
+<h3 id="create-new-package-reddit-user-panel-https-github-com-tamurashingo-reddit1-0-commit-a68546122841b1589f247f20f1582806a14ac900"><a href="https://github.com/tamurashingo/reddit1.0/commit/a68546122841b1589f247f20f1582806a14ac900">create new package :reddit.user-panel</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 49 insertions(+), 13 deletions(-)
+src/user-panel.lisp | 62 ++++++++++++++++++++++++++++++++++++++++++-----------
+
+modified   src/user-panel.lisp
+<span class="gu">@@ -18,7 +18,54 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.user-panel
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-ppcre
+</span><span class="gi">+                :split)
+</span><span class="gi">+  (:import-from :cl-who
+</span><span class="gi">+                :conc
+</span><span class="gi">+                :esc
+</span><span class="gi">+                :fmt
+</span><span class="gi">+                :htm
+</span><span class="gi">+                :with-html-output)
+</span><span class="gi">+  (:import-from :clsql
+</span><span class="gi">+                :month-name)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :script-name*)
+</span><span class="gi">+  (:import-from :reddit.data
+</span><span class="gi">+                :basic-info
+</span><span class="gi">+                :profile-visible
+</span><span class="gi">+                :user-email
+</span><span class="gi">+                :user-stats
+</span><span class="gi">+                :valid-user-p)
+</span><span class="gi">+  (:import-from :reddit.sites
+</span><span class="gi">+                :saved-sites)
+</span><span class="gi">+  (:import-from :reddit.user-info
+</span><span class="gi">+                :logged-in-p
+</span><span class="gi">+                :userobj)
+</span><span class="gi">+  (:import-from :reddit.util
+</span><span class="gi">+                :decode-user-url
+</span><span class="gi">+                :sanitize)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :options-demoted
+</span><span class="gi">+                :options-frame
+</span><span class="gi">+                :options-numsites
+</span><span class="gi">+                :options-promoted
+</span><span class="gi">+                :options-visible
+</span><span class="gi">+                :user-name)
+</span><span class="gi">+  (:import-from :reddit.web
+</span><span class="gi">+                :browse-menu
+</span><span class="gi">+                :hbar
+</span><span class="gi">+                :login-panel
+</span><span class="gi">+                :options
+</span><span class="gi">+                :pbox
+</span><span class="gi">+                :profile-site-table
+</span><span class="gi">+                :reddit-page
+</span><span class="gi">+                :site-link
+</span><span class="gi">+                :top-menu))
+</span><span class="gi">+(in-package :reddit.user-panel)
+</span><span class="gi">+
+</span><span class="gi"></span> 
+ (defun saved-panel (name)
+   (let ((sites (saved-sites (valid-user-p name))))
+<span class="gu">@@ -124,17 +171,6 @@
+</span><span class="gu"></span>   (with-html-output (*standard-output*)
+     (unless (logged-in-p) (login-panel))))
+ 
+<span class="gd">-(defun profile-site-table (profid display)
+</span><span class="gd">-  (with-parameters ((offset &#34;offset&#34;))
+</span><span class="gd">-    (setf offset (or (sanitize offset &#39;int) 0))
+</span><span class="gd">-    (multiple-value-bind (articles nextoff)
+</span><span class="gd">-        (get-sites-profile (uid) profid (options-numsites (options)) offset display)
+</span><span class="gd">-      (site-table articles (options-numsites (options)) offset
+</span><span class="gd">-                  nextoff (and (eql display :saved)
+</span><span class="gd">-                               (logged-in-p)
+</span><span class="gd">-                               (= (uid) profid))
+</span><span class="gd">-                  (eql display :hidden)))))
+</span><span class="gd">-
+</span><span class="gd"></span> 
+ (defun profile-page (name display)
+   (with-html-output (*standard-output*)
+<span class="gu">@@ -155,7 +191,7 @@
+</span><span class="gu"></span>       (t (base-info-panel user))))
+ 
+ (defun page-user ()
+<span class="gd">-  (multiple-value-bind (user page) (decode-user-url (script-name))
+</span><span class="gd"></span><span class="gi">+  (multiple-value-bind (user page) (decode-user-url (script-name*))
+</span><span class="gi"></span>     (let ((user (valid-user-p user :return-sn t)))
+       (if user
+         (let ((page (sanitize page &#39;sym &#39;(:basic :saved :promoted :submitted :hidden :demoted))))
+</code></pre></div>
+<h2 id="パッケージ情報の修正">パッケージ情報の修正</h2>
+
+<h3 id="remove-unused-modules-https-github-com-tamurashingo-reddit1-0-commit-25db37c6ccb90c2f912ceb49ca67b330b826a3b6"><a href="https://github.com/tamurashingo/reddit1.0/commit/25db37c6ccb90c2f912ceb49ca67b330b826a3b6">remove unused modules</a></h3>
+
+<p>パッケージを変更したり入れ替えたりもともと不要だったりというのが残っていたので、
+モジュールを修正して綺麗にしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 5 insertions(+), 5 deletions(-)
+reddit.asd | 10 +++++-----
+
+modified   reddit.asd
+<span class="gu">@@ -23,18 +23,18 @@
+</span><span class="gu"></span>                 ((:file &#34;packages&#34;)
+                  (:file &#34;cookiehash&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+                  (:file &#34;recommend&#34; :depends-on (&#34;packages&#34; &#34;user-info&#34;))
+<span class="gd">-                 (:file &#34;frame&#34; :depends-on (&#34;packages&#34; &#34;web&#34;))
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;frame&#34; :depends-on (&#34;packages&#34; &#34;util&#34;))
+</span><span class="gi"></span>                  (:file &#34;autocompute&#34; :depends-on (&#34;packages&#34;))
+                  (:file &#34;user-info&#34; :depends-on (&#34;data&#34; &#34;packages&#34;))
+<span class="gd">-                 (:file &#34;web&#34; :depends-on (&#34;packages&#34; &#34;recommend&#34; &#34;data&#34; &#34;util&#34; &#34;mail&#34; &#34;rss&#34; &#34;memcached&#34; &#34;sites&#34; &#34;view-defs&#34; &#34;user-info&#34; &#34;cookiehash&#34;))
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;web&#34; :depends-on (&#34;packages&#34; &#34;frame&#34; &#34;recommend&#34; &#34;data&#34; &#34;util&#34; &#34;mail&#34; &#34;memcached&#34; &#34;sites&#34; &#34;view-defs&#34; &#34;user-info&#34; &#34;cookiehash&#34;))
+</span><span class="gi"></span>                  (:file &#34;data&#34; :depends-on (&#34;packages&#34; &#34;view-defs&#34; &#34;util&#34;))
+                  (:file &#34;view-defs&#34; :depends-on (&#34;packages&#34;))
+                  (:file &#34;util&#34; :depends-on (&#34;packages&#34;))
+                  (:file &#34;search&#34; :depends-on (&#34;packages&#34;))
+                  ;;(:file &#34;options&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+<span class="gd">-                 (:file &#34;memcached&#34; :depends-on (&#34;packages&#34; &#34;crc&#34;))
+</span><span class="gd">-                 (:file &#34;crc&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd">-                 (:file &#34;rss&#34; :depends-on (&#34;memcached&#34; &#34;packages&#34; &#34;sites&#34;))
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;memcached&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gi">+                 ;;(:file &#34;crc&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gi">+                 ;;(:file &#34;rss&#34; :depends-on (&#34;memcached&#34; &#34;packages&#34; &#34;sites&#34;))
+</span><span class="gi"></span>                  (:file &#34;sites&#34; :depends-on (&#34;packages&#34; &#34;data&#34; &#34;util&#34; &#34;search&#34; &#34;autocompute&#34; &#34;user-info&#34;))
+                  (:file &#34;mail&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+                  (:file &#34;user-panel&#34; :depends-on (&#34;data&#34; &#34;packages&#34; &#34;web&#34; &#34;sites&#34;))))))
+</code></pre></div>
+<h3 id="remove-use-packages-https-github-com-tamurashingo-reddit1-0-commit-69a3b2aafb85fd30bf9102ce12a054da2049319f"><a href="https://github.com/tamurashingo/reddit1.0/commit/69a3b2aafb85fd30bf9102ce12a054da2049319f">remove use packages</a></h3>
+
+<p><code>packages.lisp</code> から <code>use</code> を消したりしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 6 insertions(+), 10 deletions(-)
+src/packages.lisp | 16 ++++++----------
+
+modified   src/packages.lisp
+<span class="gu">@@ -18,14 +18,10 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package #:cl-user)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi"></span> 
+<span class="gd">-(defpackage #:reddit
+</span><span class="gd">-  (:use #:cl
+</span><span class="gd">-        #:tbnl
+</span><span class="gd">-        #:cl-ppcre
+</span><span class="gd">-        #:trivial-http
+</span><span class="gd">-        #:cl-who
+</span><span class="gd">-        #:clsql-user
+</span><span class="gd">-        #:cl-smtp
+</span><span class="gd">-        #:ironclad))
+</span><span class="gd"></span><span class="gi">+(defpackage reddit
+</span><span class="gi">+  (:use :cl))
+</span><span class="gi">+(in-package :reddit)
+</span><span class="gi">+
+</span><span class="gi">+; blah blah blah
+</span></code></pre></div>
+<h2 id="こまごました修正">こまごました修正</h2>
+
+<h3 id="function-seconds-not-found-so-comment-out-it-https-github-com-tamurashingo-reddit1-0-commit-ecc30d0f98463a374dd6d3723582f72db644a43c"><a href="https://github.com/tamurashingo/reddit1.0/commit/ecc30d0f98463a374dd6d3723582f72db644a43c">function &lsquo;seconds&rsquo; not found, so comment out it</a></h3>
+
+<p>PostgreSQLでそんな関数無いエラーが出るので、秒数の指定を無視するように変更。</p>
+
+<p>あと、CLSQLのreaderが使えるように<code>#.(clsql:file-enable-sql-reader-syntax)</code>を追加。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 5 insertions(+), 1 deletion(-)
+src/sites.lisp | 6 +++++-
+
+modified   src/sites.lisp
+<span class="gu">@@ -54,6 +54,8 @@
+</span><span class="gu"></span>                 :article-with-sn))
+ (in-package :reddit.sites)
+ 
+<span class="gi">+#.(clsql:file-enable-sql-reader-syntax)
+</span><span class="gi">+
+</span><span class="gi"></span> (defparameter *min-front-page-pop* 2)
+ (defparameter *prob-threshold* .7)
+ (defparameter *hot-factor* 2000)
+<span class="gu">@@ -70,7 +72,9 @@
+</span><span class="gu"></span>                       (:new &#39;(([articles_sn date] desc)))
+                         (t `(;;(,(sql-operation &#39;function &#34;recent_pop&#34; [id]) desc)
+                              (,[- [pop]
+<span class="gd">-                                  [/ (sql-operation &#39;function &#34;seconds&#34; [date]) *hot-factor*]] desc))))
+</span><span class="gd"></span><span class="gi">+                                  ;; XXX: seconds is stored function?
+</span><span class="gi">+                                  ;;[/ (sql-operation &#39;function &#34;seconds&#34; [date]) *hot-factor*]] desc))))
+</span><span class="gi">+				  0] desc))))
+</span><span class="gi"></span>           :offset offset
+           :limit limit
+           :flatp t
+</code></pre></div>
+<h3 id="fix-import-symbols-https-github-com-tamurashingo-reddit1-0-commit-fcb3ca25ee9327afb105e595ae96f9aac5b50cb9"><a href="https://github.com/tamurashingo/reddit1.0/commit/fcb3ca25ee9327afb105e595ae96f9aac5b50cb9">fix import symbols</a></h3>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">4 files changed, 5 insertions(+), 5 deletions(-)
+src/frame.lisp     | 4 ++--
+src/util.lisp      | 2 +-
+src/view-defs.lisp | 2 +-
+src/web.lisp       | 2 +-
+
+modified   src/frame.lisp
+<span class="gu">@@ -31,13 +31,13 @@
+</span><span class="gu"></span>                 :get-article)
+   (:import-from :reddit.user-info
+                 :get-info
+<span class="gi">+                :logged-in-p
+</span><span class="gi">+                :uid
+</span><span class="gi"></span>                 :user-liked
+                 :userobj)
+   (:import-from :reddit.util
+<span class="gd">-                :logged-in-p
+</span><span class="gd"></span>                 :makestr
+                 :sanitize
+<span class="gd">-                :uid
+</span><span class="gd"></span>                 :with-parameters)
+   (:import-from :reddit.view-defs
+                 :article-id
+modified   src/util.lisp
+<span class="gu">@@ -63,7 +63,7 @@
+</span><span class="gu"></span>            :shorten-str
+            :when-bind
+            :when-bind*
+<span class="gd">-           :with-parameters)
+</span><span class="gd"></span><span class="gi">+           :with-parameters))
+</span><span class="gi"></span> (in-package :reddit.util)
+ 
+ 
+modified   src/view-defs.lisp
+<span class="gu">@@ -27,7 +27,7 @@
+</span><span class="gu"></span>   (:export :user
+            :user-id
+            :user-name
+<span class="gd">-           :user-email
+</span><span class="gd"></span><span class="gi">+           :user-emai
+</span><span class="gi"></span>            :user-karma
+            :user-date
+            :user-ip
+modified   src/web.lisp
+<span class="gu">@@ -103,6 +103,7 @@
+</span><span class="gu"></span>                 :info
+                 :logged-in-p
+                 :remove-info
+<span class="gi">+                :uid
+</span><span class="gi"></span>                 :user-alias
+                 :user-clicked
+                 :user-closed
+<span class="gu">@@ -122,7 +123,6 @@
+</span><span class="gu"></span>                 :sanitize
+                 :shorten-str
+                 :tl-domain
+<span class="gd">-                :uid
+</span><span class="gd"></span>                 :when-bind
+                 :when-bind*
+                 :with-parameters)
+</code></pre></div>
+<h1 id="とりあえず">とりあえず</h1>
+
+<p>動くところまできました。</p>
+
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="en" dir="ltr">running Reddit1.0 on CommonLisp.<br><br>IMG and CSS not found&hellip;&hellip;. <a href="https://t.co/GP31zu5aZ6">pic.twitter.com/GP31zu5aZ6</a></p>&mdash; tamura shingo (@tamura_shingo) <a href="https://twitter.com/tamura_shingo/status/982778542147551232?ref_src=twsrc%5Etfw">2018年4月8日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<h2 id="仕上げ">仕上げ</h2>
+
+<h3 id="create-new-package-reddit-rss-https-github-com-tamurashingo-reddit1-0-commit-a01060296fc84e8a1460b901e2351393a1ba1683"><a href="https://github.com/tamurashingo/reddit1.0/commit/a01060296fc84e8a1460b901e2351393a1ba1683">create new package :reddit.rss</a></h3>
+
+<p>漏れたパッケージの対応。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 19 insertions(+), 4 deletions(-)
+src/rss.lisp | 23 +++++++++++++++++++----
+
+modified   src/rss.lisp
+<span class="gu">@@ -18,7 +18,22 @@
+</span><span class="gu"></span> ;;;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ ;;;; SOFTWARE.
+ 
+<span class="gd">-(in-package :reddit)
+</span><span class="gd"></span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.rss
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :cl-who
+</span><span class="gi">+                :conc
+</span><span class="gi">+                :esc
+</span><span class="gi">+                :escape-string
+</span><span class="gi">+                :htm
+</span><span class="gi">+                :with-html-output-to-string)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :content-type*)
+</span><span class="gi">+  (:import-from :reddit.memcached
+</span><span class="gi">+                :cached)
+</span><span class="gi">+  (:import-from :reddit.sites
+</span><span class="gi">+                :get-articles-cached))
+</span><span class="gi">+(in-package :reddit.rss)
+</span><span class="gi"></span> 
+ (defun rss-sites (rssurl siteurl name sort)
+   (let ((sites (get-articles-cached 25 0 sort)))
+<span class="gu">@@ -46,16 +61,16 @@
+</span><span class="gu"></span>       (format t &#34;&lt;/rdf:RDF&gt;&#34;))))
+   
+ (defun rss-hot ()
+<span class="gd">-  (setf (content-type) &#34;text/xml&#34;)
+</span><span class="gd"></span><span class="gi">+  (setf (content-type*) &#34;text/xml&#34;)
+</span><span class="gi"></span>   (cached (&#34;rsshot&#34; 900)
+     (rss-sites &#34;http://reddit.com/rss/hot&#34; &#34;http://reddit.com/&#34; &#34;hottest&#34; :front)))
+ 
+ (defun rss-new ()
+<span class="gd">-  (setf (content-type) &#34;text/xml&#34;)
+</span><span class="gd"></span><span class="gi">+  (setf (content-type*) &#34;text/xml&#34;)
+</span><span class="gi"></span>   (cached (&#34;rssnew&#34; 900)
+     (rss-sites &#34;http://reddit.com/rss/new&#34; &#34;http://reddit.com/new&#34; &#34;newest&#34; :new)))
+ 
+ (defun rss-pop ()
+<span class="gd">-  (setf (content-type) &#34;text/xml&#34;)
+</span><span class="gd"></span><span class="gi">+  (setf (content-type*) &#34;text/xml&#34;)
+</span><span class="gi"></span>   (cached (&#34;rsspop&#34; 900)
+     (rss-sites &#34;http://reddit.com/rss/pop&#34; &#34;http://reddit.com/pop&#34; &#34;top all-time&#34; :pop)))
+</code></pre></div>
+<h3 id="create-new-package-reddit-main-https-github-com-tamurashingo-reddit1-0-commit-10f37dec8d6903dc78c095ddce7f356aa8503085"><a href="https://github.com/tamurashingo/reddit1.0/commit/10f37dec8d6903dc78c095ddce7f356aa8503085">create new package :reddit.main</a></h3>
+
+<p><code>main</code>パッケージを作って、アプリケーションの上げ下げをできるようにしました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">5 files changed, 128 insertions(+), 61 deletions(-)
+reddit.asd          |  33 ++++++++---------
+src/cookiehash.lisp |   6 ++--
+src/main.lisp       | 100 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+src/packages.lisp   |  10 ++++--
+src/web.lisp        |  40 ---------------------
+
+modified   reddit.asd
+<span class="gu">@@ -20,21 +20,22 @@
+</span><span class="gu"></span>                :cl-memcached)
+   :components ((:module &#34;src&#34;
+                 :components
+<span class="gd">-                ((:file &#34;packages&#34;)
+</span><span class="gd">-                 (:file &#34;cookiehash&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+</span><span class="gd">-                 (:file &#34;recommend&#34; :depends-on (&#34;packages&#34; &#34;user-info&#34;))
+</span><span class="gd">-                 (:file &#34;frame&#34; :depends-on (&#34;packages&#34; &#34;util&#34;))
+</span><span class="gd">-                 (:file &#34;autocompute&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd">-                 (:file &#34;user-info&#34; :depends-on (&#34;data&#34; &#34;packages&#34;))
+</span><span class="gd">-                 (:file &#34;web&#34; :depends-on (&#34;packages&#34; &#34;frame&#34; &#34;recommend&#34; &#34;data&#34; &#34;util&#34; &#34;mail&#34; &#34;memcached&#34; &#34;sites&#34; &#34;view-defs&#34; &#34;user-info&#34; &#34;cookiehash&#34;))
+</span><span class="gd">-                 (:file &#34;data&#34; :depends-on (&#34;packages&#34; &#34;view-defs&#34; &#34;util&#34;))
+</span><span class="gd">-                 (:file &#34;view-defs&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd">-                 (:file &#34;util&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd">-                 (:file &#34;search&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd"></span><span class="gi">+                ((:file &#34;packages&#34; :depends-on (&#34;main&#34;))
+</span><span class="gi">+                 (:file &#34;main&#34; :depends-on (&#34;frame&#34; &#34;rss&#34; &#34;user-panel&#34; &#34;web&#34;))
+</span><span class="gi">+                 (:file &#34;cookiehash&#34; :depends-on (&#34;data&#34; &#34;view-defs&#34; &#34;util&#34;))
+</span><span class="gi">+                 (:file &#34;recommend&#34; :depends-on (&#34;user-info&#34;))
+</span><span class="gi">+                 (:file &#34;frame&#34; :depends-on (&#34;data&#34; &#34;user-info&#34; &#34;util&#34; &#34;view-defs&#34;))
+</span><span class="gi">+                 (:file &#34;autocompute&#34;)
+</span><span class="gi">+                 (:file &#34;user-info&#34; :depends-on (&#34;data&#34; &#34;util&#34;))
+</span><span class="gi">+                 (:file &#34;web&#34; :depends-on (&#34;autocompute&#34; &#34;cookiehash&#34; &#34;data&#34; &#34;frame&#34; &#34;mail&#34; &#34;memcached&#34; &#34;recommend&#34; &#34;sites&#34; &#34;user-info&#34; &#34;util&#34; &#34;view-defs&#34;))
+</span><span class="gi">+                 (:file &#34;data&#34; :depends-on (&#34;view-defs&#34; &#34;util&#34;))
+</span><span class="gi">+                 (:file &#34;view-defs&#34;)
+</span><span class="gi">+                 (:file &#34;util&#34;)
+</span><span class="gi">+                 (:file &#34;search&#34;)
+</span><span class="gi"></span>                  ;;(:file &#34;options&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+<span class="gd">-                 (:file &#34;memcached&#34; :depends-on (&#34;packages&#34;))
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;memcached&#34;)
+</span><span class="gi"></span>                  ;;(:file &#34;crc&#34; :depends-on (&#34;packages&#34;))
+<span class="gd">-                 ;;(:file &#34;rss&#34; :depends-on (&#34;memcached&#34; &#34;packages&#34; &#34;sites&#34;))
+</span><span class="gd">-                 (:file &#34;sites&#34; :depends-on (&#34;packages&#34; &#34;data&#34; &#34;util&#34; &#34;search&#34; &#34;autocompute&#34; &#34;user-info&#34;))
+</span><span class="gd">-                 (:file &#34;mail&#34; :depends-on (&#34;packages&#34; &#34;data&#34;))
+</span><span class="gd">-                 (:file &#34;user-panel&#34; :depends-on (&#34;data&#34; &#34;packages&#34; &#34;web&#34; &#34;sites&#34;))))))
+</span><span class="gd"></span><span class="gi">+                 (:file &#34;rss&#34; :depends-on (&#34;memcached&#34; &#34;sites&#34;))
+</span><span class="gi">+                 (:file &#34;sites&#34; :depends-on (&#34;autocompute&#34; &#34;data&#34; &#34;search&#34; &#34;user-info&#34; &#34;util&#34; &#34;view-defs&#34;))
+</span><span class="gi">+                 (:file &#34;mail&#34; :depends-on (&#34;data&#34;))
+</span><span class="gi">+                 (:file &#34;user-panel&#34; :depends-on (&#34;data&#34; &#34;sites&#34; &#34;user-info&#34; &#34;util&#34; &#34;view-defs&#34; &#34;web&#34;))))))
+</span><span class="gi"></span>modified   src/cookiehash.lisp
+<span class="gu">@@ -31,11 +31,11 @@
+</span><span class="gu"></span>   (:import-from :reddit.data
+                 :get-user
+                 :user-pass)
+<span class="gd">-  (:import-from :reddit.view-defs
+</span><span class="gd">-                :user-id)
+</span><span class="gd"></span>   (:import-from :reddit.util
+                 :makestr
+<span class="gd">-                :when-bind*))
+</span><span class="gd"></span><span class="gi">+                :when-bind*)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :user-id))
+</span><span class="gi"></span> (in-package :reddit.cookiehash)
+ 
+ (defparameter *secret* &#34;blargo&#34;)
+new file   src/main.lisp
+<span class="gu">@@ -0,0 +1,100 @@
+</span><span class="gu"></span><span class="gi">+;;;; Copyright 2018 tamura shingo
+</span><span class="gi">+;;;;
+</span><span class="gi">+;;;; MIT License
+</span><span class="gi">+
+</span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit.main
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :hunchentoot
+</span><span class="gi">+                :*dispatch-table*
+</span><span class="gi">+                :create-prefix-dispatcher
+</span><span class="gi">+                :create-regex-dispatcher
+</span><span class="gi">+                :create-static-file-dispatcher-and-handler
+</span><span class="gi">+                :easy-acceptor
+</span><span class="gi">+                :start
+</span><span class="gi">+                :stop)
+</span><span class="gi">+  (:import-from :reddit.frame
+</span><span class="gi">+                :reddit-toolbar)
+</span><span class="gi">+  (:import-from :reddit.rss
+</span><span class="gi">+                :rss-hot
+</span><span class="gi">+                :rss-new
+</span><span class="gi">+                :rss-pop)
+</span><span class="gi">+  (:import-from :reddit.user-panel
+</span><span class="gi">+                :page-user)
+</span><span class="gi">+  (:import-from :reddit.web
+</span><span class="gi">+                :viewlink
+</span><span class="gi">+                :page-default
+</span><span class="gi">+                :page-submit
+</span><span class="gi">+                :page-front
+</span><span class="gi">+                :page-pop
+</span><span class="gi">+                :page-new
+</span><span class="gi">+                :page-saved
+</span><span class="gi">+                :page-submitters
+</span><span class="gi">+                :page-search
+</span><span class="gi">+                :ajax-op
+</span><span class="gi">+                :page-test
+</span><span class="gi">+                :logout
+</span><span class="gi">+                :page-password
+</span><span class="gi">+                :page-lucky
+</span><span class="gi">+                :default-handler
+</span><span class="gi">+                :page-blog
+</span><span class="gi">+                :page-help))
+</span><span class="gi">+(in-package :reddit.main)
+</span><span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+(defvar *reddit-acceptor* nil)
+</span><span class="gi">+(defvar *not-initialized* T)
+</span><span class="gi">+
+</span><span class="gi">+(defun initialize ()
+</span><span class="gi">+  (when *not-initialized*
+</span><span class="gi">+    (initialize-acceptor)
+</span><span class="gi">+    (initialize-dispatch-table)
+</span><span class="gi">+    (setf *not-initialized* nil)))
+</span><span class="gi">+
+</span><span class="gi">+(defun start-reddit ()
+</span><span class="gi">+  (start *reddit-acceptor*))
+</span><span class="gi">+
+</span><span class="gi">+(defun stop-reddit ()
+</span><span class="gi">+  (stop *reddit-acceptor*))
+</span><span class="gi">+
+</span><span class="gi">+(defun initialize-acceptor ()
+</span><span class="gi">+  (setf *reddit-acceptor* (make-instance &#39;easy-acceptor :port 8000)))
+</span><span class="gi">+
+</span><span class="gi">+(defun initialize-dispatch-table ()
+</span><span class="gi">+  (setq *dispatch-table*
+</span><span class="gi">+        (nconc
+</span><span class="gi">+         (list (create-static-file-dispatcher-and-handler
+</span><span class="gi">+                &#34;/favicon.ico&#34;
+</span><span class="gi">+                (make-pathname :directory &#34;/home/reddit/reddit/web/&#34; :name &#34;favicon&#34; :type &#34;ico&#34; :version nil
+</span><span class="gi">+                               :defaults (load-time-value *load-pathname*))
+</span><span class="gi">+                &#34;image/x-icon&#34;))
+</span><span class="gi">+         (mapcar (lambda (args)
+</span><span class="gi">+                   (apply #&#39;create-prefix-dispatcher args))
+</span><span class="gi">+                 &#39;((&#34;/rss/new&#34; rss-new)
+</span><span class="gi">+                   (&#34;/rss/hot&#34; rss-hot)
+</span><span class="gi">+                   (&#34;/rss/pop&#34; rss-pop)
+</span><span class="gi">+                   (&#34;/viewlink&#34; viewlink)
+</span><span class="gi">+                   (&#34;/browse&#34; page-default)
+</span><span class="gi">+                   (&#34;/submit&#34; page-submit)
+</span><span class="gi">+                   (&#34;/hot&#34; page-front)
+</span><span class="gi">+                   (&#34;/pop&#34; page-pop)
+</span><span class="gi">+                   (&#34;/new&#34; page-new)
+</span><span class="gi">+                   (&#34;/saved&#34; page-saved)
+</span><span class="gi">+                   (&#34;/topsub&#34; page-submitters)
+</span><span class="gi">+                   (&#34;/search&#34; page-search)
+</span><span class="gi">+                   (&#34;/aop&#34; ajax-op)
+</span><span class="gi">+                   (&#34;/test&#34; page-test)
+</span><span class="gi">+                   (&#34;/logout&#34; logout)
+</span><span class="gi">+                   (&#34;/share&#34; page-submit)
+</span><span class="gi">+                   (&#34;/password&#34; page-password)
+</span><span class="gi">+                   (&#34;/lucky&#34; page-lucky)
+</span><span class="gi">+                   (&#34;/user/&#34; page-user)
+</span><span class="gi">+                   (&#34;/toolbar&#34; reddit-toolbar)))
+</span><span class="gi">+         (list (create-static-file-dispatcher-and-handler
+</span><span class="gi">+                &#34;/blog/atom.xml&#34; &#34;/home/reddit/reddit/web/blog/atom.xml&#34; &#34;text/xml&#34;))
+</span><span class="gi">+         (mapcar (lambda (args)
+</span><span class="gi">+                   (apply #&#39;create-regex-dispatcher args))
+</span><span class="gi">+                 &#39;((&#34;/blog/.+&#34; default-handler)
+</span><span class="gi">+                   (&#34;/blog/?&#34; page-blog)
+</span><span class="gi">+                   (&#34;/help/.+&#34; default-handler)
+</span><span class="gi">+                   (&#34;/help/?&#34; page-help))))))
+</span><span class="gi"></span>modified   src/packages.lisp
+<span class="gu">@@ -21,7 +21,13 @@
+</span><span class="gu"></span> (in-package :cl-user)
+ 
+ (defpackage reddit
+<span class="gd">-  (:use :cl))
+</span><span class="gd"></span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :reddit.main
+</span><span class="gi">+                :initialize
+</span><span class="gi">+                :start-reddit
+</span><span class="gi">+                :stop-reddit)
+</span><span class="gi">+  (:export :initialize
+</span><span class="gi">+           :start-reddit
+</span><span class="gi">+           :stop-reddit))
+</span><span class="gi"></span> (in-package :reddit)
+ 
+<span class="gd">-; blah blah blah
+</span><span class="gd"></span>modified   src/web.lisp
+<span class="gu">@@ -39,9 +39,6 @@
+</span><span class="gu"></span>                 :*reply*
+                 :*session*
+                 :cookie-in
+<span class="gd">-                :create-prefix-dispatcher
+</span><span class="gd">-                :create-regex-dispatcher
+</span><span class="gd">-                :create-static-file-dispatcher-and-handler
+</span><span class="gd"></span>                 :get-parameter
+                 :header-out
+                 :log-message*
+<span class="gu">@@ -904,42 +901,5 @@
+</span><span class="gu"></span> (defun page-test ()
+   t)
+ 
+<span class="gd">-(setq *dispatch-table*
+</span><span class="gd">-      (nconc
+</span><span class="gd">-       (list (create-static-file-dispatcher-and-handler
+</span><span class="gd">-              &#34;/favicon.ico&#34;
+</span><span class="gd">-              (make-pathname :directory &#34;/home/reddit/reddit/web/&#34; :name &#34;favicon&#34; :type &#34;ico&#34; :version nil
+</span><span class="gd">-                             :defaults (load-time-value *load-pathname*))
+</span><span class="gd">-              &#34;image/x-icon&#34;))
+</span><span class="gd">-       (mapcar (lambda (args)
+</span><span class="gd">-                 (apply #&#39;create-prefix-dispatcher args))
+</span><span class="gd">-               &#39;((&#34;/rss/new&#34; rss-new)
+</span><span class="gd">-                 (&#34;/rss/hot&#34; rss-hot)
+</span><span class="gd">-                 (&#34;/rss/pop&#34; rss-pop)
+</span><span class="gd">-                 (&#34;/viewlink&#34; viewlink)
+</span><span class="gd">-                 (&#34;/browse&#34; page-default)
+</span><span class="gd">-                 (&#34;/submit&#34; page-submit)
+</span><span class="gd">-                 (&#34;/hot&#34; page-front)
+</span><span class="gd">-                 (&#34;/pop&#34; page-pop)
+</span><span class="gd">-                 (&#34;/new&#34; page-new)
+</span><span class="gd">-                 (&#34;/saved&#34; page-saved)
+</span><span class="gd">-                 (&#34;/topsub&#34; page-submitters)
+</span><span class="gd">-                 (&#34;/search&#34; page-search)
+</span><span class="gd">-                 (&#34;/aop&#34; ajax-op)
+</span><span class="gd">-                 (&#34;/test&#34; page-test)
+</span><span class="gd">-                 (&#34;/logout&#34; logout)
+</span><span class="gd">-                 (&#34;/share&#34; page-submit)
+</span><span class="gd">-                 (&#34;/password&#34; page-password)
+</span><span class="gd">-                 (&#34;/lucky&#34; page-lucky)
+</span><span class="gd">-                 (&#34;/user/&#34; page-user)
+</span><span class="gd">-                 (&#34;/toolbar&#34; reddit-toolbar)))
+</span><span class="gd">-       (list (create-static-file-dispatcher-and-handler
+</span><span class="gd">-              &#34;/blog/atom.xml&#34; &#34;/home/reddit/reddit/web/blog/atom.xml&#34; &#34;text/xml&#34;))
+</span><span class="gd">-       (mapcar (lambda (args)
+</span><span class="gd">-                 (apply #&#39;create-regex-dispatcher args))
+</span><span class="gd">-               &#39;((&#34;/blog/.+&#34; default-handler)
+</span><span class="gd">-                 (&#34;/blog/?&#34; page-blog)
+</span><span class="gd">-                 (&#34;/help/.+&#34; default-handler)
+</span><span class="gd">-                 (&#34;/help/?&#34; page-help)))))
+</span></code></pre></div>
+<h3 id="add-db-migration-module-https-github-com-tamurashingo-reddit1-0-commit-a0526f11c8b0ee481f5058cbe0ab97659297ae4c"><a href="https://github.com/tamurashingo/reddit1.0/commit/a0526f11c8b0ee481f5058cbe0ab97659297ae4c">add db migration module</a></h3>
+
+<p><code>create-table</code>のタイミングをいい感じにしたかったので、migration用に別ファイルに切り出しました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">3 files changed, 62 insertions(+)
+db/migration.lisp  | 33 +++++++++++++++++++++++++++++++++
+reddit-db.asd      | 27 +++++++++++++++++++++++++++
+src/view-defs.lisp |  2 ++
+
+new file   db/migration.lisp
+<span class="gu">@@ -0,0 +1,33 @@
+</span><span class="gu"></span><span class="gi">+;;;; Copyright 2018 tamura shingo
+</span><span class="gi">+;;;;
+</span><span class="gi">+;;;; MIT License
+</span><span class="gi">+
+</span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage :reddit.db.migration
+</span><span class="gi">+  (:use :cl)
+</span><span class="gi">+  (:import-from :reddit.view-defs
+</span><span class="gi">+                :user
+</span><span class="gi">+                :article
+</span><span class="gi">+                :article-with-sn
+</span><span class="gi">+                :wtf
+</span><span class="gi">+                :click
+</span><span class="gi">+                :like
+</span><span class="gi">+                :moduser
+</span><span class="gi">+                :modarticle
+</span><span class="gi">+                :neuter
+</span><span class="gi">+                :options
+</span><span class="gi">+                :alias))
+</span><span class="gi">+(in-package :reddit.db.migration)
+</span><span class="gi">+
+</span><span class="gi">+(clsql:create-view-from-class &#39;user)
+</span><span class="gi">+(clsql:create-view-from-class &#39;article)
+</span><span class="gi">+(clsql:create-view-from-class &#39;article-with-sn)
+</span><span class="gi">+(clsql:create-view-from-class &#39;wtf)
+</span><span class="gi">+(clsql:create-view-from-class &#39;click)
+</span><span class="gi">+(clsql:create-view-from-class &#39;like)
+</span><span class="gi">+(clsql:create-view-from-class &#39;moduser)
+</span><span class="gi">+(clsql:create-view-from-class &#39;modarticle)
+</span><span class="gi">+(clsql:create-view-from-class &#39;neuter)
+</span><span class="gi">+(clsql:create-view-from-class &#39;options)
+</span><span class="gi">+(clsql:create-view-from-class &#39;alias)
+</span><span class="gi">+
+</span><span class="gi"></span>new file   reddit-db.asd
+<span class="gu">@@ -0,0 +1,27 @@
+</span><span class="gu"></span><span class="gi">+;;;; Copyright 2018 tamura shingo
+</span><span class="gi">+;;;;
+</span><span class="gi">+;;;; MIT License
+</span><span class="gi">+
+</span><span class="gi">+(in-package :cl-user)
+</span><span class="gi">+(defpackage reddit-db-asd
+</span><span class="gi">+  (:use :cl :asdf))
+</span><span class="gi">+(in-package :reddit-db-asd)
+</span><span class="gi">+
+</span><span class="gi">+(defsystem reddit-db
+</span><span class="gi">+  :author &#34;tamura shingo&#34;
+</span><span class="gi">+  :license &#34;MIT&#34;
+</span><span class="gi">+  :depends-on (:hunchentoot
+</span><span class="gi">+               :cl-who
+</span><span class="gi">+               :clsql
+</span><span class="gi">+               :clsql-postgresql
+</span><span class="gi">+               :trivial-http)
+</span><span class="gi">+  :components ((:module &#34;src&#34;
+</span><span class="gi">+                :components
+</span><span class="gi">+                ((:file &#34;view-defs&#34;)
+</span><span class="gi">+                 (:file &#34;data&#34; :depends-on (&#34;view-defs&#34; &#34;util&#34;))
+</span><span class="gi">+                 (:file &#34;util&#34;)))
+</span><span class="gi">+               (:module &#34;db&#34;
+</span><span class="gi">+                :components
+</span><span class="gi">+                ((:file &#34;migration&#34;))))
+</span><span class="gi">+  :description &#34;database migration&#34;)
+</span><span class="gi">+
+</span><span class="gi"></span>modified   src/view-defs.lisp
+<span class="gu">@@ -24,6 +24,8 @@
+</span><span class="gu"></span>   (:import-from :clsql
+                 :def-view-class
+                 :get-time)
+<span class="gi">+  (:import-from :clsql-sys
+</span><span class="gi">+                :wall-time)
+</span><span class="gi"></span>   (:export :user
+            :user-id
+            :user-name
+</code></pre></div>
+<h3 id="add-readme-md-https-github-com-tamurashingo-reddit1-0-commit-b1abbca5df3bd716faf0cbd42d6420ce241cfd10"><a href="https://github.com/tamurashingo/reddit1.0/commit/b1abbca5df3bd716faf0cbd42d6420ce241cfd10">add README.md</a></h3>
+
+<p>READMEを追加。
+これでみんなRedditを起動できます！（JSとかCSSとかないので90年代初期のページに見えますが）</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 260 insertions(+)
+README.md | 260 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+new file   README.md
+<span class="gu">@@ -0,0 +1,260 @@
+</span><span class="gu"></span><span class="gi">+# Reddit 1.0
+</span><span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+## Require
+</span><span class="gi">+
+</span><span class="gi">+- CommonLisp (tested on SBCL)
+</span><span class="gi">+- PostgreSQL
+</span><span class="gi">+- memcached
+</span><span class="gi">+- smtp server
+</span><span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+## database
+</span><span class="gi">+
+</span><span class="gi">+### PostgreSQL
+</span><span class="gi">+
+</span><span class="gi">+- database-name: `reddit`
+</span><span class="gi">+- username: `pgsql`
+</span><span class="gi">+- password: `pgcwip42:`
+</span><span class="gi">+
+</span><span class="gi">+it&#39;s defined on src/data.lisp.
+</span><span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+### Migration
+</span><span class="gi">+
+</span><span class="gi">+load `reddit-db` like 
+</span><span class="gi">+
+</span><span class="gi">+```lisp
+</span><span class="gi">+(ql:quickload :reddit-db)
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+#### log
+</span><span class="gi">+
+</span><span class="gi">+on PostgreSQL, there&#39;s no tables.
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+$ psql -U pgsql -W reddit
+</span><span class="gi">+Password for user pgsql:
+</span><span class="gi">+psql (10.1)
+</span><span class="gi">+Type &#34;help&#34; for help.
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d
+</span><span class="gi">+Did not find any relations.
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+load `reddit-db` and migrate.
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+CL-USER&gt; (ql:quickload :reddit-db)
+</span><span class="gi">+To load &#34;reddit-db&#34;:
+</span><span class="gi">+  Load 1 ASDF system:
+</span><span class="gi">+    reddit-db
+</span><span class="gi">+; Loading &#34;reddit-db&#34;
+</span><span class="gi">+..................................................
+</span><span class="gi">+[package reddit.view-defs]........................
+</span><span class="gi">+[package reddit.util].............................
+</span><span class="gi">+[package reddit.data].............................
+</span><span class="gi">+[package reddit.db.migration].
+</span><span class="gi">+(:REDDIT-DB)
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+check PostgreSQL.
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+reddit=&gt; \d
+</span><span class="gi">+          List of relations
+</span><span class="gi">+ Schema |    Name     | Type  | Owner
+</span><span class="gi">+--------+-------------+-------+-------
+</span><span class="gi">+ public | alias       | table | pgsql
+</span><span class="gi">+ public | articles    | table | pgsql
+</span><span class="gi">+ public | articles_sn | table | pgsql
+</span><span class="gi">+ public | clicks      | table | pgsql
+</span><span class="gi">+ public | like_site   | table | pgsql
+</span><span class="gi">+ public | mod_article | table | pgsql
+</span><span class="gi">+ public | mod_user    | table | pgsql
+</span><span class="gi">+ public | neuter      | table | pgsql
+</span><span class="gi">+ public | options     | table | pgsql
+</span><span class="gi">+ public | users       | table | pgsql
+</span><span class="gi">+ public | wtf         | table | pgsql
+</span><span class="gi">+(11 rows)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d alias
+</span><span class="gi">+                    Table &#34;public.alias&#34;
+</span><span class="gi">+ Column |       Type        | Collation | Nullable | Default
+</span><span class="gi">+--------+-------------------+-----------+----------+---------
+</span><span class="gi">+ userid | integer           |           | not null |
+</span><span class="gi">+ name   | character varying |           | not null |
+</span><span class="gi">+ val    | character varying |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;alias_pk&#34; PRIMARY KEY, btree (userid, name)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d articles
+</span><span class="gi">+                         Table &#34;public.articles&#34;
+</span><span class="gi">+  Column   |            Type             | Collation | Nullable | Default
+</span><span class="gi">+-----------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ id        | integer                     |           | not null |
+</span><span class="gi">+ url       | character varying           |           |          |
+</span><span class="gi">+ title     | character varying           |           |          |
+</span><span class="gi">+ date      | timestamp without time zone |           |          |
+</span><span class="gi">+ submitter | integer                     |           |          |
+</span><span class="gi">+ pop       | integer                     |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;articles_pk&#34; PRIMARY KEY, btree (id)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d articles_sn
+</span><span class="gi">+                        Table &#34;public.articles_sn&#34;
+</span><span class="gi">+   Column   |            Type             | Collation | Nullable | Default
+</span><span class="gi">+------------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ screenname | character varying           |           |          |
+</span><span class="gi">+ id         | integer                     |           | not null |
+</span><span class="gi">+ url        | character varying           |           |          |
+</span><span class="gi">+ title      | character varying           |           |          |
+</span><span class="gi">+ date       | timestamp without time zone |           |          |
+</span><span class="gi">+ submitter  | integer                     |           |          |
+</span><span class="gi">+ pop        | integer                     |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;articles_sn_pk&#34; PRIMARY KEY, btree (id)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d clicks
+</span><span class="gi">+                         Table &#34;public.clicks&#34;
+</span><span class="gi">+ Column  |            Type             | Collation | Nullable | Default
+</span><span class="gi">+---------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ userid  | integer                     |           |          |
+</span><span class="gi">+ article | integer                     |           |          |
+</span><span class="gi">+ date    | timestamp without time zone |           |          |
+</span><span class="gi">+ ip      | character varying           |           |          |
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d like_site
+</span><span class="gi">+                        Table &#34;public.like_site&#34;
+</span><span class="gi">+ Column  |            Type             | Collation | Nullable | Default
+</span><span class="gi">+---------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ userid  | integer                     |           | not null |
+</span><span class="gi">+ article | integer                     |           | not null |
+</span><span class="gi">+ date    | timestamp without time zone |           |          |
+</span><span class="gi">+ liked   | boolean                     |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;like_site_pk&#34; PRIMARY KEY, btree (userid, article)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d mod_article
+</span><span class="gi">+                       Table &#34;public.mod_article&#34;
+</span><span class="gi">+ Column  |            Type             | Collation | Nullable | Default
+</span><span class="gi">+---------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ userid  | integer                     |           | not null |
+</span><span class="gi">+ article | integer                     |           | not null |
+</span><span class="gi">+ date    | timestamp without time zone |           |          |
+</span><span class="gi">+ ip      | character varying           |           |          |
+</span><span class="gi">+ amount  | integer                     |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;mod_article_pk&#34; PRIMARY KEY, btree (userid, article)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d mod_user
+</span><span class="gi">+                        Table &#34;public.mod_user&#34;
+</span><span class="gi">+ Column  |            Type             | Collation | Nullable | Default
+</span><span class="gi">+---------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ userid  | integer                     |           | not null |
+</span><span class="gi">+ article | integer                     |           | not null |
+</span><span class="gi">+ target  | integer                     |           | not null |
+</span><span class="gi">+ date    | timestamp without time zone |           |          |
+</span><span class="gi">+ ip      | character varying           |           |          |
+</span><span class="gi">+ amount  | integer                     |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;mod_user_pk&#34; PRIMARY KEY, btree (userid, article, target)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d neuter
+</span><span class="gi">+                      Table &#34;public.neuter&#34;
+</span><span class="gi">+ Column |          Type          | Collation | Nullable | Default
+</span><span class="gi">+--------+------------------------+-----------+----------+---------
+</span><span class="gi">+ userid | integer                |           |          |
+</span><span class="gi">+ ip     | character varying(255) |           |          |
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d options
+</span><span class="gi">+               Table &#34;public.options&#34;
+</span><span class="gi">+  Column  |  Type   | Collation | Nullable | Default
+</span><span class="gi">+----------+---------+-----------+----------+---------
+</span><span class="gi">+ userid   | integer |           | not null |
+</span><span class="gi">+ numsites | integer |           |          |
+</span><span class="gi">+ promoted | boolean |           |          |
+</span><span class="gi">+ demoted  | boolean |           |          |
+</span><span class="gi">+ visible  | boolean |           |          |
+</span><span class="gi">+ frame    | boolean |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;options_pk&#34; PRIMARY KEY, btree (userid)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d users
+</span><span class="gi">+                           Table &#34;public.users&#34;
+</span><span class="gi">+   Column   |            Type             | Collation | Nullable | Default
+</span><span class="gi">+------------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ id         | integer                     |           | not null |
+</span><span class="gi">+ screenname | character varying           |           |          |
+</span><span class="gi">+ email      | character varying           |           |          |
+</span><span class="gi">+ karma      | integer                     |           |          |
+</span><span class="gi">+ signupdate | timestamp without time zone |           |          |
+</span><span class="gi">+ ip         | character varying           |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;users_pk&#34; PRIMARY KEY, btree (id)
+</span><span class="gi">+
+</span><span class="gi">+reddit=&gt; \d wtf
+</span><span class="gi">+                           Table &#34;public.wtf&#34;
+</span><span class="gi">+ Column  |            Type             | Collation | Nullable | Default
+</span><span class="gi">+---------+-----------------------------+-----------+----------+---------
+</span><span class="gi">+ userid  | integer                     |           | not null |
+</span><span class="gi">+ article | integer                     |           | not null |
+</span><span class="gi">+ reason  | character(250)              |           |          |
+</span><span class="gi">+ date    | timestamp without time zone |           |          |
+</span><span class="gi">+Indexes:
+</span><span class="gi">+    &#34;wtf_pk&#34; PRIMARY KEY, btree (userid, article)
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+## application server
+</span><span class="gi">+
+</span><span class="gi">+To start, load, initialize, and start.
+</span><span class="gi">+
+</span><span class="gi">+### load
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+CL-USER&gt; (ql:quickload :reddit)
+</span><span class="gi">+To load &#34;reddit&#34;:
+</span><span class="gi">+  Load 1 ASDF system:
+</span><span class="gi">+    reddit
+</span><span class="gi">+; Loading &#34;reddit&#34;
+</span><span class="gi">+..................................................
+</span><span class="gi">+[package reddit.user-info]........................
+</span><span class="gi">+[package reddit.frame]............................
+</span><span class="gi">+[package reddit.sites]............................
+</span><span class="gi">+[package reddit.rss]..............................
+</span><span class="gi"></span><span class="gi">+[package reddit.cookiehash].......................
+</span><span class="gi">+[package reddit.mail].............................
+</span><span class="gi">+[package reddit.recommend]........................
+</span><span class="gi">+[package reddit.web]..............................
+</span><span class="gi">+..................................................
+</span><span class="gi">+[package reddit.user-panel].......................
+</span><span class="gi">+[package reddit.main].............................
+</span><span class="gi">+[package reddit]
+</span><span class="gi">+(:REDDIT)
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+### initialize
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+CL-USER&gt; (reddit:initialize)
+</span><span class="gi">+NIL
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+### start
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+CL-USER&gt; (reddit:start-reddit)
+</span><span class="gi">+#&lt;HUNCHENTOOT:EASY-ACCEPTOR (host *, port 8000)&gt;
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+
+</span><span class="gi">+### stop
+</span><span class="gi">+
+</span><span class="gi">+```
+</span><span class="gi">+CL-USER&gt; (reddit:stop-reddit)
+</span><span class="gi">+#&lt;HUNCHENTOOT:EASY-ACCEPTOR (host *, port 8000)&gt;
+</span><span class="gi">+```
+</span><span class="gi">+
+</span><span class="gi">+---
+</span><span class="gi">+Copyright 2018 Reddit, Inc.
+</span></code></pre></div>
+<h1 id="公開">公開</h1>
+
+<p>ツイッターで動かした報告をしました。
+redditにも取り上げられてちょっと嬉しかったのと、
+意外と誰もやらないんだなと思いました。</p>
+
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">データベース接続のところだけまだ直していないけどとりあえず起動だけはできるようになったのでREADMEを用意してみました。<br>create tableを直で打つ派でしたが、クラス構成に応じたテーブルを作ってくれるのはありがたいです。楽に試せます。<a href="https://t.co/I8qP1WL4PI">https://t.co/I8qP1WL4PI</a><a href="https://twitter.com/hashtag/reddit?src=hash&amp;ref_src=twsrc%5Etfw">#reddit</a> <a href="https://twitter.com/hashtag/CommonLisp?src=hash&amp;ref_src=twsrc%5Etfw">#CommonLisp</a> <a href="https://twitter.com/hashtag/SBCL?src=hash&amp;ref_src=twsrc%5Etfw">#SBCL</a></p>&mdash; tamura shingo (@tamura_shingo) <a href="https://twitter.com/tamura_shingo/status/983026735569485824?ref_src=twsrc%5Etfw">2018年4月8日</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<h1 id="現在">現在</h1>
+
+<p>テストを追加したり、重要な値をconfigurationファイルに切り出したり、ちょっとずつ変更しています。</p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2018/04/15/old-reddit/" data-id="614f3f8721330c2a84df3cf2d30644fa" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2018/04/15/old-reddit/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          前のページ
+      </strong>
+      <div class="article-nav-title">GhostでIMEの変換候補の位置を直す</div>
+    </a>
+    
+
+    
+    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          次のページ
+      </strong>
+      <div class="article-nav-title">Dexadorを認証プロキシに対応させました</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "webji-shu-toqin-shimu" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        最新記事
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="title">Hugoで最新のChromaを使う</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-05-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2019-05-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ruby">
+                        Ruby
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="title">Rubyを理解するためにSchemeを作ってみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-11-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2018-11-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="title">Common Lispで会計freeeのAPIを叩く</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-26 23:48:41 &#43;0900 JST" itemprop="datePublished">2018-09-26</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="title">Dexadorを認証プロキシに対応させました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-19 01:02:00 &#43;0900 JST" itemprop="datePublished">2018-09-19</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/coffeescript">
+                    coffeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">7</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/java">
+                    java
+                </a>
+                <span class="category-list-count">18</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
+                    linux
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/web">
+                    web
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ajp">
+                    ajp
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/androidstudio">
+                    androidstudio
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/apache">
+                    apache
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">9</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ca">
+                    ca
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/clojure">
+                    clojure
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/coffeeescript">
+                    coffeeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/database">
+                    database
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dbutils3">
+                    dbutils3
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/firebase">
+                    firebase
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/gitbucket">
+                    gitbucket
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
+                    go
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/golang">
+                    golang
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/google-code-prettify">
+                    google-code-prettify
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hexo">
+                    hexo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hugo">
+                    hugo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/iot">
+                    iot
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/java">
+                    java
+                </a>
+                <span class="category-list-count">21</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javabeans">
+                    javabeans
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javascript">
+                    javascript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/jsf">
+                    jsf
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/json">
+                    json
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/linux">
+                    linux
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/markdown">
+                    markdown
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/maven">
+                    maven
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/mysql">
+                    mysql
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/nginx">
+                    nginx
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/octopress">
+                    octopress
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/openssl">
+                    openssl
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/org-mode">
+                    org-mode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/programming">
+                    programming
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/pullrequest">
+                    pullrequest
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/reverse-proxy">
+                    reverse-proxy
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/sql">
+                    sql
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ssl">
+                    ssl
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/tomcat">
+                    tomcat
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ubuntu">
+                    ubuntu
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/visualstudiocode">
+                    visualstudiocode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/web">
+                    web
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/xml">
+                    xml
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    オレオレ証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">
+                    オレオレ認証局
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    クライアント証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">
+                    サバフェス
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
+                    シンタックスハイライト
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">
+                    チューニング
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89">
+                    フロントエンド
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">
+                    プログラミング
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">
+                    リフレクション
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B">
+                    日本語入力
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ajp" style="font-size: 12px;">ajp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ca" style="font-size: 12px;">ca</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/clojure" style="font-size: 12px;">clojure</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/cocos2d-x" style="font-size: 12px;">cocos2d-x</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/coffeeescript" style="font-size: 12px;">coffeeescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/common-lisp" style="font-size: 12px;">common-lisp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/database" style="font-size: 12px;">database</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dbutils3" style="font-size: 12px;">dbutils3</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dropwizard" style="font-size: 12px;">dropwizard</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/emacs" style="font-size: 12px;">emacs</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/gitbucket" style="font-size: 12px;">gitbucket</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/go" style="font-size: 12px;">go</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/golang" style="font-size: 12px;">golang</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/google-code-prettify" style="font-size: 12px;">google-code-prettify</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hexo" style="font-size: 12px;">hexo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/isucon" style="font-size: 12px;">isucon</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javabeans" style="font-size: 12px;">javabeans</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/jsf" style="font-size: 12px;">jsf</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/json" style="font-size: 12px;">json</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/linux" style="font-size: 12px;">linux</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/markdown" style="font-size: 12px;">markdown</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/maven" style="font-size: 12px;">maven</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/memcached" style="font-size: 12px;">memcached</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/octopress" style="font-size: 12px;">octopress</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/openssl" style="font-size: 12px;">openssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/org-mode" style="font-size: 12px;">org-mode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/programming" style="font-size: 12px;">programming</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/spring-framework" style="font-size: 12px;">spring-framework</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/sql" style="font-size: 12px;">sql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ssl" style="font-size: 12px;">ssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/tomcat" style="font-size: 12px;">tomcat</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/web" style="font-size: 12px;">web</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/xml" style="font-size: 12px;">xml</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">オレオレ証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80" style="font-size: 12px;">オレオレ認証局</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">クライアント証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9" style="font-size: 12px;">サバフェス</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88" style="font-size: 12px;">シンタックスハイライト</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0" style="font-size: 12px;">チューニング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3" style="font-size: 12px;">ハッカソン</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" style="font-size: 12px;">フロントエンド</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" style="font-size: 12px;">プログラミング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" style="font-size: 12px;">リフレクション</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A" style="font-size: 12px;">勉強会</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" style="font-size: 12px;">日本語入力</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-45175387-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="https://tamurashingo.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://tamurashingo.github.io/js/script.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

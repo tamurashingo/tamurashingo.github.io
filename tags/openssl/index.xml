@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Openssl on Web技術と親しむ</title>
+    <title>OpenSSL on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/openssl/</link>
-    <description>Recent content in Openssl on Web技術と親しむ</description>
+    <description>Recent content in OpenSSL on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 28 Jul 2016 06:30:43 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jul 2016 06:30:43 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>クライアント認証を行う</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</link>
-      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</guid>
-      <description>tamuraです。 前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。 今回は、クライアントの証明書を作り、オレ</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
+今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
+最終的にはブラウザに組み込んで使います。
+署名までの手順はサーバ証明書の場合とほぼ同じです。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>サーバ証明書(オレオレ証明書)を作る</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</link>
-      <pubDate>Wed, 27 Jul 2016 02:19:37 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/27/server-certificate/</guid>
-      <description>tamuraです。 前回、OpenSSLでオレオレ認証局を作りました。 今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名して</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、OpenSSLでオレオレ認証局を作りました。
+今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名してもらう一連の手順をやっていきます。&lt;/p&gt;
+
+&lt;p&gt;最終的にApacheに組み込みます。&lt;/p&gt;</description>
     </item>
     
   </channel>

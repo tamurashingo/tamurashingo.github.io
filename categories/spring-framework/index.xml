@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring Framework on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/spring-framework/</link>
+    <description>Recent content in Spring Framework on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 26 Feb 2015 20:56:06 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/spring-framework/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart4</title>
+      <link>https://tamurashingo.github.io/post/2015/02/26/springframework-04/</link>
+      <pubDate>Thu, 26 Feb 2015 20:56:06 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/26/springframework-04/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はDI(Dependency Injection)を使っていきます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart3</title>
+      <link>https://tamurashingo.github.io/post/2015/02/25/springframework-03/</link>
+      <pubDate>Wed, 25 Feb 2015 20:21:29 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/25/springframework-03/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はTomcatにデプロイします。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart2</title>
+      <link>https://tamurashingo.github.io/post/2015/02/24/springframework-02/</link>
+      <pubDate>Tue, 24 Feb 2015 22:40:18 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/24/springframework-02/</guid>
+      <description>&lt;p&gt;tamuraです。
+今回はちょっとアプリっぽい動きのものを作ります。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring Frameworkを使ってみるpart1</title>
+      <link>https://tamurashingo.github.io/post/2015/02/24/springframework-01/</link>
+      <pubDate>Tue, 24 Feb 2015 01:08:33 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/24/springframework-01/</guid>
+      <description>&lt;p&gt;tamuraです。
+Spring Frameworkを使ったことがありませんが、始め方について簡単にまとめてみました。
+使用するバージョンは4系です。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

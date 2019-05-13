@@ -6,36 +6,61 @@
     <description>Recent content in 勉強会 on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 25 Mar 2015 23:47:15 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2015 23:47:15 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Lisp Meet Up ♯26に行ってきました</title>
-      <link>https://tamurashingo.github.io/posts/2015/03/25/lisp-meetup-26/</link>
-      <pubDate>Wed, 25 Mar 2015 23:47:15 +0000</pubDate>
+      <title>Lisp Meet Up #26に行ってきました</title>
+      <link>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</link>
+      <pubDate>Wed, 25 Mar 2015 23:47:15 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/03/25/lisp-meetup-26/</guid>
-      <description>tamuraです。 Lisp Meet Up presented by Shibuya.lisp #26 に行ってきましたので、まとめたメモを公開いたします。 今回はClojureの回となっております。 Clojure</description>
+      <guid>https://tamurashingo.github.io/post/2015/03/25/lisp-meetup-26/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Lisp Meet Up presented by Shibuya.lisp #26 に行ってきましたので、まとめたメモを公開いたします。
+今回はClojureの回となっております。&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Clack Meetup ♯1 に行ってきました</title>
-      <link>https://tamurashingo.github.io/posts/2015/03/07/clack-meetup-1/</link>
-      <pubDate>Sat, 07 Mar 2015 00:05:01 +0000</pubDate>
+      <title>Clack Meetup #1 に行ってきました</title>
+      <link>https://tamurashingo.github.io/post/2015/03/07/clack-meetup-1/</link>
+      <pubDate>Sat, 07 Mar 2015 00:05:01 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/03/07/clack-meetup-1/</guid>
-      <description>tamuraです。 Clack Meetup #1に行ってきました。 CommonLispは趣味でたまに使います。Clackは以前会社のツールを作るときに使いました。</description>
+      <guid>https://tamurashingo.github.io/post/2015/03/07/clack-meetup-1/</guid>
+      <description>&lt;p&gt;tamuraです。
+Clack Meetup #1に行ってきました。&lt;/p&gt;
+
+&lt;p&gt;CommonLispは趣味でたまに使います。Clackは以前会社のツールを作るときに使いました。Caveman1がCavemanと名乗っていたころです。&lt;/p&gt;
+
+&lt;p&gt;一部の資料はconnpassにアップされてあります。
+&lt;a href=&#34;https://somewrite.connpass.com/event/11318/&#34;&gt;Clack Meetup #1&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>org-modeを使って勉強会でメモをとる</title>
+      <link>https://tamurashingo.github.io/post/2015/02/27/memo-with-org-mode/</link>
+      <pubDate>Fri, 27 Feb 2015 07:30:08 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/27/memo-with-org-mode/</guid>
+      <description>&lt;p&gt;tamuraです。
+Emacsのorg-modeで勉強会のメモをとっていますが、他の方はどういうメモをとっているのか気になるので自分のやり方を晒します。&lt;/p&gt;
+
+&lt;p&gt;メモの他に&lt;a href=&#34;https://tweetdeck.twitter.com/&#34;&gt;TweetDeck&lt;/a&gt;を別画面で立ち上げています。勉強会用のハッシュタグを検索して他の人がつぶやいたものも参考にしたりします。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>“Septeni×Scala”勉強会 ♯1 行ってきました</title>
-      <link>https://tamurashingo.github.io/posts/2015/02/21/septeni-scala-1/</link>
-      <pubDate>Sat, 21 Feb 2015 05:29:00 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2015/02/21/septeni-scala-1/</link>
+      <pubDate>Sat, 21 Feb 2015 05:29:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/02/21/septeni-scala-1/</guid>
-      <description>tamuraです。 Scalaは２年位前にCourseraで勉強して以来です。 資料はconnpassにアップされてありました。 “Septeni</description>
+      <guid>https://tamurashingo.github.io/post/2015/02/21/septeni-scala-1/</guid>
+      <description>&lt;p&gt;tamuraです。
+Scalaは２年位前にCourseraで勉強して以来です。&lt;/p&gt;
+
+&lt;p&gt;資料はconnpassにアップされてありました。
+&lt;a href=&#34;https://septeni-scala.connpass.com/event/11233/&#34;&gt;“Septeni×Scala”勉強会 #1&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

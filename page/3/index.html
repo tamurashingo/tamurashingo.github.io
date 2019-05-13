@@ -1,198 +1,3038 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
-    <head>
-	<meta name="generator" content="Hugo 0.54.0" />
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<meta name="description" content="">
+<head>
+    <title>Web技術と親しむ</title>
+    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="tamura shingo">
+    
+      <meta name="description" content="">
+    
+    
+      <link href="https://tamurashingo.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
+      <link href="https://tamurashingo.github.io/index.xml" rel="feed" type="application/rss+xml" title="Web技術と親しむ" />
+    
+    <link rel="canonical" href="https://tamurashingo.github.io/"/>
+    <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
+    <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/css/monokai.css">
+    <link rel="stylesheet" href="https://tamurashingo.github.io/fancybox/jquery.fancybox.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Web技術と親しむ" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://tamurashingo.github.io/" />
 
-		<title>
-				Web技術と親しむ
-		</title>
+<meta property="og:updated_time" content="2019-05-08T23:30:00&#43;09:00"/>
 
-		
-  		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
-		
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    
+    
+<meta itemprop="name" content="Web技術と親しむ">
+<meta itemprop="description" content="">
 
-		
-		<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
-	</head>
 
-    <body>
-        		<nav class="nav">
-			<div class="nav-container">
-				<a href="/">
-					<h2 class="nav-title">Web技術と親しむ</h2>
-				</a>
-				<ul>
-    <li><a href="/about">About</a></li>
-    <li><a href="/">Posts</a></li>
-</ul>
-			</div>
-		</nav>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Web技術と親しむ"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@tamura_shingo"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://tamurashingo.github.io/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://tamurashingo.github.io/css/images/logo.png')"></i>
+          
+          <span class="site-title">Web技術と親しむ</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://tamurashingo.github.io/img/main/face.jpg"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="検索">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://tamurashingo.github.io/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://tamurashingo.github.io/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://tamurashingo.github.io/img/main/face.jpg">
+      
+      <h2 id="name">tamura shingo</h2>
+      <h3 id="title">Java, JavaScript, Common Lisp...</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Saitama, Japan</span>
+      
+          <a id="follow" href="https://github.com/tamurashingo">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        61
+        <span>記事</span>
+      </div>
+      <div class="article-info-block">
+        
+          65
+        
+        <span>
+            タグ
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/tamurashingo" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/tamurashingo" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/tamura_shingo" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://tamurashingo.github.io/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/">
+    <h1 class="article-title" itemprop="name">
+        ISUCON反省会 nginx編
+    </h1>
+    </a>
+    <div class="article-meta">
 
         
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-09-22 16:42:24 &#43;0900 JST" itemprop="datePublished">2016-09-22</time>
+            &middot;
+            856
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                
+                
+            </div>
+            
+        
 
-<main>
-	
-
-
-	<div class="catalogue">
-		
-			<a href="https://tamurashingo.github.io/posts/2015/06/13/dropwizard-database-3/" class="catalogue-item">
-    <div>
-        <time datetime="2015-06-13 08:28:19 &#43;0000 UTC" class="catalogue-time">June 13, 2015</time>
-        <h1 class="catalogue-title">Dropwizardでデータベースpart3</h1>
-        <div class="catalogue-line"></div>
-
-        <p>
-            tamuraです。 今回はDropwizardでデータベースの更新を行っていきます。 DAOの修正 DAOにUPDATEメソッドを追加します。 package com.github.tamurashingo.dropwizard.helloworld.dao;
-        </p>
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/nginx">nginx</a>
+                
+                
+            </div>
+            
+        
     </div>
-</a>
+</header>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/06/12/dropwizard-database-2/" class="catalogue-item">
-    <div>
-        <time datetime="2015-06-12 06:51:00 &#43;0000 UTC" class="catalogue-time">June 12, 2015</time>
-        <h1 class="catalogue-title">Dropwizardでデータベースpart2</h1>
-        <div class="catalogue-line"></div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。
+ISUCON出ました!
+ブログ書きました!</p>
 
-        <p>
-            tamuraです。 今回はDropwizardでデータベースを参照していきます。 pom.xml 以下の記述をpom.xmlに追加します。 &lt;dependency&gt; &lt;groupId&gt;io.dropwizard&lt;/groupId&gt; &lt;artifactId&gt;dropwizard-jdbi&lt;/artifactId&gt; &lt;version&gt;${dropwizard.version}&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;com.github.tamurashingo.dbutil3&lt;/groupId&gt; &lt;artifactId&gt;dbutil3&lt;/artifactId&gt; &lt;version&gt;0.1.0&lt;/version&gt; &lt;/dependency&gt;
-        </p>
+<p>で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内容をメモしました。</p>
+
+<ul>
+<li>ISUCON5に参加して惨敗した件</li>
+<li>ISUCON6に参加して今年も惨敗した件</li>
+</ul>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/" data-id="cf48881e91ee6d22a2c5b89170f63b5e" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
     </div>
-</a>
+</article>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/06/10/dropwizard-database-1/" class="catalogue-item">
-    <div>
-        <time datetime="2015-06-10 20:54:50 &#43;0000 UTC" class="catalogue-time">June 10, 2015</time>
-        <h1 class="catalogue-title">Dropwizardでデータベースpart1</h1>
-        <div class="catalogue-line"></div>
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
 
-        <p>
-            tamuraです。 今回はDropwizardでデータベースを使ってみます。 Migration Migrationという仕組みを使ってデータベースを準備していき
-        </p>
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/">
+    <h1 class="article-title" itemprop="name">
+        ISUCON6に参加して今年も惨敗した件
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-09-19 01:00:20 &#43;0900 JST" itemprop="datePublished">2016-09-19</time>
+            &middot;
+            11890
+            文字
+            &middot;
+            24
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/mysql">MySQL</a>
+                
+                
+            </div>
+            
+        
     </div>
-</a>
+</header>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/06/10/dropwizard/" class="catalogue-item">
-    <div>
-        <time datetime="2015-06-10 06:48:19 &#43;0000 UTC" class="catalogue-time">June 10, 2015</time>
-        <h1 class="catalogue-title">Dropwizardを使ってみる</h1>
-        <div class="catalogue-line"></div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <style type="text/css">
+pre { overflow-x: scroll; }
+</style>
 
-        <p>
-            tamuraです。 JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。 Drop
-        </p>
+<p>tamuraです。</p>
+
+<p>今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。</p>
+
+<p>前回記事: <a href="/post/2015/10/25/isucon5/">ISUCON5に参加して惨敗した件</a></p>
+
+<p>参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！</p>
+
+<p>今回もslackのログを抜き出します。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/09/19/isucon6/" data-id="b0984c51f35da41c2d1009f4e0194411" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
     </div>
-</a>
+</article>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/05/26/dbutils3/" class="catalogue-item">
-    <div>
-        <time datetime="2015-05-26 06:43:47 &#43;0000 UTC" class="catalogue-time">May 26, 2015</time>
-        <h1 class="catalogue-title">DBUtils3の紹介</h1>
-        <div class="catalogue-line"></div>
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
 
-        <p>
-            tamuraです。 Javaでデータベースを使う場合、以下の２パターンが考えられます。 ORMを使ってアクセスする SELECT等のクエリを直接投
-        </p>
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/">
+    <h1 class="article-title" itemprop="name">
+        Ubuntu14.04LTSにAndroidStudioをインストールする
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-10 00:04:05 &#43;0900 JST" itemprop="datePublished">2016-08-10</time>
+            &middot;
+            1565
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">Android</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">Linux</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/android">Android</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/androidstudio">AndroidStudio</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/linux">Linux</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/ubuntu">Ubuntu</a>
+                
+                
+            </div>
+            
+        
     </div>
-</a>
+</header>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/04/14/maven-install/" class="catalogue-item">
-    <div>
-        <time datetime="2015-04-14 04:37:05 &#43;0000 UTC" class="catalogue-time">April 14, 2015</time>
-        <h1 class="catalogue-title">WindowsでのJavaの開発環境を作る(Mavenインストール編)</h1>
-        <div class="catalogue-line"></div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
+HelloWorldプロジェクトを作るまでの記録です。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/" data-id="b24e2ea3af842ec17b10915fca14d547" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
 
-        <p>
-            tamuraです。 今回はMavenのインストールをやります。 ディレクトリ構成 C:\ | +--devtool | +--apache-maven-3.3.1 +--jdk1.8.0_40 +--jre1.8.0_40 Mavenのダウンロード ダウンロード https://maven.apache.org/ の左側メニュ
-        </p>
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
     </div>
-</a>
+</article>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/04/12/jdk-install/" class="catalogue-item">
-    <div>
-        <time datetime="2015-04-12 16:27:44 &#43;0000 UTC" class="catalogue-time">April 12, 2015</time>
-        <h1 class="catalogue-title">WindowsでのJavaの開発環境を作る(JDKインストール編)</h1>
-        <div class="catalogue-line"></div>
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
 
-        <p>
-            tamuraです。 Spring Frameworkの記事を書いていたのですが、「それ以前の部分もあるといいなー」という感想を頂いたので、開発環境を作ると
-        </p>
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
+    <h1 class="article-title" itemprop="name">
+        Dropwizardでデータベースpart4
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-03 22:06:15 &#43;0900 JST" itemprop="datePublished">2016-08-03</time>
+            &middot;
+            2351
+            文字
+            &middot;
+            5
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
     </div>
-</a>
+</header>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/03/25/lisp-meetup-26/" class="catalogue-item">
-    <div>
-        <time datetime="2015-03-25 23:47:15 &#43;0000 UTC" class="catalogue-time">March 25, 2015</time>
-        <h1 class="catalogue-title">Lisp Meet Up ♯26に行ってきました</h1>
-        <div class="catalogue-line"></div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
 
-        <p>
-            tamuraです。 Lisp Meet Up presented by Shibuya.lisp #26 に行ってきましたので、まとめたメモを公開いたします。 今回はClojureの回となっております。 Clojure
-        </p>
+<p>今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。</p>
+
+<ul>
+<li><a href="/post/2015/06/10/dropwizard/">Dropwizardを使ってみる</a></li>
+<li><a href="/post/2015/06/10/dropwizard-database-1/">Dropwizardでデータベースpart1</a></li>
+<li><a href="/post/2015/06/12/dropwizard-database-2/">Dropwizardでデータベースpart2</a></li>
+<li><a href="/post/2015/06/13/dropwizard-database-3/">Dropwizardでデータベースpart3</a></li>
+</ul>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/" data-id="78aad533aace3544c91e56c8d7526917" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
     </div>
-</a>
+</article>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/03/07/improve-base64encoder/" class="catalogue-item">
-    <div>
-        <time datetime="2015-03-07 08:18:34 &#43;0000 UTC" class="catalogue-time">March 7, 2015</time>
-        <h1 class="catalogue-title">base64エンコーダの改良</h1>
-        <div class="catalogue-line"></div>
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
 
-        <p>
-            tamuraです。 Lisp Meet Up presented by Shibuya.lisp #25 や Clack Meetup #1 に参加してみた結果、 自分でもできる範囲で改良してみようと思い立ちました。 とりあえず以前作ったBase
-        </p>
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/">
+    <h1 class="article-title" itemprop="name">
+        Markdownでブログを書いてシンタックスハイライトする
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-02 21:45:42 &#43;0900 JST" itemprop="datePublished">2016-08-02</time>
+            &middot;
+            1023
+            文字
+            &middot;
+            3
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">blog</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/markdown">markdown</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/blog">blog</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">シンタックスハイライト</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/google-code-prettify">google-code-prettify</a>
+                
+                
+            </div>
+            
+        
     </div>
-</a>
+</header>
 
-		
-			<a href="https://tamurashingo.github.io/posts/2015/03/07/clack-meetup-1/" class="catalogue-item">
-    <div>
-        <time datetime="2015-03-07 00:05:01 &#43;0000 UTC" class="catalogue-time">March 7, 2015</time>
-        <h1 class="catalogue-title">Clack Meetup ♯1 に行ってきました</h1>
-        <div class="catalogue-line"></div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
 
-        <p>
-            tamuraです。 Clack Meetup #1に行ってきました。 CommonLispは趣味でたまに使います。Clackは以前会社のツールを作るときに使いました。
-        </p>
+<p>Markdownでブログを書く件の続きです。
+前回はmarkedを使ってMarkdownをHTMLに変換しました。
+今回はシンタックスハイライトについてです。</p>
+
+<p><a href="https://github.com/google/code-prettify">google-code-prettify</a>(正式名称はJavascript code prettifierでしょうか？)を使います。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/" data-id="b039d9a2b52a0dd4a655bc57199cfe39" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
     </div>
-</a>
+</article>
 
-		
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/">
+    <h1 class="article-title" itemprop="name">
+        JavaBeansの役立つ使い方
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-02 00:12:21 &#43;0900 JST" itemprop="datePublished">2016-08-02</time>
+            &middot;
+            1210
+            文字
+            &middot;
+            3
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/javabeans">JavaBeans</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/xml">XML</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/json">JSON</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>前回の続きです。</p>
+
+<p>JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。</p>
+
+<ul>
+<li>XMLの読み込み</li>
+<li>JSONの読み込み</li>
+<li>JSONの書き出し</li>
+</ul>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/" data-id="a364348b9f5c2007873e2e8861ece906" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/07/31/java-beans/">
+    <h1 class="article-title" itemprop="name">
+        JavaBeansとは
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-31 16:16:27 &#43;0900 JST" itemprop="datePublished">2016-07-31</time>
+            &middot;
+            1930
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/javabeans">JavaBeans</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">リフレクション</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>JavaBeansが出てきた当初はGUI用だったようです。</p>
+
+<p>GUIアプリを作ろうとして<code>JFrame</code>を継承したクラスを作ると「<code>serialVersionUID</code>がないよ！」という警告が出ますが、これはJavaBeans仕様で作られているからのようです。</p>
+
+<p>現在では、私の周辺ではValueObjectとして使うことが多いです。</p>
+
+<blockquote>
+<p><strong>JavaBeans</strong>
+Javaで作成された移植可能なプラットフォームに依存しないコンポーネント・モデルで、JavaBean仕様に従う。 再使用可能なコンポーネントを作成できる。
+<a href="http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709">http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709</a> より引用</p>
+
+<p>JavaBeans（ジャバ ビーンズ）とは、Javaで書かれた再利用可能なソフトウェアコンポーネントまたはその技術仕様のこと。1997年後半に登場。JDKのjava.beansパッケージと共にRAD環境の構築を支援するために作られた。現在ではjava.beansパッケージの技術を活用し、RAD環境の構築に限らずJSP等幅広い用途で利用されている。<a href="https://ja.wikipedia.org/wiki/JavaBeans">https://ja.wikipedia.org/wiki/JavaBeans</a> より引用</p>
+</blockquote>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/07/31/java-beans/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/07/31/java-beans/" data-id="96d9ee6f4569cbef999686e9d7f3320d" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/07/31/java-beans/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/07/28/client-authentication/">
+    <h1 class="article-title" itemprop="name">
+        クライアント認証を行う
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-28 06:30:43 &#43;0900 JST" itemprop="datePublished">2016-07-28</time>
+            &middot;
+            1516
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/web">Web</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/openssl">OpenSSL</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">オレオレ認証局</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">クライアント証明書</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
+今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
+最終的にはブラウザに組み込んで使います。
+署名までの手順はサーバ証明書の場合とほぼ同じです。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/07/28/client-authentication/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/07/28/client-authentication/" data-id="1425856359b173202239891aac8dd739" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/07/28/client-authentication/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/07/27/server-certificate/">
+    <h1 class="article-title" itemprop="name">
+        サーバ証明書(オレオレ証明書)を作る
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-27 02:19:37 &#43;0900 JST" itemprop="datePublished">2016-07-27</time>
+            &middot;
+            865
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/web">Web</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/openssl">OpenSSL</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">オレオレ認証局</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">オレオレ証明書</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>前回、OpenSSLでオレオレ認証局を作りました。
+今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名してもらう一連の手順をやっていきます。</p>
+
+<p>最終的にApacheに組み込みます。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/07/27/server-certificate/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/07/27/server-certificate/" data-id="d78ccc06a138d550355d7aff86f9e619" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/07/27/server-certificate/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/">
+    <h1 class="article-title" itemprop="name">
+        Markdownでブログを書く
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-07-23 22:24:30 &#43;0900 JST" itemprop="datePublished">2016-07-23</time>
+            &middot;
+            600
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">blog</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/markdown">markdown</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/visualstudiocode">VisualStudioCode</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/blog">blog</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。
+livedoor blogなどのいわゆる一般向けのブログサービスはMarkdown形式でブログを書けないため、ここ数日いろいろと検討して、いい感じにブログが書けるようになりました。</p>
+
+<ol>
+<li>Markdownでブログを書く (Visual Studio Codeがいいかも)</li>
+<li>markedでHTMLに変換する</li>
+<li>livedoor blogにHTMLタグ編集モードで書き込む</li>
+</ol>
+
+<p>これでやっています。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/" data-id="9a29008519461602533f5993bc4c6080" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+
+<nav id="page-nav">
+
+    
+        <a class="extend prev" rel="prev" href="https://tamurashingo.github.io/page/2/">
+            « 前のページ
+        </a>
+    
+    
+        <a class="extend next" rel="next" href="https://tamurashingo.github.io/page/4/">
+            次のページ »
+        </a>
+    
+
+</nav>
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        最新記事
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="title">Hugoで最新のChromaを使う</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-05-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2019-05-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="title">Hello Hugo World</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-04-16 19:06:42 &#43;0900 JST" itemprop="datePublished">2019-04-16</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ruby">
+                        Ruby
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="title">Rubyを理解するためにSchemeを作ってみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-11-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2018-11-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="title">Common Lispで会計freeeのAPIを叩く</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-26 23:48:41 &#43;0900 JST" itemprop="datePublished">2018-09-26</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="title">Dexadorを認証プロキシに対応させました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-09-19 01:02:00 &#43;0900 JST" itemprop="datePublished">2018-09-19</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/coffeescript">
+                    coffeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">7</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/go">
+                    go
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/java">
+                    java
+                </a>
+                <span class="category-list-count">18</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
+                    linux
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/web">
+                    web
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ajp">
+                    ajp
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/android">
+                    android
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/androidstudio">
+                    androidstudio
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/apache">
+                    apache
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">9</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ca">
+                    ca
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/clojure">
+                    clojure
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/cocos2d-x">
+                    cocos2d-x
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/coffeeescript">
+                    coffeeescript
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
+                    common-lisp
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/database">
+                    database
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dbutils3">
+                    dbutils3
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/dropwizard">
+                    dropwizard
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/emacs">
+                    emacs
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/firebase">
+                    firebase
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ghost">
+                    ghost
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/gitbucket">
+                    gitbucket
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
+                    go
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/golang">
+                    golang
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/google-code-prettify">
+                    google-code-prettify
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hexo">
+                    hexo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/hugo">
+                    hugo
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/iot">
+                    iot
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/isucon">
+                    isucon
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/java">
+                    java
+                </a>
+                <span class="category-list-count">21</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javabeans">
+                    javabeans
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/javascript">
+                    javascript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/jsf">
+                    jsf
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/json">
+                    json
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/linux">
+                    linux
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/markdown">
+                    markdown
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/maven">
+                    maven
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/memcached">
+                    memcached
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/mysql">
+                    mysql
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/nginx">
+                    nginx
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/octopress">
+                    octopress
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/openssl">
+                    openssl
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/org-mode">
+                    org-mode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/programming">
+                    programming
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/pullrequest">
+                    pullrequest
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/react">
+                    react
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/reverse-proxy">
+                    reverse-proxy
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
+                    scala
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/spring-framework">
+                    spring-framework
+                </a>
+                <span class="category-list-count">5</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/sql">
+                    sql
+                </a>
+                <span class="category-list-count">6</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ssl">
+                    ssl
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/tomcat">
+                    tomcat
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/typescript">
+                    typescript
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ubuntu">
+                    ubuntu
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/visualstudiocode">
+                    visualstudiocode
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/web">
+                    web
+                </a>
+                <span class="category-list-count">8</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/xml">
+                    xml
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    オレオレ証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">
+                    オレオレ認証局
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">
+                    クライアント証明書
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">
+                    サバフェス
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
+                    シンタックスハイライト
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">
+                    チューニング
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">
+                    ハッカソン
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89">
+                    フロントエンド
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">
+                    プログラミング
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">
+                    リフレクション
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A">
+                    勉強会
+                </a>
+                <span class="category-list-count">4</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B">
+                    日本語入力
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        タグ
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ajp" style="font-size: 12px;">ajp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/android" style="font-size: 12px;">android</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/androidstudio" style="font-size: 12px;">androidstudio</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ca" style="font-size: 12px;">ca</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/clojure" style="font-size: 12px;">clojure</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/cocos2d-x" style="font-size: 12px;">cocos2d-x</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/coffeeescript" style="font-size: 12px;">coffeeescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/common-lisp" style="font-size: 12px;">common-lisp</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/database" style="font-size: 12px;">database</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dbutils3" style="font-size: 12px;">dbutils3</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/dropwizard" style="font-size: 12px;">dropwizard</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/emacs" style="font-size: 12px;">emacs</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/gitbucket" style="font-size: 12px;">gitbucket</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/go" style="font-size: 12px;">go</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/golang" style="font-size: 12px;">golang</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/google-code-prettify" style="font-size: 12px;">google-code-prettify</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hexo" style="font-size: 12px;">hexo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/isucon" style="font-size: 12px;">isucon</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/java" style="font-size: 12px;">java</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javabeans" style="font-size: 12px;">javabeans</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/javascript" style="font-size: 12px;">javascript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/jsf" style="font-size: 12px;">jsf</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/json" style="font-size: 12px;">json</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/linux" style="font-size: 12px;">linux</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/markdown" style="font-size: 12px;">markdown</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/maven" style="font-size: 12px;">maven</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/memcached" style="font-size: 12px;">memcached</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/mysql" style="font-size: 12px;">mysql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/nginx" style="font-size: 12px;">nginx</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/octopress" style="font-size: 12px;">octopress</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/openssl" style="font-size: 12px;">openssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/org-mode" style="font-size: 12px;">org-mode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/programming" style="font-size: 12px;">programming</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/spring-framework" style="font-size: 12px;">spring-framework</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/sql" style="font-size: 12px;">sql</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ssl" style="font-size: 12px;">ssl</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/tomcat" style="font-size: 12px;">tomcat</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/typescript" style="font-size: 12px;">typescript</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/web" style="font-size: 12px;">web</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/xml" style="font-size: 12px;">xml</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">オレオレ証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80" style="font-size: 12px;">オレオレ認証局</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8" style="font-size: 12px;">クライアント証明書</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9" style="font-size: 12px;">サバフェス</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88" style="font-size: 12px;">シンタックスハイライト</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0" style="font-size: 12px;">チューニング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3" style="font-size: 12px;">ハッカソン</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%95%E3%83%AD%E3%83%B3%E3%83%88%E3%82%A8%E3%83%B3%E3%83%89" style="font-size: 12px;">フロントエンド</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0" style="font-size: 12px;">プログラミング</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3" style="font-size: 12px;">リフレクション</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A" style="font-size: 12px;">勉強会</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%85%A5%E5%8A%9B" style="font-size: 12px;">日本語入力</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
 	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-45175387-2', 'auto');
 	
-	<div class="pagination">
-		
-			<a href="/page/2/" class="left arrow">&#8592;</a>
-		
-		
-			<a href="/page/4/" class="right arrow">&#8594;</a>
-		
-	
-		<span>p. 3/5</span>
-	</div>
-</main>
+	ga('send', 'pageview');
+}
+</script>
+
+<script src="https://tamurashingo.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://tamurashingo.github.io/js/script.js"></script>
 
 
-        		<footer>
-			<span>
-			&copy; <time datetime="2019-04-16 22:08:13.919417 &#43;0900 JST m=&#43;0.486109030">2019</time> tamura shingo. Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
-			</span>
-		</footer>
 
-    </body>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
 </html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/web/</link>
+    <description>Recent content in Web on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 20 Oct 2016 22:30:34 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Firebaseはじめてみました</title>
+      <link>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</link>
+      <pubDate>Thu, 20 Oct 2016 22:30:34 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/10/20/firebase_programming/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Googleスプレッドシートで忘年会の景品のリクエストを受け付けていたのですが、スマートフォンからだと入力がしにくいようで、なかなか集まりません。
+Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>クライアント認証を行う</title>
+      <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
+今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
+最終的にはブラウザに組み込んで使います。
+署名までの手順はサーバ証明書の場合とほぼ同じです。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>サーバ証明書(オレオレ証明書)を作る</title>
+      <link>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</link>
+      <pubDate>Wed, 27 Jul 2016 02:19:37 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/07/27/server-certificate/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、OpenSSLでオレオレ認証局を作りました。
+今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名してもらう一連の手順をやっていきます。&lt;/p&gt;
+
+&lt;p&gt;最終的にApacheに組み込みます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>オレオレ認証局を作る</title>
+      <link>https://tamurashingo.github.io/post/2016/07/18/self-ca/</link>
+      <pubDate>Mon, 18 Jul 2016 00:59:47 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/07/18/self-ca/</guid>
+      <description>&lt;p&gt;tamuraです。
+SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>フロントエンドの開発に使うツール類</title>
+      <link>https://tamurashingo.github.io/post/2015/07/15/frontend-tools/</link>
+      <pubDate>Wed, 15 Jul 2015 07:04:09 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/07/15/frontend-tools/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;先日、社内勉強会で「なぜフロントエンドの開発にビルドが必要なのか?」という質問が出てうまく回答できなかったので、フロントエンド開発でなにを行っているか少しまとめてみました。&lt;/p&gt;
+
+&lt;p&gt;まあ一言で言うと開発効率向上のためです。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

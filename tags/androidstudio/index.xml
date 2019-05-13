@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Androidstudio on Web技術と親しむ</title>
+    <title>AndroidStudio on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/androidstudio/</link>
-    <description>Recent content in Androidstudio on Web技術と親しむ</description>
+    <description>Recent content in AndroidStudio on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/androidstudio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
-      <link>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</link>
-      <pubDate>Wed, 10 Aug 2016 00:04:05 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</link>
+      <pubDate>Wed, 10 Aug 2016 00:04:05 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
-      <description>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、 HelloWorldプロジェクトを作るまでの記録です。</description>
+      <guid>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
+      <description>&lt;p&gt;Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
+HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</description>
     </item>
     
   </channel>

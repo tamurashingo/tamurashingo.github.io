@@ -6,18 +6,23 @@
     <description>Recent content in クライアント証明書 on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 28 Jul 2016 06:30:43 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Jul 2016 06:30:43 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>クライアント認証を行う</title>
-      <link>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</link>
-      <pubDate>Thu, 28 Jul 2016 06:30:43 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</link>
+      <pubDate>Thu, 28 Jul 2016 06:30:43 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/07/28/client-authentication/</guid>
-      <description>tamuraです。 前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。 今回は、クライアントの証明書を作り、オレ</description>
+      <guid>https://tamurashingo.github.io/post/2016/07/28/client-authentication/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
+今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
+最終的にはブラウザに組み込んで使います。
+署名までの手順はサーバ証明書の場合とほぼ同じです。&lt;/p&gt;</description>
     </item>
     
   </channel>

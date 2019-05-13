@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Common Lisp on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/common-lisp/</link>
+    <description>Recent content in Common Lisp on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Wed, 26 Sep 2018 23:48:41 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/common-lisp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Common Lispで会計freeeのAPIを叩く</title>
+      <link>https://tamurashingo.github.io/post/2018/09/26/cl-freee/</link>
+      <pubDate>Wed, 26 Sep 2018 23:48:41 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/09/26/cl-freee/</guid>
+      <description>tamuraです。 Common Lispから会計freeeのAPIを叩くライブラリを作って見ました。 ライブラリ https://github.com/tamurashingo/cl-freee まだgetしか使えません トークンが切れて</description>
+    </item>
+    
+    <item>
+      <title>Dexadorを認証プロキシに対応させました</title>
+      <link>https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/</link>
+      <pubDate>Wed, 19 Sep 2018 01:02:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Dexadorを認証プロキシに対応させた内容です。
+プロキシには対応しているのですが、プロキシサーバがユーザ/パスワードを必要とした時にも対応させました。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cl&#34; data-lang=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dex:get&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;https://www.yahoo.co.jp&amp;#34;&lt;/span&gt;
+         &lt;span class=&#34;ss&#34;&gt;:proxy&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;http://proxyuser:proxypass@proxyserver:8081&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;この形式で認証プロキシを通すことができます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>昔のRedditをSBCLで動かすまで</title>
+      <link>https://tamurashingo.github.io/post/2018/04/15/old-reddit/</link>
+      <pubDate>Sun, 15 Apr 2018 02:01:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/04/15/old-reddit/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;昔の&lt;a href=&#34;https://github.com/reddit-archive/reddit1.0&#34;&gt;Reddit&lt;/a&gt;のコードが公開されていたのでSBCLでコンパイルして動かしてみました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Common Lisp用SQLライブラリ「cl-batis」を作りました</title>
+      <link>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</link>
+      <pubDate>Sun, 20 Aug 2017 12:39:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/08/20/cl-batis/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Common Lisp用のSQLライブラリを作りました。 業務用アプリなどSQLをガリガリ書く人におすすめです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/tamurashingo/cl-batis&#34;&gt;https://github.com/tamurashingo/cl-batis&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Common Lisp用コネクションプール「CL-DBI-Connection-Pool」を作りました</title>
+      <link>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</link>
+      <pubDate>Mon, 24 Jul 2017 23:55:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2017/07/24/cl-dbi-connection-pool/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;最近、CL-DBIでデータベースをコネコネしていたのですが、本格的なWebアプリを作ろうとしたらコネクションプールが必要なのではないかと思い、コネクションプールを作りました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/tamurashingo/cl-dbi-connection-pool&#34;&gt;https://github.com/tamurashingo/cl-dbi-connection-pool&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;コネクションプーリングとは、データベースにアクセスする時、アクセスのたびに接続(コネクション)を確立するのではなく、あらかじめ一定数のコネクションを確立しておき、それを使い回す手法。データベースアクセスの負荷を減らすために用いられる。
+&lt;a href=&#34;http://e-words.jp/w/%E3%82%B3%E3%83%8D%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%97%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0.html&#34;&gt;http://e-words.jp/w/%E3%82%B3%E3%83%8D%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%97%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>base64エンコーダの改良</title>
+      <link>https://tamurashingo.github.io/post/2015/03/07/improve-base64encoder/</link>
+      <pubDate>Sat, 07 Mar 2015 08:18:34 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/03/07/improve-base64encoder/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://atnd.org/events/62568/&#34;&gt;Lisp Meet Up presented by Shibuya.lisp #25&lt;/a&gt; や &lt;a href=&#34;https://somewrite.connpass.com/event/11318/&#34;&gt;Clack Meetup #1&lt;/a&gt; に参加してみた結果、 自分でもできる範囲で改良してみようと思い立ちました。 とりあえず&lt;a href=&#34;https://tamurashingo.github.io/2015-02-13/commonlisp-repl/&#34;&gt;以前作ったBase64エンコード関数&lt;/a&gt;を改良してみます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CommonLispでREPLを使った開発</title>
+      <link>https://tamurashingo.github.io/post/2015/02/13/repl-development/</link>
+      <pubDate>Fri, 13 Feb 2015 23:20:38 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/02/13/repl-development/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;h2 id=&#34;動機&#34;&gt;動機&lt;/h2&gt;
+
+&lt;p&gt;REPLを使った開発がどれくらい効率が良いか実際にやってみました。&lt;/p&gt;
+
+&lt;p&gt;例としてbase64エンコーダを作っていきます。 ロジックはウィキペディアに書いてあります。
+&lt;a href=&#34;http://ja.wikipedia.org/wiki/Base64&#34;&gt;http://ja.wikipedia.org/wiki/Base64&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

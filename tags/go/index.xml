@@ -6,18 +6,37 @@
     <description>Recent content in Go on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 26 Aug 2015 05:30:30 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 May 2019 23:30:00 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Go言語でMySQLに接続する</title>
-      <link>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</link>
-      <pubDate>Wed, 26 Aug 2015 05:30:30 +0000</pubDate>
+      <title>Hugoで最新のChromaを使う</title>
+      <link>https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/</link>
+      <pubDate>Wed, 08 May 2019 23:30:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2015/08/26/golang-mysql/</guid>
-      <description>tamuraです。 最近、Go言語を始めました。 MySQLにつなぐ コマンドラインアプリのように１回接続して何か操作して切断、というのであればな</description>
+      <guid>https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Hugo単体でシンタックスハイライトをするためにChromaを使いました。
+Common Lispに完全に対応していなかったので&lt;a href=&#34;https://github.com/alecthomas/chroma/pull/252&#34;&gt;Pull Requestを出して&lt;/a&gt;取り込んでもらいました。&lt;/p&gt;
+
+&lt;p&gt;Hugoで最新のChromaを使ってシンタックスハイライトをした記録です。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Go言語でMySQLに接続する</title>
+      <link>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</link>
+      <pubDate>Wed, 26 Aug 2015 05:30:30 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2015/08/26/golang-mysql/</guid>
+      <description>&lt;p&gt;tamuraです。
+最近、Go言語を始めました。&lt;/p&gt;
+
+&lt;h2 id=&#34;mysqlにつなぐ&#34;&gt;MySQLにつなぐ&lt;/h2&gt;
+
+&lt;p&gt;コマンドラインアプリのように１回接続して何か操作して切断、というのであればなんら難しくありません。&lt;/p&gt;</description>
     </item>
     
   </channel>

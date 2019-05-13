@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Tue, 16 Apr 2019 19:06:42 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello Hugo World</title>
+      <link>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</link>
+      <pubDate>Tue, 16 Apr 2019 19:06:42 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/</guid>
+      <description>Hugoで作り直す なんど目かの作り直しです。 なぜHugoにしたか？なんとなくです。 $ brew install hugo $ mkdir blog $ cd blog $ hugo init $ hugo server 別ターミナルでブログを作る</description>
+    </item>
+    
+  </channel>
+</rss>

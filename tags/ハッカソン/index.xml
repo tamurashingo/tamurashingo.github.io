@@ -6,27 +6,21 @@
     <description>Recent content in ハッカソン on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 19 Sep 2016 01:00:20 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Apr 2016 01:00:05 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ISUCON6に参加して今年も惨敗した件</title>
-      <link>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</link>
-      <pubDate>Mon, 19 Sep 2016 01:00:20 +0000</pubDate>
-      
-      <guid>https://tamurashingo.github.io/posts/2016/09/19/isucon6/</guid>
-      <description>tamuraです。 今年もISUCONに参加しました。 今回は新メンバーakimotoを加えての参戦です。 前回記事: ISUCON5に参加して惨敗</description>
-    </item>
-    
-    <item>
       <title>サバフェス!2016 IoTハッカソンに参加してきました</title>
-      <link>https://tamurashingo.github.io/posts/2016/04/16/svfest2016/</link>
-      <pubDate>Sat, 16 Apr 2016 01:00:05 +0000</pubDate>
+      <link>https://tamurashingo.github.io/post/2016/04/16/svfest2016/</link>
+      <pubDate>Sat, 16 Apr 2016 01:00:05 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/posts/2016/04/16/svfest2016/</guid>
-      <description>tamuraです。 IDCフロンティアさん主催のサバフェス2016に参加してきました。 今年は「健康をテーマにしたハッカソン」、IoTを駆使して</description>
+      <guid>https://tamurashingo.github.io/post/2016/04/16/svfest2016/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;IDCフロンティアさん主催のサバフェス2016に参加してきました。
+今年は「健康をテーマにしたハッカソン」、IoTを駆使してエンジニアの生活を向上させようという目的でした。参加賞として各種デバイス（ラズパイ2とか）がいただけるので参加してきました。&lt;/p&gt;</description>
     </item>
     
   </channel>
