@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/ruby/</link>
+    <description>Recent content in Ruby on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 08 Nov 2018 23:30:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rubyを理解するためにSchemeを作ってみました</title>
+      <link>https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/</link>
+      <pubDate>Thu, 08 Nov 2018 23:30:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Rubyを使う会社で働いているのですが、未だにRubyを理解したと言えない状況なので、
+SICPに実装が載っているSchemeを作ってみました。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,17 +6,41 @@
     <description>Recent content in Common Lisp on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 09 Apr 2018 02:01:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 26 Sep 2018 23:48:41 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/common-lisp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>昔のRedditをSBCLで動かすまで</title>
-      <link>https://tamurashingo.github.io/post/2018/04/09/old-reddit/</link>
-      <pubDate>Mon, 09 Apr 2018 02:01:00 +0900</pubDate>
+      <title>Common Lispで会計freeeのAPIを叩く</title>
+      <link>https://tamurashingo.github.io/post/2018/09/26/cl-freee/</link>
+      <pubDate>Wed, 26 Sep 2018 23:48:41 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/post/2018/04/09/old-reddit/</guid>
+      <guid>https://tamurashingo.github.io/post/2018/09/26/cl-freee/</guid>
+      <description>tamuraです。 Common Lispから会計freeeのAPIを叩くライブラリを作って見ました。 ライブラリ https://github.com/tamurashingo/cl-freee まだgetしか使えません トークンが切れて</description>
+    </item>
+    
+    <item>
+      <title>Dexadorを認証プロキシに対応させました</title>
+      <link>https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/</link>
+      <pubDate>Wed, 19 Sep 2018 01:02:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Dexadorを認証プロキシに対応させた内容です。
+プロキシには対応しているのですが、プロキシサーバがユーザ/パスワードを必要とした時にも対応させました。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cl&#34; data-lang=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dex:get&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;https://www.yahoo.co.jp&amp;#34;&lt;/span&gt;
+         &lt;span class=&#34;ss&#34;&gt;:proxy&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;http://proxyuser:proxypass@proxyserver:8081&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;この形式で認証プロキシを通すことができます。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>昔のRedditをSBCLで動かすまで</title>
+      <link>https://tamurashingo.github.io/post/2018/04/15/old-reddit/</link>
+      <pubDate>Sun, 15 Apr 2018 02:01:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/04/15/old-reddit/</guid>
       <description>&lt;p&gt;tamuraです。&lt;/p&gt;
 
 &lt;p&gt;昔の&lt;a href=&#34;https://github.com/reddit-archive/reddit1.0&#34;&gt;Reddit&lt;/a&gt;のコードが公開されていたのでSBCLでコンパイルして動かしてみました。&lt;/p&gt;</description>

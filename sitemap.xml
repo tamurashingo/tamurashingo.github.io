@@ -4,7 +4,54 @@
   
   <url>
     <loc>https://tamurashingo.github.io/categories/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/go/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/categories/blog/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/blog/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -14,56 +61,53 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/post/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/categories/blog/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/blog/</loc>
-    <lastmod>2019-04-16T19:06:42+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tamurashingo.github.io/tags/hugo/</loc>
     <lastmod>2019-04-16T19:06:42+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://tamurashingo.github.io/categories/ruby/</loc>
+    <lastmod>2018-11-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/ruby/</loc>
+    <lastmod>2018-11-08T23:30:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/</loc>
+    <lastmod>2018-11-08T23:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tamurashingo.github.io/categories/common-lisp/</loc>
-    <lastmod>2018-04-09T02:01:00+09:00</lastmod>
+    <lastmod>2018-09-26T23:48:41+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tamurashingo.github.io/tags/common-lisp/</loc>
-    <lastmod>2018-04-09T02:01:00+09:00</lastmod>
+    <lastmod>2018-09-26T23:48:41+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/post/2018/04/09/old-reddit/</loc>
-    <lastmod>2018-04-09T02:01:00+09:00</lastmod>
+    <loc>https://tamurashingo.github.io/post/2018/09/26/cl-freee/</loc>
+    <lastmod>2018-09-26T23:48:41+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/</loc>
+    <lastmod>2018-09-19T01:02:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2018/04/15/old-reddit/</loc>
+    <lastmod>2018-04-15T02:01:00+09:00</lastmod>
   </url>
   
   <url>
@@ -132,12 +176,6 @@
   <url>
     <loc>https://tamurashingo.github.io/post/2017/12/11/react-with-typescript/</loc>
     <lastmod>2017-12-11T20:39:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/categories/commmon-lisp/</loc>
-    <lastmod>2017-08-20T12:39:00+09:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -384,12 +422,6 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88/</loc>
-    <lastmod>2016-08-02T21:45:42+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://tamurashingo.github.io/tags/json/</loc>
     <lastmod>2016-08-02T00:12:21+09:00</lastmod>
     <priority>0</priority>
@@ -589,12 +621,6 @@
   
   <url>
     <loc>https://tamurashingo.github.io/categories/go/</loc>
-    <lastmod>2015-08-26T05:30:30+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/go/</loc>
     <lastmod>2015-08-26T05:30:30+09:00</lastmod>
     <priority>0</priority>
   </url>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
 <head>
-    <meta name="google-site-verification" content="5Jsx5ztI4IYtaV3jdY2RErBGBPVUvqVGVtkqcgy_YdA" />
     <title>Web技術と親しむ</title>
     <meta name="generator" content="Hugo 0.56.0-DEV" />
     <meta charset="utf-8">
@@ -29,7 +28,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tamurashingo.github.io/" />
 
-<meta property="og:updated_time" content="2019-04-16T19:06:42&#43;09:00"/>
+<meta property="og:updated_time" content="2019-05-08T23:30:00&#43;09:00"/>
 
     
     
@@ -162,12 +161,12 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        57
+        61
         <span>記事</span>
       </div>
       <div class="article-info-block">
         
-          64
+          65
         
         <span>
             タグ
@@ -247,6 +246,666 @@
     <section id="main">
     
     
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/">
+    <h1 class="article-title" itemprop="name">
+        ISUCON反省会 nginx編
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-09-22 16:42:24 &#43;0900 JST" itemprop="datePublished">2016-09-22</time>
+            &middot;
+            856
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/nginx">nginx</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。
+ISUCON出ました!
+ブログ書きました!</p>
+
+<p>で終わってもあれなので、反省会と称してnginxについて次回以降で使えそうな設定内容をメモしました。</p>
+
+<ul>
+<li>ISUCON5に参加して惨敗した件</li>
+<li>ISUCON6に参加して今年も惨敗した件</li>
+</ul>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/" data-id="cf48881e91ee6d22a2c5b89170f63b5e" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/09/22/isucon6-nginx/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/">
+    <h1 class="article-title" itemprop="name">
+        ISUCON6に参加して今年も惨敗した件
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-09-19 01:00:20 &#43;0900 JST" itemprop="datePublished">2016-09-19</time>
+            &middot;
+            11890
+            文字
+            &middot;
+            24
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/mysql">MySQL</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <style type="text/css">
+pre { overflow-x: scroll; }
+</style>
+
+<p>tamuraです。</p>
+
+<p>今年もISUCONに参加しました。
+今回は新メンバーakimotoを加えての参戦です。</p>
+
+<p>前回記事: <a href="/post/2015/10/25/isucon5/">ISUCON5に参加して惨敗した件</a></p>
+
+<p>参考実装にJavaがないのでちょっと困りましたが、akimotoがPHPを使ったことがあるらしいので、それ一点に賭けました！</p>
+
+<p>今回もslackのログを抜き出します。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/09/19/isucon6/" data-id="b0984c51f35da41c2d1009f4e0194411" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/09/19/isucon6/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/">
+    <h1 class="article-title" itemprop="name">
+        Ubuntu14.04LTSにAndroidStudioをインストールする
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-10 00:04:05 &#43;0900 JST" itemprop="datePublished">2016-08-10</time>
+            &middot;
+            1565
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">Android</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">Linux</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/android">Android</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/androidstudio">AndroidStudio</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/linux">Linux</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/ubuntu">Ubuntu</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
+HelloWorldプロジェクトを作るまでの記録です。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/" data-id="b24e2ea3af842ec17b10915fca14d547" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
+    <h1 class="article-title" itemprop="name">
+        Dropwizardでデータベースpart4
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-08-03 22:06:15 &#43;0900 JST" itemprop="datePublished">2016-08-03</time>
+            &middot;
+            2351
+            文字
+            &middot;
+            5
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。</p>
+
+<ul>
+<li><a href="/post/2015/06/10/dropwizard/">Dropwizardを使ってみる</a></li>
+<li><a href="/post/2015/06/10/dropwizard-database-1/">Dropwizardでデータベースpart1</a></li>
+<li><a href="/post/2015/06/12/dropwizard-database-2/">Dropwizardでデータベースpart2</a></li>
+<li><a href="/post/2015/06/13/dropwizard-database-3/">Dropwizardでデータベースpart3</a></li>
+</ul>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/" data-id="78aad533aace3544c91e56c8d7526917" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+</article>
 
 <article class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
@@ -1233,657 +1892,6 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
     </div>
 </article>
 
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/">
-    <h1 class="article-title" itemprop="name">
-        CentOS7にGitBucket2.4を入れる
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-07-22 21:22:16 &#43;0900 JST" itemprop="datePublished">2016-07-22</time>
-            &middot;
-            599
-            文字
-            &middot;
-            2
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">Linux</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/gitbucket">GitBucket</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/apache">Apache</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/tomcat">Tomcat</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/ajp">AJP</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れてみました。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-    <a data-url="https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/" data-id="72d4773c7889ad113de61aa4f501be6a" class="article-share-link">
-        <i class="fa fa-share"></i>
-        Share
-    </a>
-    
-    <a href="https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/#disqus_thread" class="article-comment-link">
-        Comments
-    </a>
-    
-
-    <script>
-    (function ($) {
-        
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-    </script>
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/07/18/self-ca/">
-    <h1 class="article-title" itemprop="name">
-        オレオレ認証局を作る
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-07-18 00:59:47 &#43;0900 JST" itemprop="datePublished">2016-07-18</time>
-            &middot;
-            581
-            文字
-            &middot;
-            2
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/web">Web</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/ca">CA</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/ssl">SSL</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">オレオレ認証局</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。
-SSLとクライアント認証を使うシステムを作ってみたくなったので、認証局を作ります。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/07/18/self-ca/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-    <a data-url="https://tamurashingo.github.io/post/2016/07/18/self-ca/" data-id="6f16044a4852f0efc72fbd30219209d4" class="article-share-link">
-        <i class="fa fa-share"></i>
-        Share
-    </a>
-    
-    <a href="https://tamurashingo.github.io/post/2016/07/18/self-ca/#disqus_thread" class="article-comment-link">
-        Comments
-    </a>
-    
-
-    <script>
-    (function ($) {
-        
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-    </script>
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/04/16/svfest2016/">
-    <h1 class="article-title" itemprop="name">
-        サバフェス!2016 IoTハッカソンに参加してきました
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-04-16 01:00:05 &#43;0900 JST" itemprop="datePublished">2016-04-16</time>
-            &middot;
-            2362
-            文字
-            &middot;
-            5
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">ハッカソン</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3">ハッカソン</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/iot">IoT</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">プログラミング</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%B5%E3%83%90%E3%83%95%E3%82%A7%E3%82%B9">サバフェス</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>IDCフロンティアさん主催のサバフェス2016に参加してきました。
-今年は「健康をテーマにしたハッカソン」、IoTを駆使してエンジニアの生活を向上させようという目的でした。参加賞として各種デバイス（ラズパイ2とか）がいただけるので参加してきました。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/04/16/svfest2016/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-    <a data-url="https://tamurashingo.github.io/post/2016/04/16/svfest2016/" data-id="d64cb71735460b8aaa2fc961a4241438" class="article-share-link">
-        <i class="fa fa-share"></i>
-        Share
-    </a>
-    
-    <a href="https://tamurashingo.github.io/post/2016/04/16/svfest2016/#disqus_thread" class="article-comment-link">
-        Comments
-    </a>
-    
-
-    <script>
-    (function ($) {
-        
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-    </script>
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2015/10/25/isucon5/">
-    <h1 class="article-title" itemprop="name">
-        ISUCON5に参加して惨敗した件
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2015-10-25 22:40:23 &#43;0900 JST" itemprop="datePublished">2015-10-25</time>
-            &middot;
-            3256
-            文字
-            &middot;
-            7
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/mysql">MySQL</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <style type="text/css">
-pre { overflow-x: scroll; }
-</style>
-
-<p>ISUCON5に参加しました。
-SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。</p>
-
-<p>結果は惨敗です。スコアは1000ちょっとくらいです。</p>
-
-<p>memcachedとか使えるようにならないとだめだね、ということが確認できました。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2015/10/25/isucon5/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-    <a data-url="https://tamurashingo.github.io/post/2015/10/25/isucon5/" data-id="3ad4ef35421e1a053b59153efaf9c01d" class="article-share-link">
-        <i class="fa fa-share"></i>
-        Share
-    </a>
-    
-    <a href="https://tamurashingo.github.io/post/2015/10/25/isucon5/#disqus_thread" class="article-comment-link">
-        Comments
-    </a>
-    
-
-    <script>
-    (function ($) {
-        
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-    </script>
-</footer>
-
-    </div>
-</article>
-
 
 <nav id="page-nav">
 
@@ -1915,6 +1923,32 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="title">Hugoで最新のChromaを使う</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-05-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2019-05-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/04/16/hello-hugo-world/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -1941,7 +1975,33 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
             
             <li>
                 <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ruby">
+                        Ruby
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="title">Rubyを理解するためにSchemeを作ってみました</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-11-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2018-11-08</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
                     
@@ -1958,16 +2018,16 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                     </p>
                     
                     
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/04/09/old-reddit/" class="title">昔のRedditをSBCLで動かすまで</a></p>
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="title">Common Lispで会計freeeのAPIを叩く</a></p>
                     <p class="item-date">
-                        <time datetime="2018-04-09 02:01:00 &#43;0900 JST" itemprop="datePublished">2018-04-09</time>
+                        <time datetime="2018-09-26 23:48:41 &#43;0900 JST" itemprop="datePublished">2018-09-26</time>
                     </p>
                 </div>
             </li>
             
             <li>
                 <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
                     
@@ -1978,67 +2038,15 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                     
                     <p class="item-category">
                         
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ghost">
-                        Ghost
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
+                        Common Lisp
                         </a>
                     </p>
                     
                     
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/01/04/fix-ime-popup-position/" class="title">GhostでIMEの変換候補の位置を直す</a></p>
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="title">Dexadorを認証プロキシに対応させました</a></p>
                     <p class="item-date">
-                        <time datetime="2018-01-04 23:15:00 &#43;0900 JST" itemprop="datePublished">2018-01-04</time>
-                    </p>
-                </div>
-            </li>
-            
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">
-                        blog
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/14/hexo/" class="title">hexo化してみました</a></p>
-                    <p class="item-date">
-                        <time datetime="2017-12-14 18:33:56 &#43;0900 JST" itemprop="datePublished">2017-12-14</time>
-                    </p>
-                </div>
-            </li>
-            
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/typescript">
-                        TypeScript
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2017/12/12/create-react-app/" class="title">Reactを簡単に始める(create-react-app)</a></p>
-                    <p class="item-date">
-                        <time datetime="2017-12-12 19:00:00 &#43;0900 JST" itemprop="datePublished">2017-12-12</time>
+                        <time datetime="2018-09-19 01:02:00 &#43;0900 JST" itemprop="datePublished">2018-09-19</time>
                     </p>
                 </div>
             </li>
@@ -2069,7 +2077,7 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/blog">
                     blog
                 </a>
-                <span class="category-list-count">7</span>
+                <span class="category-list-count">8</span>
             </li>
             
             <li class="category-list-item">
@@ -2090,18 +2098,10 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
             
             <li class="category-list-item">
                 
-                <a class="category-list-link" href="https://tamurashingo.github.io/categories/commmon-lisp">
-                    commmon-lisp
-                </a>
-                <span class="category-list-count">2</span>
-            </li>
-            
-            <li class="category-list-item">
-                
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
                     common-lisp
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">7</span>
             </li>
             
             <li class="category-list-item">
@@ -2174,6 +2174,14 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                     react
                 </a>
                 <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
             </li>
             
             <li class="category-list-item">
@@ -2278,7 +2286,7 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                 <a class="category-list-link" href="https://tamurashingo.github.io/tags/blog">
                     blog
                 </a>
-                <span class="category-list-count">8</span>
+                <span class="category-list-count">9</span>
             </li>
             
             <li class="category-list-item">
@@ -2318,7 +2326,7 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                 <a class="category-list-link" href="https://tamurashingo.github.io/tags/common-lisp">
                     common-lisp
                 </a>
-                <span class="category-list-count">6</span>
+                <span class="category-list-count">8</span>
             </li>
             
             <li class="category-list-item">
@@ -2382,7 +2390,7 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                 <a class="category-list-link" href="https://tamurashingo.github.io/tags/go">
                     go
                 </a>
-                <span class="category-list-count">1</span>
+                <span class="category-list-count">2</span>
             </li>
             
             <li class="category-list-item">
@@ -2579,6 +2587,14 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
             
             <li class="category-list-item">
                 
+                <a class="category-list-link" href="https://tamurashingo.github.io/tags/ruby">
+                    ruby
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
                 <a class="category-list-link" href="https://tamurashingo.github.io/tags/scala">
                     scala
                 </a>
@@ -2694,7 +2710,7 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
                 <a class="category-list-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">
                     シンタックスハイライト
                 </a>
-                <span class="category-list-count">1</span>
+                <span class="category-list-count">2</span>
             </li>
             
             <li class="category-list-item">
@@ -2894,6 +2910,9 @@ SQLのチューニングならなんとかなるかなと思うのですが、�
         
         
         <a href="https://tamurashingo.github.io/tags/reverse-proxy" style="font-size: 12px;">reverse-proxy</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/ruby" style="font-size: 12px;">ruby</a>
         
         
         <a href="https://tamurashingo.github.io/tags/scala" style="font-size: 12px;">scala</a>
