@@ -6,10 +6,43 @@
     <description>Recent content in Linux on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 19 Mar 2019 17:13:09 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Emacs 26.1のインストール(成功編)</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/emacs-install-succeeded/</link>
+      <pubDate>Tue, 19 Mar 2019 17:13:09 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/emacs-install-succeeded/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;必要なライブラリを入れてやり直してみました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emacs 26.1のインストール(失敗編)</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/emacs-install-failed/</link>
+      <pubDate>Tue, 19 Mar 2019 05:17:30 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/emacs-install-failed/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;aptとかで入るEmacsは古い(と思い込んでいる)のでソースからインストールします。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 18.04のインストールと各種設定</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/</link>
+      <pubDate>Tue, 19 Mar 2019 05:13:04 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Ubuntu 14.04を使い続けていたけどようやくバージョンアップすることにしました。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>
@@ -19,6 +52,17 @@
       <guid>https://tamurashingo.github.io/post/2016/08/10/install-android-studio-on-ubuntu1404/</guid>
       <description>&lt;p&gt;Linux(Ubuntu14.04LTS)にAndroid Studio 2.1をインストールして、
 HelloWorldプロジェクトを作るまでの記録です。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS7にGitBucket2.4を入れる</title>
+      <link>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</link>
+      <pubDate>Fri, 22 Jul 2016 21:22:16 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2016/07/22/install-gitbucket/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;仲間内で何か作るときのために、GitBucketを使えるようにしておこうと思い、CentOS7にGitBucketを入れてみました。&lt;/p&gt;</description>
     </item>
     
   </channel>

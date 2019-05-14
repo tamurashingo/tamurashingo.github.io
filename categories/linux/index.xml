@@ -6,10 +6,21 @@
     <description>Recent content in Linux on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 19 Mar 2019 05:13:04 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ubuntu 18.04のインストールと各種設定</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/</link>
+      <pubDate>Tue, 19 Mar 2019 05:13:04 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Ubuntu 14.04を使い続けていたけどようやくバージョンアップすることにしました。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>

@@ -23,5 +23,19 @@
 SICPに実装が載っているSchemeを作ってみました。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>bundle exec rails sを追った</title>
+      <link>https://tamurashingo.github.io/post/2018/11/08/bundle-exec-rails-s/</link>
+      <pubDate>Thu, 08 Nov 2018 20:00:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/11/08/bundle-exec-rails-s/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Railsわからなすぎなので追ってみました。
+バージョンは5.2あたりだった気がします。&lt;/p&gt;
+
+&lt;p&gt;目標は &lt;code&gt;Rails.application&lt;/code&gt; って何？がわかること。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

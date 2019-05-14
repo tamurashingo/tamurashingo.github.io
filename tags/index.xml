@@ -48,7 +48,97 @@
     </item>
     
     <item>
-      <title>Ruby</title>
+      <title>Emacs</title>
+      <link>https://tamurashingo.github.io/tags/emacs/</link>
+      <pubDate>Tue, 19 Mar 2019 17:13:09 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://tamurashingo.github.io/tags/linux/</link>
+      <pubDate>Tue, 19 Mar 2019 17:13:09 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>install</title>
+      <link>https://tamurashingo.github.io/tags/install/</link>
+      <pubDate>Tue, 19 Mar 2019 17:13:09 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/install/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>USキーボード</title>
+      <link>https://tamurashingo.github.io/tags/us%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89/</link>
+      <pubDate>Tue, 19 Mar 2019 05:13:04 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/us%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://tamurashingo.github.io/tags/ubuntu/</link>
+      <pubDate>Tue, 19 Mar 2019 05:13:04 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>basic</title>
+      <link>https://tamurashingo.github.io/tags/basic/</link>
+      <pubDate>Fri, 11 Jan 2019 20:32:01 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/basic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>game</title>
+      <link>https://tamurashingo.github.io/tags/game/</link>
+      <pubDate>Fri, 11 Jan 2019 20:32:01 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/game/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://tamurashingo.github.io/tags/python/</link>
+      <pubDate>Fri, 11 Jan 2019 20:32:01 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pyxel</title>
+      <link>https://tamurashingo.github.io/tags/pyxel/</link>
+      <pubDate>Fri, 11 Jan 2019 20:32:01 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/pyxel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Common Lisp</title>
+      <link>https://tamurashingo.github.io/tags/common-lisp/</link>
+      <pubDate>Tue, 08 Jan 2019 01:55:36 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/tags/common-lisp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ruby</title>
       <link>https://tamurashingo.github.io/tags/ruby/</link>
       <pubDate>Thu, 08 Nov 2018 23:30:00 +0900</pubDate>
       
@@ -57,11 +147,11 @@
     </item>
     
     <item>
-      <title>Common Lisp</title>
-      <link>https://tamurashingo.github.io/tags/common-lisp/</link>
-      <pubDate>Wed, 26 Sep 2018 23:48:41 +0900</pubDate>
+      <title>rails</title>
+      <link>https://tamurashingo.github.io/tags/rails/</link>
+      <pubDate>Thu, 08 Nov 2018 20:00:00 +0900</pubDate>
       
-      <guid>https://tamurashingo.github.io/tags/common-lisp/</guid>
+      <guid>https://tamurashingo.github.io/tags/rails/</guid>
       <description></description>
     </item>
     
@@ -260,24 +350,6 @@
       <pubDate>Wed, 10 Aug 2016 00:04:05 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/tags/androidstudio/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://tamurashingo.github.io/tags/linux/</link>
-      <pubDate>Wed, 10 Aug 2016 00:04:05 +0900</pubDate>
-      
-      <guid>https://tamurashingo.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ubuntu</title>
-      <link>https://tamurashingo.github.io/tags/ubuntu/</link>
-      <pubDate>Wed, 10 Aug 2016 00:04:05 +0900</pubDate>
-      
-      <guid>https://tamurashingo.github.io/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -530,15 +602,6 @@
       <pubDate>Wed, 25 Mar 2015 23:47:15 +0900</pubDate>
       
       <guid>https://tamurashingo.github.io/tags/%E5%8B%89%E5%BC%B7%E4%BC%9A/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Emacs</title>
-      <link>https://tamurashingo.github.io/tags/emacs/</link>
-      <pubDate>Fri, 27 Feb 2015 07:30:08 +0900</pubDate>
-      
-      <guid>https://tamurashingo.github.io/tags/emacs/</guid>
       <description></description>
     </item>
     

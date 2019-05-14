@@ -161,12 +161,12 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        61
+        68
         <span>記事</span>
       </div>
       <div class="article-info-block">
         
-          65
+          72
         
         <span>
             タグ
@@ -246,6 +246,688 @@
     <section id="main">
     
     
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/">
+    <h1 class="article-title" itemprop="name">
+        JSFでReverse Proxyを使った際にURLを書き換える
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2017-01-15 01:30:00 &#43;0900 JST" itemprop="datePublished">2017-01-15</time>
+            &middot;
+            561
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/jsf">JSF</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/reverse-proxy">Reverse Proxy</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>ローカルで開発しているときは問題なかったのに、 本番環境は reverse proxy を使っているので、 JSFが生成するURLが違ってしまう場合がある、ということがあります。</p>
+
+<h2 id="例">例</h2>
+
+<p>/xxxx/app に来たアクセスを Tomcat の /app に横流しする</p>
+<div class="highlight"><pre class="chroma"><code class="language-apacheconf" data-lang="apacheconf"><span class="nt">&lt;Location</span> <span class="s">/xxxx/app/</span><span class="nt">&gt;</span>
+  <span class="nb">ProxyPass</span> ajp://localhost:8009/app/
+  <span class="nb">ProxyPassReverse</span> ajp://localhost:8009/app/
+  <span class="nb">ProxyPassReverseCookiePath</span> <span class="sx">/app/</span> <span class="sx">/xxxx/app/</span>
+<span class="nt">&lt;/Location&gt;</span></code></pre></div>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=JSF%e3%81%a7Reverse%20Proxy%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e9%9a%9b%e3%81%abURL%e3%82%92%e6%9b%b8%e3%81%8d%e6%8f%9b%e3%81%88%e3%82%8b%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2017%2f01%2f15%2fjsf-with-reverseproxy%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2017%2f01%2f15%2fjsf-with-reverseproxy%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2017/01/15/jsf-with-reverseproxy/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/">
+    <h1 class="article-title" itemprop="name">
+        memcachedクライアントではまった件（後編）
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2017-01-02 00:30:00 &#43;0900 JST" itemprop="datePublished">2017-01-02</time>
+            &middot;
+            1615
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/memcached">memcached</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/memcached">memcached</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>spymemcachedでバックアップサーバを使わない方法についてまとめました。</p>
+
+<h2 id="結論">結論</h2>
+
+<p>失敗時の動作を再接続しないに定義します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MemcachedClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MemcachedClient</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultConnectionFactory</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">FailureMode</span> <span class="nf">getFailureMode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Failure</span><span class="o">.</span><span class="na">Cancel</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="o">},</span> <span class="n">AddrUtil</span><span class="o">.</span><span class="na">getAddresses</span><span class="o">(</span><span class="s">&#34;host1,host2,host3&#34;</span><span class="o">));</span>
+
+<span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;key&#34;</span><span class="o">);</span></code></pre></div>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=memcached%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%81%a7%e3%81%af%e3%81%be%e3%81%a3%e3%81%9f%e4%bb%b6%ef%bc%88%e5%be%8c%e7%b7%a8%ef%bc%89%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2017%2f01%2f02%2fpitfall-memcached-second%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2017%2f01%2f02%2fpitfall-memcached-second%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/">
+    <h1 class="article-title" itemprop="name">
+        memcachedクライアントではまった件（前編）
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-12-07 21:30:00 &#43;0900 JST" itemprop="datePublished">2016-12-07</time>
+            &middot;
+            834
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/memcached">memcached</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/memcached">memcached</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです</p>
+
+<p>memcachedでクラスタリングをしたところ、思わぬ事象にはまりました。</p>
+
+<ul>
+<li>memcachedサーバが落ちてもクライアントはその次のサーバを使う</li>
+<li>memcachedサーバが復活するともともとのサーバを使う</li>
+</ul>
+
+<p>spymemcachedの検証を行っていてその事象が発生したので、「spymemcachedこのやろ～」と思い他の言語のmemcachedクライアントのソースを見てみると、他の言語のクライアントもそのような動きをしていました。</p>
+
+<p>幸いにしてspymemcachedはこのバックアップサーバを使うという動きを止められます。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=memcached%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%81%a7%e3%81%af%e3%81%be%e3%81%a3%e3%81%9f%e4%bb%b6%ef%bc%88%e5%89%8d%e7%b7%a8%ef%bc%89%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f12%2f07%2fpitfall-memcached-first%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f12%2f07%2fpitfall-memcached-first%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2016/12/07/pitfall-memcached-first/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/11/24/install-memcached/">
+    <h1 class="article-title" itemprop="name">
+        memcachedのインストール
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-11-24 23:30:00 &#43;0900 JST" itemprop="datePublished">2016-11-24</time>
+            &middot;
+            519
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/memcached">memcached</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/memcached">memcached</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>ISUCONでの課題になっていたmemcachedについて始めました。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/11/24/install-memcached/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=memcached%e3%81%ae%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f11%2f24%2finstall-memcached%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f11%2f24%2finstall-memcached%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/11/24/install-memcached/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2016/11/24/install-memcached/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/">
+    <h1 class="article-title" itemprop="name">
+        DropwizardでGoogle Guiceを使う
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-11-10 22:00:03 &#43;0900 JST" itemprop="datePublished">2016-11-10</time>
+            &middot;
+            1002
+            文字
+            &middot;
+            2
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/dropwizard">Dropwizard</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです</p>
+
+<p>DropwizardでGoogle Guiceを使ってDependency Injection(DI)を行いました。
+DIを使った理由としてはデータベースコネクションを引き回したくなかったためです。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=Dropwizard%e3%81%a6%e3%82%99Google%20Guice%e3%82%92%e4%bd%bf%e3%81%86%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f11%2f10%2fdropwizard-guice%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f11%2f10%2fdropwizard-guice%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2016/11/10/dropwizard-guice/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/">
+    <h1 class="article-title" itemprop="name">
+        ISUCON反省会 MySQL編
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-10-31 23:31:00 &#43;0900 JST" itemprop="datePublished">2016-10-31</time>
+            &middot;
+            1119
+            文字
+            &middot;
+            3
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/mysql">MySQL</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>今回はMySQLの反省会です。
+MySQLはMySQLではなくてPerconaいれるといい感じになる場合もあります。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=ISUCON%e5%8f%8d%e7%9c%81%e4%bc%9a%20MySQL%e7%b7%a8%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f10%2f31%2fisucon6-mysql%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f10%2f31%2fisucon6-mysql%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2016/10/31/isucon6-mysql/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
+
+<article class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        </a>
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2016/10/20/firebase_programming/">
+    <h1 class="article-title" itemprop="name">
+        Firebaseはじめてみました
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2016-10-20 22:30:34 &#43;0900 JST" itemprop="datePublished">2016-10-20</time>
+            &middot;
+            1917
+            文字
+            &middot;
+            4
+            分くらいで読めます
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/web">Web</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/javascript">JavaScript</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
+                &middot;
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/firebase">Firebase</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>
+                <p>tamuraです。</p>
+
+<p>Googleスプレッドシートで忘年会の景品のリクエストを受け付けていたのですが、スマートフォンからだと入力がしにくいようで、なかなか集まりません。
+Firebaseを使ってHTMLでリクエスト受け付けるものを作ってみました。</p>
+            </p>
+            <p class="article-more-link">
+                <a href="https://tamurashingo.github.io/post/2016/10/20/firebase_programming/">
+                    続きを読む
+                </a>
+            </p>
+        </div>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=Firebase%e3%81%af%e3%81%98%e3%82%81%e3%81%a6%e3%81%bf%e3%81%be%e3%81%97%e3%81%9f%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f10%2f20%2ffirebase_programming%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f10%2f20%2ffirebase_programming%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/10/20/firebase_programming/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2016/10/20/firebase_programming/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+    </div>
+</article>
 
 <article class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
@@ -565,733 +1247,6 @@ HelloWorldプロジェクトを作るまでの記録です。</p>
     </div>
 </article>
 
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
-    <h1 class="article-title" itemprop="name">
-        Dropwizardでデータベースpart4
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-08-03 22:06:15 &#43;0900 JST" itemprop="datePublished">2016-08-03</time>
-            &middot;
-            2351
-            文字
-            &middot;
-            5
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/dropwizard">Dropwizard</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/dropwizard">Dropwizard</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。</p>
-
-<ul>
-<li><a href="/post/2015/06/10/dropwizard/">Dropwizardを使ってみる</a></li>
-<li><a href="/post/2015/06/10/dropwizard-database-1/">Dropwizardでデータベースpart1</a></li>
-<li><a href="/post/2015/06/12/dropwizard-database-2/">Dropwizardでデータベースpart2</a></li>
-<li><a href="/post/2015/06/13/dropwizard-database-3/">Dropwizardでデータベースpart3</a></li>
-</ul>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=Dropwizard%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%83%99%e3%83%bc%e3%82%b9part4%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f08%2f03%2fdropwizard-database-4%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f08%2f03%2fdropwizard-database-4%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/">
-    <h1 class="article-title" itemprop="name">
-        Markdownでブログを書いてシンタックスハイライトする
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-08-02 21:45:42 &#43;0900 JST" itemprop="datePublished">2016-08-02</time>
-            &middot;
-            1023
-            文字
-            &middot;
-            3
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">blog</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/markdown">markdown</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/blog">blog</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88">シンタックスハイライト</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/google-code-prettify">google-code-prettify</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>Markdownでブログを書く件の続きです。
-前回はmarkedを使ってMarkdownをHTMLに変換しました。
-今回はシンタックスハイライトについてです。</p>
-
-<p><a href="https://github.com/google/code-prettify">google-code-prettify</a>(正式名称はJavascript code prettifierでしょうか？)を使います。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=Markdown%e3%81%a7%e3%83%96%e3%83%ad%e3%82%b0%e3%82%92%e6%9b%b8%e3%81%84%e3%81%a6%e3%82%b7%e3%83%b3%e3%82%bf%e3%83%83%e3%82%af%e3%82%b9%e3%83%8f%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%88%e3%81%99%e3%82%8b%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f08%2f02%2fmarkdown-syntaxhightlight%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f08%2f02%2fmarkdown-syntaxhightlight%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/08/02/markdown-syntaxhightlight/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/">
-    <h1 class="article-title" itemprop="name">
-        JavaBeansの役立つ使い方
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-08-02 00:12:21 &#43;0900 JST" itemprop="datePublished">2016-08-02</time>
-            &middot;
-            1210
-            文字
-            &middot;
-            3
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/javabeans">JavaBeans</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/xml">XML</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/json">JSON</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>前回の続きです。</p>
-
-<p>JavaBeansを使うとこんなに便利！という例をいくつかあげてみます。</p>
-
-<ul>
-<li>XMLの読み込み</li>
-<li>JSONの読み込み</li>
-<li>JSONの書き出し</li>
-</ul>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=JavaBeans%e3%81%ae%e5%bd%b9%e7%ab%8b%e3%81%a4%e4%bd%bf%e3%81%84%e6%96%b9%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f08%2f02%2fuseful-java-beans%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f08%2f02%2fuseful-java-beans%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/08/02/useful-java-beans/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/07/31/java-beans/">
-    <h1 class="article-title" itemprop="name">
-        JavaBeansとは
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-07-31 16:16:27 &#43;0900 JST" itemprop="datePublished">2016-07-31</time>
-            &middot;
-            1930
-            文字
-            &middot;
-            4
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">Java</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/javabeans">JavaBeans</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%AA%E3%83%95%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3">リフレクション</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>JavaBeansが出てきた当初はGUI用だったようです。</p>
-
-<p>GUIアプリを作ろうとして<code>JFrame</code>を継承したクラスを作ると「<code>serialVersionUID</code>がないよ！」という警告が出ますが、これはJavaBeans仕様で作られているからのようです。</p>
-
-<p>現在では、私の周辺ではValueObjectとして使うことが多いです。</p>
-
-<blockquote>
-<p><strong>JavaBeans</strong>
-Javaで作成された移植可能なプラットフォームに依存しないコンポーネント・モデルで、JavaBean仕様に従う。 再使用可能なコンポーネントを作成できる。
-<a href="http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709">http://otndnld.oracle.co.jp/tech/java/htdocs/java_roadmap/glossary.htm#434709</a> より引用</p>
-
-<p>JavaBeans（ジャバ ビーンズ）とは、Javaで書かれた再利用可能なソフトウェアコンポーネントまたはその技術仕様のこと。1997年後半に登場。JDKのjava.beansパッケージと共にRAD環境の構築を支援するために作られた。現在ではjava.beansパッケージの技術を活用し、RAD環境の構築に限らずJSP等幅広い用途で利用されている。<a href="https://ja.wikipedia.org/wiki/JavaBeans">https://ja.wikipedia.org/wiki/JavaBeans</a> より引用</p>
-</blockquote>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/07/31/java-beans/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=JavaBeans%e3%81%a8%e3%81%af%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f31%2fjava-beans%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f31%2fjava-beans%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/07/31/java-beans/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/07/31/java-beans/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/07/28/client-authentication/">
-    <h1 class="article-title" itemprop="name">
-        クライアント認証を行う
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-07-28 06:30:43 &#43;0900 JST" itemprop="datePublished">2016-07-28</time>
-            &middot;
-            1516
-            文字
-            &middot;
-            4
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/web">Web</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/openssl">OpenSSL</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">オレオレ認証局</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%A8%BC%E6%98%8E%E6%9B%B8">クライアント証明書</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>前回、オレオレ認証局でサーバ証明書に署名してもらい、Apacheに組み込みました。
-今回は、クライアントの証明書を作り、オレオレ認証局で署名してもらいます。
-最終的にはブラウザに組み込んで使います。
-署名までの手順はサーバ証明書の場合とほぼ同じです。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/07/28/client-authentication/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e8%aa%8d%e8%a8%bc%e3%82%92%e8%a1%8c%e3%81%86%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f28%2fclient-authentication%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f28%2fclient-authentication%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/07/28/client-authentication/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/07/28/client-authentication/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/07/27/server-certificate/">
-    <h1 class="article-title" itemprop="name">
-        サーバ証明書(オレオレ証明書)を作る
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-07-27 02:19:37 &#43;0900 JST" itemprop="datePublished">2016-07-27</time>
-            &middot;
-            865
-            文字
-            &middot;
-            2
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/web">Web</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/openssl">OpenSSL</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%AA%8D%E8%A8%BC%E5%B1%80">オレオレ認証局</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%82%AA%E3%83%AC%E3%82%AA%E3%83%AC%E8%A8%BC%E6%98%8E%E6%9B%B8">オレオレ証明書</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>前回、OpenSSLでオレオレ認証局を作りました。
-今回はOpenSSLでサーバ証明書要求を作って、 オレオレ認証局に署名してもらう一連の手順をやっていきます。</p>
-
-<p>最終的にApacheに組み込みます。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/07/27/server-certificate/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=%e3%82%b5%e3%83%bc%e3%83%90%e8%a8%bc%e6%98%8e%e6%9b%b8%28%e3%82%aa%e3%83%ac%e3%82%aa%e3%83%ac%e8%a8%bc%e6%98%8e%e6%9b%b8%29%e3%82%92%e4%bd%9c%e3%82%8b%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f27%2fserver-certificate%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f27%2fserver-certificate%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/07/27/server-certificate/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/07/27/server-certificate/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
-<article class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        </a>
-
-        <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/">
-    <h1 class="article-title" itemprop="name">
-        Markdownでブログを書く
-    </h1>
-    </a>
-    <div class="article-meta">
-
-        
-        <div class="article-date">
-            <i class="fa fa-calendar"></i>
-            <time datetime="2016-07-23 22:24:30 &#43;0900 JST" itemprop="datePublished">2016-07-23</time>
-            &middot;
-            600
-            文字
-            &middot;
-            2
-            分くらいで読めます
-        </div>
-        
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-folder"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/blog">blog</a>
-                
-                
-            </div>
-            
-        
-
-        
-            
-            
-            <div class="article-category">
-                <i class="fa fa-tags"></i>
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/markdown">markdown</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/visualstudiocode">VisualStudioCode</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/blog">blog</a>
-                
-                
-            </div>
-            
-        
-    </div>
-</header>
-
-        <div class="article-entry" itemprop="articleBody">
-            <p>
-                <p>tamuraです。</p>
-
-<p>以前はGhostでブログを書いており、その時はMarkdown形式で書いていました。
-livedoor blogなどのいわゆる一般向けのブログサービスはMarkdown形式でブログを書けないため、ここ数日いろいろと検討して、いい感じにブログが書けるようになりました。</p>
-
-<ol>
-<li>Markdownでブログを書く (Visual Studio Codeがいいかも)</li>
-<li>markedでHTMLに変換する</li>
-<li>livedoor blogにHTMLタグ編集モードで書き込む</li>
-</ol>
-
-<p>これでやっています。</p>
-            </p>
-            <p class="article-more-link">
-                <a href="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/">
-                    続きを読む
-                </a>
-            </p>
-        </div>
-        <footer class="article-footer">
-  <div class="article-share-box">
-    <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=Markdown%e3%81%a7%e3%83%96%e3%83%ad%e3%82%b0%e3%82%92%e6%9b%b8%e3%81%8f%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f23%2fwrite-blog-with-markdown%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2016%2f07%2f23%2fwrite-blog-with-markdown%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
-    </div>
-  </div>
-
-  
-  <a href="https://tamurashingo.github.io/post/2016/07/23/write-blog-with-markdown/#disqus_thread" class="article-comment-link">
-    Comments
-  </a>
-  
-
-</footer>
-
-    </div>
-</article>
-
 
 <nav id="page-nav">
 
@@ -1375,7 +1330,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
             
             <li>
                 <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/03/19/emacs-install-succeeded/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
                     
@@ -1386,22 +1341,22 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                     
                     <p class="item-category">
                         
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/ruby">
-                        Ruby
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/emacs">
+                        emacs
                         </a>
                     </p>
                     
                     
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/" class="title">Rubyを理解するためにSchemeを作ってみました</a></p>
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/emacs-install-succeeded/" class="title">Emacs 26.1のインストール(成功編)</a></p>
                     <p class="item-date">
-                        <time datetime="2018-11-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2018-11-08</time>
+                        <time datetime="2019-03-19 17:13:09 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
                     </p>
                 </div>
             </li>
             
             <li>
                 <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/03/19/emacs-install-failed/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
                     
@@ -1412,22 +1367,22 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                     
                     <p class="item-category">
                         
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
-                        Common Lisp
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/emacs">
+                        emacs
                         </a>
                     </p>
                     
                     
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/26/cl-freee/" class="title">Common Lispで会計freeeのAPIを叩く</a></p>
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/emacs-install-failed/" class="title">Emacs 26.1のインストール(失敗編)</a></p>
                     <p class="item-date">
-                        <time datetime="2018-09-26 23:48:41 &#43;0900 JST" itemprop="datePublished">2018-09-26</time>
+                        <time datetime="2019-03-19 05:17:30 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
                     </p>
                 </div>
             </li>
             
             <li>
                 <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
                     
@@ -1438,15 +1393,15 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                     
                     <p class="item-category">
                         
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/common-lisp">
-                        Common Lisp
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
+                        linux
                         </a>
                     </p>
                     
                     
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2018/09/19/proxy-auth-dexador/" class="title">Dexadorを認証プロキシに対応させました</a></p>
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
                     <p class="item-date">
-                        <time datetime="2018-09-19 01:02:00 &#43;0900 JST" itemprop="datePublished">2018-09-19</time>
+                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
                     </p>
                 </div>
             </li>
@@ -1501,7 +1456,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/common-lisp">
                     common-lisp
                 </a>
-                <span class="category-list-count">7</span>
+                <span class="category-list-count">9</span>
             </li>
             
             <li class="category-list-item">
@@ -1517,7 +1472,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/emacs">
                     emacs
                 </a>
-                <span class="category-list-count">1</span>
+                <span class="category-list-count">3</span>
             </li>
             
             <li class="category-list-item">
@@ -1557,7 +1512,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/linux">
                     linux
                 </a>
-                <span class="category-list-count">2</span>
+                <span class="category-list-count">3</span>
             </li>
             
             <li class="category-list-item">
@@ -1566,6 +1521,14 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                     memcached
                 </a>
                 <span class="category-list-count">3</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://tamurashingo.github.io/categories/python">
+                    python
+                </a>
+                <span class="category-list-count">1</span>
             </li>
             
             <li class="category-list-item">
@@ -1581,7 +1544,7 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/ruby">
                     ruby
                 </a>
-                <span class="category-list-count">1</span>
+                <span class="category-list-count">2</span>
             </li>
             
             <li class="category-list-item">
@@ -1663,6 +1626,9 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
         <a href="https://tamurashingo.github.io/tags/apache" style="font-size: 12px;">apache</a>
         
         
+        <a href="https://tamurashingo.github.io/tags/basic" style="font-size: 12px;">basic</a>
+        
+        
         <a href="https://tamurashingo.github.io/tags/blog" style="font-size: 12px;">blog</a>
         
         
@@ -1696,6 +1662,9 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
         <a href="https://tamurashingo.github.io/tags/firebase" style="font-size: 12px;">firebase</a>
         
         
+        <a href="https://tamurashingo.github.io/tags/game" style="font-size: 12px;">game</a>
+        
+        
         <a href="https://tamurashingo.github.io/tags/ghost" style="font-size: 12px;">ghost</a>
         
         
@@ -1715,6 +1684,9 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
         
         
         <a href="https://tamurashingo.github.io/tags/hugo" style="font-size: 12px;">hugo</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/install" style="font-size: 12px;">install</a>
         
         
         <a href="https://tamurashingo.github.io/tags/iot" style="font-size: 12px;">iot</a>
@@ -1771,6 +1743,15 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
         <a href="https://tamurashingo.github.io/tags/pullrequest" style="font-size: 12px;">pullrequest</a>
         
         
+        <a href="https://tamurashingo.github.io/tags/python" style="font-size: 12px;">python</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/pyxel" style="font-size: 12px;">pyxel</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/rails" style="font-size: 12px;">rails</a>
+        
+        
         <a href="https://tamurashingo.github.io/tags/react" style="font-size: 12px;">react</a>
         
         
@@ -1799,6 +1780,9 @@ livedoor blogなどのいわゆる一般向けのブログサービスはMarkdow
         
         
         <a href="https://tamurashingo.github.io/tags/ubuntu" style="font-size: 12px;">ubuntu</a>
+        
+        
+        <a href="https://tamurashingo.github.io/tags/us%E3%82%AD%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%89" style="font-size: 12px;">usキーボード</a>
         
         
         <a href="https://tamurashingo.github.io/tags/visualstudiocode" style="font-size: 12px;">visualstudiocode</a>

@@ -35,6 +35,76 @@ Common Lispに完全に対応していなかったので&lt;a href=&#34;https://
     </item>
     
     <item>
+      <title>Emacs 26.1のインストール(成功編)</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/emacs-install-succeeded/</link>
+      <pubDate>Tue, 19 Mar 2019 17:13:09 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/emacs-install-succeeded/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;必要なライブラリを入れてやり直してみました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emacs 26.1のインストール(失敗編)</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/emacs-install-failed/</link>
+      <pubDate>Tue, 19 Mar 2019 05:17:30 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/emacs-install-failed/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;aptとかで入るEmacsは古い(と思い込んでいる)のでソースからインストールします。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 18.04のインストールと各種設定</title>
+      <link>https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/</link>
+      <pubDate>Tue, 19 Mar 2019 05:13:04 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Ubuntu 14.04を使い続けていたけどようやくバージョンアップすることにしました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>BASICのDATAを流用してキャラクターを作成する(pyxel)</title>
+      <link>https://tamurashingo.github.io/post/2019/01/11/pyxel/</link>
+      <pubDate>Fri, 11 Jan 2019 20:32:01 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/01/11/pyxel/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/kitao/pyxel&#34;&gt;pyxel&lt;/a&gt;というレトロゲームエンジンがあるので、ベーマガのプログラムを動かしてみたくなりました。
+（動かしたいゲームはこの&lt;a href=&#34;http://www.cad-red.com/basic_magazine/wtg.html&#34;&gt;WelComeToGreeNWooD!&lt;/a&gt;）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Common Lispのarray</title>
+      <link>https://tamurashingo.github.io/post/2019/01/08/array-in-commonlisp/</link>
+      <pubDate>Tue, 08 Jan 2019 01:55:36 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/01/08/array-in-commonlisp/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;どばーっと一気にメモリに読み込んで、それを１行ずつ切り出して字句解析したいとき、
+読み込んだメモリを新しい領域を作成せずにどう切り出すのか、わからなかったので調べました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Common Lispのloop</title>
+      <link>https://tamurashingo.github.io/post/2019/01/08/loop-in-commonlisp/</link>
+      <pubDate>Tue, 08 Jan 2019 01:55:36 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/01/08/loop-in-commonlisp/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.lispworks.com/documentation/lw51/CLHS/Body/m_loop.htm&#34;&gt;http://www.lispworks.com/documentation/lw51/CLHS/Body/m_loop.htm&lt;/a&gt; を見ればほとんどのことは書いてあるけど、「あーarrayを走査したいんだけどどうやるんだっけ」みたいなことはサンプルがあったほうがわかりやすいのでちょっとまとめました。&lt;/p&gt;
+
+&lt;p&gt;ちなみに、私はlexだったり字句解析に使うことが多いです。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Rubyを理解するためにSchemeを作ってみました</title>
       <link>https://tamurashingo.github.io/post/2018/11/08/scheme-on-ruby/</link>
       <pubDate>Thu, 08 Nov 2018 23:30:00 +0900</pubDate>
@@ -44,6 +114,20 @@ Common Lispに完全に対応していなかったので&lt;a href=&#34;https://
 
 &lt;p&gt;Rubyを使う会社で働いているのですが、未だにRubyを理解したと言えない状況なので、
 SICPに実装が載っているSchemeを作ってみました。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>bundle exec rails sを追った</title>
+      <link>https://tamurashingo.github.io/post/2018/11/08/bundle-exec-rails-s/</link>
+      <pubDate>Thu, 08 Nov 2018 20:00:00 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2018/11/08/bundle-exec-rails-s/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Railsわからなすぎなので追ってみました。
+バージョンは5.2あたりだった気がします。&lt;/p&gt;
+
+&lt;p&gt;目標は &lt;code&gt;Rails.application&lt;/code&gt; って何？がわかること。&lt;/p&gt;</description>
     </item>
     
     <item>
