@@ -45,7 +45,7 @@ Hugoで最新のChromaを使ってシンタックスハイライトをした記�
 
 <meta itemprop="datePublished" content="2019-05-08T23:30:00&#43;09:00" />
 <meta itemprop="dateModified" content="2019-05-08T23:30:00&#43;09:00" />
-<meta itemprop="wordCount" content="195">
+<meta itemprop="wordCount" content="1484">
 
 
 
@@ -282,10 +282,10 @@ Hugoで最新のChromaを使ってシンタックスハイライトをした記�
             <i class="fa fa-calendar"></i>
             <time datetime="2019-05-08 23:30:00 &#43;0900 JST" itemprop="datePublished">2019-05-08</time>
             &middot;
-            195
+            1484
             文字
             &middot;
-            1
+            3
             分くらいで読めます
         </div>
         
@@ -338,6 +338,280 @@ Common Lispに完全に対応していなかったので<a href="https://github.
 <h2 id="chromaの変更">Chromaの変更</h2>
 
 <p><a href="https://github.com/alecthomas/chroma/issues/43">EmacsLispは対応済み</a>だったので、そのやり方を踏襲して<a href="https://bitbucket.org/birkenfeld/pygments-main/src/7941677dc77d4f2bf0bbd6140ade85a9454b8b80/pygments/lexers/_cl_builtins.py#lines-12:232">Pygmentsから対応するコード</a>を持ってきました。</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">1 file changed, 234 insertions(+), 2 deletions(-)
+lexers/c/cl.go | 236 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+
+modified   lexers/c/cl.go
+<span class="gu">@@ -5,8 +5,232 @@ import (
+</span><span class="gu"></span> 	&#34;github.com/alecthomas/chroma/lexers/internal&#34;
+ )
+ 
+<span class="gi">+var (
+</span><span class="gi">+	clBuiltinFunctions = []string{
+</span><span class="gi">+		&#34;&lt;&#34;, &#34;&lt;=&#34;, &#34;=&#34;, &#34;&gt;&#34;, &#34;&gt;=&#34;, &#34;-&#34;, &#34;/&#34;, &#34;/=&#34;, &#34;*&#34;, &#34;+&#34;, &#34;1-&#34;, &#34;1+&#34;,
+</span><span class="gi">+		&#34;abort&#34;, &#34;abs&#34;, &#34;acons&#34;, &#34;acos&#34;, &#34;acosh&#34;, &#34;add-method&#34;, &#34;adjoin&#34;,
+</span><span class="gi">+		&#34;adjustable-array-p&#34;, &#34;adjust-array&#34;, &#34;allocate-instance&#34;,
+</span><span class="gi">+		&#34;alpha-char-p&#34;, &#34;alphanumericp&#34;, &#34;append&#34;, &#34;apply&#34;, &#34;apropos&#34;,
+</span><span class="gi">+		&#34;apropos-list&#34;, &#34;aref&#34;, &#34;arithmetic-error-operands&#34;,
+</span><span class="gi">+		&#34;arithmetic-error-operation&#34;, &#34;array-dimension&#34;, &#34;array-dimensions&#34;,
+</span><span class="gi">+		&#34;array-displacement&#34;, &#34;array-element-type&#34;, &#34;array-has-fill-pointer-p&#34;,
+</span><span class="gi">+		&#34;array-in-bounds-p&#34;, &#34;arrayp&#34;, &#34;array-rank&#34;, &#34;array-row-major-index&#34;,
+</span><span class="gi">+		&#34;array-total-size&#34;, &#34;ash&#34;, &#34;asin&#34;, &#34;asinh&#34;, &#34;assoc&#34;, &#34;assoc-if&#34;,
+</span><span class="gi">+		&#34;assoc-if-not&#34;, &#34;atan&#34;, &#34;atanh&#34;, &#34;atom&#34;, &#34;bit&#34;, &#34;bit-and&#34;, &#34;bit-andc1&#34;,
+</span><span class="gi">+		&#34;bit-andc2&#34;, &#34;bit-eqv&#34;, &#34;bit-ior&#34;, &#34;bit-nand&#34;, &#34;bit-nor&#34;, &#34;bit-not&#34;,
+</span><span class="gi">+		&#34;bit-orc1&#34;, &#34;bit-orc2&#34;, &#34;bit-vector-p&#34;, &#34;bit-xor&#34;, &#34;boole&#34;,
+</span><span class="gi">+		&#34;both-case-p&#34;, &#34;boundp&#34;, &#34;break&#34;, &#34;broadcast-stream-streams&#34;,
+</span><span class="gi">+		&#34;butlast&#34;, &#34;byte&#34;, &#34;byte-position&#34;, &#34;byte-size&#34;, &#34;caaaar&#34;, &#34;caaadr&#34;,
+</span><span class="gi">+		&#34;caaar&#34;, &#34;caadar&#34;, &#34;caaddr&#34;, &#34;caadr&#34;, &#34;caar&#34;, &#34;cadaar&#34;, &#34;cadadr&#34;,
+</span><span class="gi">+		&#34;cadar&#34;, &#34;caddar&#34;, &#34;cadddr&#34;, &#34;caddr&#34;, &#34;cadr&#34;, &#34;call-next-method&#34;, &#34;car&#34;,
+</span><span class="gi">+		&#34;cdaaar&#34;, &#34;cdaadr&#34;, &#34;cdaar&#34;, &#34;cdadar&#34;, &#34;cdaddr&#34;, &#34;cdadr&#34;, &#34;cdar&#34;,
+</span><span class="gi">+		&#34;cddaar&#34;, &#34;cddadr&#34;, &#34;cddar&#34;, &#34;cdddar&#34;, &#34;cddddr&#34;, &#34;cdddr&#34;, &#34;cddr&#34;, &#34;cdr&#34;,
+</span><span class="gi">+		&#34;ceiling&#34;, &#34;cell-error-name&#34;, &#34;cerror&#34;, &#34;change-class&#34;, &#34;char&#34;, &#34;char&lt;&#34;,
+</span><span class="gi">+		&#34;char&lt;=&#34;, &#34;char=&#34;, &#34;char&gt;&#34;, &#34;char&gt;=&#34;, &#34;char/=&#34;, &#34;character&#34;,
+</span><span class="gi">+		&#34;characterp&#34;, &#34;char-code&#34;, &#34;char-downcase&#34;, &#34;char-equal&#34;,
+</span><span class="gi">+		&#34;char-greaterp&#34;, &#34;char-int&#34;, &#34;char-lessp&#34;, &#34;char-name&#34;,
+</span><span class="gi">+		&#34;char-not-equal&#34;, &#34;char-not-greaterp&#34;, &#34;char-not-lessp&#34;, &#34;char-upcase&#34;,
+</span><span class="gi">+		&#34;cis&#34;, &#34;class-name&#34;, &#34;class-of&#34;, &#34;clear-input&#34;, &#34;clear-output&#34;,
+</span><span class="gi">+		&#34;close&#34;, &#34;clrhash&#34;, &#34;code-char&#34;, &#34;coerce&#34;, &#34;compile&#34;,
+</span><span class="gi">+		&#34;compiled-function-p&#34;, &#34;compile-file&#34;, &#34;compile-file-pathname&#34;,
+</span><span class="gi">+		&#34;compiler-macro-function&#34;, &#34;complement&#34;, &#34;complex&#34;, &#34;complexp&#34;,
+</span><span class="gi">+		&#34;compute-applicable-methods&#34;, &#34;compute-restarts&#34;, &#34;concatenate&#34;,
+</span><span class="gi">+		&#34;concatenated-stream-streams&#34;, &#34;conjugate&#34;, &#34;cons&#34;, &#34;consp&#34;,
+</span><span class="gi">+		&#34;constantly&#34;, &#34;constantp&#34;, &#34;continue&#34;, &#34;copy-alist&#34;, &#34;copy-list&#34;,
+</span><span class="gi">+		&#34;copy-pprint-dispatch&#34;, &#34;copy-readtable&#34;, &#34;copy-seq&#34;, &#34;copy-structure&#34;,
+</span><span class="gi">+		&#34;copy-symbol&#34;, &#34;copy-tree&#34;, &#34;cos&#34;, &#34;cosh&#34;, &#34;count&#34;, &#34;count-if&#34;,
+</span><span class="gi">+		&#34;count-if-not&#34;, &#34;decode-float&#34;, &#34;decode-universal-time&#34;, &#34;delete&#34;,
+</span><span class="gi">+		&#34;delete-duplicates&#34;, &#34;delete-file&#34;, &#34;delete-if&#34;, &#34;delete-if-not&#34;,
+</span><span class="gi">+		&#34;delete-package&#34;, &#34;denominator&#34;, &#34;deposit-field&#34;, &#34;describe&#34;,
+</span><span class="gi">+		&#34;describe-object&#34;, &#34;digit-char&#34;, &#34;digit-char-p&#34;, &#34;directory&#34;,
+</span><span class="gi">+		&#34;directory-namestring&#34;, &#34;disassemble&#34;, &#34;documentation&#34;, &#34;dpb&#34;,
+</span><span class="gi">+		&#34;dribble&#34;, &#34;echo-stream-input-stream&#34;, &#34;echo-stream-output-stream&#34;,
+</span><span class="gi">+		&#34;ed&#34;, &#34;eighth&#34;, &#34;elt&#34;, &#34;encode-universal-time&#34;, &#34;endp&#34;,
+</span><span class="gi">+		&#34;enough-namestring&#34;, &#34;ensure-directories-exist&#34;,
+</span><span class="gi">+		&#34;ensure-generic-function&#34;, &#34;eq&#34;, &#34;eql&#34;, &#34;equal&#34;, &#34;equalp&#34;, &#34;error&#34;,
+</span><span class="gi">+		&#34;eval&#34;, &#34;evenp&#34;, &#34;every&#34;, &#34;exp&#34;, &#34;export&#34;, &#34;expt&#34;, &#34;fboundp&#34;,
+</span><span class="gi">+		&#34;fceiling&#34;, &#34;fdefinition&#34;, &#34;ffloor&#34;, &#34;fifth&#34;, &#34;file-author&#34;,
+</span><span class="gi">+		&#34;file-error-pathname&#34;, &#34;file-length&#34;, &#34;file-namestring&#34;,
+</span><span class="gi">+		&#34;file-position&#34;, &#34;file-string-length&#34;, &#34;file-write-date&#34;,
+</span><span class="gi">+		&#34;fill&#34;, &#34;fill-pointer&#34;, &#34;find&#34;, &#34;find-all-symbols&#34;, &#34;find-class&#34;,
+</span><span class="gi">+		&#34;find-if&#34;, &#34;find-if-not&#34;, &#34;find-method&#34;, &#34;find-package&#34;, &#34;find-restart&#34;,
+</span><span class="gi">+		&#34;find-symbol&#34;, &#34;finish-output&#34;, &#34;first&#34;, &#34;float&#34;, &#34;float-digits&#34;,
+</span><span class="gi">+		&#34;floatp&#34;, &#34;float-precision&#34;, &#34;float-radix&#34;, &#34;float-sign&#34;, &#34;floor&#34;,
+</span><span class="gi">+		&#34;fmakunbound&#34;, &#34;force-output&#34;, &#34;format&#34;, &#34;fourth&#34;, &#34;fresh-line&#34;,
+</span><span class="gi">+		&#34;fround&#34;, &#34;ftruncate&#34;, &#34;funcall&#34;, &#34;function-keywords&#34;,
+</span><span class="gi">+		&#34;function-lambda-expression&#34;, &#34;functionp&#34;, &#34;gcd&#34;, &#34;gensym&#34;, &#34;gentemp&#34;,
+</span><span class="gi">+		&#34;get&#34;, &#34;get-decoded-time&#34;, &#34;get-dispatch-macro-character&#34;, &#34;getf&#34;,
+</span><span class="gi">+		&#34;gethash&#34;, &#34;get-internal-real-time&#34;, &#34;get-internal-run-time&#34;,
+</span><span class="gi">+		&#34;get-macro-character&#34;, &#34;get-output-stream-string&#34;, &#34;get-properties&#34;,
+</span><span class="gi">+		&#34;get-setf-expansion&#34;, &#34;get-universal-time&#34;, &#34;graphic-char-p&#34;,
+</span><span class="gi">+		&#34;hash-table-count&#34;, &#34;hash-table-p&#34;, &#34;hash-table-rehash-size&#34;,
+</span><span class="gi">+		&#34;hash-table-rehash-threshold&#34;, &#34;hash-table-size&#34;, &#34;hash-table-test&#34;,
+</span><span class="gi">+		&#34;host-namestring&#34;, &#34;identity&#34;, &#34;imagpart&#34;, &#34;import&#34;,
+</span><span class="gi">+		&#34;initialize-instance&#34;, &#34;input-stream-p&#34;, &#34;inspect&#34;,
+</span><span class="gi">+		&#34;integer-decode-float&#34;, &#34;integer-length&#34;, &#34;integerp&#34;,
+</span><span class="gi">+		&#34;interactive-stream-p&#34;, &#34;intern&#34;, &#34;intersection&#34;,
+</span><span class="gi">+		&#34;invalid-method-error&#34;, &#34;invoke-debugger&#34;, &#34;invoke-restart&#34;,
+</span><span class="gi">+		&#34;invoke-restart-interactively&#34;, &#34;isqrt&#34;, &#34;keywordp&#34;, &#34;last&#34;, &#34;lcm&#34;,
+</span><span class="gi">+		&#34;ldb&#34;, &#34;ldb-test&#34;, &#34;ldiff&#34;, &#34;length&#34;, &#34;lisp-implementation-type&#34;,
+</span><span class="gi">+		&#34;lisp-implementation-version&#34;, &#34;list&#34;, &#34;list*&#34;, &#34;list-all-packages&#34;,
+</span><span class="gi">+		&#34;listen&#34;, &#34;list-length&#34;, &#34;listp&#34;, &#34;load&#34;,
+</span><span class="gi">+		&#34;load-logical-pathname-translations&#34;, &#34;log&#34;, &#34;logand&#34;, &#34;logandc1&#34;,
+</span><span class="gi">+		&#34;logandc2&#34;, &#34;logbitp&#34;, &#34;logcount&#34;, &#34;logeqv&#34;, &#34;logical-pathname&#34;,
+</span><span class="gi">+		&#34;logical-pathname-translations&#34;, &#34;logior&#34;, &#34;lognand&#34;, &#34;lognor&#34;,
+</span><span class="gi">+		&#34;lognot&#34;, &#34;logorc1&#34;, &#34;logorc2&#34;, &#34;logtest&#34;, &#34;logxor&#34;, &#34;long-site-name&#34;,
+</span><span class="gi">+		&#34;lower-case-p&#34;, &#34;machine-instance&#34;, &#34;machine-type&#34;, &#34;machine-version&#34;,
+</span><span class="gi">+		&#34;macroexpand&#34;, &#34;macroexpand-1&#34;, &#34;macro-function&#34;, &#34;make-array&#34;,
+</span><span class="gi">+		&#34;make-broadcast-stream&#34;, &#34;make-concatenated-stream&#34;, &#34;make-condition&#34;,
+</span><span class="gi">+		&#34;make-dispatch-macro-character&#34;, &#34;make-echo-stream&#34;, &#34;make-hash-table&#34;,
+</span><span class="gi">+		&#34;make-instance&#34;, &#34;make-instances-obsolete&#34;, &#34;make-list&#34;,
+</span><span class="gi">+		&#34;make-load-form&#34;, &#34;make-load-form-saving-slots&#34;, &#34;make-package&#34;,
+</span><span class="gi">+		&#34;make-pathname&#34;, &#34;make-random-state&#34;, &#34;make-sequence&#34;, &#34;make-string&#34;,
+</span><span class="gi">+		&#34;make-string-input-stream&#34;, &#34;make-string-output-stream&#34;, &#34;make-symbol&#34;,
+</span><span class="gi">+		&#34;make-synonym-stream&#34;, &#34;make-two-way-stream&#34;, &#34;makunbound&#34;, &#34;map&#34;,
+</span><span class="gi">+		&#34;mapc&#34;, &#34;mapcan&#34;, &#34;mapcar&#34;, &#34;mapcon&#34;, &#34;maphash&#34;, &#34;map-into&#34;, &#34;mapl&#34;,
+</span><span class="gi">+		&#34;maplist&#34;, &#34;mask-field&#34;, &#34;max&#34;, &#34;member&#34;, &#34;member-if&#34;, &#34;member-if-not&#34;,
+</span><span class="gi">+		&#34;merge&#34;, &#34;merge-pathnames&#34;, &#34;method-combination-error&#34;,
+</span><span class="gi">+		&#34;method-qualifiers&#34;, &#34;min&#34;, &#34;minusp&#34;, &#34;mismatch&#34;, &#34;mod&#34;,
+</span><span class="gi">+		&#34;muffle-warning&#34;, &#34;name-char&#34;, &#34;namestring&#34;, &#34;nbutlast&#34;, &#34;nconc&#34;,
+</span><span class="gi">+		&#34;next-method-p&#34;, &#34;nintersection&#34;, &#34;ninth&#34;, &#34;no-applicable-method&#34;,
+</span><span class="gi">+		&#34;no-next-method&#34;, &#34;not&#34;, &#34;notany&#34;, &#34;notevery&#34;, &#34;nreconc&#34;, &#34;nreverse&#34;,
+</span><span class="gi">+		&#34;nset-difference&#34;, &#34;nset-exclusive-or&#34;, &#34;nstring-capitalize&#34;,
+</span><span class="gi">+		&#34;nstring-downcase&#34;, &#34;nstring-upcase&#34;, &#34;nsublis&#34;, &#34;nsubst&#34;, &#34;nsubst-if&#34;,
+</span><span class="gi">+		&#34;nsubst-if-not&#34;, &#34;nsubstitute&#34;, &#34;nsubstitute-if&#34;, &#34;nsubstitute-if-not&#34;,
+</span><span class="gi">+		&#34;nth&#34;, &#34;nthcdr&#34;, &#34;null&#34;, &#34;numberp&#34;, &#34;numerator&#34;, &#34;nunion&#34;, &#34;oddp&#34;,
+</span><span class="gi">+		&#34;open&#34;, &#34;open-stream-p&#34;, &#34;output-stream-p&#34;, &#34;package-error-package&#34;,
+</span><span class="gi">+		&#34;package-name&#34;, &#34;package-nicknames&#34;, &#34;packagep&#34;,
+</span><span class="gi">+		&#34;package-shadowing-symbols&#34;, &#34;package-used-by-list&#34;, &#34;package-use-list&#34;,
+</span><span class="gi">+		&#34;pairlis&#34;, &#34;parse-integer&#34;, &#34;parse-namestring&#34;, &#34;pathname&#34;,
+</span><span class="gi">+		&#34;pathname-device&#34;, &#34;pathname-directory&#34;, &#34;pathname-host&#34;,
+</span><span class="gi">+		&#34;pathname-match-p&#34;, &#34;pathname-name&#34;, &#34;pathnamep&#34;, &#34;pathname-type&#34;,
+</span><span class="gi">+		&#34;pathname-version&#34;, &#34;peek-char&#34;, &#34;phase&#34;, &#34;plusp&#34;, &#34;position&#34;,
+</span><span class="gi">+		&#34;position-if&#34;, &#34;position-if-not&#34;, &#34;pprint&#34;, &#34;pprint-dispatch&#34;,
+</span><span class="gi">+		&#34;pprint-fill&#34;, &#34;pprint-indent&#34;, &#34;pprint-linear&#34;, &#34;pprint-newline&#34;,
+</span><span class="gi">+		&#34;pprint-tab&#34;, &#34;pprint-tabular&#34;, &#34;prin1&#34;, &#34;prin1-to-string&#34;, &#34;princ&#34;,
+</span><span class="gi">+		&#34;princ-to-string&#34;, &#34;print&#34;, &#34;print-object&#34;, &#34;probe-file&#34;, &#34;proclaim&#34;,
+</span><span class="gi">+		&#34;provide&#34;, &#34;random&#34;, &#34;random-state-p&#34;, &#34;rassoc&#34;, &#34;rassoc-if&#34;,
+</span><span class="gi">+		&#34;rassoc-if-not&#34;, &#34;rational&#34;, &#34;rationalize&#34;, &#34;rationalp&#34;, &#34;read&#34;,
+</span><span class="gi">+		&#34;read-byte&#34;, &#34;read-char&#34;, &#34;read-char-no-hang&#34;, &#34;read-delimited-list&#34;,
+</span><span class="gi">+		&#34;read-from-string&#34;, &#34;read-line&#34;, &#34;read-preserving-whitespace&#34;,
+</span><span class="gi">+		&#34;read-sequence&#34;, &#34;readtable-case&#34;, &#34;readtablep&#34;, &#34;realp&#34;, &#34;realpart&#34;,
+</span><span class="gi">+		&#34;reduce&#34;, &#34;reinitialize-instance&#34;, &#34;rem&#34;, &#34;remhash&#34;, &#34;remove&#34;,
+</span><span class="gi">+		&#34;remove-duplicates&#34;, &#34;remove-if&#34;, &#34;remove-if-not&#34;, &#34;remove-method&#34;,
+</span><span class="gi">+		&#34;remprop&#34;, &#34;rename-file&#34;, &#34;rename-package&#34;, &#34;replace&#34;, &#34;require&#34;,
+</span><span class="gi">+		&#34;rest&#34;, &#34;restart-name&#34;, &#34;revappend&#34;, &#34;reverse&#34;, &#34;room&#34;, &#34;round&#34;,
+</span><span class="gi">+		&#34;row-major-aref&#34;, &#34;rplaca&#34;, &#34;rplacd&#34;, &#34;sbit&#34;, &#34;scale-float&#34;, &#34;schar&#34;,
+</span><span class="gi">+		&#34;search&#34;, &#34;second&#34;, &#34;set&#34;, &#34;set-difference&#34;,
+</span><span class="gi">+		&#34;set-dispatch-macro-character&#34;, &#34;set-exclusive-or&#34;,
+</span><span class="gi">+		&#34;set-macro-character&#34;, &#34;set-pprint-dispatch&#34;, &#34;set-syntax-from-char&#34;,
+</span><span class="gi">+		&#34;seventh&#34;, &#34;shadow&#34;, &#34;shadowing-import&#34;, &#34;shared-initialize&#34;,
+</span><span class="gi">+		&#34;short-site-name&#34;, &#34;signal&#34;, &#34;signum&#34;, &#34;simple-bit-vector-p&#34;,
+</span><span class="gi">+		&#34;simple-condition-format-arguments&#34;, &#34;simple-condition-format-control&#34;,
+</span><span class="gi">+		&#34;simple-string-p&#34;, &#34;simple-vector-p&#34;, &#34;sin&#34;, &#34;sinh&#34;, &#34;sixth&#34;, &#34;sleep&#34;,
+</span><span class="gi">+		&#34;slot-boundp&#34;, &#34;slot-exists-p&#34;, &#34;slot-makunbound&#34;, &#34;slot-missing&#34;,
+</span><span class="gi">+		&#34;slot-unbound&#34;, &#34;slot-value&#34;, &#34;software-type&#34;, &#34;software-version&#34;,
+</span><span class="gi"></span><span class="gi">+		&#34;some&#34;, &#34;sort&#34;, &#34;special-operator-p&#34;, &#34;sqrt&#34;, &#34;stable-sort&#34;,
+</span><span class="gi">+		&#34;standard-char-p&#34;, &#34;store-value&#34;, &#34;stream-element-type&#34;,
+</span><span class="gi">+		&#34;stream-error-stream&#34;, &#34;stream-external-format&#34;, &#34;streamp&#34;, &#34;string&#34;,
+</span><span class="gi">+		&#34;string&lt;&#34;, &#34;string&lt;=&#34;, &#34;string=&#34;, &#34;string&gt;&#34;, &#34;string&gt;=&#34;, &#34;string/=&#34;,
+</span><span class="gi">+		&#34;string-capitalize&#34;, &#34;string-downcase&#34;, &#34;string-equal&#34;,
+</span><span class="gi">+		&#34;string-greaterp&#34;, &#34;string-left-trim&#34;, &#34;string-lessp&#34;,
+</span><span class="gi">+		&#34;string-not-equal&#34;, &#34;string-not-greaterp&#34;, &#34;string-not-lessp&#34;,
+</span><span class="gi">+		&#34;stringp&#34;, &#34;string-right-trim&#34;, &#34;string-trim&#34;, &#34;string-upcase&#34;,
+</span><span class="gi">+		&#34;sublis&#34;, &#34;subseq&#34;, &#34;subsetp&#34;, &#34;subst&#34;, &#34;subst-if&#34;, &#34;subst-if-not&#34;,
+</span><span class="gi">+		&#34;substitute&#34;, &#34;substitute-if&#34;, &#34;substitute-if-not&#34;, &#34;subtypep&#34;, &#34;svref&#34;,
+</span><span class="gi">+		&#34;sxhash&#34;, &#34;symbol-function&#34;, &#34;symbol-name&#34;, &#34;symbolp&#34;, &#34;symbol-package&#34;,
+</span><span class="gi">+		&#34;symbol-plist&#34;, &#34;symbol-value&#34;, &#34;synonym-stream-symbol&#34;, &#34;syntax:&#34;,
+</span><span class="gi">+		&#34;tailp&#34;, &#34;tan&#34;, &#34;tanh&#34;, &#34;tenth&#34;, &#34;terpri&#34;, &#34;third&#34;,
+</span><span class="gi">+		&#34;translate-logical-pathname&#34;, &#34;translate-pathname&#34;, &#34;tree-equal&#34;,
+</span><span class="gi">+		&#34;truename&#34;, &#34;truncate&#34;, &#34;two-way-stream-input-stream&#34;,
+</span><span class="gi">+		&#34;two-way-stream-output-stream&#34;, &#34;type-error-datum&#34;,
+</span><span class="gi">+		&#34;type-error-expected-type&#34;, &#34;type-of&#34;, &#34;typep&#34;, &#34;unbound-slot-instance&#34;,
+</span><span class="gi">+		&#34;unexport&#34;, &#34;unintern&#34;, &#34;union&#34;, &#34;unread-char&#34;, &#34;unuse-package&#34;,
+</span><span class="gi">+		&#34;update-instance-for-different-class&#34;,
+</span><span class="gi">+		&#34;update-instance-for-redefined-class&#34;, &#34;upgraded-array-element-type&#34;,
+</span><span class="gi">+		&#34;upgraded-complex-part-type&#34;, &#34;upper-case-p&#34;, &#34;use-package&#34;,
+</span><span class="gi">+		&#34;user-homedir-pathname&#34;, &#34;use-value&#34;, &#34;values&#34;, &#34;values-list&#34;, &#34;vector&#34;,
+</span><span class="gi">+		&#34;vectorp&#34;, &#34;vector-pop&#34;, &#34;vector-push&#34;, &#34;vector-push-extend&#34;, &#34;warn&#34;,
+</span><span class="gi">+		&#34;wild-pathname-p&#34;, &#34;write&#34;, &#34;write-byte&#34;, &#34;write-char&#34;, &#34;write-line&#34;,
+</span><span class="gi">+		&#34;write-sequence&#34;, &#34;write-string&#34;, &#34;write-to-string&#34;, &#34;yes-or-no-p&#34;,
+</span><span class="gi">+		&#34;y-or-n-p&#34;, &#34;zerop&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+
+</span><span class="gi">+	clSpecialForms = []string{
+</span><span class="gi">+		&#34;block&#34;, &#34;catch&#34;, &#34;declare&#34;, &#34;eval-when&#34;, &#34;flet&#34;, &#34;function&#34;, &#34;go&#34;, &#34;if&#34;,
+</span><span class="gi">+		&#34;labels&#34;, &#34;lambda&#34;, &#34;let&#34;, &#34;let*&#34;, &#34;load-time-value&#34;, &#34;locally&#34;, &#34;macrolet&#34;,
+</span><span class="gi">+		&#34;multiple-value-call&#34;, &#34;multiple-value-prog1&#34;, &#34;progn&#34;, &#34;progv&#34;, &#34;quote&#34;,
+</span><span class="gi">+		&#34;return-from&#34;, &#34;setq&#34;, &#34;symbol-macrolet&#34;, &#34;tagbody&#34;, &#34;the&#34;, &#34;throw&#34;,
+</span><span class="gi">+		&#34;unwind-protect&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+
+</span><span class="gi">+	clMacros = []string{
+</span><span class="gi">+		&#34;and&#34;, &#34;assert&#34;, &#34;call-method&#34;, &#34;case&#34;, &#34;ccase&#34;, &#34;check-type&#34;, &#34;cond&#34;,
+</span><span class="gi">+		&#34;ctypecase&#34;, &#34;decf&#34;, &#34;declaim&#34;, &#34;defclass&#34;, &#34;defconstant&#34;, &#34;defgeneric&#34;,
+</span><span class="gi">+		&#34;define-compiler-macro&#34;, &#34;define-condition&#34;, &#34;define-method-combination&#34;,
+</span><span class="gi">+		&#34;define-modify-macro&#34;, &#34;define-setf-expander&#34;, &#34;define-symbol-macro&#34;,
+</span><span class="gi">+		&#34;defmacro&#34;, &#34;defmethod&#34;, &#34;defpackage&#34;, &#34;defparameter&#34;, &#34;defsetf&#34;,
+</span><span class="gi">+		&#34;defstruct&#34;, &#34;deftype&#34;, &#34;defun&#34;, &#34;defvar&#34;, &#34;destructuring-bind&#34;, &#34;do&#34;,
+</span><span class="gi">+		&#34;do*&#34;, &#34;do-all-symbols&#34;, &#34;do-external-symbols&#34;, &#34;dolist&#34;, &#34;do-symbols&#34;,
+</span><span class="gi">+		&#34;dotimes&#34;, &#34;ecase&#34;, &#34;etypecase&#34;, &#34;formatter&#34;, &#34;handler-bind&#34;,
+</span><span class="gi">+		&#34;handler-case&#34;, &#34;ignore-errors&#34;, &#34;incf&#34;, &#34;in-package&#34;, &#34;lambda&#34;, &#34;loop&#34;,
+</span><span class="gi">+		&#34;loop-finish&#34;, &#34;make-method&#34;, &#34;multiple-value-bind&#34;, &#34;multiple-value-list&#34;,
+</span><span class="gi">+		&#34;multiple-value-setq&#34;, &#34;nth-value&#34;, &#34;or&#34;, &#34;pop&#34;,
+</span><span class="gi">+		&#34;pprint-exit-if-list-exhausted&#34;, &#34;pprint-logical-block&#34;, &#34;pprint-pop&#34;,
+</span><span class="gi">+		&#34;print-unreadable-object&#34;, &#34;prog&#34;, &#34;prog*&#34;, &#34;prog1&#34;, &#34;prog2&#34;, &#34;psetf&#34;,
+</span><span class="gi">+		&#34;psetq&#34;, &#34;push&#34;, &#34;pushnew&#34;, &#34;remf&#34;, &#34;restart-bind&#34;, &#34;restart-case&#34;,
+</span><span class="gi">+		&#34;return&#34;, &#34;rotatef&#34;, &#34;setf&#34;, &#34;shiftf&#34;, &#34;step&#34;, &#34;time&#34;, &#34;trace&#34;, &#34;typecase&#34;,
+</span><span class="gi">+		&#34;unless&#34;, &#34;untrace&#34;, &#34;when&#34;, &#34;with-accessors&#34;, &#34;with-compilation-unit&#34;,
+</span><span class="gi">+		&#34;with-condition-restarts&#34;, &#34;with-hash-table-iterator&#34;,
+</span><span class="gi">+		&#34;with-input-from-string&#34;, &#34;with-open-file&#34;, &#34;with-open-stream&#34;,
+</span><span class="gi">+		&#34;with-output-to-string&#34;, &#34;with-package-iterator&#34;, &#34;with-simple-restart&#34;,
+</span><span class="gi">+		&#34;with-slots&#34;, &#34;with-standard-io-syntax&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+
+</span><span class="gi">+	clLambdaListKeywords = []string{
+</span><span class="gi">+		&#34;&amp;allow-other-keys&#34;, &#34;&amp;aux&#34;, &#34;&amp;body&#34;, &#34;&amp;environment&#34;, &#34;&amp;key&#34;, &#34;&amp;optional&#34;,
+</span><span class="gi">+		&#34;&amp;rest&#34;, &#34;&amp;whole&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+
+</span><span class="gi">+	clDeclarations = []string{
+</span><span class="gi">+		&#34;dynamic-extent&#34;, &#34;ignore&#34;, &#34;optimize&#34;, &#34;ftype&#34;, &#34;inline&#34;, &#34;special&#34;,
+</span><span class="gi">+		&#34;ignorable&#34;, &#34;notinline&#34;, &#34;type&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+
+</span><span class="gi">+	clBuiltinTypes = []string{
+</span><span class="gi">+		&#34;atom&#34;, &#34;boolean&#34;, &#34;base-char&#34;, &#34;base-string&#34;, &#34;bignum&#34;, &#34;bit&#34;,
+</span><span class="gi">+		&#34;compiled-function&#34;, &#34;extended-char&#34;, &#34;fixnum&#34;, &#34;keyword&#34;, &#34;nil&#34;,
+</span><span class="gi">+		&#34;signed-byte&#34;, &#34;short-float&#34;, &#34;single-float&#34;, &#34;double-float&#34;, &#34;long-float&#34;,
+</span><span class="gi">+		&#34;simple-array&#34;, &#34;simple-base-string&#34;, &#34;simple-bit-vector&#34;, &#34;simple-string&#34;,
+</span><span class="gi">+		&#34;simple-vector&#34;, &#34;standard-char&#34;, &#34;unsigned-byte&#34;,
+</span><span class="gi">+
+</span><span class="gi">+		// Condition Types
+</span><span class="gi">+		&#34;arithmetic-error&#34;, &#34;cell-error&#34;, &#34;condition&#34;, &#34;control-error&#34;,
+</span><span class="gi">+		&#34;division-by-zero&#34;, &#34;end-of-file&#34;, &#34;error&#34;, &#34;file-error&#34;,
+</span><span class="gi">+		&#34;floating-point-inexact&#34;, &#34;floating-point-overflow&#34;,
+</span><span class="gi">+		&#34;floating-point-underflow&#34;, &#34;floating-point-invalid-operation&#34;,
+</span><span class="gi">+		&#34;parse-error&#34;, &#34;package-error&#34;, &#34;print-not-readable&#34;, &#34;program-error&#34;,
+</span><span class="gi">+		&#34;reader-error&#34;, &#34;serious-condition&#34;, &#34;simple-condition&#34;, &#34;simple-error&#34;,
+</span><span class="gi">+		&#34;simple-type-error&#34;, &#34;simple-warning&#34;, &#34;stream-error&#34;, &#34;storage-condition&#34;,
+</span><span class="gi">+		&#34;style-warning&#34;, &#34;type-error&#34;, &#34;unbound-variable&#34;, &#34;unbound-slot&#34;,
+</span><span class="gi">+		&#34;undefined-function&#34;, &#34;warning&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+
+</span><span class="gi">+	clBuiltinClasses = []string{
+</span><span class="gi">+		&#34;array&#34;, &#34;broadcast-stream&#34;, &#34;bit-vector&#34;, &#34;built-in-class&#34;, &#34;character&#34;,
+</span><span class="gi">+		&#34;class&#34;, &#34;complex&#34;, &#34;concatenated-stream&#34;, &#34;cons&#34;, &#34;echo-stream&#34;,
+</span><span class="gi">+		&#34;file-stream&#34;, &#34;float&#34;, &#34;function&#34;, &#34;generic-function&#34;, &#34;hash-table&#34;,
+</span><span class="gi">+		&#34;integer&#34;, &#34;list&#34;, &#34;logical-pathname&#34;, &#34;method-combination&#34;, &#34;method&#34;,
+</span><span class="gi">+		&#34;null&#34;, &#34;number&#34;, &#34;package&#34;, &#34;pathname&#34;, &#34;ratio&#34;, &#34;rational&#34;, &#34;readtable&#34;,
+</span><span class="gi">+		&#34;real&#34;, &#34;random-state&#34;, &#34;restart&#34;, &#34;sequence&#34;, &#34;standard-class&#34;,
+</span><span class="gi">+		&#34;standard-generic-function&#34;, &#34;standard-method&#34;, &#34;standard-object&#34;,
+</span><span class="gi">+		&#34;string-stream&#34;, &#34;stream&#34;, &#34;string&#34;, &#34;structure-class&#34;, &#34;structure-object&#34;,
+</span><span class="gi">+		&#34;symbol&#34;, &#34;synonym-stream&#34;, &#34;t&#34;, &#34;two-way-stream&#34;, &#34;vector&#34;,
+</span><span class="gi">+	}
+</span><span class="gi">+)
+</span><span class="gi">+
+</span><span class="gi"></span> // Common Lisp lexer.
+<span class="gd">-var CommonLisp = internal.Register(MustNewLexer(
+</span><span class="gd"></span><span class="gi">+var CommonLisp = internal.Register(TypeRemappingLexer(MustNewLexer(
+</span><span class="gi"></span> 	&amp;Config{
+ 		Name:            &#34;Common Lisp&#34;,
+ 		Aliases:         []string{&#34;common-lisp&#34;, &#34;cl&#34;, &#34;lisp&#34;},
+<span class="gu">@@ -71,4 +295,12 @@ var CommonLisp = internal.Register(MustNewLexer(
+</span><span class="gu"></span> 			{`\)`, Punctuation, Pop(1)},
+ 		},
+ 	},
+<span class="gd">-))
+</span><span class="gd"></span><span class="gi">+), TypeMapping{
+</span><span class="gi">+	{NameVariable, NameFunction, clBuiltinFunctions},
+</span><span class="gi">+	{NameVariable, Keyword, clSpecialForms},
+</span><span class="gi">+	{NameVariable, NameBuiltin, clMacros},
+</span><span class="gi">+	{NameVariable, Keyword, clLambdaListKeywords},
+</span><span class="gi">+	{NameVariable, Keyword, clDeclarations},
+</span><span class="gi">+	{NameVariable, KeywordType, clBuiltinTypes},
+</span><span class="gi">+	{NameVariable, NameClass, clBuiltinClasses},
+</span><span class="gi">+}))
+</span></code></pre></div>
+<p><a href="https://github.com/alecthomas/chroma/pull/252">PR</a>を作ったら速攻で取り込んでいただきました。</p>
+
+<h2 id="これを使うと">これを使うと..</h2>
+
+<p>これが</p>
+
+<figure>
+    <img src="before.png"/> 
+</figure>
+
+
+<p>こうなります。</p>
+
+<figure>
+    <img src="after.png"/> 
+</figure>
+
+
+<h2 id="残課題">残課題</h2>
+
+<p>ClojureとかSchemeはまだ対応していないんです。。。</p>
         </div>
         <footer class="article-footer">
   <div class="article-share-box">
