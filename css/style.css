@@ -2113,3 +2113,15 @@ ol.toc {
   font-family: Verdana;
   font-weight: bold;
 }
+
+
+.article-related {
+  border-top: 1px solid #eceff2;
+  padding-top: 1.6em;
+  margin: 0 20px 20px;
+}
+
+.article-related a:hover {
+  color: #0887ba;
+  text-decoration: underline;
+}
