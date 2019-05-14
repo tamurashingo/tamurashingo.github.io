@@ -540,80 +540,20 @@ $ yo angular sample</code></pre></div>
 <p>ちょっと紹介しきれませんでした。</p>
         </div>
         <footer class="article-footer">
-    <a data-url="https://tamurashingo.github.io/post/2015/07/15/frontend-tools/" data-id="eadc3f711dc09955b4dde32b92c7c6ad" class="article-share-link">
-        <i class="fa fa-share"></i>
-        Share
-    </a>
-    
-    <a href="https://tamurashingo.github.io/post/2015/07/15/frontend-tools/#disqus_thread" class="article-comment-link">
-        Comments
-    </a>
-    
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=%e3%83%95%e3%83%ad%e3%83%b3%e3%83%88%e3%82%a8%e3%83%b3%e3%83%89%e3%81%ae%e9%96%8b%e7%99%ba%e3%81%ab%e4%bd%bf%e3%81%86%e3%83%84%e3%83%bc%e3%83%ab%e9%a1%9e%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2015%2f07%2f15%2ffrontend-tools%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2015%2f07%2f15%2ffrontend-tools%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2015/07/15/frontend-tools/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+    </div>
+  </div>
 
-    <script>
-    (function ($) {
-        
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
+  
+  <a href="https://tamurashingo.github.io/post/2015/07/15/frontend-tools/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
 
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-    </script>
 </footer>
 
     </div>
