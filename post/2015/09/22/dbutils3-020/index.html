@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
     <title>DBUtils3 version 0.2.0 &middot; Web技術と親しむ</title>
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="tamura shingo">
@@ -40,12 +40,11 @@ List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, par
 のように名前付きパラメータで値を指定できるようにしました。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/" />
-<meta property="article:published_time" content="2015-09-22T12:00:26&#43;09:00"/>
-<meta property="article:modified_time" content="2015-09-22T12:00:26&#43;09:00"/>
+<meta property="article:published_time" content="2015-09-22T12:00:26+09:00" />
+<meta property="article:modified_time" content="2015-09-22T12:00:26+09:00" />
 
     
-    
-<meta itemprop="name" content="DBUtils3 version 0.2.0">
+    <meta itemprop="name" content="DBUtils3 version 0.2.0">
 <meta itemprop="description" content="tamuraです。
 DBUtils3のバージョンアップを行いました。
 
@@ -67,7 +66,7 @@ List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, par
 
 <meta itemprop="datePublished" content="2015-09-22T12:00:26&#43;09:00" />
 <meta itemprop="dateModified" content="2015-09-22T12:00:26&#43;09:00" />
-<meta itemprop="wordCount" content="1290">
+<meta itemprop="wordCount" content="1291">
 
 
 
@@ -214,7 +213,7 @@ List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, par
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        68
+        69
         <span>記事</span>
       </div>
       <div class="article-info-block">
@@ -315,7 +314,7 @@ List&lt;ResultBean&gt; result = conn.executeQueryWithParam(ResultBean.class, par
             <i class="fa fa-calendar"></i>
             <time datetime="2015-09-22 12:00:26 &#43;0900 JST" itemprop="datePublished">2015-09-22</time>
             &middot;
-            1290
+            1291
             文字
             &middot;
             3
@@ -374,9 +373,9 @@ DBUtils3のバージョンアップを行いました。</p>
 <span class="k">where</span>
   <span class="n">id</span> <span class="o">=</span> <span class="p">:</span><span class="n">id</span></code></pre></div>
 <p>のようにSQLを定義して</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="o">();</span>
-<span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">123</span><span class="o">);</span>
-<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">executeQueryWithParam</span><span class="o">(</span><span class="n">ResultBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="nf">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="p">();</span>
+<span class="n">param</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;id&#34;</span><span class="p">,</span> <span class="n">123</span><span class="p">);</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="nf">result</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="na">executeQueryWithParam</span><span class="p">(</span><span class="n">ResultBean</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">param</span><span class="p">);</span></code></pre></div>
 <p>のように名前付きパラメータで値を指定できるようにしました。</p>
 
 <h2 id="きっかけ">きっかけ</h2>
@@ -407,14 +406,14 @@ DBUtils3のバージョンアップを行いました。</p>
 <span class="k">and</span>
   <span class="n">m4</span><span class="p">.</span><span class="n">start_ymd</span> <span class="o">&lt;=</span> <span class="o">?</span> <span class="k">and</span> <span class="o">?</span> <span class="o">&lt;</span> <span class="n">m4</span><span class="p">.</span><span class="n">end_ymd</span></code></pre></div>
 <p>DBUtilsでSQLを発行するとこういうコードになります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">conn</span><span class="o">.</span><span class="na">prepare</span><span class="o">(</span><span class="n">selectSQL</span><span class="o">);</span>  
-<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">ResultBean</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>  
-    <span class="o">...,</span>
-    <span class="o">...,</span>
-    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
-    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
-    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">,</span>
-    <span class="n">rangeStartYmd</span><span class="o">,</span> <span class="n">rangeEndYmd</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">conn</span><span class="p">.</span><span class="na">prepare</span><span class="p">(</span><span class="n">selectSQL</span><span class="p">);</span>  
+<span class="n">List</span><span class="o">&lt;</span><span class="n">ResultBean</span><span class="o">&gt;</span> <span class="nf">result</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">ResultBean</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>  
+    <span class="p">...,</span>
+    <span class="p">...,</span>
+    <span class="n">rangeStartYmd</span><span class="p">,</span> <span class="n">rangeEndYmd</span><span class="p">,</span>
+    <span class="n">rangeStartYmd</span><span class="p">,</span> <span class="n">rangeEndYmd</span><span class="p">,</span>
+    <span class="n">rangeStartYmd</span><span class="p">,</span> <span class="n">rangeEndYmd</span><span class="p">,</span>
+    <span class="n">rangeStartYmd</span><span class="p">,</span> <span class="n">rangeEndYmd</span><span class="p">);</span></code></pre></div>
 <p>どの<code>?</code>に対するパラメータなのか分かりにくくなります。</p>
 
 <h2 id="実装方法">実装方法</h2>
@@ -457,42 +456,44 @@ NAMED_PARAM
 <li>名前付きパラメータから名前を取得して、リストに詰め込む
 -組み立て中のSQLは?を入れる</li>
 </ul></li>
-<li>NAMED_PARAM以外の場合
+
+<li><p>NAMED_PARAM以外の場合</p>
 
 <ul>
-<li>組み立て中のSQLに返ってきた字句をそのまま入れる</li>
+<li><p>組み立て中のSQLに返ってきた字句をそのまま入れる</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 何番目の?がなんというパラメータだったかを保持するリスト
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">keyNames</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="nf">String</span> <span class="n">analyzeSQL</span><span class="p">(</span><span class="n">String</span> <span class="nf">sql</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// ANTLRで生成したLexer
+</span><span class="c1"></span><span class="n">SQLLexer</span> <span class="nf">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLLexer</span><span class="p">(</span><span class="k">new</span> <span class="n">ANTLRInputStream</span><span class="p">(</span><span class="n">sql</span><span class="p">));</span>
+<span class="c1">// SQLを生成する
+</span><span class="c1"></span><span class="n">StrinbBuilder</span> <span class="nf">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+<span class="n">keyNames</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+
+
+<span class="n">Token</span> <span class="nf">token</span> <span class="o">=</span> <span class="n">l</span><span class="p">.</span><span class="na">nextToken</span><span class="p">();</span>
+<span class="k">while</span><span class="p">(</span><span class="n">token</span><span class="p">.</span><span class="na">getType</span><span class="p">()</span> <span class="o">!=</span> <span class="n">SQLLexer</span><span class="p">.</span><span class="na">EOF</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">switch</span> <span class="p">(</span><span class="n">token</span><span class="p">.</span><span class="na">getType</span><span class="p">())</span> <span class="p">{</span>
+<span class="k">case</span> <span class="n">SQLLexer</span><span class="p">.</span><span class="na">NAMED_PARAM</span><span class="o">:</span>
+    <span class="c1">// 先頭のコロンを除去
+</span><span class="c1"></span>    <span class="n">keyNames</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">token</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">substring</span><span class="p">(</span><span class="n">1</span><span class="p">));</span>
+    <span class="c1">// 名前付きパラメータを?に置換
+</span><span class="c1"></span>    <span class="n">buf</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&#34;?&#34;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="nl">
+</span><span class="nl">default:</span>
+    <span class="c1">// そのまま詰め込む
+</span><span class="c1"></span>    <span class="n">buf</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">token</span><span class="p">.</span><span class="na">getText</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="p">.</span><span class="na">nextToken</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">buf</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div></li>
 </ul></li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 何番目の?がなんというパラメータだったかを保持するリスト
-</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keyNames</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">analyzeSQL</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// ANTLRで生成したLexer
-</span><span class="c1"></span>    <span class="n">SQLLexer</span> <span class="n">l</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLLexer</span><span class="o">(</span><span class="k">new</span> <span class="n">ANTLRInputStream</span><span class="o">(</span><span class="n">sql</span><span class="o">));</span>
-    <span class="c1">// SQLを生成する
-</span><span class="c1"></span>    <span class="n">StrinbBuilder</span> <span class="n">buf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-    <span class="n">keyNames</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-
-
-    <span class="n">Token</span> <span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
-    <span class="k">while</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">!=</span> <span class="n">SQLLexer</span><span class="o">.</span><span class="na">EOF</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">switch</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getType</span><span class="o">())</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="n">SQLLexer</span><span class="o">.</span><span class="na">NAMED_PARAM</span><span class="o">:</span>
-            <span class="c1">// 先頭のコロンを除去
-</span><span class="c1"></span>            <span class="n">keyNames</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getText</span><span class="o">().</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">));</span>
-            <span class="c1">// 名前付きパラメータを?に置換
-</span><span class="c1"></span>            <span class="n">buf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;?&#34;</span><span class="o">);</span>
-            <span class="k">break</span><span class="o">;</span><span class="nl">
-</span><span class="nl">
-</span><span class="nl">        default:</span>
-            <span class="c1">// そのまま詰め込む
-</span><span class="c1"></span>            <span class="n">buf</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
-        <span class="o">}</span>
-        <span class="n">token</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="na">nextToken</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
 <p>このメソッドに名前付きパラメータで記述したSQLを渡すと、通常の <code>prepare</code> に渡す形式のSQLに変換します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span>
   <span class="o">*</span>
@@ -517,38 +518,38 @@ NAMED_PARAM
 <h3 id="sqlの実行">SQLの実行</h3>
 
 <p><code>Map</code>みたいなクラスを作ってそこにキーと値をセットします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Param</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">param</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">Param</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="nf">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">param</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">Param</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">Param</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">Param</span> <span class="nf">put</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="n">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">param</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
-        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">Param</span> <span class="n">put</span><span class="p">(</span><span class="n">String</span> <span class="nf">key</span><span class="p">,</span> <span class="n">Object</span> <span class="nf">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">param</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">Object</span> <span class="n">get</span><span class="p">(</span><span class="n">String</span> <span class="nf">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">param</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <p><code>put</code>で<code>Param</code>を返しているのはこんなことをやりたいためです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="n">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="o">().</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="n">123</span><span class="o">).</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="s">&#34;tamura&#34;</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Param</span> <span class="nf">param</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Param</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;id&#34;</span><span class="p">,</span> <span class="n">123</span><span class="p">).</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">,</span> <span class="s">&#34;tamura&#34;</span><span class="p">);</span></code></pre></div>
 <p>このクラスで名前とそのパラメータをセットします。
 <code>executeQuery</code>等に渡すため、このパラメータを<code>Object[]</code>に変換する必要があります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Object</span><span class="o">[]</span> <span class="nf">createParams</span><span class="o">(</span><span class="n">Param</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;(</span><span class="n">keyNames</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">key:</span> <span class="n">keyNames</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">p</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">param</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">));</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="o">(</span><span class="n">Object</span><span class="o">[])</span><span class="n">p</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{});</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">Object</span><span class="p">[]</span> <span class="n">createParams</span><span class="p">(</span><span class="n">Param</span> <span class="nf">param</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="nf">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">keyNames</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="nf">key</span><span class="o">:</span> <span class="n">keyNames</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">p</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">param</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Object</span><span class="p">[])</span><span class="n">p</span><span class="p">.</span><span class="na">toArray</span><span class="p">(</span><span class="k">new</span> <span class="n">Object</span><span class="p">[]{});</span>
+<span class="p">}</span></code></pre></div>
 <p>最後に、今までの<code>executeQuery</code>に横流しします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">executeQueryWithParam</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">cls</span><span class="o">,</span> <span class="n">Params</span> <span class="n">params</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
-    <span class="n">Object</span><span class="o">[]</span> <span class="n">p</span> <span class="o">=</span> <span class="n">createParams</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">executeQuery</span><span class="o">(</span><span class="n">cls</span><span class="o">,</span> <span class="n">p</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">executeQueryWithParam</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">cls</span><span class="p">,</span> <span class="n">Params</span> <span class="nf">params</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">SQLException</span> <span class="p">{</span>
+    <span class="n">Object</span><span class="p">[]</span> <span class="nf">p</span> <span class="o">=</span> <span class="n">createParams</span><span class="p">(</span><span class="n">params</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">executeQuery</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="まとめ">まとめ</h2>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>com.github.tamurashingo.dbutil3<span class="nt">&lt;/groupId&gt;</span>
@@ -663,6 +664,32 @@ NAMED_PARAM
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">
+                        android
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="title">Androidアプリを開発したい</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -765,32 +792,6 @@ NAMED_PARAM
                 </div>
             </li>
             
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
-                        linux
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
-                    <p class="item-date">
-                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
-                    </p>
-                </div>
-            </li>
-            
         </ul>
     </div>
 </div>
@@ -809,7 +810,7 @@ NAMED_PARAM
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
                     android
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">4</span>
             </li>
             
             <li class="category-list-item">

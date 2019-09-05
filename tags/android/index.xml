@@ -6,10 +6,29 @@
     <description>Recent content in Android on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 10 Aug 2016 00:04:05 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 01 Sep 2019 16:03:14 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Androidアプリを開発したい</title>
+      <link>https://tamurashingo.github.io/post/2019/09/01/android_view_test/</link>
+      <pubDate>Sun, 01 Sep 2019 16:03:14 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/09/01/android_view_test/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Androidでゲームを作ろうと思います。
+以前はCocos2dxを使ったのですが、今回はKotlinでやってみようと思いました。&lt;/p&gt;
+
+&lt;p&gt;まずは、タッチしたら何かが表示されるものを作っていきます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://qiita.com/InoueDaiki/items/3b51aaabdaad1c2227a3&#34;&gt;Androidで簡単お絵かきアプリ開発&lt;/a&gt;
+を写経しました。&lt;/p&gt;
+
+&lt;p&gt;完成したやつは&lt;a href=&#34;https://github.com/tamurashingo/android_test_view&#34;&gt;こちら&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Ubuntu14.04LTSにAndroidStudioをインストールする</title>

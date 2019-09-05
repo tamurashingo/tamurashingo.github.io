@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
     <title>Dropwizardを使ってみる &middot; Web技術と親しむ</title>
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="tamura shingo">
@@ -31,12 +31,11 @@ http://www.dropwizard.io/getting-started.html
 この内容をほぼそのままやって行きます。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2015/06/10/dropwizard/" />
-<meta property="article:published_time" content="2015-06-10T06:48:19&#43;09:00"/>
-<meta property="article:modified_time" content="2015-06-10T06:48:19&#43;09:00"/>
+<meta property="article:published_time" content="2015-06-10T06:48:19+09:00" />
+<meta property="article:modified_time" content="2015-06-10T06:48:19+09:00" />
 
     
-    
-<meta itemprop="name" content="Dropwizardを使ってみる">
+    <meta itemprop="name" content="Dropwizardを使ってみる">
 <meta itemprop="description" content="tamuraです。
 
 JavaでJSONを話すサーバを作ろうと思ったら、Dropwizardを使うのがかなりお手軽ではないかと思います。
@@ -187,7 +186,7 @@ http://www.dropwizard.io/getting-started.html
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        68
+        69
         <span>記事</span>
       </div>
       <div class="article-info-block">
@@ -425,73 +424,73 @@ Dropwizardを使ってhelloworldをやって行きます。</p>
 <h2 id="configuration">Configuration</h2>
 
 <p>設定を外部に切り出したいときなどに使います。なんか無いとだめっぽいので、作ります。 ここではメッセージを外出しにしています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonProperty</span><span class="o">;</span>  
-<span class="kn">import</span> <span class="nn">io.dropwizard.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">com</span><span class="p">.</span><span class="na">fasterxml</span><span class="p">.</span><span class="na">jackson</span><span class="p">.</span><span class="na">annotation</span><span class="p">.</span><span class="na">JsonProperty</span><span class="p">;</span>  
+<span class="kn">import</span> <span class="nf">io</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">Configuration</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldConfiguration</span> <span class="kd">extends</span> <span class="n">Configuration</span> <span class="o">{</span>  
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
-
-    <span class="nd">@JsonProperty</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMessage</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
-    <span class="o">}</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">HelloWorldConfiguration</span> <span class="nf">extends</span> <span class="n">Configuration</span> <span class="p">{</span>  
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">message</span><span class="p">;</span>
 
     <span class="nd">@JsonProperty</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getMessage</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">message</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">setMessage</span><span class="p">(</span><span class="n">String</span> <span class="nf">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@JsonProperty</span>
+    <span class="kd">public</span> <span class="nf">String</span> <span class="n">getMessage</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">message</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="application">Application</h2>
 
 <p>エントリーポイントです。 <code>run</code>で<code>HelloWorldResource</code>を登録しています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">io.dropwizard.Application</span><span class="o">;</span>  
-<span class="kn">import</span> <span class="nn">io.dropwizard.setup.Environment</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">io</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">Application</span><span class="p">;</span>  
+<span class="kn">import</span> <span class="nf">io</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">setup</span><span class="p">.</span><span class="na">Environment</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldApplication</span> <span class="kd">extends</span> <span class="n">Application</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">HelloWorldApplication</span> <span class="nf">extends</span> <span class="n">Application</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span> <span class="p">{</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">...</span><span class="na">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="k">new</span> <span class="n">HelloWorldApplication</span><span class="o">().</span><span class="na">run</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">...</span><span class="na">args</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">Exception</span> <span class="p">{</span>
+        <span class="k">new</span> <span class="n">HelloWorldApplication</span><span class="p">().</span><span class="na">run</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+    <span class="p">}</span>
 
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">HelloWorldConfiguration</span> <span class="n">configuration</span><span class="o">,</span> <span class="n">Environment</span> <span class="n">environment</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">environment</span><span class="o">.</span><span class="na">jersey</span><span class="o">().</span><span class="na">register</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloWorldResource</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">getMessage</span><span class="o">()));</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">run</span><span class="p">(</span><span class="n">HelloWorldConfiguration</span> <span class="nf">configuration</span><span class="p">,</span> <span class="n">Environment</span> <span class="nf">environment</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">Exception</span> <span class="p">{</span>
+        <span class="n">environment</span><span class="p">.</span><span class="na">jersey</span><span class="p">().</span><span class="na">register</span><span class="p">(</span><span class="k">new</span> <span class="n">HelloWorldResource</span><span class="p">(</span><span class="n">configuration</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()));</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="resource">Resource</h2>
 
 <p>外部に公開するリソースです。 <code>/hello-world</code>というパスで起動するようにアノテーションを設定します。</p>
 
 <p><code>sayHello</code>が<code>GET</code>でアクセスされた時に動くメソッドです。 <code>name</code>という名前でパラメータを受け取ります。パラメータを受け取らない場合は「ななし」という名前になります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">javax.ws.rs.GET</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.ws.rs.Path</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.ws.rs.Produces</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.ws.rs.QueryParam</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.ws.rs.core.MediaType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">javax</span><span class="p">.</span><span class="na">ws</span><span class="p">.</span><span class="na">rs</span><span class="p">.</span><span class="na">GET</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javax</span><span class="p">.</span><span class="na">ws</span><span class="p">.</span><span class="na">rs</span><span class="p">.</span><span class="na">Path</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javax</span><span class="p">.</span><span class="na">ws</span><span class="p">.</span><span class="na">rs</span><span class="p">.</span><span class="na">Produces</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javax</span><span class="p">.</span><span class="na">ws</span><span class="p">.</span><span class="na">rs</span><span class="p">.</span><span class="na">QueryParam</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javax</span><span class="p">.</span><span class="na">ws</span><span class="p">.</span><span class="na">rs</span><span class="p">.</span><span class="na">core</span><span class="p">.</span><span class="na">MediaType</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">com.google.common.base.Optional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">com</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">base</span><span class="p">.</span><span class="na">Optional</span><span class="p">;</span>
 
-<span class="nd">@Path</span><span class="o">(</span><span class="s">&#34;/hello-world&#34;</span><span class="o">)</span>
-<span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+<span class="nd">@Path</span><span class="p">(</span><span class="s">&#34;/hello-world&#34;</span><span class="p">)</span>
+<span class="nd">@Produces</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">HelloWorldResource</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">message</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">HelloWorldResource</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">HelloWorldResource</span><span class="p">(</span><span class="n">String</span> <span class="nf">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nd">@GET</span>
-    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">sayHello</span><span class="o">(</span><span class="nd">@QueryParam</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">)</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="n">Saying</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;%s, %sさん&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">name</span><span class="o">.</span><span class="na">or</span><span class="o">(</span><span class="s">&#34;ななし&#34;</span><span class="o">)));</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">Saying</span> <span class="n">sayHello</span><span class="p">(</span><span class="nd">@QueryParam</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">)</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Saying</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&#34;%s, %sさん&#34;</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">.</span><span class="na">or</span><span class="p">(</span><span class="s">&#34;ななし&#34;</span><span class="p">)));</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="json">JSON</h2>
 
 <p>最後にJSONオブジェクトを定義します。</p>
@@ -500,26 +499,26 @@ Dropwizardを使ってhelloworldをやって行きます。</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>ここでは上のようなI/Fにします。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">com.fasterxml.jackson.annotation.JsonProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">com</span><span class="p">.</span><span class="na">fasterxml</span><span class="p">.</span><span class="na">jackson</span><span class="p">.</span><span class="na">annotation</span><span class="p">.</span><span class="na">JsonProperty</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Saying</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">Saying</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">greeting</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">greeting</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="nf">Saying</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">Saying</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="nf">Saying</span><span class="o">(</span><span class="n">String</span> <span class="n">greeting</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">greeting</span> <span class="o">=</span> <span class="n">greeting</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">public</span> <span class="nf">Saying</span><span class="p">(</span><span class="n">String</span> <span class="nf">greeting</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">greeting</span> <span class="o">=</span> <span class="n">greeting</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nd">@JsonProperty</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getGreeting</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">greeting</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">String</span> <span class="n">getGreeting</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">greeting</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="外部ファイル">外部ファイル</h2>
 
 <p>こんな感じで用意しました。</p>
@@ -652,6 +651,32 @@ Dropwizardを使ってhelloworldをやって行きます。</p>
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">
+                        android
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="title">Androidアプリを開発したい</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -754,32 +779,6 @@ Dropwizardを使ってhelloworldをやって行きます。</p>
                 </div>
             </li>
             
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
-                        linux
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
-                    <p class="item-date">
-                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
-                    </p>
-                </div>
-            </li>
-            
         </ul>
     </div>
 </div>
@@ -798,7 +797,7 @@ Dropwizardを使ってhelloworldをやって行きます。</p>
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
                     android
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">4</span>
             </li>
             
             <li class="category-list-item">

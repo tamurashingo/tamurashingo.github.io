@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
     <title>JavaBeansとは &middot; Web技術と親しむ</title>
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="tamura shingo">
@@ -38,12 +38,11 @@ JavaBeans（ジャバ ビーンズ）とは、Javaで書かれた再利用可能
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2016/07/31/java-beans/" />
-<meta property="article:published_time" content="2016-07-31T16:16:27&#43;09:00"/>
-<meta property="article:modified_time" content="2016-07-31T16:16:27&#43;09:00"/>
+<meta property="article:published_time" content="2016-07-31T16:16:27+09:00" />
+<meta property="article:modified_time" content="2016-07-31T16:16:27+09:00" />
 
     
-    
-<meta itemprop="name" content="JavaBeansとは">
+    <meta itemprop="name" content="JavaBeansとは">
 <meta itemprop="description" content="tamuraです。
 
 JavaBeansが出てきた当初はGUI用だったようです。
@@ -208,7 +207,7 @@ JavaBeans（ジャバ ビーンズ）とは、Javaで書かれた再利用可能
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        68
+        69
         <span>記事</span>
       </div>
       <div class="article-info-block">
@@ -377,38 +376,38 @@ Javaで作成された移植可能なプラットフォームに依存しない�
 
 <p>コンストラクタはいくつ存在しても問題ないのですが、
 引数を持たないpublicコンストラクタが必要となります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JavaBeansSample</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">JavaBeansSample</span> <span class="p">{</span>
     <span class="c1">// このコンストラクタは必須
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">JavaBeansSample</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">initValue</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="nf">JavaBeansSample</span><span class="o">(</span><span class="kt">int</span> <span class="n">initValue</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">initValue</span> <span class="o">=</span> <span class="n">initValue</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">....</span></code></pre></div>
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">JavaBeansSample</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">initValue</span> <span class="o">=</span> <span class="n">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">public</span> <span class="nf">JavaBeansSample</span><span class="p">(</span><span class="kt">int</span> <span class="nf">initValue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">initValue</span> <span class="o">=</span> <span class="n">initValue</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">....</span></code></pre></div>
 <p>リフレクションを使ってインスタンス化してみます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Class</span><span class="o">&lt;</span><span class="n">TestBean</span><span class="o">&gt;</span> <span class="n">cls</span> <span class="o">=</span> <span class="n">TestBean</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
-<span class="n">TestBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-<span class="k">try</span> <span class="o">{</span>
-    <span class="n">bean</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="k">catch</span> <span class="o">(</span><span class="n">ReflectiveOperationException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Class</span><span class="o">&lt;</span><span class="n">TestBean</span><span class="o">&gt;</span> <span class="nf">cls</span> <span class="o">=</span> <span class="n">TestBean</span><span class="p">.</span><span class="na">class</span><span class="p">;</span>
+<span class="n">TestBean</span> <span class="nf">bean</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">bean</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="n">ReflectiveOperationException</span> <span class="nf">ex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ex</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
 <p>このインスタンス化の仕組みはライブラリやユーティリティを作るときなどに発揮します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsefulBeanBuilder</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">UsefulBeanBuilder</span> <span class="p">{</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">getBeanInstance</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">cls</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">T</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">cls</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">bean</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">T</span> <span class="n">getBeanInstance</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">cls</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">Exception</span> <span class="p">{</span>
+        <span class="n">T</span> <span class="nf">bean</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="na">newInstance</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">bean</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
 <p>こんな感じで使います。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">TestBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="n">UsefulBeanBuilder</span><span class="o">.</span><span class="na">getBeanInstance</span><span class="o">(</span><span class="n">TestBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">TestBean</span> <span class="nf">bean</span> <span class="o">=</span> <span class="n">UsefulBeanBuilder</span><span class="p">.</span><span class="na">getBeanInstance</span><span class="p">(</span><span class="n">TestBean</span><span class="p">.</span><span class="na">class</span><span class="p">);</span></code></pre></div>
 <p>「え？<code>new</code>でよくない？」と思うのですが、
 ライブラリやユーティリティは呼び出し元のクラス名等が不明な場合があります。
 例えばDatabaseの戻り値(1レコード)をBeanに詰め込んで返すライブラリを作りたいときは、</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="nf">executeQuery</span><span class="o">(</span><span class="n">String</span> <span class="n">sql</span><span class="o">,</span> <span class="n">Stirng</span><span class="o">[]</span> <span class="n">param</span><span class="o">);</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">T</span> <span class="n">executeQuery</span><span class="p">(</span><span class="n">String</span> <span class="nf">sql</span><span class="p">,</span> <span class="n">Stirng</span><span class="p">[]</span> <span class="nf">param</span><span class="p">);</span></code></pre></div>
 <p>のようなインタフェースが必要になるので、このような引数を持たないコンストラクタが有効になります。
 あと、この本によるとなるべく<code>new</code>はしないのが良いスタイル、ということです。
 インタフェースと実装は分離させておきましょう、ということでしょうか。</p>
@@ -431,47 +430,47 @@ Javaで作成された移植可能なプラットフォームに依存しない�
 
 <p>IDEなら自動で生成してくれます。
 また、<code>lombok</code>を使うとアノテーションを付けるだけで<code>getter</code>と`setterを追加してくれますので、getter/setterを大量に書かなくてすみ、コードの見通しが良くなります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">lombok.Getter</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">lombok.Setter</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nf">lombok</span><span class="p">.</span><span class="na">Getter</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">lombok</span><span class="p">.</span><span class="na">Setter</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBean</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">TestBean</span> <span class="p">{</span>
 
     <span class="cm">/** getterのみ */</span>
     <span class="nd">@Getter</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">data1</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">data1</span><span class="p">;</span>
     <span class="cm">/** setterのみ */</span>
     <span class="nd">@Setter</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">data2</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">data2</span><span class="p">;</span>
     <span class="cm">/** getterとsetter */</span>
     <span class="nd">@Getter</span>
     <span class="nd">@Setter</span>
-    <span class="kd">private</span> <span class="n">Strign</span> <span class="n">data3</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">Strign</span> <span class="n">data3</span><span class="p">;</span>
 
-    <span class="o">...</span>
-<span class="o">}</span></code></pre></div>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></div>
 <h4 id="getter-setterの取得方法">getter/setterの取得方法</h4>
 
 <p>インスタンス化の時のように、ユーティリティやライブラリなどで使う際に、
 クラス情報からgetter/setterを取得する方法があります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBean</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">TestBean</span> <span class="p">{</span>
 
     <span class="nd">@Getter</span>
     <span class="nd">@Setter</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">data1</span><span class="o">;</span>
-<span class="o">}</span>
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">data1</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="o">....</span>
+<span class="p">....</span>
 
-    <span class="n">TestBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestBean</span><span class="o">();</span>
-    <span class="n">PropertyDescriptor</span> <span class="n">pd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyDescriptor</span><span class="o">(</span><span class="s">&#34;data&#34;</span><span class="o">,</span> <span class="n">TestBean</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">TestBean</span> <span class="nf">bean</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestBean</span><span class="p">();</span>
+    <span class="n">PropertyDescriptor</span> <span class="nf">pd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyDescriptor</span><span class="p">(</span><span class="s">&#34;data&#34;</span><span class="p">,</span> <span class="n">TestBean</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
 
-    <span class="n">Method</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="na">getWriteMethod</span><span class="o">();</span>
-    <span class="n">writer</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">bean</span><span class="o">,</span> <span class="s">&#34;Test&#34;</span><span class="o">);</span>
+    <span class="n">Method</span> <span class="nf">writer</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="na">getWriteMethod</span><span class="p">();</span>
+    <span class="n">writer</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">bean</span><span class="p">,</span> <span class="s">&#34;Test&#34;</span><span class="p">);</span>
 
-    <span class="n">Method</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="na">getReadMethod</span><span class="o">();</span>
-    <span class="n">String</span> <span class="n">msg</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">reader</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">bean</span><span class="o">);</span>
+    <span class="n">Method</span> <span class="nf">reader</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="na">getReadMethod</span><span class="p">();</span>
+    <span class="n">String</span> <span class="nf">msg</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">reader</span><span class="p">.</span><span class="na">invoke</span><span class="p">(</span><span class="n">bean</span><span class="p">);</span>
 
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">msg</span><span class="o">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <span class="o">&gt;&gt;</span> <span class="n">Test</span></code></pre></div>
 <h3 id="ルール3-シリアライズ可能である必要がある">ルール3: シリアライズ可能である必要がある</h3>
@@ -485,25 +484,25 @@ Javaで作成された移植可能なプラットフォームに依存しない�
 (アプリケーションサーバでクラスタを組んだ時などはセッション情報として勝手にシリアライズされることもありますが、長期間保持するためにシリアライズを使うことは、私はないです)</p>
 
 <p>また、シリアライズしたくないプロパティは<code>transient</code>が必要です。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBean</span> <span class="kd">implements</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">Serializable</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">TestBean</span> <span class="nf">implements</span> <span class="n">java</span><span class="p">.</span><span class="na">io</span><span class="p">.</span><span class="na">Serializable</span> <span class="p">{</span>
 
     <span class="cm">/** serialVersionUID */</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="n">1L</span><span class="p">;</span>
 
     <span class="cm">/**
 </span><span class="cm">     * この値はシリアライズ対象
 </span><span class="cm">     */</span>
     <span class="nd">@Getter</span>
     <span class="nd">@Setter</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nf">String</span> <span class="n">message</span><span class="p">;</span>
 
     <span class="cm">/**
 </span><span class="cm">     * この値はシリアライズ対象外。
 </span><span class="cm">     * (別のマシンに持って行っても使えない値のため)
 </span><span class="cm">     */</span>
     <span class="nd">@Setter</span>
-    <span class="kd">private</span> <span class="kd">transient</span> <span class="n">File</span> <span class="n">file</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">private</span> <span class="nf">transient</span> <span class="n">File</span> <span class="nf">file</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="役に立つと思われる使い方">役に立つと思われる使い方</h2>
 
 <p>次回書きます。</p>
@@ -614,6 +613,32 @@ Javaで作成された移植可能なプラットフォームに依存しない�
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">
+                        android
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="title">Androidアプリを開発したい</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -716,32 +741,6 @@ Javaで作成された移植可能なプラットフォームに依存しない�
                 </div>
             </li>
             
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
-                        linux
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
-                    <p class="item-date">
-                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
-                    </p>
-                </div>
-            </li>
-            
         </ul>
     </div>
 </div>
@@ -760,7 +759,7 @@ Javaで作成された移植可能なプラットフォームに依存しない�
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
                     android
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">4</span>
             </li>
             
             <li class="category-list-item">

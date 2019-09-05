@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
     <title>Dropwizardでデータベースpart1 &middot; Web技術と親しむ</title>
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="tamura shingo">
@@ -26,12 +26,11 @@
 今回はDropwizardでデータベースを使ってみます。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2015/06/10/dropwizard-database-1/" />
-<meta property="article:published_time" content="2015-06-10T20:54:50&#43;09:00"/>
-<meta property="article:modified_time" content="2015-06-10T20:54:50&#43;09:00"/>
+<meta property="article:published_time" content="2015-06-10T20:54:50+09:00" />
+<meta property="article:modified_time" content="2015-06-10T20:54:50+09:00" />
 
     
-    
-<meta itemprop="name" content="Dropwizardでデータベースpart1">
+    <meta itemprop="name" content="Dropwizardでデータベースpart1">
 <meta itemprop="description" content="tamuraです。
 
 今回はDropwizardでデータベースを使ってみます。">
@@ -172,7 +171,7 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        68
+        69
         <span>記事</span>
       </div>
       <div class="article-info-block">
@@ -351,12 +350,12 @@ Ruby on Railsとかのやつと同じです。</p>
 <p>データベース関連の設定情報を外部ファイルから取得できるようにします。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Valid</span>
 <span class="nd">@NotNull</span>
-<span class="kd">private</span> <span class="n">DataSourceFactory</span> <span class="n">database</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataSourceFactory</span><span class="o">();</span>
+<span class="kd">private</span> <span class="nf">DataSourceFactory</span> <span class="n">database</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataSourceFactory</span><span class="p">();</span>
 
-<span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&#34;database&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">DataSourceFactory</span> <span class="nf">getDataSourceFactory</span><span class="o">()</span> <span class="o">{</span>  
-    <span class="k">return</span> <span class="n">database</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
+<span class="nd">@JsonProperty</span><span class="p">(</span><span class="s">&#34;database&#34;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="nf">DataSourceFactory</span> <span class="n">getDataSourceFactory</span><span class="p">()</span> <span class="p">{</span>  
+    <span class="k">return</span> <span class="n">database</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
 <p>設定ファイルにデータベース関連の情報を追加します。
 データベースはMySQLを使います。</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">database<span class="p">:</span><span class="w">  
@@ -365,7 +364,7 @@ Ruby on Railsとかのやつと同じです。</p>
 </span><span class="w">  </span>password<span class="p">:</span><span class="w"> </span>password<span class="w">
 </span><span class="w">  </span>url<span class="p">:</span><span class="w"> </span>jdbc<span class="p">:</span>mysql<span class="p">:</span>//localhost/helloworld<span class="p">?</span>useUnicode=<span class="kc">true</span><span class="cp">&amp;characterEncoding=utf8</span><span class="w">
 </span><span class="w">  </span>properties<span class="p">:</span><span class="w">
-</span><span class="w">    </span>charSet<span class="p">:</span><span class="w"> </span>UTF-<span class="m">8</span><span class="w">
+</span><span class="w">    </span>charSet<span class="p">:</span><span class="w"> </span>UTF<span class="m">-8</span><span class="w">
 </span><span class="w">  </span>maxWaitForConnection<span class="p">:</span><span class="w"> </span>1s<span class="w">
 </span><span class="w">  </span>validationQuery<span class="p">:</span><span class="w"> </span><span class="s2">&#34;/* MyService Health Check */ SELECT 1&#34;</span><span class="w">
 </span><span class="w">  </span>minSize<span class="p">:</span><span class="w"> </span><span class="m">8</span><span class="w">
@@ -377,14 +376,14 @@ Ruby on Railsとかのやつと同じです。</p>
 
 <p><code>initialize</code>メソッドを追加し、<code>MigrationBundle</code>を追加します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">initialize</span><span class="o">(</span><span class="n">Bootstrap</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span> <span class="n">bootstrap</span><span class="o">)</span> <span class="o">{</span>  
-    <span class="n">bootstrap</span><span class="o">.</span><span class="na">addBundle</span><span class="o">(</span><span class="k">new</span> <span class="n">MigrationsBundle</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;()</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">void</span> <span class="n">initialize</span><span class="p">(</span><span class="n">Bootstrap</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span> <span class="nf">bootstrap</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="n">bootstrap</span><span class="p">.</span><span class="na">addBundle</span><span class="p">(</span><span class="k">new</span> <span class="n">MigrationsBundle</span><span class="o">&lt;</span><span class="n">HelloWorldConfiguration</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
         <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="n">DataSourceFactory</span> <span class="nf">getDataSourceFactory</span><span class="o">(</span><span class="n">HelloWorldConfiguration</span> <span class="n">configuration</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getDataSourceFactory</span><span class="o">();</span>
-        <span class="o">}</span>
-   <span class="o">});</span>
-<span class="o">}</span></code></pre></div>
+        <span class="kd">public</span> <span class="nf">DataSourceFactory</span> <span class="n">getDataSourceFactory</span><span class="p">(</span><span class="n">HelloWorldConfiguration</span> <span class="nf">configuration</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">configuration</span><span class="p">.</span><span class="na">getDataSourceFactory</span><span class="p">();</span>
+        <span class="p">}</span>
+   <span class="p">});</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="migrationの定義">Migrationの定義</h2>
 
 <p><code>src/main/resources/migrations.xml</code>を作成し、そこにテーブル情報を追加していきます。 ここではサンプルと同じくxmlで定義します。</p>
@@ -572,6 +571,32 @@ INFO  <span class="o">[</span><span class="m">2015</span>-06-10 <span class="m">
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">
+                        android
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="title">Androidアプリを開発したい</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -674,32 +699,6 @@ INFO  <span class="o">[</span><span class="m">2015</span>-06-10 <span class="m">
                 </div>
             </li>
             
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
-                        linux
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
-                    <p class="item-date">
-                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
-                    </p>
-                </div>
-            </li>
-            
         </ul>
     </div>
 </div>
@@ -718,7 +717,7 @@ INFO  <span class="o">[</span><span class="m">2015</span>-06-10 <span class="m">
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
                     android
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">4</span>
             </li>
             
             <li class="category-list-item">

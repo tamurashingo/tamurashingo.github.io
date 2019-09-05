@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
     <title>Dropwizardでデータベースpart4 &middot; Web技術と親しむ</title>
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="tamura shingo">
@@ -33,12 +33,11 @@ Dropwizardでデータベースpart3
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2016/08/03/dropwizard-database-4/" />
-<meta property="article:published_time" content="2016-08-03T22:06:15&#43;09:00"/>
-<meta property="article:modified_time" content="2016-08-03T22:06:15&#43;09:00"/>
+<meta property="article:published_time" content="2016-08-03T22:06:15+09:00" />
+<meta property="article:modified_time" content="2016-08-03T22:06:15+09:00" />
 
     
-    
-<meta itemprop="name" content="Dropwizardでデータベースpart4">
+    <meta itemprop="name" content="Dropwizardでデータベースpart4">
 <meta itemprop="description" content="tamuraです。
 
 今回はDropwizardで複数のDAOを使った場合のトランザクション制御をやって行きます。
@@ -193,7 +192,7 @@ Dropwizardでデータベースpart3
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        68
+        69
         <span>記事</span>
       </div>
       <div class="article-info-block">
@@ -357,112 +356,112 @@ Dropwizardでデータベースpart3
 
 <p>DAOの中で別のDAOを生成できるように、基底クラスを作ります。
 またトランザクション制御を行えるようにしてあります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">.</span><span class="na">dao</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.CreateSqlObject</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.mixins.Transactional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">CreateSqlObject</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">mixins</span><span class="p">.</span><span class="na">Transactional</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractDAO</span> <span class="kd">implements</span> <span class="n">Transactional</span><span class="o">&lt;</span><span class="n">AbstractDAO</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">abstract</span> <span class="kd">class</span> <span class="nf">AbstractDAO</span> <span class="kd">implements</span> <span class="nf">Transactional</span><span class="o">&lt;</span><span class="n">AbstractDAO</span><span class="o">&gt;</span> <span class="p">{</span>
 
     <span class="nd">@CreateSqlObject</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">MessageDAO</span> <span class="nf">createMessageDAO</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">abstract</span> <span class="n">MessageDAO</span> <span class="nf">createMessageDAO</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
 <h3 id="messagedaoの変更">MessageDAOの変更</h3>
 
 <p>今まであった<code>MessageDAO</code>を<code>interface</code>から<code>abstract class</code>に変更します。
 あと、今まで実装(?)は<code>MessageDAOMySQLImpl</code>で行っていたのですが、ちょっとうまくできなかったのでこのクラスでSQLを実装しています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">.</span><span class="na">dao</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.Bind</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.SqlQuery</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.SqlUpdate</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.customizers.Mapper</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.customizers.SingleValueResult</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">Bind</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">SqlQuery</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">SqlUpdate</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">customizers</span><span class="p">.</span><span class="na">Mapper</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">customizers</span><span class="p">.</span><span class="na">SingleValueResult</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.Saying</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao.mapper.SayingMapper</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.google.common.base.Optional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">.</span><span class="na">Saying</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">.</span><span class="na">dao</span><span class="p">.</span><span class="na">mapper</span><span class="p">.</span><span class="na">SayingMapper</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">com</span><span class="p">.</span><span class="na">google</span><span class="p">.</span><span class="na">common</span><span class="p">.</span><span class="na">base</span><span class="p">.</span><span class="na">Optional</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">MessageDAO</span> <span class="kd">extends</span> <span class="n">AbstractDAO</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">abstract</span> <span class="kd">class</span> <span class="nf">MessageDAO</span> <span class="kd">extends</span> <span class="nf">AbstractDAO</span> <span class="p">{</span>
 
-    <span class="nd">@SingleValueResult</span><span class="o">(</span><span class="n">Saying</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="nd">@SqlQuery</span><span class="o">(</span>
+    <span class="nd">@SingleValueResult</span><span class="p">(</span><span class="n">Saying</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+    <span class="nd">@SqlQuery</span><span class="p">(</span>
               <span class="s">&#34; select &#34;</span>
             <span class="o">+</span> <span class="s">&#34;   message &#34;</span>
             <span class="o">+</span> <span class="s">&#34; from &#34;</span>
             <span class="o">+</span> <span class="s">&#34;   m_message &#34;</span>
             <span class="o">+</span> <span class="s">&#34; where &#34;</span>
             <span class="o">+</span> <span class="s">&#34;   id = :messageId &#34;</span>
-    <span class="o">)</span>
-    <span class="nd">@Mapper</span><span class="o">(</span><span class="n">SayingMapper</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="nf">getMessage</span><span class="o">(</span><span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;messageId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">messageId</span><span class="o">);</span>
+    <span class="p">)</span>
+    <span class="nd">@Mapper</span><span class="p">(</span><span class="n">SayingMapper</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="nf">abstract</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="nf">getMessage</span><span class="p">(</span><span class="nd">@Bind</span><span class="p">(</span><span class="s">&#34;messageId&#34;</span><span class="p">)</span> <span class="n">String</span> <span class="nf">messageId</span><span class="p">);</span>
 
-    <span class="nd">@SqlUpdate</span><span class="o">(</span>
+    <span class="nd">@SqlUpdate</span><span class="p">(</span>
               <span class="s">&#34; update &#34;</span>
             <span class="o">+</span> <span class="s">&#34;   m_message &#34;</span>
             <span class="o">+</span> <span class="s">&#34; set &#34;</span>
             <span class="o">+</span> <span class="s">&#34;   message = :message &#34;</span>
             <span class="o">+</span> <span class="s">&#34; where &#34;</span>
             <span class="o">+</span> <span class="s">&#34;   id = :messageId &#34;</span>
-    <span class="o">)</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">updateMessage</span><span class="o">(</span><span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;messageId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">messageId</span><span class="o">,</span> <span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+    <span class="p">)</span>
+    <span class="kd">public</span> <span class="nf">abstract</span> <span class="kt">void</span> <span class="nf">updateMessage</span><span class="p">(</span><span class="nd">@Bind</span><span class="p">(</span><span class="s">&#34;messageId&#34;</span><span class="p">)</span> <span class="n">String</span> <span class="nf">messageId</span><span class="p">,</span> <span class="nd">@Bind</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">)</span> <span class="n">String</span> <span class="nf">message</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
 <h3 id="helloworldresourceの変更">HelloWorldResourceの変更</h3>
 
 <p>まずはコンストラクタで<code>AbstractDAO</code>を受け取ります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Path</span><span class="o">(</span><span class="s">&#34;/hello-world&#34;</span><span class="o">)</span>
-<span class="nd">@Produces</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorldResource</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Path</span><span class="p">(</span><span class="s">&#34;/hello-world&#34;</span><span class="p">)</span>
+<span class="nd">@Produces</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">HelloWorldResource</span> <span class="p">{</span>
 
-    <span class="kd">private</span> <span class="n">AbstractDAO</span> <span class="n">dao</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">Saying</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Saying</span><span class="o">(</span><span class="s">&#34;hello world&#34;</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="nf">AbstractDAO</span> <span class="n">dao</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="nf">Saying</span> <span class="n">defaultValue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Saying</span><span class="p">(</span><span class="s">&#34;hello world&#34;</span><span class="p">);</span>
 
-    <span class="kd">public</span> <span class="nf">HelloWorldResource</span><span class="o">(</span><span class="n">AbstractDAO</span> <span class="n">dao</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">dao</span> <span class="o">=</span> <span class="n">dao</span><span class="o">;</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">HelloWorldResource</span><span class="p">(</span><span class="n">AbstractDAO</span> <span class="nf">dao</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">dao</span> <span class="o">=</span> <span class="n">dao</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></div>
 <p>つぎに<code>sayHello</code>メソッドを変更します。
 今まで<code>MessageDAO</code>をそのまま使っていましたが、<code>AbstractDAO#createMessageDAO</code>で<code>MessageDAO</code>を生成するようにします。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@GET</span>
-    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">sayHello</span><span class="o">(</span><span class="nd">@QueryParam</span><span class="o">(</span><span class="s">&#34;messageid&#34;</span><span class="o">)</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">messageId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">messageId</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">dao</span><span class="o">.</span><span class="na">createMessageDAO</span><span class="o">();</span>
-            <span class="k">return</span> <span class="n">messageDAO</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="n">messageId</span><span class="o">.</span><span class="na">get</span><span class="o">()).</span><span class="na">or</span><span class="o">(</span><span class="n">defaultValue</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">defaultValue</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">Saying</span> <span class="n">sayHello</span><span class="p">(</span><span class="nd">@QueryParam</span><span class="p">(</span><span class="s">&#34;messageid&#34;</span><span class="p">)</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">messageId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">messageId</span><span class="p">.</span><span class="na">isPresent</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">MessageDAO</span> <span class="nf">messageDAO</span> <span class="o">=</span> <span class="n">dao</span><span class="p">.</span><span class="na">createMessageDAO</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">messageDAO</span><span class="p">.</span><span class="na">getMessage</span><span class="p">(</span><span class="n">messageId</span><span class="p">.</span><span class="na">get</span><span class="p">()).</span><span class="na">or</span><span class="p">(</span><span class="n">defaultValue</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">defaultValue</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></div>
 <p><code>updateHello</code>も同じように変更します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@POST</span>
-    <span class="nd">@Consumes</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">updateHello</span><span class="o">(</span><span class="n">MultivaluedMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">formParams</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">formParams</span><span class="o">.</span><span class="na">getFirst</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">);</span>
+    <span class="nd">@Consumes</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="nf">Saying</span> <span class="n">updateHello</span><span class="p">(</span><span class="n">MultivaluedMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">formParams</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="nf">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">formParams</span><span class="p">.</span><span class="na">getFirst</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">);</span>
 
-        <span class="n">dao</span><span class="o">.</span><span class="na">inTransaction</span><span class="o">(</span><span class="k">new</span> <span class="n">Transaction</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">,</span> <span class="n">AbstractDAO</span><span class="o">&gt;()</span> <span class="o">{</span>
+        <span class="n">dao</span><span class="p">.</span><span class="na">inTransaction</span><span class="p">(</span><span class="k">new</span> <span class="n">Transaction</span><span class="o">&lt;</span><span class="n">Void</span><span class="p">,</span> <span class="n">AbstractDAO</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
             <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="n">Void</span> <span class="nf">inTransaction</span><span class="o">(</span><span class="n">AbstractDAO</span> <span class="n">transactional</span><span class="o">,</span> <span class="n">TransactionStatus</span> <span class="n">status</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-                <span class="n">transactional</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
-                <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="o">.</span><span class="na">createMessageDAO</span><span class="o">();</span>
-                <span class="n">messageDAO</span><span class="o">.</span><span class="na">updateMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
-                <span class="n">transactional</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
+            <span class="kd">public</span> <span class="nf">Void</span> <span class="n">inTransaction</span><span class="p">(</span><span class="n">AbstractDAO</span> <span class="nf">transactional</span><span class="p">,</span> <span class="n">TransactionStatus</span> <span class="nf">status</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">Exception</span> <span class="p">{</span>
+                <span class="n">transactional</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
+                <span class="n">MessageDAO</span> <span class="nf">messageDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="p">.</span><span class="na">createMessageDAO</span><span class="p">();</span>
+                <span class="n">messageDAO</span><span class="p">.</span><span class="na">updateMessage</span><span class="p">(</span><span class="s">&#34;00001&#34;</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+                <span class="n">transactional</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+                <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
 
-        <span class="k">return</span> <span class="n">sayHello</span><span class="o">(</span><span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">));</span>
-    <span class="o">}</span></code></pre></div>
+        <span class="k">return</span> <span class="n">sayHello</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;00001&#34;</span><span class="p">));</span>
+    <span class="p">}</span></code></pre></div>
 <h3 id="helloworldapplicationの変更">HelloWorldApplicationの変更</h3>
 
 <p><code>HelloWorldResource</code>の呼び出し方を変更します。
 具体的には<code>AbstractDAO</code>を渡すように変更しています。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">HelloWorldConfiguration</span> <span class="n">configuration</span><span class="o">,</span> <span class="n">Environment</span> <span class="n">environment</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="n">DBIFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBIFactory</span><span class="o">();</span>
-        <span class="kd">final</span> <span class="n">DBI</span> <span class="n">jdbi</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">environment</span><span class="o">,</span> <span class="n">configuration</span><span class="o">.</span><span class="na">getDataSourceFactory</span><span class="o">(),</span> <span class="s">&#34;helloworlddb&#34;</span><span class="o">);</span>
-        <span class="kd">final</span> <span class="n">AbstractDAO</span> <span class="n">dao</span> <span class="o">=</span> <span class="n">jdbi</span><span class="o">.</span><span class="na">onDemand</span><span class="o">(</span><span class="n">AbstractDAO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="nf">void</span> <span class="n">run</span><span class="p">(</span><span class="n">HelloWorldConfiguration</span> <span class="nf">configuration</span><span class="p">,</span> <span class="n">Environment</span> <span class="nf">environment</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">Exception</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="nf">DBIFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DBIFactory</span><span class="p">();</span>
+        <span class="kd">final</span> <span class="nf">DBI</span> <span class="n">jdbi</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="na">build</span><span class="p">(</span><span class="n">environment</span><span class="p">,</span> <span class="n">configuration</span><span class="p">.</span><span class="na">getDataSourceFactory</span><span class="p">(),</span> <span class="s">&#34;helloworlddb&#34;</span><span class="p">);</span>
+        <span class="kd">final</span> <span class="nf">AbstractDAO</span> <span class="n">dao</span> <span class="o">=</span> <span class="n">jdbi</span><span class="p">.</span><span class="na">onDemand</span><span class="p">(</span><span class="n">AbstractDAO</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
 
-        <span class="n">environment</span><span class="o">.</span><span class="na">jersey</span><span class="o">().</span><span class="na">register</span><span class="o">(</span><span class="k">new</span> <span class="n">HelloWorldResource</span><span class="o">(</span><span class="n">dao</span><span class="o">));</span>
-    <span class="o">}</span></code></pre></div>
+        <span class="n">environment</span><span class="p">.</span><span class="na">jersey</span><span class="p">().</span><span class="na">register</span><span class="p">(</span><span class="k">new</span> <span class="n">HelloWorldResource</span><span class="p">(</span><span class="n">dao</span><span class="p">));</span>
+    <span class="p">}</span></code></pre></div>
 <p>これで実行すると、<a href="/post/2015/06/13/dropwizard-database-3/">前回</a>と同じ結果が得られます。</p>
 
 <h2 id="テーブルの追加">テーブルの追加</h2>
@@ -521,14 +520,14 @@ INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">
 
 <p>この<code>H_MESSAGE</code>を処理するDAOを作っていきます。
 こんな感じです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">.</span><span class="na">dao</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.Bind</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.SqlUpdate</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">Bind</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">SqlUpdate</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">HistoryDAO</span> <span class="kd">extends</span> <span class="n">AbstractDAO</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">abstract</span> <span class="kd">class</span> <span class="nf">HistoryDAO</span> <span class="kd">extends</span> <span class="nf">AbstractDAO</span> <span class="p">{</span>
 
-    <span class="nd">@SqlUpdate</span><span class="o">(</span>
+    <span class="nd">@SqlUpdate</span><span class="p">(</span>
             <span class="s">&#34; insert into &#34;</span>
           <span class="o">+</span> <span class="s">&#34;   h_message &#34;</span>
           <span class="o">+</span> <span class="s">&#34; ( &#34;</span>
@@ -541,24 +540,24 @@ INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">
           <span class="o">+</span> <span class="s">&#34;   :message, &#34;</span>
           <span class="o">+</span> <span class="s">&#34;   now() &#34;</span>
           <span class="o">+</span> <span class="s">&#34; ) &#34;</span>
-    <span class="o">)</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">backupMessage</span><span class="o">(</span><span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;messageId&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">messageId</span><span class="o">,</span> <span class="nd">@Bind</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+    <span class="p">)</span>
+    <span class="kd">public</span> <span class="nf">abstract</span> <span class="kt">void</span> <span class="nf">backupMessage</span><span class="p">(</span><span class="nd">@Bind</span><span class="p">(</span><span class="s">&#34;messageId&#34;</span><span class="p">)</span> <span class="n">String</span> <span class="nf">messageId</span><span class="p">,</span> <span class="nd">@Bind</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">)</span> <span class="n">String</span> <span class="nf">message</span><span class="p">);</span>
 
-<span class="o">}</span></code></pre></div>
+<span class="p">}</span></code></pre></div>
 <p>また、<code>AbstractDAO</code>にこの<code>HistoryDAO</code>を生成する処理を追加しておきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.tamurashingo.dropwizard.helloworld.dao</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">github</span><span class="p">.</span><span class="na">tamurashingo</span><span class="p">.</span><span class="na">dropwizard</span><span class="p">.</span><span class="na">helloworld</span><span class="p">.</span><span class="na">dao</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.CreateSqlObject</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.skife.jdbi.v2.sqlobject.mixins.Transactional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">CreateSqlObject</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">org</span><span class="p">.</span><span class="na">skife</span><span class="p">.</span><span class="na">jdbi</span><span class="p">.</span><span class="na">v2</span><span class="p">.</span><span class="na">sqlobject</span><span class="p">.</span><span class="na">mixins</span><span class="p">.</span><span class="na">Transactional</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractDAO</span> <span class="kd">implements</span> <span class="n">Transactional</span><span class="o">&lt;</span><span class="n">AbstractDAO</span><span class="o">&gt;</span> <span class="o">{</span>
-
-    <span class="nd">@CreateSqlObject</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">MessageDAO</span> <span class="nf">createMessageDAO</span><span class="o">();</span>
+<span class="kd">public</span> <span class="nf">abstract</span> <span class="kd">class</span> <span class="nf">AbstractDAO</span> <span class="kd">implements</span> <span class="nf">Transactional</span><span class="o">&lt;</span><span class="n">AbstractDAO</span><span class="o">&gt;</span> <span class="p">{</span>
 
     <span class="nd">@CreateSqlObject</span>
-    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">HistoryDAO</span> <span class="nf">createHistoryDAO</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="nf">abstract</span> <span class="n">MessageDAO</span> <span class="nf">createMessageDAO</span><span class="p">();</span>
+
+    <span class="nd">@CreateSqlObject</span>
+    <span class="kd">public</span> <span class="nf">abstract</span> <span class="n">HistoryDAO</span> <span class="nf">createHistoryDAO</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
 <h2 id="メインロジック">メインロジック</h2>
 
 <p>以下の要領で作っていきます。</p>
@@ -566,39 +565,41 @@ INFO  <span class="o">[</span><span class="m">2015</span>-06-12 <span class="m">
 <ul>
 <li><code>00001</code>の<code>message</code>を更新</li>
 <li><code>m_message</code>に既存の値があった場合は、<code>h_message</code>に入れる</li>
-<li><code>exception</code>という更新値がきた場合は例外を発生させる(rollbackの確認用)</li>
+
+<li><p><code>exception</code>という更新値がきた場合は例外を発生させる(rollbackの確認用)</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@POST</span>
+<span class="nd">@Consumes</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="p">)</span>
+<span class="kd">public</span> <span class="nf">Saying</span> <span class="n">updateHello</span><span class="p">(</span><span class="n">MultivaluedMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">formParams</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="nf">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">formParams</span><span class="p">.</span><span class="na">getFirst</span><span class="p">(</span><span class="s">&#34;message&#34;</span><span class="p">);</span>
+
+    <span class="n">dao</span><span class="p">.</span><span class="na">inTransaction</span><span class="p">(</span><span class="k">new</span> <span class="n">Transaction</span><span class="o">&lt;</span><span class="n">Void</span><span class="p">,</span> <span class="n">AbstractDAO</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="nf">Void</span> <span class="n">inTransaction</span><span class="p">(</span><span class="n">AbstractDAO</span> <span class="nf">transactional</span><span class="p">,</span> <span class="n">TransactionStatus</span> <span class="nf">status</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">Exception</span> <span class="p">{</span>
+            <span class="n">transactional</span><span class="p">.</span><span class="na">begin</span><span class="p">();</span>
+            <span class="n">MessageDAO</span> <span class="nf">messageDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="p">.</span><span class="na">createMessageDAO</span><span class="p">();</span>
+            <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="nf">oldMessage</span> <span class="o">=</span> <span class="n">messageDAO</span><span class="p">.</span><span class="na">getMessage</span><span class="p">(</span><span class="s">&#34;00001&#34;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">oldMessage</span><span class="p">.</span><span class="na">isPresent</span><span class="p">())</span> <span class="p">{</span>
+                <span class="n">Saying</span> <span class="nf">oldMessageContent</span> <span class="o">=</span> <span class="n">oldMessage</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+                <span class="n">HistoryDAO</span> <span class="nf">historyDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="p">.</span><span class="na">createHistoryDAO</span><span class="p">();</span>
+                <span class="n">historyDAO</span><span class="p">.</span><span class="na">backupMessage</span><span class="p">(</span><span class="s">&#34;00001&#34;</span><span class="p">,</span> <span class="n">oldMessageContent</span><span class="p">.</span><span class="na">getGreeting</span><span class="p">());</span>
+            <span class="p">}</span>
+
+            <span class="n">messageDAO</span><span class="p">.</span><span class="na">updateMessage</span><span class="p">(</span><span class="s">&#34;00001&#34;</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">Objects</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="s">&#34;exception&#34;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s">&#34;このタイミングで例外かよ。。。。&#34;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">transactional</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="k">return</span> <span class="n">sayHello</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&#34;00001&#34;</span><span class="p">));</span>
+<span class="p">}</span></code></pre></div></li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@POST</span>
-    <span class="nd">@Consumes</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_FORM_URLENCODED</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">Saying</span> <span class="nf">updateHello</span><span class="o">(</span><span class="n">MultivaluedMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">formParams</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="n">formParams</span><span class="o">.</span><span class="na">getFirst</span><span class="o">(</span><span class="s">&#34;message&#34;</span><span class="o">);</span>
 
-        <span class="n">dao</span><span class="o">.</span><span class="na">inTransaction</span><span class="o">(</span><span class="k">new</span> <span class="n">Transaction</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">,</span> <span class="n">AbstractDAO</span><span class="o">&gt;()</span> <span class="o">{</span>
-
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="n">Void</span> <span class="nf">inTransaction</span><span class="o">(</span><span class="n">AbstractDAO</span> <span class="n">transactional</span><span class="o">,</span> <span class="n">TransactionStatus</span> <span class="n">status</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-                <span class="n">transactional</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
-                <span class="n">MessageDAO</span> <span class="n">messageDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="o">.</span><span class="na">createMessageDAO</span><span class="o">();</span>
-                <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Saying</span><span class="o">&gt;</span> <span class="n">oldMessage</span> <span class="o">=</span> <span class="n">messageDAO</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">);</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">oldMessage</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
-                    <span class="n">Saying</span> <span class="n">oldMessageContent</span> <span class="o">=</span> <span class="n">oldMessage</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-                    <span class="n">HistoryDAO</span> <span class="n">historyDAO</span> <span class="o">=</span> <span class="n">transactional</span><span class="o">.</span><span class="na">createHistoryDAO</span><span class="o">();</span>
-                    <span class="n">historyDAO</span><span class="o">.</span><span class="na">backupMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">,</span> <span class="n">oldMessageContent</span><span class="o">.</span><span class="na">getGreeting</span><span class="o">());</span>
-                <span class="o">}</span>
-
-                <span class="n">messageDAO</span><span class="o">.</span><span class="na">updateMessage</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
-
-                <span class="k">if</span> <span class="o">(</span><span class="n">Objects</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="s">&#34;exception&#34;</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="o">(</span><span class="s">&#34;このタイミングで例外かよ。。。。&#34;</span><span class="o">);</span>
-                <span class="o">}</span>
-
-                <span class="n">transactional</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
-                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-
-        <span class="k">return</span> <span class="n">sayHello</span><span class="o">(</span><span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;00001&#34;</span><span class="o">));</span>
-    <span class="o">}</span></code></pre></div>
 <p>これで完成です。</p>
 
 <h2 id="実行">実行</h2>
@@ -871,6 +872,32 @@ ERROR [2016-07-13 17:53:12,657] io.dropwizard.jersey.errors.LoggingExceptionMapp
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">
+                        android
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="title">Androidアプリを開発したい</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -973,32 +1000,6 @@ ERROR [2016-07-13 17:53:12,657] io.dropwizard.jersey.errors.LoggingExceptionMapp
                 </div>
             </li>
             
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
-                        linux
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
-                    <p class="item-date">
-                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
-                    </p>
-                </div>
-            </li>
-            
         </ul>
     </div>
 </div>
@@ -1017,7 +1018,7 @@ ERROR [2016-07-13 17:53:12,657] io.dropwizard.jersey.errors.LoggingExceptionMapp
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
                     android
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">4</span>
             </li>
             
             <li class="category-list-item">

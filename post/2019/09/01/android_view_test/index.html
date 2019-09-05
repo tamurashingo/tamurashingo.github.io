@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
 <head>
-    <title>ISUCON5に参加して惨敗した件 &middot; Web技術と親しむ</title>
+    <title>Androidアプリを開発したい &middot; Web技術と親しむ</title>
     <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,7 +10,7 @@
       <meta name="description" content="">
     
     
-    <link rel="canonical" href="https://tamurashingo.github.io/post/2015/10/25/isucon5/"/>
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/"/>
     <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
     <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
     <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
@@ -20,50 +20,59 @@
     
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <meta property="og:title" content="ISUCON5に参加して惨敗した件" />
-<meta property="og:description" content="
+    <meta property="og:title" content="Androidアプリを開発したい" />
+<meta property="og:description" content="tamuraです。
 
-ISUCON5に参加しました。
-SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。
+Androidでゲームを作ろうと思います。
+以前はCocos2dxを使ったのですが、今回はKotlinでやってみようと思いました。
 
-結果は惨敗です。スコアは1000ちょっとくらいです。
+まずは、タッチしたら何かが表示されるものを作っていきます。
 
-memcachedとか使えるようにならないとだめだね、ということが確認できました。" />
+Androidで簡単お絵かきアプリ開発
+を写経しました。
+
+完成したやつはこちら。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://tamurashingo.github.io/post/2015/10/25/isucon5/" />
-<meta property="article:published_time" content="2015-10-25T22:40:23+09:00" />
-<meta property="article:modified_time" content="2015-10-25T22:40:23+09:00" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" />
+<meta property="article:published_time" content="2019-09-01T16:03:14+09:00" />
+<meta property="article:modified_time" content="2019-09-01T16:03:14+09:00" />
 
     
-    <meta itemprop="name" content="ISUCON5に参加して惨敗した件">
-<meta itemprop="description" content="
+    <meta itemprop="name" content="Androidアプリを開発したい">
+<meta itemprop="description" content="tamuraです。
 
-ISUCON5に参加しました。
-SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。
+Androidでゲームを作ろうと思います。
+以前はCocos2dxを使ったのですが、今回はKotlinでやってみようと思いました。
 
-結果は惨敗です。スコアは1000ちょっとくらいです。
+まずは、タッチしたら何かが表示されるものを作っていきます。
 
-memcachedとか使えるようにならないとだめだね、ということが確認できました。">
+Androidで簡単お絵かきアプリ開発
+を写経しました。
 
-
-<meta itemprop="datePublished" content="2015-10-25T22:40:23&#43;09:00" />
-<meta itemprop="dateModified" content="2015-10-25T22:40:23&#43;09:00" />
-<meta itemprop="wordCount" content="3256">
+完成したやつはこちら。">
 
 
+<meta itemprop="datePublished" content="2019-09-01T16:03:14&#43;09:00" />
+<meta itemprop="dateModified" content="2019-09-01T16:03:14&#43;09:00" />
+<meta itemprop="wordCount" content="371">
 
-<meta itemprop="keywords" content="Web,Java,MySQL,チューニング,ISUCON," />
+
+
+<meta itemprop="keywords" content="android," />
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ISUCON5に参加して惨敗した件"/>
-<meta name="twitter:description" content="
+<meta name="twitter:title" content="Androidアプリを開発したい"/>
+<meta name="twitter:description" content="tamuraです。
 
-ISUCON5に参加しました。
-SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。
+Androidでゲームを作ろうと思います。
+以前はCocos2dxを使ったのですが、今回はKotlinでやってみようと思いました。
 
-結果は惨敗です。スコアは1000ちょっとくらいです。
+まずは、タッチしたら何かが表示されるものを作っていきます。
 
-memcachedとか使えるようにならないとだめだね、ということが確認できました。"/>
+Androidで簡単お絵かきアプリ開発
+を写経しました。
+
+完成したやつはこちら。"/>
 <meta name="twitter:site" content="@tamura_shingo"/>
 
     
@@ -275,9 +284,9 @@ memcachedとか使えるようにならないとだめだね、ということ�
         
 
         <header class="article-header">
-    <a href="https://tamurashingo.github.io/post/2015/10/25/isucon5/">
+    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/">
     <h1 class="article-title" itemprop="name">
-        ISUCON5に参加して惨敗した件
+        Androidアプリを開発したい
     </h1>
     </a>
     <div class="article-meta">
@@ -285,12 +294,12 @@ memcachedとか使えるようにならないとだめだね、ということ�
         
         <div class="article-date">
             <i class="fa fa-calendar"></i>
-            <time datetime="2015-10-25 22:40:23 &#43;0900 JST" itemprop="datePublished">2015-10-25</time>
+            <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
             &middot;
-            3256
+            371
             文字
             &middot;
-            7
+            1
             分くらいで読めます
         </div>
         
@@ -301,7 +310,7 @@ memcachedとか使えるようにならないとだめだね、ということ�
                 <i class="fa fa-folder"></i>
                 
                 
-                <a class="article-category-link" href="https://tamurashingo.github.io/categories/isucon">ISUCON</a>
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">android</a>
                 
                 
             </div>
@@ -315,23 +324,7 @@ memcachedとか使えるようにならないとだめだね、ということ�
                 <i class="fa fa-tags"></i>
                 
                 
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/web">Web</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">Java</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/mysql">MySQL</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0">チューニング</a>
-                &middot;
-                
-                
-                <a class="article-category-link" href="https://tamurashingo.github.io/tags/isucon">ISUCON</a>
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/android">android</a>
                 
                 
             </div>
@@ -341,470 +334,101 @@ memcachedとか使えるようにならないとだめだね、ということ�
 </header>
 
         <div class="article-entry" itemprop="articleBody">
-            <style type="text/css">
-pre { overflow-x: scroll; }
-</style>
+            <p>tamuraです。</p>
 
-<p>ISUCON5に参加しました。
-SQLのチューニングならなんとかなるかなと思うのですが、ミドルを含めたチューニングはあまりやったことがないので、どんなもんなのかちょっと参戦してみました。</p>
+<p>Androidでゲームを作ろうと思います。
+以前はCocos2dxを使ったのですが、今回はKotlinでやってみようと思いました。</p>
 
-<p>結果は惨敗です。スコアは1000ちょっとくらいです。</p>
+<p>まずは、タッチしたら何かが表示されるものを作っていきます。</p>
 
-<p>memcachedとか使えるようにならないとだめだね、ということが確認できました。</p>
+<p><a href="https://qiita.com/InoueDaiki/items/3b51aaabdaad1c2227a3">Androidで簡単お絵かきアプリ開発</a>
+を写経しました。</p>
 
-<p>以下、ログです。</p>
+<p>完成したやつは<a href="https://github.com/tamurashingo/android_test_view">こちら</a>。</p>
 
-<h2 id="2015-09-02">2015/09/02</h2>
+<h2 id="viewの作成">Viewの作成</h2>
 
-<p>参加する日と場所の調整
-9/26(土)に決定。
-場所に関する案</p>
+<p><code>View</code>を継承して<code>PaintView</code>を作ります。</p>
 
-<ul>
-<li>自宅
+<p>kotlinのコンストラクタの書き方がよくわからない。</p>
+<div class="highlight"><pre class="chroma"><code class="language-kotlin" data-lang="kotlin"><span class="k">class</span> <span class="nc">PaintView</span> <span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
 
-<ul>
-<li>子どもがいて集中できないと思うよ？と嫁さんからのアドバイス</li>
-</ul></li>
-<li>会社？
+    <span class="k">private</span> <span class="k">val</span> <span class="py">paint</span><span class="p">:</span> <span class="n">Paint</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">()</span>
+    <span class="k">private</span> <span class="k">val</span> <span class="py">path</span><span class="p">:</span> <span class="n">Path</span> <span class="p">=</span> <span class="n">Path</span><span class="p">()</span>
 
-<ul>
-<li>うーん・・・うーん・・・</li>
-<li>proxyとかあるとなんかあったときにあれな気がする</li>
-</ul></li>
-<li>コワーキングスペースは？
+    <span class="n">init</span> <span class="p">{</span>
+        <span class="n">paint</span><span class="p">.</span><span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">RED</span>
+        <span class="n">paint</span><span class="p">.</span><span class="n">style</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">.</span><span class="n">Style</span><span class="p">.</span><span class="n">STROKE</span>
+        <span class="n">paint</span><span class="p">.</span><span class="n">strokeJoin</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">.</span><span class="n">Join</span><span class="p">.</span><span class="n">ROUND</span>
+        <span class="n">paint</span><span class="p">.</span><span class="n">strokeCap</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">.</span><span class="n">Cap</span><span class="p">.</span><span class="n">ROUND</span>
+        <span class="n">paint</span><span class="p">.</span><span class="n">strokeWidth</span> <span class="p">=</span> <span class="m">10f</span>
+    <span class="p">}</span>
 
-<ul>
-<li>そういえば会社の近くにもあるね～</li>
-</ul></li>
-<li>スタバ
+    <span class="k">constructor</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">):</span> <span class="k">this</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">null</span><span class="p">)</span>
+    <span class="k">constructor</span><span class="p">(</span><span class="n">context</span><span class="p">:</span> <span class="n">Context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">:</span> <span class="n">AttributeSet</span><span class="p">?):</span> <span class="k">super</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
 
-<ul>
-<li>wifi使えるね！</li>
-<li>でも8時間いるような場所じゃないよね！</li>
-</ul></li>
-<li>マック
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onDraw</span><span class="p">(</span><span class="n">canvas</span><span class="p">:</span> <span class="n">Canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">canvas</span><span class="p">.</span><span class="n">drawPath</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">paint</span><span class="p">)</span>
+    <span class="p">}</span>
 
-<ul>
-<li>wifi使えるね！</li>
-<li>でも8時間いるような場所じゃないよね！</li>
-</ul></li>
-<li>お酒が飲めるところ
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">onTouchEvent</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">MotionEvent</span><span class="p">):</span> <span class="n">Boolean</span> <span class="p">{</span>
+        <span class="k">val</span> <span class="py">x</span> <span class="p">=</span> <span class="n">event</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span>
+        <span class="k">val</span> <span class="py">y</span> <span class="p">=</span> <span class="n">event</span><span class="p">.</span><span class="n">getY</span><span class="p">()</span>
+        <span class="k">when</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_DOWN</span> <span class="p">-&gt;</span> <span class="p">{</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="n">invalidate</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_MOVE</span> <span class="p">-&gt;</span> <span class="p">{</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">lineTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="n">invalidate</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">MotionEvent</span><span class="p">.</span><span class="n">ACTION_UP</span> <span class="p">-&gt;</span> <span class="p">{</span>
+                <span class="n">path</span><span class="p">.</span><span class="n">lineTo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="n">invalidate</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">true</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="activity-main-xml-の編集">activity_main.xml の編集</h2>
 
-<ul>
-<li>ちょっと考えておきます</li>
-</ul></li>
-</ul>
+<p><code>ConstraintLayout</code>の直下に今回作った<code>View</code>を載せていきます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span>
+        <span class="na">xmlns:android=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+        <span class="na">xmlns:tools=</span><span class="s">&#34;http://schemas.android.com/tools&#34;</span>
+        <span class="na">xmlns:app=</span><span class="s">&#34;http://schemas.android.com/apk/res-auto&#34;</span>
+        <span class="na">android:layout_width=</span><span class="s">&#34;match_parent&#34;</span>
+        <span class="na">android:layout_height=</span><span class="s">&#34;match_parent&#34;</span>
+        <span class="na">tools:context=</span><span class="s">&#34;.MainActivity&#34;</span><span class="nt">&gt;</span>
 
-<p>場所については決まらず。</p>
+    <span class="nt">&lt;com.github.tamurashingo.android.viewsample.views.PaintView</span>
+            <span class="na">android:layout_width=</span><span class="s">&#34;wrap_content&#34;</span>
+            <span class="na">android:layout_height=</span><span class="s">&#34;wrap_content&#34;</span>
+            <span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&#34;parent&#34;</span>
+            <span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&#34;parent&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/com.github.tamurashingo.android.viewsample.views.PaintView&gt;</span>
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span></code></pre></div>
+<h2 id="実行結果">実行結果</h2>
 
-<h2 id="2015-09-25">2015/09/25</h2>
+<p>絵がかけるようになりました。</p>
 
-<p>場所の決定。
-wifiが使えるマンガ喫茶。</p>
-
-<h2 id="2015-09-26">2015/09/26</h2>
-
-<p>ISUCON開始です。
-10:00開始なので9:50には所定のマンガ喫茶に集合する予定でしたが、</p>
-
-<ul>
-<li>tamura: 10:30に家を出る暴挙</li>
-<li>yoshimura: 所用のため遅れる</li>
-</ul>
-
-<p>ISUCONは時間との勝負なのに最初からだらけてます。
-いろいろあって開始が11:00からになったのでいろいろと助かりました。
-そういう感じで、私たちのチームは12:00開始となりました。
-とりあえずGoogle Cloud SDKを入れるところから開始です。そういうことは前日までにやっておけという・・・ｗｗ</p>
-
-<h3 id="12-30">12:30～</h3>
-
-<p>環境構築からスタートです。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [12:42]
-で、Google Cloud SDKを入れておいてください。Macなら
-<code  class="lang-sh">curl https://sdk.cloud.google.com | bash</code>
-でいけもうす！<hr>tamura [12:43]
-こんな流れです。
-<code  class="lang-sh">curl https://sdk.cloud.google.com | bash
-gcloud auth login 
-gcloud config set project inspiring-folio-106208
-</code><hr>yoshimura [12:44]
-ありがとうござんやす！やってみます！
-<hr>tamura [12:44]
-そのあとに
-<code  class="lang-sh">gcloud compute ssh instance-1 --zone asia-east1-c</code>
-でsshログインできます！
-<hr>tamura [12:45]
-あとは <code>sudo su - isucon</code> とかすると、isucon用ユーザになれます。
-</pre>
-
-<h3 id="12-45">12:45～</h3>
-
-<p>二人ともJava野郎なので必然的にJavaに。とりあえずデプロイをして画面を見てみます。
-Google Cloud SDKをつかってとりあえずソースを手元に落としてきます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">gcloud compute copy-files root@instance-1:/home/isucon/webapp/java.tar.gz ~/ --zone asia-east1-c</code></pre></div>
-<p>からのEclipse。
-空プロジェクトをつくってそこに展開して、Eclipseから configure → convert to Maven project で作業開始です。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [13:17]
-ソースをみれるとこまでいきました！コンバート中なう
-昼飯ってもう食いました？カップラーメンのソース焼きそばでも食うかな。
-<hr>tamura [13:20]
-私はカップ麺買ってお湯入れましたｗ
-</pre>
-
-<p>とりあえず配布されたソースでベンチして700を確認。(Rubyだと200でした)
-そして食べたら眠くなる。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [13:35]
-これはやばす。食ったら眠くなるｗ
-<hr>yoshimura [13:40]
-ソースやきそばなう
-</pre>
-
-<h3 id="13-45">13:45～</h3>
-
-<p>さっそくMySQLの設定でつまづきます。なぜかMySQLが上がってきません。
-そしてあきらめはじめます。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [13:45]
-あれここって一旦外出はOKなんですかね？酒買ってきたい・・・ｗ
-<hr>yoshimura [13:45]
-w
-外出OK
-っていってましたよ
-伝票があればOKらしいす
-<hr>
-tamura [13:46]
-なるほど。とりあえず伝票を持ってフロントですね
-<hr>yoshimura [13:46]
-それでいけるとおもいます！
-</pre>
-
-<p>からの～</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [13:49]
-やきそば完食なう
-
-ねむし
-</pre>
-
-<p>おまえもか！</p>
-
-<h3 id="14-00">14:00～</h3>
-
-<p>MySQL起動です！</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [14:05]
-やっときましたｗ
-<code>unknown variable 'log_slow_queries=/var/log/mysql/mysql-slow.log'</code>
-いやいやいやw
-単純にコメントを外しただけなのにこの変数名がおかしいだなんてｗ
-</pre>
-
-<p>ほんとに何なんでしょうか・・・・ｗ</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">slow_query_log_file=/var/log/mysql/mysql-slow.log</code></pre></div>
-<p>にすればＯＫのようです。罠です。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [14:41]
-<code  class="lang-sql">mysql&gt; SHOW GLOBAL VARIABLES like 'Q%'
-   -&gt; ;
-+------------------------------+----------+
-| Variable_name                | Value    |
-+------------------------------+----------+
-| query_alloc_block_size       | 8192     |
-| query_cache_limit            | 1048576  |
-| query_cache_min_res_unit     | 4096     |
-| query_cache_size             | 16777216 |
-| query_cache_type             | OFF      |
-| query_cache_wlock_invalidate | OFF      |
-| query_prealloc_size          | 8192     |
-+------------------------------+----------+
-</code>
-クエリキャッシュタイプが無効になっているみたいです
-</pre>
-
-<p>いいよいいよ～
-あとは、アクセスが多いページはどこなのかを見てみようと。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [14:42]
-<code  class="lang-sh">cat access.log | awk '{print $6, $7}' | sort | uniq -c | sort -n -r</code>
-これでアクセストップ１０を出しました。
-<code>   212 "GET /
-    77 "POST /login
-    77 "GET /login
-    71 "GET /friends
-    56 "GET /logout
-    54 "GET /footprints
-    53 "POST /diary/entry
-    18 "GET /diary/entries/samir_sporer1861
-    15 "GET /diary/entries/karen1539
-    14 "GET /profile/jimmy_dibbert3793
-    13 "GET /profile/samir_sporer1861
-    12 "GET /profile/icie3199
-    12 "GET /diary/entries/mathias_leuschke1854
-    12 "GET /diary/entries/jimmy_dibbert3793
-    11 "GET /profile/karen1539
-    11 "GET /profile/dewayne3197
-    11 "GET /diary/entries/kelsi_yundt1423
-    10 "GET /profile/daniella_kling728
-</code>
-あ、１０件以上あるけどまあいいです。
-<hr>tamura [14:45]
-そういえば302は無視していいのか。
-
-<code  class="lang-sh">cat access.log | awk '{print $6, $7, $9}'  | sort | uniq -c | grep -v '302$' | sort -r -n</code>
-<code>   192 "GET / 200
-    77 "GET /login 200
-    70 "GET /friends 200
-    53 "GET /footprints 200
-    18 "GET /diary/entries/samir_sporer1861 200
-    15 "GET /diary/entries/karen1539 200
-    13 "GET /profile/samir_sporer1861 200
-    12 "GET /profile/jimmy_dibbert3793 200
-    12 "GET /profile/icie3199 200
-    11 "GET /profile/karen1539 200
-    11 "GET /profile/dewayne3197 200
-    11 "GET /diary/entries/mathias_leuschke1854 200
-    11 "GET /diary/entries/kelsi_yundt1423 200
-    10 "GET /profile/daniella_kling728 200
-    10 "GET /diary/entries/jimmy_dibbert3793 200
-</code></pre>
-
-<h3 id="15-00">15:00～</h3>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [15:06]
-ちっと外でて休憩してきます。
-<hr>yoshimura [15:06]
-ほい！
-<hr>yoshimura [15:27]
 <figure>
-    <img src="photo.jpg"/> 
+    <img src="app.png"/> 
 </figure>
-<br />
-ありがとうございます！いただきます♪
-</pre>
-
-<p>酒買ってきました。
-キャッシュを有効にしたのに反映されていないっぽくて、ちょっと調査中。が、MySQLの起動がうまくいっていなかったようです。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">
-<code>
-2015-09-26 15:40:52 0 [Warning] options --log-slow-admin-statements, --log-queries-not-using-indexes and --log-slow-slave-statements have no effect if --slow-query-log is not set
-2015-09-26 15:40:52 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-2015-09-26 15:40:52 0 [Note] /usr/sbin/mysqld (mysqld 5.6.25-0ubuntu0.15.04.1) starting as process 18230 ...
-2015-09-26 15:40:52 18230 [Warning] Buffered warning: Changed limits: max_open_files: 1024 (requested 5000)
-
-2015-09-26 15:40:52 18230 [Warning] Buffered warning: Changed limits: table_open_cache: 431 (requested 2000)
-
-2015-09-26 15:40:52 18230 [Warning] Using unique option prefix myisam-recover instead of myisam-recover-options is deprecated and will be removed in a future release. Please use the full name instead.
-2015-09-26 15:40:52 18230 [Note] Plugin 'FEDERATED' is disabled.
-2015-09-26 15:40:52 18230 [ERROR] Function 'innodb' already exists
-2015-09-26 15:40:52 18230 [Warning] Couldn't load plugin named 'innodb' with soname 'ha_innodb.so'.
-2015-09-26 15:40:52 18230 [ERROR] Function 'federated' already exists
-2015-09-26 15:40:52 18230 [Warning] Couldn't load plugin named 'federated' with soname 'ha_federated.so'.
-2015-09-26 15:40:52 18230 [ERROR] Function 'blackhole' already exists
-2015-09-26 15:40:52 18230 [Warning] Couldn't load plugin named 'blackhole' with soname 'ha_blackhole.so'.
-2015-09-26 15:40:52 18230 [ERROR] Function 'archive' already exists
-2015-09-26 15:40:52 18230 [Warning] Couldn't load plugin named 'archive' with soname 'ha_archive.so'.
-2015-09-26 15:40:52 18230 [Note] InnoDB: Using atomics to ref count buffer pool pages
-2015-09-26 15:40:52 18230 [Note] InnoDB: The InnoDB memory heap is disabled
-2015-09-26 15:40:52 18230 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
-2015-09-26 15:40:52 18230 [Note] InnoDB: Memory barrier is not used
-2015-09-26 15:40:52 18230 [Note] InnoDB: Compressed tables use zlib 1.2.8
-2015-09-26 15:40:52 18230 [Note] InnoDB: Using Linux native AIO
-2015-09-26 15:40:52 18230 [Note] InnoDB: Using CPU crc32 instructions
-2015-09-26 15:40:52 18230 [Note] InnoDB: Initializing buffer pool, size = 128.0M
-2015-09-26 15:40:52 18230 [Note] InnoDB: Completed initialization of buffer pool
-2015-09-26 15:40:52 18230 [Note] InnoDB: Highest supported file format is Barracuda.
-2015-09-26 15:40:52 18230 [Note] InnoDB: 128 rollback segment(s) are active.
-2015-09-26 15:40:52 18230 [Note] InnoDB: Waiting for purge to start
-2015-09-26 15:40:52 18230 [Note] InnoDB: 5.6.25 started; log sequence number 4014704312
-2015-09-26 15:40:52 18230 [Note] Server hostname (bind-address): '127.0.0.1'; port: 3306
-2015-09-26 15:40:52 18230 [Note]   - '127.0.0.1' resolves to '127.0.0.1';
-2015-09-26 15:40:52 18230 [Note] Server socket created on IP: '127.0.0.1'.
-2015-09-26 15:40:52 18230 [Note] Event Scheduler: Loaded 0 events
-2015-09-26 15:40:52 18230 [Note] /usr/sbin/mysqld: ready for connections.
-Version: '5.6.25-0ubuntu0.15.04.1'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  (Ubuntu)
-</code></pre>
-
-<p>原因不明ですが、とりあえず起動したようです。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [15:42]
-<code  class="lang-sql">sql&gt; SHOW GLOBAL VARIABLES like 'q%'
-   -&gt; ;
-+------------------------------+----------+
-| Variable_name                | Value    |
-+------------------------------+----------+
-| query_alloc_block_size       | 8192     |
-| query_cache_limit            | 1048576  |
-| query_cache_min_res_unit     | 4096     |
-| query_cache_size             | 16777216 |
-| query_cache_type             | ON       |
-| query_cache_wlock_invalidate | OFF      |
-| query_prealloc_size          | 8192     |
-+------------------------------+----------+
-</code></pre>
-
-<p>きました。で、とりあえずベンチにかけて、1000を記録。MySQLの設定だけであがるんだな～、でもなんやかんや時間かかるな～と。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [15:51]
-じゃあちょっとアプリを書き直します。
-<hr>yoshimura [15:51]
-了解です！
-
-僕はチューハイを飲みますw！
-</pre>
-
-<p>え？</p>
-
-<p>テンションあげていきます。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [15:54]
-修正箇所２箇所のうち１箇所だけ対応した版をベンチ中です
-
-https://www.youtube.com/watch?v=FNSPh3AA6GI
-YouTube dateyan2000
-(MAD) Bomb A Head! m.c.A.T &amp; IKZO（吉幾三）
-</pre>
-
-<h3 id="16-00">16:00～</h3>
-
-<p>アプリでこねこねしている部分をSQLいっぱつで取得できるように変更しました。結果、微増です。
-DBはキャッシュヒット率を上げる方向で進めることにしました。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">yoshimura [16:14]
-<code  class="lang-sql">mysql&gt; SELECT (SELECT VARIABLE_VALUE FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME = 'QCACHE_HITS')/(SELECT SUM(VARIABLE_VALUE) FROM INFORMATION_SCHEMA.GLOBAL_STATUS WHERE VARIABLE_NAME IN ('QCACHE_HITS','QCACHE_INSERTS','QCACHE_NOT_CACHED'))*100 AS CACHE_HIT_RATE;
-+-------------------+
-| CACHE_HIT_RATE    |
-+-------------------+
-| 53.47742240012455 |
-+-------------------+
-1 row in set (0.00 sec)
-</code>
-いま５３%みたいす　SQLはqiitaからぱくりましたw
-</pre>
-
-<p>そしてアプリが重くてベンチが落ちる事態に。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:36]
-おちたｗ
-
-やっぱクエリが重いか・・ｗ
-</pre>
-
-<p>クエリをMySQLに投げてみる、。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:52]
-oh...遅い。２つ目のやつは普通にアプリ側でフィルタしたほうが早そうです。
-</pre>
-
-<p>MySQLもバッファを増やす方向で進めていきます。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [16:56]
-<code  class="lang-sh">cat /proc/meminfo 
-MemTotal:        3633408 kB
-MemFree:          841912 kB
-MemAvailable:    2372304 kB
-Buffers:           80864 kB
-Cached:          1603664 kB
-SwapCached:            0 kB
-Active:          2286572 kB
-Inactive:         337576 kB
-Active(anon):     941668 kB
-Inactive(anon):     3144 kB
-Active(file):    1344904 kB
-Inactive(file):   334432 kB
-Unevictable:           0 kB
-Mlocked:               0 kB
-SwapTotal:             0 kB
-SwapFree:              0 kB
-Dirty:                60 kB
-Writeback:             0 kB
-AnonPages:        939624 kB
-Mapped:            57692 kB
-Shmem:              5188 kB
-Slab:              56264 kB
-SReclaimable:      39984 kB
-SUnreclaim:        16280 kB
-KernelStack:        3376 kB
-PageTables:         9224 kB
-NFS_Unstable:          0 kB
-Bounce:                0 kB
-WritebackTmp:          0 kB
-CommitLimit:     1816704 kB
-Committed_AS:    1192572 kB
-VmallocTotal:   34359738367 kB
-VmallocUsed:        9700 kB
-VmallocChunk:   34359726568 kB
-HardwareCorrupted:     0 kB
-AnonHugePages:    749568 kB
-CmaTotal:              0 kB
-CmaFree:               0 kB
-HugePages_Total:       0
-HugePages_Free:        0
-HugePages_Rsvd:        0
-HugePages_Surp:        0
-Hugepagesize:       2048 kB
-DirectMap4k:       69620 kB
-DirectMap2M:     2656256 kB
-DirectMap1G:     1048576 kB
-</code>
-こんな感じなので、メモリは１GBくらい割り当てて大丈夫です！
-</pre>
-
-<h3 id="17-00">17:00～</h3>
-
-<p>使ったこと無いですが、ISUCONの過去の実績などをみるとmemcachedがいいらしい、ということなのでmemcachedを調べます。
-もう17:00なんですが。。。</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [17:25]
-うーんmemcachedよくわからんし・・・ｗ
-
-来年の課題ですね〜ｗ
-</pre>
-
-<p>そして焼きそばへ・・・</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [17:28]
-焼きそばでも食うか・・ｗ
-<hr>yoshimura [17:28]
-w
-
-２杯目すかw？
-<hr>tamura [17:28]
-そうですね。飲んだら食いたくなりますｗ
-<hr>yoshimura [17:28]
-飲んで立ち上がったら意外に酔いがまわってましたw
-</pre>
-
-<p>そして終了モードへ</p>
-
-<pre style="border: solid 2px #8c8fa2; padding: 4px; border-radius: 4px;">tamura [17:53]
-もうあとはあれですかね。サーバ再起動時にちゃんとアプリが動くように設定ですかね
-<hr>yoshimura [17:58]
-今日はありがとうございました！また来年出直したいと思いますw
-</pre>
-
-<p>そう、yoshimuraは飲み会があるとのことで、1時間早く上がりましたｗｗｗ</p>
-
-<p>大丈夫か？このチーム → 案の定、だめでしたｗｗｗ</p>
-
-<p>久々にマンガ喫茶にきたので、１冊だけ読んで帰りました。</p>
         </div>
         <footer class="article-footer">
   <div class="article-share-box">
     <div class="article-share-links">
-      <a href="http://twitter.com/intent/tweet?text=ISUCON5%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%a6%e6%83%a8%e6%95%97%e3%81%97%e3%81%9f%e4%bb%b6%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2015%2f10%2f25%2fisucon5%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2015%2f10%2f25%2fisucon5%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
-      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2015/10/25/isucon5/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
+      <a href="http://twitter.com/intent/tweet?text=Android%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e9%96%8b%e7%99%ba%e3%81%97%e3%81%9f%e3%81%84%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2019%2f09%2f01%2fandroid_view_test%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2019%2f09%2f01%2fandroid_view_test%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
     </div>
   </div>
 
   
-  <a href="https://tamurashingo.github.io/post/2015/10/25/isucon5/#disqus_thread" class="article-comment-link">
+  <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/#disqus_thread" class="article-comment-link">
     Comments
   </a>
   
@@ -814,44 +438,20 @@ w
 
         
 
-<div class="article-related">
-  <h3>関連記事</h3>
-  <ul>
-    
-    <li><a href="/post/2016/09/19/isucon6/">ISUCON6に参加して今年も惨敗した件 ... 2016-09-19</a></li>
-    
-    <li><a href="/post/2016/10/31/isucon6-mysql/">ISUCON反省会 MySQL編 ... 2016-10-31</a></li>
-    
-    <li><a href="/post/2016/09/22/isucon6-nginx/">ISUCON反省会 nginx編 ... 2016-09-22</a></li>
-    
-    <li><a href="/post/2015/09/22/dbutils3-020/">DBUtils3 version 0.2.0 ... 2015-09-22</a></li>
-    
-    <li><a href="/post/2015/08/26/golang-mysql/">Go言語でMySQLに接続する ... 2015-08-26</a></li>
-    
-  </ul>
-</div>
-
 
     </div>
 
     
 <nav id="article-nav">
     
-    <a href="https://tamurashingo.github.io/post/2015/09/22/dbutils3-020/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">
           前のページ
       </strong>
-      <div class="article-nav-title">DBUtils3 version 0.2.0</div>
+      <div class="article-nav-title">Hugoで最新のChromaを使う</div>
     </a>
     
 
-    
-    <a href="https://tamurashingo.github.io/post/2016/04/16/svfest2016/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">
-          次のページ
-      </strong>
-      <div class="article-nav-title">サバフェス!2016 IoTハッカソンに参加してきました</div>
-    </a>
     
 </nav>
 

@@ -2,7 +2,7 @@
 <html lang="ja-jp">
 <head>
     <title>memcachedクライアントではまった件（後編） &middot; Web技術と親しむ</title>
-    <meta name="generator" content="Hugo 0.56.0-DEV" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="tamura shingo">
@@ -38,12 +38,11 @@ MemcachedClient client = new MemcachedClient(new DefaultConnectionFactory() {
 String message = (String)client.get(&#34;key&#34;);" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tamurashingo.github.io/post/2017/01/02/pitfall-memcached-second/" />
-<meta property="article:published_time" content="2017-01-02T00:30:00&#43;09:00"/>
-<meta property="article:modified_time" content="2017-01-02T00:30:00&#43;09:00"/>
+<meta property="article:published_time" content="2017-01-02T00:30:00+09:00" />
+<meta property="article:modified_time" content="2017-01-02T00:30:00+09:00" />
 
     
-    
-<meta itemprop="name" content="memcachedクライアントではまった件（後編）">
+    <meta itemprop="name" content="memcachedクライアントではまった件（後編）">
 <meta itemprop="description" content="tamuraです。
 
 spymemcachedでバックアップサーバを使わない方法についてまとめました。
@@ -208,7 +207,7 @@ String message = (String)client.get(&#34;key&#34;);"/>
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        68
+        69
         <span>記事</span>
       </div>
       <div class="article-info-block">
@@ -358,14 +357,14 @@ String message = (String)client.get(&#34;key&#34;);"/>
 <h2 id="結論">結論</h2>
 
 <p>失敗時の動作を再接続しないに定義します。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MemcachedClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MemcachedClient</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultConnectionFactory</span><span class="o">()</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MemcachedClient</span> <span class="nf">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MemcachedClient</span><span class="p">(</span><span class="k">new</span> <span class="n">DefaultConnectionFactory</span><span class="p">()</span> <span class="p">{</span>
     <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">FailureMode</span> <span class="nf">getFailureMode</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Failure</span><span class="o">.</span><span class="na">Cancel</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="o">},</span> <span class="n">AddrUtil</span><span class="o">.</span><span class="na">getAddresses</span><span class="o">(</span><span class="s">&#34;host1,host2,host3&#34;</span><span class="o">));</span>
+    <span class="kd">public</span> <span class="nf">FailureMode</span> <span class="n">getFailureMode</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Failure</span><span class="p">.</span><span class="na">Cancel</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">},</span> <span class="n">AddrUtil</span><span class="p">.</span><span class="na">getAddresses</span><span class="p">(</span><span class="s">&#34;host1,host2,host3&#34;</span><span class="p">));</span>
 
-<span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span><span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;key&#34;</span><span class="o">);</span></code></pre></div>
+<span class="n">String</span> <span class="nf">message</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">client</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&#34;key&#34;</span><span class="p">);</span></code></pre></div>
 <h2 id="調査の流れ">調査の流れ</h2>
 
 <p>失敗時の制御を行っている箇所を探します。 そのため、接続(コネクション？インスタンス？)を複数持っているクラスを探していきます。</p>
@@ -373,37 +372,37 @@ String message = (String)client.get(&#34;key&#34;);"/>
 <h3 id="memcachedclient">MemcachedClient</h3>
 
 <p><code>MemcachedClient</code>は<code>MemcachedConnection</code>を持っています。 <code>MemcachedConnection</code>はひとつなので、失敗時の制御は<code>MemcachedClient</code>がやっているわけではなさそうです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemcachedClient</span> <span class="kd">extends</span> <span class="n">SpyObject</span> <span class="kd">implements</span> <span class="n">MemcachedClientIF</span><span class="o">,</span>
-    <span class="n">ConnectionObserver</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">MemcachedClient</span> <span class="nf">extends</span> <span class="n">SpyObject</span> <span class="nf">implements</span> <span class="n">MemcachedClientIF</span><span class="p">,</span>
+    <span class="n">ConnectionObserver</span> <span class="p">{</span>
 
   <span class="c1">// 略
 </span><span class="c1"></span>
-  <span class="kd">protected</span> <span class="kd">final</span> <span class="n">MemcachedConnection</span> <span class="n">mconn</span><span class="o">;</span>
+  <span class="kd">protected</span> <span class="nf">final</span> <span class="n">MemcachedConnection</span> <span class="nf">mconn</span><span class="p">;</span>
 
   <span class="c1">// 略
-</span><span class="c1"></span><span class="o">}</span></code></pre></div>
+</span><span class="c1"></span><span class="p">}</span></code></pre></div>
 <h3 id="memcachedconnection">MemcachedConnection</h3>
 
 <p><code>MemcachedConnection</code>からは<code>#getLocator()</code>を使って<code>MemcachedNode</code>のリストを取得できています。 ということは、<code>#getLocator()</code>で取得できるクラスに何かありそうです。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="nd">@Override</span>
-  <span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">SocketAddress</span><span class="o">&gt;</span> <span class="nf">getAvailableServers</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">SocketAddress</span><span class="o">&gt;</span> <span class="n">rv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">SocketAddress</span><span class="o">&gt;();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">MemcachedNode</span> <span class="n">node</span> <span class="o">:</span> <span class="n">mconn</span><span class="o">.</span><span class="na">getLocator</span><span class="o">().</span><span class="na">getAll</span><span class="o">())</span> <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">isActive</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">rv</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">getSocketAddress</span><span class="o">());</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">rv</span><span class="o">;</span>
-  <span class="o">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="n">NodeLocator</span> <span class="nf">getLocator</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">locator</span><span class="o">;</span>
-  <span class="o">}</span></code></pre></div>
+  <span class="kd">public</span> <span class="nf">Collection</span><span class="o">&lt;</span><span class="n">SocketAddress</span><span class="o">&gt;</span> <span class="nf">getAvailableServers</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">SocketAddress</span><span class="o">&gt;</span> <span class="nf">rv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">SocketAddress</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">MemcachedNode</span> <span class="nf">node</span> <span class="o">:</span> <span class="n">mconn</span><span class="p">.</span><span class="na">getLocator</span><span class="p">().</span><span class="na">getAll</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">rv</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">getSocketAddress</span><span class="p">());</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">rv</span><span class="p">;</span>
+  <span class="p">}</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="nf">NodeLocator</span> <span class="n">getLocator</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">locator</span><span class="p">;</span>
+  <span class="p">}</span></code></pre></div>
 <h3 id="nodelocator">NodeLocator</h3>
 
 <p><code>NodeLocator</code>で複数の<code>MemcachedNode</code>を管理しているようです。</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
 </span><span class="cm"> * Interface for locating a node by hash value.
 </span><span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">NodeLocator</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">interface</span> <span class="n">NodeLocator</span> <span class="p">{</span>
 
   <span class="cm">/**
 </span><span class="cm">   * Get the primary location for the given key.
@@ -411,7 +410,7 @@ String message = (String)client.get(&#34;key&#34;);"/>
 </span><span class="cm">   * @param k the object key
 </span><span class="cm">   * @return the QueueAttachment containing the primary storage for a key
 </span><span class="cm">   */</span>
-  <span class="n">MemcachedNode</span> <span class="nf">getPrimary</span><span class="o">(</span><span class="n">String</span> <span class="n">k</span><span class="o">);</span>
+  <span class="n">MemcachedNode</span> <span class="nf">getPrimary</span><span class="p">(</span><span class="n">String</span> <span class="nf">k</span><span class="p">);</span>
 
   <span class="cm">/**
 </span><span class="cm">   * Get an iterator over the sequence of nodes that make up the backup
@@ -420,25 +419,25 @@ String message = (String)client.get(&#34;key&#34;);"/>
 </span><span class="cm">   * @param k the object key
 </span><span class="cm">   * @return the sequence of backup nodes.
 </span><span class="cm">   */</span>
-  <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="nf">getSequence</span><span class="o">(</span><span class="n">String</span> <span class="n">k</span><span class="o">);</span>
+  <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="nf">getSequence</span><span class="p">(</span><span class="n">String</span> <span class="nf">k</span><span class="p">);</span>
 
   <span class="cm">/**
 </span><span class="cm">   * Get all memcached nodes. This is useful for broadcasting messages.
 </span><span class="cm">   */</span>
-  <span class="n">Collection</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="nf">getAll</span><span class="o">();</span>
+  <span class="n">Collection</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="nf">getAll</span><span class="p">();</span>
 
   <span class="cm">/**
 </span><span class="cm">   * Create a read-only copy of this NodeLocator.
 </span><span class="cm">   */</span>
-  <span class="n">NodeLocator</span> <span class="nf">getReadonlyCopy</span><span class="o">();</span>
+  <span class="n">NodeLocator</span> <span class="nf">getReadonlyCopy</span><span class="p">();</span>
 
   <span class="cm">/**
 </span><span class="cm">   * Update locator status.
 </span><span class="cm">   *
 </span><span class="cm">   * @param nodes New locator nodes.
 </span><span class="cm">   */</span>
-  <span class="kt">void</span> <span class="nf">updateLocator</span><span class="o">(</span><span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="n">nodes</span><span class="o">);</span>
-<span class="o">}</span></code></pre></div>
+  <span class="kt">void</span> <span class="nf">updateLocator</span><span class="p">(</span><span class="kd">final</span> <span class="nf">List</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="nf">nodes</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
 <p>ただこれを見たところ、<code>#GetPrimary(String k)</code>というメソッドはあるのですが、あくまで<code>MemcachedNode</code>を取得するだけみたいです。 <code>get</code>や<code>put</code>などのオペレーションを渡すインタフェースにはなっていないみたいです。</p>
 
 <h3 id="ふたたびmemcachedconnection">ふたたびMemcachedConnection</h3>
@@ -461,66 +460,66 @@ String message = (String)client.get(&#34;key&#34;);"/>
 </span><span class="cm">   * @param key the key the operation is operating upon.
 </span><span class="cm">   * @param o the operation to add.
 </span><span class="cm">   */</span>
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addOperation</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">key</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Operation</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">MemcachedNode</span> <span class="n">placeIn</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="n">MemcachedNode</span> <span class="n">primary</span> <span class="o">=</span> <span class="n">locator</span><span class="o">.</span><span class="na">getPrimary</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+  <span class="kd">protected</span> <span class="nf">void</span> <span class="n">addOperation</span><span class="p">(</span><span class="kd">final</span> <span class="nf">String</span> <span class="n">key</span><span class="p">,</span> <span class="kd">final</span> <span class="nf">Operation</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MemcachedNode</span> <span class="nf">placeIn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="n">MemcachedNode</span> <span class="nf">primary</span> <span class="o">=</span> <span class="n">locator</span><span class="p">.</span><span class="na">getPrimary</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
 
-    <span class="k">if</span> <span class="o">(</span><span class="n">primary</span><span class="o">.</span><span class="na">isActive</span><span class="o">()</span> <span class="o">||</span> <span class="n">failureMode</span> <span class="o">==</span> <span class="n">FailureMode</span><span class="o">.</span><span class="na">Retry</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">placeIn</span> <span class="o">=</span> <span class="n">primary</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">failureMode</span> <span class="o">==</span> <span class="n">FailureMode</span><span class="o">.</span><span class="na">Cancel</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">o</span><span class="o">.</span><span class="na">cancel</span><span class="o">();</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-      <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">locator</span><span class="o">.</span><span class="na">getSequence</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
-      <span class="k">while</span> <span class="o">(</span><span class="n">placeIn</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">MemcachedNode</span> <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span><span class="o">.</span><span class="na">isActive</span><span class="o">())</span> <span class="o">{</span>
-          <span class="n">placeIn</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
-        <span class="o">}</span>
-      <span class="o">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">primary</span><span class="p">.</span><span class="na">isActive</span><span class="p">()</span> <span class="o">||</span> <span class="n">failureMode</span> <span class="o">==</span> <span class="n">FailureMode</span><span class="p">.</span><span class="na">Retry</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">placeIn</span> <span class="o">=</span> <span class="n">primary</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">failureMode</span> <span class="o">==</span> <span class="n">FailureMode</span><span class="p">.</span><span class="na">Cancel</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">o</span><span class="p">.</span><span class="na">cancel</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">MemcachedNode</span><span class="o">&gt;</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">locator</span><span class="p">.</span><span class="na">getSequence</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+      <span class="k">while</span> <span class="p">(</span><span class="n">placeIn</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">i</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">MemcachedNode</span> <span class="nf">n</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="na">isActive</span><span class="p">())</span> <span class="p">{</span>
+          <span class="n">placeIn</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
 
-      <span class="k">if</span> <span class="o">(</span><span class="n">placeIn</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">placeIn</span> <span class="o">=</span> <span class="n">primary</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">getLogger</span><span class="o">().</span><span class="na">warn</span><span class="o">(</span><span class="s">&#34;Could not redistribute to another node, &#34;</span>
-          <span class="o">+</span> <span class="s">&#34;retrying primary node for %s.&#34;</span><span class="o">,</span> <span class="n">key</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">placeIn</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">placeIn</span> <span class="o">=</span> <span class="n">primary</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">getLogger</span><span class="p">().</span><span class="na">warn</span><span class="p">(</span><span class="s">&#34;Could not redistribute to another node, &#34;</span>
+          <span class="o">+</span> <span class="s">&#34;retrying primary node for %s.&#34;</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
 
-    <span class="k">assert</span> <span class="n">o</span><span class="o">.</span><span class="na">isCancelled</span><span class="o">()</span> <span class="o">||</span> <span class="n">placeIn</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">:</span> <span class="s">&#34;No node found for key &#34;</span> <span class="o">+</span> <span class="n">key</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">placeIn</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">addOperation</span><span class="o">(</span><span class="n">placeIn</span><span class="o">,</span> <span class="n">o</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-      <span class="k">assert</span> <span class="n">o</span><span class="o">.</span><span class="na">isCancelled</span><span class="o">()</span> <span class="o">:</span> <span class="s">&#34;No node found for &#34;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s">&#34; (and not &#34;</span>
-        <span class="o">+</span> <span class="s">&#34;immediately cancelled)&#34;</span><span class="o">;</span>
-    <span class="o">}</span>
-  <span class="o">}</span></code></pre></div>
+    <span class="k">assert</span> <span class="n">o</span><span class="p">.</span><span class="na">isCancelled</span><span class="p">()</span> <span class="o">||</span> <span class="n">placeIn</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">:</span> <span class="s">&#34;No node found for key &#34;</span> <span class="o">+</span> <span class="n">key</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">placeIn</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">addOperation</span><span class="p">(</span><span class="n">placeIn</span><span class="p">,</span> <span class="n">o</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">assert</span> <span class="n">o</span><span class="p">.</span><span class="na">isCancelled</span><span class="p">()</span> <span class="o">:</span> <span class="s">&#34;No node found for &#34;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s">&#34; (and not &#34;</span>
+        <span class="o">+</span> <span class="s">&#34;immediately cancelled)&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span></code></pre></div>
 <p><code>failureMode</code>で失敗時の動作を制御しています。 <code>failureMode</code>が<code>FilureMode.Cancel</code>のときにキャンセル動作するようです。</p>
 
 <p><code>failureMode</code>は<code>final</code>なのでコンストラクタで指定しています。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="nf">MemcachedConnection</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">bufSize</span><span class="o">,</span> <span class="kd">final</span> <span class="n">ConnectionFactory</span> <span class="n">f</span><span class="o">,</span>
-      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">InetSocketAddress</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">ConnectionObserver</span><span class="o">&gt;</span> <span class="n">obs</span><span class="o">,</span>
-      <span class="kd">final</span> <span class="n">FailureMode</span> <span class="n">fm</span><span class="o">,</span> <span class="kd">final</span> <span class="n">OperationFactory</span> <span class="n">opfactory</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="nf">MemcachedConnection</span><span class="p">(</span><span class="kd">final</span> <span class="nf">int</span> <span class="n">bufSize</span><span class="p">,</span> <span class="kd">final</span> <span class="nf">ConnectionFactory</span> <span class="n">f</span><span class="p">,</span>
+      <span class="kd">final</span> <span class="nf">List</span><span class="o">&lt;</span><span class="n">InetSocketAddress</span><span class="o">&gt;</span> <span class="nf">a</span><span class="p">,</span> <span class="kd">final</span> <span class="nf">Collection</span><span class="o">&lt;</span><span class="n">ConnectionObserver</span><span class="o">&gt;</span> <span class="nf">obs</span><span class="p">,</span>
+      <span class="kd">final</span> <span class="nf">FailureMode</span> <span class="n">fm</span><span class="p">,</span> <span class="kd">final</span> <span class="nf">OperationFactory</span> <span class="n">opfactory</span><span class="p">)</span> <span class="kd">throws</span> <span class="nf">IOException</span> <span class="p">{</span>
 
     <span class="c1">// 略
 </span><span class="c1"></span>
-    <span class="n">failureMode</span> <span class="o">=</span> <span class="n">fm</span><span class="o">;</span>
+    <span class="n">failureMode</span> <span class="o">=</span> <span class="n">fm</span><span class="p">;</span>
 
     <span class="c1">// 略
-</span><span class="c1"></span>  <span class="o">}</span></code></pre></div>
+</span><span class="c1"></span>  <span class="p">}</span></code></pre></div>
 <h3 id="defaultconnectionfactory">DefaultConnectionFactory</h3>
 
 <p><code>MemcachedConnection</code>のインスタンスを作成している箇所は<code>DefaultConnectionFactory</code>にあります。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="n">MemcachedConnection</span> <span class="nf">createConnection</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">InetSocketAddress</span><span class="o">&gt;</span> <span class="n">addrs</span><span class="o">)</span>
-    <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">MemcachedConnection</span><span class="o">(</span><span class="n">getReadBufSize</span><span class="o">(),</span> <span class="k">this</span><span class="o">,</span> <span class="n">addrs</span><span class="o">,</span>
-        <span class="n">getInitialObservers</span><span class="o">(),</span> <span class="n">getFailureMode</span><span class="o">(),</span> <span class="n">getOperationFactory</span><span class="o">());</span>
-  <span class="o">}</span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="nf">MemcachedConnection</span> <span class="n">createConnection</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">InetSocketAddress</span><span class="o">&gt;</span> <span class="nf">addrs</span><span class="p">)</span>
+    <span class="kd">throws</span> <span class="nf">IOException</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MemcachedConnection</span><span class="p">(</span><span class="n">getReadBufSize</span><span class="p">(),</span> <span class="k">this</span><span class="p">,</span> <span class="n">addrs</span><span class="p">,</span>
+        <span class="n">getInitialObservers</span><span class="p">(),</span> <span class="n">getFailureMode</span><span class="p">(),</span> <span class="n">getOperationFactory</span><span class="p">());</span>
+  <span class="p">}</span></code></pre></div>
 <p><code>#getFailureMode()</code>で<code>FailureMode</code>を取得して渡しているようです。</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="n">FailureMode</span> <span class="nf">getFailureMode</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">DEFAULT_FAILURE_MODE</span><span class="o">;</span>
-  <span class="o">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kd">public</span> <span class="nf">FailureMode</span> <span class="n">getFailureMode</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">DEFAULT_FAILURE_MODE</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">FailureMode</span> <span class="n">DEFAULT_FAILURE_MODE</span> <span class="o">=</span>
-      <span class="n">FailureMode</span><span class="o">.</span><span class="na">Redistribute</span><span class="o">;</span></code></pre></div>
+  <span class="kd">public</span> <span class="nf">static</span> <span class="kd">final</span> <span class="nf">FailureMode</span> <span class="n">DEFAULT_FAILURE_MODE</span> <span class="o">=</span>
+      <span class="n">FailureMode</span><span class="p">.</span><span class="na">Redistribute</span><span class="p">;</span></code></pre></div>
 <p>ここでは固定値の<code>FailureMode.Redistribute</code>が指定されています。</p>
 
 <p>ここをキャンセルにするには<code>DefaultConnectionFactory</code>を拡張してこのメソッドを上書きすれば大丈夫です。</p>
@@ -637,6 +636,32 @@ String message = (String)client.get(&#34;key&#34;);"/>
             
             <li>
                 <div class="item-thumbnail">
+                    <a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/android">
+                        android
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/09/01/android_view_test/" class="title">Androidアプリを開発したい</a></p>
+                    <p class="item-date">
+                        <time datetime="2019-09-01 16:03:14 &#43;0900 JST" itemprop="datePublished">2019-09-01</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
                     <a href="https://tamurashingo.github.io/post/2019/05/08/hugo-with-latest-chroma/" class="thumbnail">
                     
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -739,32 +764,6 @@ String message = (String)client.get(&#34;key&#34;);"/>
                 </div>
             </li>
             
-            <li>
-                <div class="item-thumbnail">
-                    <a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="thumbnail">
-                    
-                        <span class="thumbnail-image thumbnail-none"></span>
-                    
-                    </a>
-                </div>
-                <div class="item-inner">
-                    
-                    
-                    <p class="item-category">
-                        
-                        <a class="article-category-link" href="https://tamurashingo.github.io/categories/linux">
-                        linux
-                        </a>
-                    </p>
-                    
-                    
-                    <p class="item-title"><a href="https://tamurashingo.github.io/post/2019/03/19/ubuntu-18-04/" class="title">Ubuntu 18.04のインストールと各種設定</a></p>
-                    <p class="item-date">
-                        <time datetime="2019-03-19 05:13:04 &#43;0900 JST" itemprop="datePublished">2019-03-19</time>
-                    </p>
-                </div>
-            </li>
-            
         </ul>
     </div>
 </div>
@@ -783,7 +782,7 @@ String message = (String)client.get(&#34;key&#34;);"/>
                 <a class="category-list-link" href="https://tamurashingo.github.io/categories/android">
                     android
                 </a>
-                <span class="category-list-count">3</span>
+                <span class="category-list-count">4</span>
             </li>
             
             <li class="category-list-item">
