@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ruby on Web技術と親しむ</title>
+    <title>Ruby on Web技術と親しむ</title>
     <link>https://tamurashingo.github.io/tags/ruby/</link>
-    <description>Recent content in ruby on Web技術と親しむ</description>
+    <description>Recent content in Ruby on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Thu, 08 Nov 2018 23:30:00 +0900</lastBuildDate>
