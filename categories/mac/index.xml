@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mac on Web技術と親しむ</title>
+    <link>https://tamurashingo.github.io/categories/mac/</link>
+    <description>Recent content in mac on Web技術と親しむ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 17 Jun 2019 08:43:13 +0900</lastBuildDate>
+    
+	<atom:link href="https://tamurashingo.github.io/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>iMacの設定</title>
+      <link>https://tamurashingo.github.io/post/2019/06/17/imac-setting/</link>
+      <pubDate>Mon, 17 Jun 2019 08:43:13 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/06/17/imac-setting/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;iMacを購入したので設定していきました。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

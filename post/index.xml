@@ -6,10 +6,35 @@
     <description>Recent content in Posts on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Thu, 05 Sep 2019 23:51:27 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jun 2020 07:30:34 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bash-itの導入</title>
+      <link>https://tamurashingo.github.io/post/2020/06/15/bash-it/</link>
+      <pubDate>Mon, 15 Jun 2020 07:30:34 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2020/06/15/bash-it/</guid>
+      <description>tamuraです。 macOSをCatalinaにしたところ、デフォルトシェルが zsh になった関係からなのか、今までカラフルだった bash が白黒になりま</description>
+    </item>
+    
+    <item>
+      <title>Flutterの環境構築</title>
+      <link>https://tamurashingo.github.io/post/2020/04/26/flutter/</link>
+      <pubDate>Sun, 26 Apr 2020 14:49:22 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2020/04/26/flutter/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;Flutterの環境構築を行いました。&lt;/p&gt;
+
+&lt;h1 id=&#34;flutterでびっくりした所&#34;&gt;Flutterでびっくりした所&lt;/h1&gt;
+
+&lt;p&gt;言語にはDartを使い、開発中はDartVM上で動く、という点。
+てっきり、JSに変換してJSインタプリタ上で動くものかと思ってました。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Androidにキャラクターを表示する</title>
@@ -39,6 +64,17 @@
 を写経しました。&lt;/p&gt;
 
 &lt;p&gt;完成したやつは&lt;a href=&#34;https://github.com/tamurashingo/android_test_view&#34;&gt;こちら&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iMacの設定</title>
+      <link>https://tamurashingo.github.io/post/2019/06/17/imac-setting/</link>
+      <pubDate>Mon, 17 Jun 2019 08:43:13 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2019/06/17/imac-setting/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;iMacを購入したので設定していきました。&lt;/p&gt;</description>
     </item>
     
     <item>

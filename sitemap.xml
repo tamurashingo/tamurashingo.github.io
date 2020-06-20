@@ -3,8 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tamurashingo.github.io/tags/bash/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/categories/bash/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2020/06/15/bash-it/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/categories/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/</loc>
+    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tamurashingo.github.io/tags/android/</loc>
-    <lastmod>2019-09-05T23:51:27+09:00</lastmod>
+    <lastmod>2020-04-26T14:49:22+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/categories/flutter/</loc>
+    <lastmod>2020-04-26T14:49:22+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/flutter/</loc>
+    <lastmod>2020-04-26T14:49:22+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2020/04/26/flutter/</loc>
+    <lastmod>2020-04-26T14:49:22+09:00</lastmod>
   </url>
   
   <url>
@@ -18,37 +68,32 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/</loc>
-    <lastmod>2019-09-05T23:51:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/post/</loc>
-    <lastmod>2019-09-05T23:51:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/</loc>
-    <lastmod>2019-09-05T23:51:27+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/</loc>
-    <lastmod>2019-09-05T23:51:27+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://tamurashingo.github.io/post/2019/09/01/android_view_test/</loc>
     <lastmod>2019-09-01T16:03:14+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/blog/</loc>
-    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+    <loc>https://tamurashingo.github.io/post/2019/06/17/imac-setting/</loc>
+    <lastmod>2019-06-17T08:43:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/mac/</loc>
+    <lastmod>2019-06-17T08:43:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/categories/mac/</loc>
+    <lastmod>2019-06-17T08:43:13+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://tamurashingo.github.io/categories/blog/</loc>
+    <lastmod>2019-05-08T23:30:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/blog/</loc>
     <lastmod>2019-05-08T23:30:00+09:00</lastmod>
   </url>
   
@@ -78,12 +123,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/emacs/</loc>
+    <loc>https://tamurashingo.github.io/categories/emacs/</loc>
     <lastmod>2019-03-19T17:13:09+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/emacs/</loc>
+    <loc>https://tamurashingo.github.io/tags/emacs/</loc>
     <lastmod>2019-03-19T17:13:09+09:00</lastmod>
   </url>
   
@@ -178,12 +223,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/ruby/</loc>
+    <loc>https://tamurashingo.github.io/categories/ruby/</loc>
     <lastmod>2018-11-08T23:30:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/ruby/</loc>
+    <loc>https://tamurashingo.github.io/tags/ruby/</loc>
     <lastmod>2018-11-08T23:30:00+09:00</lastmod>
   </url>
   
@@ -263,12 +308,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/typescript/</loc>
+    <loc>https://tamurashingo.github.io/categories/typescript/</loc>
     <lastmod>2017-12-12T19:00:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/typescript/</loc>
+    <loc>https://tamurashingo.github.io/tags/typescript/</loc>
     <lastmod>2017-12-12T19:00:00+09:00</lastmod>
   </url>
   
@@ -333,12 +378,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/memcached/</loc>
+    <loc>https://tamurashingo.github.io/tags/memcached/</loc>
     <lastmod>2017-01-02T00:30:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/memcached/</loc>
+    <loc>https://tamurashingo.github.io/categories/memcached/</loc>
     <lastmod>2017-01-02T00:30:00+09:00</lastmod>
   </url>
   
@@ -373,12 +418,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/isucon/</loc>
+    <loc>https://tamurashingo.github.io/tags/isucon/</loc>
     <lastmod>2016-10-31T23:31:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/isucon/</loc>
+    <loc>https://tamurashingo.github.io/categories/isucon/</loc>
     <lastmod>2016-10-31T23:31:00+09:00</lastmod>
   </url>
   
@@ -413,12 +458,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/web/</loc>
+    <loc>https://tamurashingo.github.io/tags/web/</loc>
     <lastmod>2016-10-20T22:30:34+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/web/</loc>
+    <loc>https://tamurashingo.github.io/categories/web/</loc>
     <lastmod>2016-10-20T22:30:34+09:00</lastmod>
   </url>
   
@@ -593,12 +638,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/</loc>
+    <loc>https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/</loc>
     <lastmod>2016-04-16T01:00:05+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/</loc>
+    <loc>https://tamurashingo.github.io/tags/%E3%83%8F%E3%83%83%E3%82%AB%E3%82%BD%E3%83%B3/</loc>
     <lastmod>2016-04-16T01:00:05+09:00</lastmod>
   </url>
   
@@ -803,12 +848,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/scala/</loc>
+    <loc>https://tamurashingo.github.io/tags/scala/</loc>
     <lastmod>2015-02-21T05:29:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/scala/</loc>
+    <loc>https://tamurashingo.github.io/categories/scala/</loc>
     <lastmod>2015-02-21T05:29:00+09:00</lastmod>
   </url>
   
