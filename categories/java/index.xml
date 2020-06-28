@@ -6,10 +6,21 @@
     <description>Recent content in Java on Web技術と親しむ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 05 Feb 2017 01:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2020 02:57:25 +0900</lastBuildDate>
     
 	<atom:link href="https://tamurashingo.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java開発の始め方</title>
+      <link>https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/</link>
+      <pubDate>Fri, 26 Jun 2020 02:57:25 +0900</pubDate>
+      
+      <guid>https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/</guid>
+      <description>&lt;p&gt;tamuraです。&lt;/p&gt;
+
+&lt;p&gt;まっさらな状態からJavaのプログラムを書き始めるときのやり方についてまとめました。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ThymeleafでReverse Proxyを使った際にURLを書き換える</title>

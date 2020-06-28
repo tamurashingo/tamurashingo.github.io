@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tamurashingo.github.io/categories/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/java/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/categories/java/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/post/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/tags/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tamurashingo.github.io/</loc>
+    <lastmod>2020-06-26T02:57:25+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tamurashingo.github.io/categories/bash/</loc>
     <lastmod>2020-06-15T07:30:34+09:00</lastmod>
   </url>
@@ -18,37 +53,17 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/</loc>
-    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/post/</loc>
-    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/tags/</loc>
-    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/</loc>
-    <lastmod>2020-06-15T07:30:34+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://tamurashingo.github.io/tags/android/</loc>
     <lastmod>2020-04-26T14:49:22+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/flutter/</loc>
+    <loc>https://tamurashingo.github.io/categories/flutter/</loc>
     <lastmod>2020-04-26T14:49:22+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/flutter/</loc>
+    <loc>https://tamurashingo.github.io/tags/flutter/</loc>
     <lastmod>2020-04-26T14:49:22+09:00</lastmod>
   </url>
   
@@ -78,12 +93,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/mac/</loc>
+    <loc>https://tamurashingo.github.io/tags/mac/</loc>
     <lastmod>2019-06-17T08:43:13+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/mac/</loc>
+    <loc>https://tamurashingo.github.io/categories/mac/</loc>
     <lastmod>2019-06-17T08:43:13+09:00</lastmod>
   </url>
   
@@ -293,12 +308,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/react/</loc>
+    <loc>https://tamurashingo.github.io/tags/react/</loc>
     <lastmod>2017-12-12T19:00:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/react/</loc>
+    <loc>https://tamurashingo.github.io/categories/react/</loc>
     <lastmod>2017-12-12T19:00:00+09:00</lastmod>
   </url>
   
@@ -343,16 +358,6 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/java/</loc>
-    <lastmod>2017-02-05T01:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://tamurashingo.github.io/categories/java/</loc>
-    <lastmod>2017-02-05T01:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://tamurashingo.github.io/tags/reverse-proxy/</loc>
     <lastmod>2017-02-05T01:00:00+00:00</lastmod>
   </url>
@@ -378,12 +383,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/memcached/</loc>
+    <loc>https://tamurashingo.github.io/categories/memcached/</loc>
     <lastmod>2017-01-02T00:30:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/memcached/</loc>
+    <loc>https://tamurashingo.github.io/tags/memcached/</loc>
     <lastmod>2017-01-02T00:30:00+09:00</lastmod>
   </url>
   
@@ -403,12 +408,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/dropwizard/</loc>
+    <loc>https://tamurashingo.github.io/tags/dropwizard/</loc>
     <lastmod>2016-11-10T22:00:03+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/dropwizard/</loc>
+    <loc>https://tamurashingo.github.io/categories/dropwizard/</loc>
     <lastmod>2016-11-10T22:00:03+09:00</lastmod>
   </url>
   
@@ -418,12 +423,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/isucon/</loc>
+    <loc>https://tamurashingo.github.io/categories/isucon/</loc>
     <lastmod>2016-10-31T23:31:00+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/isucon/</loc>
+    <loc>https://tamurashingo.github.io/tags/isucon/</loc>
     <lastmod>2016-10-31T23:31:00+09:00</lastmod>
   </url>
   
@@ -668,12 +673,12 @@
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/tags/cocos2d-x/</loc>
+    <loc>https://tamurashingo.github.io/categories/cocos2d-x/</loc>
     <lastmod>2015-09-20T02:08:20+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tamurashingo.github.io/categories/cocos2d-x/</loc>
+    <loc>https://tamurashingo.github.io/tags/cocos2d-x/</loc>
     <lastmod>2015-09-20T02:08:20+09:00</lastmod>
   </url>
   

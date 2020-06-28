@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja-jp">
 <head>
-    <title>Posts &middot; Web技術と親しむ</title>
+    <title>Java開発の始め方 &middot; Web技術と親しむ</title>
     <meta name="generator" content="Hugo 0.57.2" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,10 +10,7 @@
       <meta name="description" content="">
     
     
-      <link href="https://tamurashingo.github.io/post/index.xml" rel="alternate" type="application/rss+xml" title="Web技術と親しむ" />
-      <link href="https://tamurashingo.github.io/post/index.xml" rel="feed" type="application/rss+xml" title="Web技術と親しむ" />
-    
-    <link rel="canonical" href="https://tamurashingo.github.io/post/"/>
+    <link rel="canonical" href="https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/"/>
     <link rel="icon" href="https://tamurashingo.github.io/favicon.ico">
     <link rel="apple-touch-icon" href="https://tamurashingo.github.io/apple-touch-icon.png"/>
     <link rel="stylesheet" href="https://tamurashingo.github.io/css/style.css">
@@ -23,21 +20,35 @@
     
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://tamurashingo.github.io/post/" />
+    <meta property="og:title" content="Java開発の始め方" />
+<meta property="og:description" content="tamuraです。
 
-<meta property="og:updated_time" content="2020-06-26T02:57:25+09:00" />
+まっさらな状態からJavaのプログラムを書き始めるときのやり方についてまとめました。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/" />
+<meta property="article:published_time" content="2020-06-26T02:57:25+09:00" />
+<meta property="article:modified_time" content="2020-06-26T02:57:25+09:00" />
 
     
-    <meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
+    <meta itemprop="name" content="Java開発の始め方">
+<meta itemprop="description" content="tamuraです。
 
+まっさらな状態からJavaのプログラムを書き始めるときのやり方についてまとめました。">
+
+
+<meta itemprop="datePublished" content="2020-06-26T02:57:25&#43;09:00" />
+<meta itemprop="dateModified" content="2020-06-26T02:57:25&#43;09:00" />
+<meta itemprop="wordCount" content="976">
+
+
+
+<meta itemprop="keywords" content="java," />
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Java開発の始め方"/>
+<meta name="twitter:description" content="tamuraです。
+
+まっさらな状態からJavaのプログラムを書き始めるときのやり方についてまとめました。"/>
 <meta name="twitter:site" content="@tamura_shingo"/>
 
     
@@ -244,118 +255,306 @@
 
     <section id="main">
     
-    
-    
-    
-    <section class="archives-wrap">
-        <div class="archive-category-wrap">
-            <span class="archive-category">Posts</span>
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/">
+    <h1 class="article-title" itemprop="name">
+        Java開発の始め方
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2020-06-26 02:57:25 &#43;0900 JST" itemprop="datePublished">2020-06-26</time>
+            &middot;
+            976
+            文字
+            &middot;
+            2
+            分くらいで読めます
         </div>
-        <div class="archives">
+        
+        
             
             
-                <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="https://tamurashingo.github.io/post/2015/02/18/install-ghost/" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="https://tamurashingo.github.io/post/2015/02/18/install-ghost/">Ghostを入れる</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2015-02-18 04:00:00 &#43;0900 JST" itemprop="datePublished">2015-02-18</time>
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/categories/java">java</a>
+                
+                
             </div>
-        </header>
-    </div>
-</article>
- 
             
-                <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
+        
+
+        
             
-            <a href="https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
             
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="https://tamurashingo.github.io/post/2015/02/14/octopress-to-ghost/">OctopressからGhostへ移行</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2015-02-14 12:51:33 &#43;0900 JST" itemprop="datePublished">2015-02-14</time>
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://tamurashingo.github.io/tags/java">java</a>
+                
+                
             </div>
-        </header>
+            
+        
     </div>
-</article>
- 
-            
-                <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="https://tamurashingo.github.io/post/2015/02/13/repl-development/" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>tamuraです。</p>
+
+<p>まっさらな状態からJavaのプログラムを書き始めるときのやり方についてまとめました。</p>
+
+<h1 id="前提">前提</h1>
+
+<ul>
+<li>コンソールアプリを想定</li>
+<li>Javaをちょっと書いた事があるが、ゼロから書いたことがない</li>
+</ul>
+
+<h1 id="プログラムを書く場所">プログラムを書く場所</h1>
+
+<p>結論: どこでも良い</p>
+
+<p>Golangとは違う。</p>
+
+<h1 id="ディレクトリ構成">ディレクトリ構成</h1>
+
+<p>一般的には以下のようなディレクトリ構成です。</p>
+
+<pre><code>$ tree
+.
+|____src
+| |____main
+| | |____java
+| | |____resources
+| |____test
+| | |____java
+| | |____resources
+</code></pre>
+
+<h2 id="説明">説明</h2>
+
+<h3 id="src-main-java"><code>src/main/java</code></h3>
+
+<p>Javaのソースを配置します。</p>
+
+<p>余談ですが、Kotlinとかを使う場合は <code>src/main/kotlin</code> とやったりすることもあります。</p>
+
+<h3 id="src-main-resources"><code>src/main/resources</code></h3>
+
+<p>プロパティファイルなど、Javaのソースではないけど実行時に一緒に使うファイル等を配置します。</p>
+
+<h3 id="src-test-java"><code>src/test/java</code></h3>
+
+<p>テストプログラムの置き場所。
+これもKotlinの場合は <code>src/main/kotlin</code> とやったりする人もいます。</p>
+
+<h3 id="src-test-resources"><code>src/test/resources</code></h3>
+
+<p>テスト用のプロパティファイルを配置します。
+テスト用のリソースについては後述します。</p>
+
+<h1 id="とりあえずの始め方">とりあえずの始め方</h1>
+
+<p>ディレクトリ構成に従ってディレクトリを作成します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p src/main/java
+$ mkdir -p src/main/resources
+$ mkdir -p src/test/java
+$ mkdir -p src/test/resources</code></pre></div>
+<h2 id="mavenを使う場合">Mavenを使う場合</h2>
+
+<p>以下をコピペして、 <code>pom.xml</code> というファイル名でプロジェクトディレクトリの直下に保存します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;groupId&gt;&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;&lt;/version&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;maven.compiler.source&gt;&lt;/maven.compiler.source&gt;</span>
+    <span class="nt">&lt;maven.compiler.target&gt;&lt;/maven.compiler.target&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;defaultGoal&gt;</span>package<span class="nt">&lt;/defaultGoal&gt;</span>
+    <span class="nt">&lt;finalName&gt;</span>${project.artifactId}-${project.version}<span class="nt">&lt;/finalName&gt;</span>
+	
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>4.10<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span></code></pre></div>
+<h2 id="説明-1">説明</h2>
+
+<h3 id="groupid"><code>groupId</code></h3>
+
+<p>このプログラムのパッケージを設定します。
+個人なら <code>com.github.tamurashingo</code> みたいにしておけばOKです。
+会社なら会社から指定された値だったり、ドメインをひっくり返した値(例:com.google)にします。</p>
+
+<h3 id="artifactid"><code>artifactId</code></h3>
+
+<p>プログラムの名前です。</p>
+
+<h3 id="version"><code>version</code></h3>
+
+<p>バージョンです。
+<code>0.0.1</code> とか <code>0.1.0</code> とか、Javaだと3桁区切りが多い気がしますが、好きに付けてOKです。</p>
+
+<p><code>0.0.1-SNAPSHOT</code> のように、末尾に <code>-SNAPSHOT</code> をつけるときもあります。
+（ここでは説明しません）</p>
+
+<h3 id="maven-compiler-source-と-maven-compiler-target"><code>maven.compiler.source</code> と <code>maven.compiler.target</code></h3>
+
+<p>Javaのバージョンです。揃えておきましょう。</p>
+
+<p>JDK12の場合は <code>12</code> と指定します。</p>
+
+<p>これは <code>javac</code> への <code>-source</code> <code>-target</code> への引数となるので、 <code>javac</code> の説明をよく読みましょう。</p>
+
+<h2 id="gradleを使う場合">Gradleを使う場合</h2>
+
+<p>以下をコピペして、<code>build.gradle</code> というファイル名でプロジェクトディレクトリ直下に保存します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-groovy" data-lang="groovy"><span class="n">plugins</span> <span class="o">{</span>
+  <span class="n">id</span> <span class="s1">&#39;application&#39;</span>
+<span class="o">}</span>
+
+<span class="n">repositories</span> <span class="o">{</span>
+  <span class="n">jcenter</span><span class="o">()</span>
+<span class="o">}</span>
+
+<span class="n">dependencies</span> <span class="o">{</span>
+  <span class="n">testImplementation</span> <span class="s1">&#39;junit:junit:4.12&#39;</span>
+<span class="o">}</span></code></pre></div>
+<h1 id="ソース">ソース</h1>
+
+<p><code>src/main/java</code> 下にパッケージを掘って書いていきます。
+ソースは割愛。</p>
+
+<h1 id="ビルド">ビルド</h1>
+
+<h2 id="maven派">Maven派</h2>
+
+<p>コンパイル</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mvn compile</code></pre></div>
+<p>テスト</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mvn test</code></pre></div>
+<p>ビルド</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mvn package</code></pre></div>
+<h2 id="gradle派">Gradle派</h2>
+
+<p>コンパイル</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gradle compileJava</code></pre></div>
+<p>テスト</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gradle test</code></pre></div>
+<p>ビルド</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ gradle </code></pre></div>
+<h1 id="git管理">git管理</h1>
+
+<p>git管理するのは <code>pom.xml</code> <code>build.gradle</code> <code>settings.gradle</code> <code>src/</code> くらいです。
+それ以外は <code>.gitignore</code> に記載してgit管理されないようにします。</p>
+
+<pre><code># Gradle
+.gradle
+build
+
+# Maven
+target
+
+</code></pre>
         </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="https://tamurashingo.github.io/post/2015/02/13/repl-development/">CommonLispでREPLを使った開発</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2015-02-13 23:20:38 &#43;0900 JST" itemprop="datePublished">2015-02-13</time>
-            </div>
-        </header>
+        <footer class="article-footer">
+  <div class="article-share-box">
+    <div class="article-share-links">
+      <a href="http://twitter.com/intent/tweet?text=Java%e9%96%8b%e7%99%ba%e3%81%ae%e5%a7%8b%e3%82%81%e6%96%b9%20%7C%20Web%e6%8a%80%e8%a1%93%e3%81%a8%e8%a6%aa%e3%81%97%e3%82%80%20https%3a%2f%2ftamurashingo.github.io%2fpost%2f2020%2f06%2f26%2fhow-to-start-java%2f%20%40" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftamurashingo.github.io%2fpost%2f2020%2f06%2f26%2fhow-to-start-java%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>
+      <a href="http://b.hatena.ne.jp/entry/https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/" class="fa fa-hatena article-share-hatena" target="_blank" title="Hatena"></a>
     </div>
-</article>
- 
-            
-                <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="https://tamurashingo.github.io/post/2015/02/13/octopress/" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="https://tamurashingo.github.io/post/2015/02/13/octopress/">init - Octopress</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2015-02-13 18:00:00 &#43;0900 JST" itemprop="datePublished">2015-02-13</time>
-            </div>
-        </header>
+  </div>
+
+  
+  <a href="https://tamurashingo.github.io/post/2020/06/26/how-to-start-java/#disqus_thread" class="article-comment-link">
+    Comments
+  </a>
+  
+
+</footer>
+
+
+        
+
+
     </div>
-</article>
- 
-            
-        </div>
-    </section>
-    <nav id="page-nav">
 
     
-        <a class="extend prev" rel="prev" href="https://tamurashingo.github.io/post/page/7/">
-            « 前のページ
-        </a>
+<nav id="article-nav">
     
+    <a href="https://tamurashingo.github.io/post/2020/06/15/bash-it/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          前のページ
+      </strong>
+      <div class="article-nav-title">bash-itの導入</div>
+    </a>
     
 
+    
 </nav>
 
+
+</article>
+
+
+<section id="comments">
+    <div id="disqus_thread">
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
     
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "webji-shu-toqin-shimu" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</section>
+
+
 
     </section>
 
